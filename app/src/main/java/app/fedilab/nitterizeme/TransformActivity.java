@@ -18,7 +18,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -61,7 +60,6 @@ public class TransformActivity extends AppCompatActivity {
                     }
                 }
             }
-            Log.v(MainActivity.TAG,"newUrl: " + newUrl);
             Intent delegate = new Intent(Intent.ACTION_VIEW);
             delegate.setData(Uri.parse(newUrl));
             delegate.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);

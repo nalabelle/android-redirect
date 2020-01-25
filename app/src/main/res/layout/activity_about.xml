@@ -24,8 +24,6 @@
     android:layout_margin="@dimen/fab_margin"
     tools:context=".AboutActivity">
     <RelativeLayout
-        android:layout_marginStart="@dimen/about_margin"
-        android:layout_marginEnd="@dimen/about_margin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <LinearLayout
@@ -102,7 +100,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:textStyle="bold"
-                            android:text="\@fedilab@framapiaf.org"
+                            android:text="\@fedilab@toot.fedilab.org"
                             tools:ignore="HardcodedText" />
                         <LinearLayout
                             android:layout_marginTop="5dp"

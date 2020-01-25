@@ -9,4 +9,8 @@
     <string name="issue_tracker">Issue tracker</string>
     <string name="license">License</string>
     <string name="about_vesrion">Release %1$s</string>
+    <string name="custom_nitter">Custom Nitter instance</string>
+    <string name="save">Save</string>
+    <string name="close">Close</string>
+    <string name="instances_saved">Custom instances have been saved!</string>
 </resources>
