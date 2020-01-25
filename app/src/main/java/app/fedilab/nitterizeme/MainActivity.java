@@ -116,6 +116,7 @@ public class MainActivity extends AppCompatActivity {
         final LinearLayoutManager mLayoutManager;
         mLayoutManager = new LinearLayoutManager(MainActivity.this);
         list_apps.setLayoutManager(mLayoutManager);
+        list_apps.setNestedScrollingEnabled(false);
     }
 
 
@@ -131,7 +132,7 @@ public class MainActivity extends AppCompatActivity {
         final ResolveInfo defaultResolution = getPackageManager().resolveActivity(browserIntent, PackageManager.MATCH_DEFAULT_ONLY);
         if (defaultResolution != null) {
             final ActivityInfo activity = defaultResolution.activityInfo;
-            if (!activity.name.equals("com.android.internal.app.ResolverActivity")) {
+            if (!activity.name.equals("com.android.internal.app.ResolverActivity") && !activity.packageName.equals("com.huawei.android.internal.app")) {
                 return activity.applicationInfo;
             }
         }
