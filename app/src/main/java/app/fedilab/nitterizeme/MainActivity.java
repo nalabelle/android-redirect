@@ -16,11 +16,18 @@ package app.fedilab.nitterizeme;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.ActivityInfo;
+import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
+import android.net.Uri;
 import android.os.Bundle;
 
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.Menu;
 import android.view.MenuItem;
@@ -30,6 +37,7 @@ import android.widget.Button;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputEditText;
 
+import java.util.ArrayList;
 import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
@@ -41,6 +49,18 @@ public class MainActivity extends AppCompatActivity {
     public  static  String SET_INVIDIOUS_HOST = "set_invidious_host";
     public  static  String DEFAULT_INVIDIOUS_HOST = "invidio.us";
     public static final String APP_PREFS = "app_prefs";
+
+    //Supported domains
+    private String[] domains = {
+            "twitter.com",
+            "mobile.twitter.com",
+            "www.twitter.com",
+            "www.youtube.com",
+            "youtube.com",
+            "m.youtube.com",
+            "youtu.be",
+            "youtube-nocookie.com"
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
         TextInputEditText nitter_instance = findViewById(R.id.nitter_instance);
         TextInputEditText invidious_instance = findViewById(R.id.invidious_instance);
         Button button_save = findViewById(R.id.button_save);
-
+        RecyclerView list_apps = findViewById(R.id.list_apps);
         String nitterHost = sharedpreferences.getString(SET_NITTER_HOST, null);
         String invidiousHost = sharedpreferences.getString(SET_INVIDIOUS_HOST, null);
         if(nitterHost!=null) {
@@ -82,6 +102,40 @@ public class MainActivity extends AppCompatActivity {
             View parentLayout = findViewById(android.R.id.content);
             Snackbar.make(parentLayout, R.string.instances_saved, Snackbar.LENGTH_LONG).show();
         });
+
+        ArrayList<AppInfo> appInfos = new ArrayList<>();
+        for(String domain: domains) {
+            AppInfo appInfo = new AppInfo();
+            appInfo.setDomain(domain);
+            appInfo.setApplicationInfo(getDefaultApp("https://"+domain));
+            appInfos.add(appInfo);
+        }
+
+        AppInfoAdapter appInfoAdapter = new AppInfoAdapter(appInfos);
+        list_apps.setAdapter(appInfoAdapter);
+        final LinearLayoutManager mLayoutManager;
+        mLayoutManager = new LinearLayoutManager(MainActivity.this);
+        list_apps.setLayoutManager(mLayoutManager);
+    }
+
+
+    /**
+     * Allow to get info about application that opens the link by default
+     * @param url String url for test
+     * @return ApplicationInfo info about the application
+     */
+    ApplicationInfo getDefaultApp(String url) {
+        final Intent browserIntent = new Intent(Intent.ACTION_VIEW);
+        browserIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        browserIntent.setData(Uri.parse(url));
+        final ResolveInfo defaultResolution = getPackageManager().resolveActivity(browserIntent, PackageManager.MATCH_DEFAULT_ONLY);
+        if (defaultResolution != null) {
+            final ActivityInfo activity = defaultResolution.activityInfo;
+            if (!activity.name.equals("com.android.internal.app.ResolverActivity")) {
+                return activity.applicationInfo;
+            }
+        }
+        return null;
     }
 
     @Override

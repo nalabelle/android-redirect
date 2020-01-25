@@ -21,7 +21,7 @@ Github project: [/omarroth/invidious](https://github.com/omarroth/invidious)
 
 ### Screenshots:
 
-![A simple interface to cusomize instances](./images/img1.png) ![A YouTube link received via a text message](./images/img2.png)
+![A simple interface to cusomize instances](./images/img1.png) ![Clicking on app will open settings](./images/img2.png)
 
-![The app handled and transformed it before delegating the action](./images/img3.png) ![The app opened the transformed link](./images/img4.png)
+ ![A YouTube link received via a text message](./images/img3.png) ![The app handled and transformed it before delegating the action](./images/img4.png) ![The app opened the transformed link](./images/img5.png)
 

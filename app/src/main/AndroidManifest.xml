@@ -28,6 +28,14 @@
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
                 <data android:scheme="https"
+                    android:host="mobile.twitter.com"
+                    android:pathPattern=".*"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="https"
                     android:host="www.twitter.com"
                     android:pathPattern=".*"/>
             </intent-filter>
@@ -44,14 +52,14 @@
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
                 <data android:scheme="https"
-                    android:host="m.twitter.com" />
+                    android:host="www.youtube.com" />
             </intent-filter>
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
                 <data android:scheme="https"
-                    android:host="www.youtube.com" />
+                    android:host="m.youtube.com" />
             </intent-filter>
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
