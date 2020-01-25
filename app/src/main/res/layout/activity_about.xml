@@ -23,212 +23,208 @@
     android:scrollbars="none"
     android:layout_margin="@dimen/fab_margin"
     tools:context=".AboutActivity">
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <LinearLayout
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <TextView
+            android:layout_marginTop="10dp"
+            android:textSize="20sp"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center_horizontal"
+            android:text="@string/app_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:layout_marginTop="10dp"
+            android:id="@+id/about_version"
+            android:textSize="16sp"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center_horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+
+        <TextView
+            android:layout_margin="5dp"
+            android:textStyle="bold"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
-            <TextView
-                android:layout_marginTop="10dp"
-                android:textSize="20sp"
-                android:layout_gravity="center_horizontal"
-                android:gravity="center_horizontal"
-                android:text="@string/app_name"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+            android:gravity="center"
+            android:text="@string/developer"
+            />
 
-            <TextView
-                android:layout_marginTop="10dp"
-                android:id="@+id/about_version"
-                android:textSize="16sp"
-                android:layout_gravity="center_horizontal"
-                android:gravity="center_horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+        <!-- Developer info -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp">
 
-
-            <TextView
-                android:layout_margin="5dp"
-                android:textStyle="bold"
+            <LinearLayout
+                android:padding="5dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="@string/developer"
-                />
-
-            <!-- Developer info -->
-            <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:layout_marginTop="10dp">
+                android:orientation="horizontal"
+                android:baselineAligned="false">
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    tools:ignore="UseCompoundDrawables">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="tom79"
+                        android:textSize="16sp"
+                        tools:ignore="HardcodedText" />
+                    <ImageView
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:src="@drawable/tom79_avatar"
+                        tools:ignore="ContentDescription" />
+                </LinearLayout>
 
                 <LinearLayout
-                    android:padding="5dp"
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
+                    android:layout_weight="3"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:baselineAligned="false">
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
+                    android:orientation="vertical">
+                    <TextView
+                        android:textSize="16sp"
+                        android:id="@+id/developer_mastodon"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        tools:ignore="UseCompoundDrawables">
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="tom79"
-                            android:textSize="16sp"
-                            tools:ignore="HardcodedText" />
-                        <ImageView
-                            android:layout_width="50dp"
-                            android:layout_height="50dp"
-                            android:src="@drawable/tom79_avatar"
-                            tools:ignore="ContentDescription" />
-                    </LinearLayout>
-
+                        android:textStyle="bold"
+                        android:text="\@fedilab@toot.fedilab.org"
+                        tools:ignore="HardcodedText" />
                     <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_weight="3"
+                        android:layout_marginTop="10dp"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical">
+                        android:orientation="horizontal">
                         <TextView
                             android:textSize="16sp"
-                            android:id="@+id/developer_mastodon"
-                            android:layout_width="match_parent"
+                            android:id="@+id/framagit"
+                            android:text="Framagit"
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:textStyle="bold"
-                            android:text="\@fedilab@toot.fedilab.org"
+                            android:layout_weight="1"
                             tools:ignore="HardcodedText" />
-                        <LinearLayout
-                            android:layout_marginTop="10dp"
-                            android:layout_width="match_parent"
+                        <TextView
+                            android:textSize="16sp"
+                            android:id="@+id/github"
+                            android:text="Github"
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:orientation="horizontal">
-                            <TextView
-                                android:textSize="16sp"
-                                android:id="@+id/framagit"
-                                android:text="Framagit"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                tools:ignore="HardcodedText" />
-                            <TextView
-                                android:textSize="16sp"
-                                android:id="@+id/github"
-                                android:text="Github"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                tools:ignore="HardcodedText" />
-                            <TextView
-                                android:textSize="16sp"
-                                android:id="@+id/codeberg"
-                                android:text="Codeberg"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                tools:ignore="HardcodedText" />
-                        </LinearLayout>
+                            android:layout_weight="1"
+                            tools:ignore="HardcodedText" />
+                        <TextView
+                            android:textSize="16sp"
+                            android:id="@+id/codeberg"
+                            android:text="Codeberg"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            tools:ignore="HardcodedText" />
                     </LinearLayout>
                 </LinearLayout>
-            </androidx.cardview.widget.CardView>
-            <!-- Idea from info -->
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+        <!-- Idea from info -->
 
-            <Button
-                android:layout_marginTop="10dp"
-                android:layout_gravity="center"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/Donate"
-                android:id="@+id/donate"
-                />
+        <Button
+            android:layout_marginTop="10dp"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/Donate"
+            android:id="@+id/donate"
+            />
 
-            <!-- About the app -->
+        <!-- About the app -->
+        <TextView
+            android:layout_margin="10dp"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/about_the_app"
+            />
+
+
+        <!-- Code info -->
+        <LinearLayout
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
             <TextView
-                android:layout_margin="10dp"
-                android:textStyle="bold"
-                android:textSize="16sp"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="@string/about_the_app"
+                android:layout_weight="1"
+                android:text="@string/source_code"
                 />
-
-
-            <!-- Code info -->
-            <LinearLayout
-                android:layout_marginTop="10dp"
-                android:layout_width="match_parent"
+            <TextView
+                android:layout_marginStart="5dp"
+                android:id="@+id/source_code"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="@string/source_code"
-                    />
-                <TextView
-                    android:layout_marginStart="5dp"
-                    android:id="@+id/source_code"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="3"
-                    android:autoLink="web"
-                    android:text="https://framagit.org/tom79/nitterizeme"
-                    tools:ignore="HardcodedText"
-                    android:layout_marginLeft="5dp" />
-            </LinearLayout>
-
-            <!-- Support info -->
-            <LinearLayout
-                android:layout_marginTop="10dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="@string/issue_tracker"
-                    />
-                <TextView
-                    android:layout_marginStart="5dp"
-                    android:id="@+id/issue_tracker"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="3"
-                    android:autoLink="web"
-                    android:text="https://framagit.org/tom79/nitterizeme/issues"
-                    tools:ignore="HardcodedText"
-                    android:layout_marginLeft="5dp" />
-            </LinearLayout>
-
-            <!-- License info -->
-            <LinearLayout
-                android:layout_marginTop="10dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="@string/license"
-                    />
-                <TextView
-                    android:layout_marginStart="5dp"
-                    android:id="@+id/license"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="3"
-                    android:text="GPL3"
-                    tools:ignore="HardcodedText"
-                    android:layout_marginLeft="5dp" />
-            </LinearLayout>
+                android:layout_weight="3"
+                android:autoLink="web"
+                android:text="https://framagit.org/tom79/nitterizeme"
+                tools:ignore="HardcodedText"
+                android:layout_marginLeft="5dp" />
         </LinearLayout>
-    </RelativeLayout>
+
+        <!-- Support info -->
+        <LinearLayout
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/issue_tracker"
+                />
+            <TextView
+                android:layout_marginStart="5dp"
+                android:id="@+id/issue_tracker"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:autoLink="web"
+                android:text="https://framagit.org/tom79/nitterizeme/issues"
+                tools:ignore="HardcodedText"
+                android:layout_marginLeft="5dp" />
+        </LinearLayout>
+
+        <!-- License info -->
+        <LinearLayout
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/license"
+                />
+            <TextView
+                android:layout_marginStart="5dp"
+                android:id="@+id/license"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:text="GPL3"
+                tools:ignore="HardcodedText"
+                android:layout_marginLeft="5dp" />
+        </LinearLayout>
+    </LinearLayout>
 </ScrollView>

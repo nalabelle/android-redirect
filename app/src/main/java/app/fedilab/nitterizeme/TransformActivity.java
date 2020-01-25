@@ -21,6 +21,7 @@ import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -53,7 +54,7 @@ public class TransformActivity extends AppCompatActivity {
                 while (matcher.find()) {
                     final String youtubeId = matcher.group(3);
                     String invidiousHost = sharedpreferences.getString(MainActivity.SET_INVIDIOUS_HOST, MainActivity.DEFAULT_INVIDIOUS_HOST).toLowerCase();
-                    if (matcher.group(2) != null && matcher.group(2).compareTo("youtu.be") == 0) {
+                    if (Objects.requireNonNull(matcher.group(2)).compareTo("youtu.be") == 0) {
                         newUrl = "https://" + invidiousHost + "/watch?v=" + youtubeId + "&local=true";
                     } else {
                         newUrl = "https://" + invidiousHost + "/" + youtubeId + "&local=true";

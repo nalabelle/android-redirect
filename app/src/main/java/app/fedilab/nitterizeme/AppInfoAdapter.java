@@ -67,8 +67,10 @@ public class AppInfoAdapter extends RecyclerView.Adapter {
             holder.information.setText(appInfo.getApplicationInfo().packageName);
             if( appInfo.getApplicationInfo().packageName.compareTo(BuildConfig.APPLICATION_ID) == 0 ) {
                 holder.valid.setImageResource(R.drawable.ic_check);
+                holder.valid.setContentDescription(context.getString(R.string.valid));
             }else {
                 holder.valid.setImageResource(R.drawable.ic_error);
+                holder.valid.setContentDescription(context.getString(R.string.error));
             }
             holder.main_container.setOnClickListener(v -> {
                 Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
@@ -79,6 +81,7 @@ public class AppInfoAdapter extends RecyclerView.Adapter {
         }else{
             holder.information.setText(R.string.no_apps);
             holder.app_icon.setImageResource(R.drawable.ic_android);
+            holder.valid.setContentDescription(context.getString(R.string.warning));
             holder.valid.setImageResource(R.drawable.ic_warning);
         }
 

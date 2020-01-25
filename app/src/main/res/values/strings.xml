@@ -16,4 +16,8 @@
     <string name="custom_invidious">Custom Invidious instance</string>
     <string name="no_apps">No applications by default</string>
     <string name="Donate">Donate</string>
+    <string name="warning">Warning</string>
+    <string name="error">Error</string>
+    <string name="valid">Valid</string>
+    <string name="icon_of_the_app">Icon of the app</string>
 </resources>

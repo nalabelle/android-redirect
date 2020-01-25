@@ -15,24 +15,24 @@ package app.fedilab.nitterizeme;
  * see <http://www.gnu.org/licenses>. */
 
 
-public class AppInfo {
+class AppInfo {
 
     private String domain;
     private android.content.pm.ApplicationInfo ApplicationInfo;
 
-    public String getDomain() {
+    String getDomain() {
         return domain;
     }
 
-    public void setDomain(String domain) {
+    void setDomain(String domain) {
         this.domain = domain;
     }
 
-    public android.content.pm.ApplicationInfo getApplicationInfo() {
+    android.content.pm.ApplicationInfo getApplicationInfo() {
         return ApplicationInfo;
     }
 
-    public void setApplicationInfo(android.content.pm.ApplicationInfo applicationInfo) {
+    void setApplicationInfo(android.content.pm.ApplicationInfo applicationInfo) {
         ApplicationInfo = applicationInfo;
     }
 }
