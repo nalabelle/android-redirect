@@ -1,6 +1,11 @@
-## NitterizeMe
+# NitterizeMe [![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 
 NitterizeMe once set by default to open Twitter and YouTube links will transform them into Nitter and Invidious links and delegate the action to another app.
+
+You can download the debug apk here:
+
+[app-debug-1.0.0.apk](./apk/app-debug-1.0.0.apk) - from 01/26/2020
+
 
 ### What is Nitter:
 
