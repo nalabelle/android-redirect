@@ -23,6 +23,7 @@ import android.text.SpannableString;
 import android.text.style.ForegroundColorSpan;
 import android.text.style.UnderlineSpan;
 import android.view.MenuItem;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -92,13 +93,10 @@ public class AboutActivity extends AppCompatActivity {
         });
 
         //Developer donation
-        TextView developer_donation = findViewById(R.id.developer_donation);
-        content = new SpannableString(developer_donation.getText().toString());
-        content.setSpan(new ForegroundColorSpan(ContextCompat.getColor(AboutActivity.this,R.color.colorAccent)), 0, content.length(), 0);
-        content.setSpan(new UnderlineSpan(), 0, content.length(), 0);
-        developer_donation.setText(content);
-        developer_donation.setOnClickListener(v -> {
-            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://fedilab.app/page/donations/"));
+        Button donate = findViewById(R.id.donate);
+
+        donate.setOnClickListener(v -> {
+            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.paypal.me/Mastalab"));
             startActivity(browserIntent);
         });
 

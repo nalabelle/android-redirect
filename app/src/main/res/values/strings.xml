@@ -15,4 +15,5 @@
     <string name="instances_saved">Custom instances have been saved!</string>
     <string name="custom_invidious">Custom Invidious instance</string>
     <string name="no_apps">No applications by default</string>
+    <string name="Donate">Donate</string>
 </resources>

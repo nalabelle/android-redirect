@@ -96,6 +96,7 @@
                         android:layout_height="wrap_content"
                         android:orientation="vertical">
                         <TextView
+                            android:textSize="16sp"
                             android:id="@+id/developer_mastodon"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -103,11 +104,12 @@
                             android:text="\@fedilab@toot.fedilab.org"
                             tools:ignore="HardcodedText" />
                         <LinearLayout
-                            android:layout_marginTop="5dp"
+                            android:layout_marginTop="10dp"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="horizontal">
                             <TextView
+                                android:textSize="16sp"
                                 android:id="@+id/framagit"
                                 android:text="Framagit"
                                 android:layout_width="0dp"
@@ -115,6 +117,7 @@
                                 android:layout_weight="1"
                                 tools:ignore="HardcodedText" />
                             <TextView
+                                android:textSize="16sp"
                                 android:id="@+id/github"
                                 android:text="Github"
                                 android:layout_width="0dp"
@@ -122,6 +125,7 @@
                                 android:layout_weight="1"
                                 tools:ignore="HardcodedText" />
                             <TextView
+                                android:textSize="16sp"
                                 android:id="@+id/codeberg"
                                 android:text="Codeberg"
                                 android:layout_width="0dp"
@@ -129,24 +133,25 @@
                                 android:layout_weight="1"
                                 tools:ignore="HardcodedText" />
                         </LinearLayout>
-                        <TextView
-                            android:layout_marginTop="5dp"
-                            android:textStyle="bold"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:id="@+id/developer_donation"
-                            android:text="@string/donations"/>
                     </LinearLayout>
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
             <!-- Idea from info -->
 
-
+            <Button
+                android:layout_marginTop="10dp"
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/Donate"
+                android:id="@+id/donate"
+                />
 
             <!-- About the app -->
             <TextView
-                android:layout_margin="5dp"
+                android:layout_margin="10dp"
                 android:textStyle="bold"
+                android:textSize="16sp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
