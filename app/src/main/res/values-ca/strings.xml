@@ -11,14 +11,14 @@
     <string name="license">Llicència</string>
     <string name="about_vesrion">Versió %1$s</string>
     <string name="custom_nitter">Instància de Nitter personalitzada</string>
-    <string name="save">Save</string>
-    <string name="close">Close</string>
-    <string name="instances_saved">Custom instances have been saved!</string>
-    <string name="custom_invidious">Custom Invidious instance</string>
-    <string name="no_apps">No applications by default</string>
-    <string name="Donate">Donate</string>
-    <string name="warning">Warning</string>
+    <string name="save">Desa</string>
+    <string name="close">Tanca</string>
+    <string name="instances_saved">Les instàncies personalitzades s\'han desat!</string>
+    <string name="custom_invidious">Instància personalitzada d\'Invidious</string>
+    <string name="no_apps">No hi ha aplicacions per defecte</string>
+    <string name="Donate">Donar</string>
+    <string name="warning">Alerta</string>
     <string name="error">Error</string>
-    <string name="valid">Valid</string>
-    <string name="icon_of_the_app">Icon of the app</string>
+    <string name="valid">Vàlid</string>
+    <string name="icon_of_the_app">Icona de l\'aplicació</string>
 </resources>
