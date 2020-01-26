@@ -1,4 +1,4 @@
-NitterizeMe once set by default to open Twitter and YouTube links will transform them into Nitter and Invidious links and delegate the action to another app.
+عندما تقوم بتعيين NitterizeMe كخدمة افتراضية لفتح روابط تويتر ويوتيوب سيتم تحويلها إلى روابط Nitter و Invidious ويخوّل إجراء فتحها إلى تطبيق آخَر.
 
 ### ما هو Nitter:
 
