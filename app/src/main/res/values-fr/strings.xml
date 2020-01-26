@@ -7,7 +7,7 @@
     <string name="donations">Dons</string>
     <string name="about_the_app">À propos de l\'application</string>
     <string name="source_code">Code source</string>
-    <string name="issue_tracker">Issue tracker</string>
+    <string name="issue_tracker">Suivi des questions</string>
     <string name="license">Licence</string>
     <string name="about_vesrion">Version %1$s</string>
     <string name="custom_nitter">Instance Nitter personnalisée</string>
