@@ -7,7 +7,7 @@
     <string name="donations">Spenden</string>
     <string name="about_the_app">Über die App</string>
     <string name="source_code">Quellcode</string>
-    <string name="issue_tracker">Ticketsystem</string>
+    <string name="issue_tracker">Fehler-Ticket-System</string>
     <string name="license">Lizenz</string>
     <string name="about_vesrion">Version %1$s</string>
     <string name="custom_nitter">Benutzerdefinierte Nitter Instanz</string>
