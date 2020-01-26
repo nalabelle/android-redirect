@@ -19,6 +19,6 @@
     <string name="Donate">Spenden</string>
     <string name="warning">Warnung</string>
     <string name="error">Fehler</string>
-    <string name="valid">Valid</string>
-    <string name="icon_of_the_app">Icon of the app</string>
+    <string name="valid">Gültig</string>
+    <string name="icon_of_the_app">Symbol der App</string>
 </resources>
