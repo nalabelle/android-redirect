@@ -1,1 +1,1 @@
-Transform Youtube and Twitter links into Invidious and Nitter links
+يُحوّل روابط يوتيوب وتويتر إلى روابط Invidious و Nitter
