@@ -14,8 +14,8 @@
     <string name="save">احفظ</string>
     <string name="close">أغلق</string>
     <string name="instances_saved">تم حفظ مثيلات الخوادم المخصصة!</string>
-    <string name="custom_invidious">Custom Invidious instance</string>
-    <string name="no_apps">No applications by default</string>
+    <string name="custom_invidious">مثيل Invidious مخصّص</string>
+    <string name="no_apps">ليس هناك أي تطبيق افتراضي</string>
     <string name="Donate">تبرع</string>
     <string name="warning">تحذير</string>
     <string name="error">خطأ</string>
