@@ -9,4 +9,4 @@ Projekt na GitHub: [/zedeus/nitter](https://github.com/zedeus/nitter)
 ### Co to jest Invidious:
 
 Darmowa i otwarto źródłowa alternatywa dla front-endu YouTube'a
-Github project: [/omarroth/invidious](https://github.com/omarroth/invidious)
+Projekt na Github: [/omarroth/invidious](https://github.com/omarroth/invidious)
