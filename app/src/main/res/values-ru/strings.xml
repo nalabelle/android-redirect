@@ -4,7 +4,7 @@
     <string name="action_settings">Настройки</string>
     <string name="action_about">О программе</string>
     <string name="developer">Разработчик</string>
-    <string name="donations">Donations</string>
+    <string name="donations">Пожертвования</string>
     <string name="about_the_app">О приложении</string>
     <string name="source_code">Исходный код</string>
     <string name="issue_tracker">Отчёты об ошибках</string>
@@ -14,11 +14,11 @@
     <string name="save">Сохранить</string>
     <string name="close">Закрыть</string>
     <string name="instances_saved">Пользовательские сервера сохранены!</string>
-    <string name="custom_invidious">Custom Invidious instance</string>
-    <string name="no_apps">No applications by default</string>
-    <string name="Donate">Donate</string>
-    <string name="warning">Warning</string>
-    <string name="error">Error</string>
-    <string name="valid">Valid</string>
-    <string name="icon_of_the_app">Icon of the app</string>
+    <string name="custom_invidious">Пользовательский сервер Invidious</string>
+    <string name="no_apps">Приложений по умолчанию нет</string>
+    <string name="Donate">Поддержать проект</string>
+    <string name="warning">Предупреждение</string>
+    <string name="error">Ошибка</string>
+    <string name="valid">Допустимо</string>
+    <string name="icon_of_the_app">Иконка приложения</string>
 </resources>
