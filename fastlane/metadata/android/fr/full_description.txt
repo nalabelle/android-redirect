@@ -6,7 +6,7 @@ A free and open source alternative Twitter front-end focused on privacy.
 Projet sur Github : [/zedeus/nitter](https://github.com/zedeus/nitter)
 
 
-### What is Invidious:
+### C’est quoi Invidious :
 
 A free and open source alternative front-end to YouTube
-Github project: [/omarroth/invidious](https://github.com/omarroth/invidious)
+Projet sur Github : [/omarroth/invidious](https://github.com/omarroth/invidious)
