@@ -1,4 +1,4 @@
-NitterizeMe once set by default to open Twitter and YouTube links will transform them into Nitter and Invidious links and delegate the action to another app.
+NitterizeMe, behin Twitter eta Youtube estekak irekitzeko lehenetsita ezarrita, Nitter eta n Twitter esteka bihurtuko ditu eta beste aplikazio bati pasatu.
 
 ### Zer da Nitter:
 
