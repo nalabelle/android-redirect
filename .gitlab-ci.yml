@@ -1,0 +1,42 @@
+image: hatsoftwares/mastalab-ci:latest
+
+before_script:
+  - export ANDROID_HOME=/opt/android-sdk-linux
+  - export PATH=$PATH:/opt/android-sdk-linux/platform-tools/
+  - chmod +x gradlew
+
+stages:
+  - build-and-test
+  - tag
+  - toot
+
+.no-upload: &no-upload
+  stage: build-and-test
+  retry: 2
+
+assembleDebug:
+  <<: *no-upload
+  cache:
+    key: "${CI_COMMIT_TAG}"
+    paths:
+      - app/build/outputs/apk/debug/app-debug.apk
+    policy: push
+  script:
+    - ./gradlew assembleDebug
+
+lintDebug:
+  <<: *no-upload
+  script:
+    - ./gradlew -Pci --console=plain :app:lint -PbuildDir=lint
+  except:
+    - tags
+
+debugTests:
+  <<: *no-upload
+  script:
+    - ./gradlew -Pci --console=plain :app:test
+  except:
+    - tags
+
+
+
