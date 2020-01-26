@@ -1,1 +1,1 @@
-Transform Youtube and Twitter links into Invidious and Nitter links
+Bihurtu Youtube eta Twitter estekak Invidious eta Nitter lotura
