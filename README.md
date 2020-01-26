@@ -1,4 +1,4 @@
-# NitterizeMe [![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
+# NitterizeMe [![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0) [![Crowdin](https://badges.crowdin.net/nitterizeme/localized.svg)](https://crowdin.com/project/nitterizeme)
 
 NitterizeMe once set by default to open Twitter and YouTube links will transform them into Nitter and Invidious links and delegate the action to another app.
 
