@@ -32,44 +32,69 @@
         android:layout_margin="@dimen/fab_margin"
         >
 
-        <com.google.android.material.textfield.TextInputLayout
+        <LinearLayout
             android:id="@+id/nitter_container"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/nitter_instance"
-                android:layout_width="match_parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:orientation="horizontal">
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_weight="1"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:hint="@string/custom_nitter"
-                android:inputType="textUri"
-                android:maxLines="1" />
+               >
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/nitter_instance"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/custom_nitter"
+                    android:inputType="textUri"
+                    android:maxLines="1" />
+            </com.google.android.material.textfield.TextInputLayout>
+            <androidx.appcompat.widget.SwitchCompat
+                android:layout_margin="5dp"
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/enable_nitter"/>
+        </LinearLayout>
 
-        </com.google.android.material.textfield.TextInputLayout>
 
-
-        <com.google.android.material.textfield.TextInputLayout
+        <LinearLayout
             android:layout_marginTop="30dp"
             android:id="@+id/invidious_container"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/nitter_container">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/invidious_instance"
-                android:layout_width="match_parent"
+            app:layout_constraintTop_toBottomOf="@+id/nitter_container"
+            android:orientation="horizontal">
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/invidious_instance"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/custom_invidious"
+                    android:inputType="textUri"
+                    android:maxLines="1" />
+            </com.google.android.material.textfield.TextInputLayout>
+            <androidx.appcompat.widget.SwitchCompat
+                android:layout_margin="5dp"
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:hint="@string/custom_invidious"
-                android:inputType="textUri"
-                android:maxLines="1" />
-        </com.google.android.material.textfield.TextInputLayout>
+                android:id="@+id/enable_invidious"/>
+        </LinearLayout>
+
 
         <Button
+            style="@style/Widget.AppCompat.Button.Colored"
+            android:textColor="@android:color/white"
             android:id="@+id/button_save"
             android:layout_marginTop="20dp"
             app:layout_constraintLeft_toLeftOf="parent"

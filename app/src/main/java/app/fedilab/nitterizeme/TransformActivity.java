@@ -25,6 +25,9 @@ import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import static app.fedilab.nitterizeme.MainActivity.SET_INVIDIOUS_ENABLED;
+import static app.fedilab.nitterizeme.MainActivity.SET_NITTER_ENABLED;
+
 
 public class TransformActivity extends AppCompatActivity {
 
@@ -43,22 +46,32 @@ public class TransformActivity extends AppCompatActivity {
             String newUrl = null;
             //Twitter URLs
             if( url.contains("twitter")) {
-                Matcher matcher = nitterPattern.matcher(url);
-                while (matcher.find()) {
-                    final String nitter_directory = matcher.group(2);
-                    String nitterHost = sharedpreferences.getString(MainActivity.SET_NITTER_HOST, MainActivity.DEFAULT_NITTER_HOST).toLowerCase();
-                    newUrl = "https://" + nitterHost + nitter_directory;
+                boolean nitter_enabled = sharedpreferences.getBoolean(SET_NITTER_ENABLED, true);
+                if(nitter_enabled) {
+                    Matcher matcher = nitterPattern.matcher(url);
+                    while (matcher.find()) {
+                        final String nitter_directory = matcher.group(2);
+                        String nitterHost = sharedpreferences.getString(MainActivity.SET_NITTER_HOST, MainActivity.DEFAULT_NITTER_HOST).toLowerCase();
+                        newUrl = "https://" + nitterHost + nitter_directory;
+                    }
+                } else {
+                    newUrl = url;
                 }
             }else{ //Youtube URL
-                Matcher matcher = youtubePattern.matcher(url);
-                while (matcher.find()) {
-                    final String youtubeId = matcher.group(3);
-                    String invidiousHost = sharedpreferences.getString(MainActivity.SET_INVIDIOUS_HOST, MainActivity.DEFAULT_INVIDIOUS_HOST).toLowerCase();
-                    if (Objects.requireNonNull(matcher.group(2)).compareTo("youtu.be") == 0) {
-                        newUrl = "https://" + invidiousHost + "/watch?v=" + youtubeId + "&local=true";
-                    } else {
-                        newUrl = "https://" + invidiousHost + "/" + youtubeId + "&local=true";
+                boolean invidious_enabled = sharedpreferences.getBoolean(SET_INVIDIOUS_ENABLED, true);
+                if( invidious_enabled) {
+                    Matcher matcher = youtubePattern.matcher(url);
+                    while (matcher.find()) {
+                        final String youtubeId = matcher.group(3);
+                        String invidiousHost = sharedpreferences.getString(MainActivity.SET_INVIDIOUS_HOST, MainActivity.DEFAULT_INVIDIOUS_HOST).toLowerCase();
+                        if (Objects.requireNonNull(matcher.group(2)).compareTo("youtu.be") == 0) {
+                            newUrl = "https://" + invidiousHost + "/watch?v=" + youtubeId + "&local=true";
+                        } else {
+                            newUrl = "https://" + invidiousHost + "/" + youtubeId + "&local=true";
+                        }
                     }
+                }else{
+                    newUrl = url;
                 }
             }
             Intent delegate = new Intent(Intent.ACTION_VIEW);

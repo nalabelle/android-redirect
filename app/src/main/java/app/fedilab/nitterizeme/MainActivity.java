@@ -25,6 +25,7 @@ import android.os.Bundle;
 
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SwitchCompat;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -33,6 +34,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+
 
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputEditText;
@@ -48,6 +50,8 @@ public class MainActivity extends AppCompatActivity {
     public  static  String DEFAULT_NITTER_HOST = "nitter.net";
     public  static  String SET_INVIDIOUS_HOST = "set_invidious_host";
     public  static  String DEFAULT_INVIDIOUS_HOST = "invidio.us";
+    public  static  String SET_INVIDIOUS_ENABLED = "set_invidious_enabled";
+    public  static  String SET_NITTER_ENABLED = "set_nitter_enabled";
     public static final String APP_PREFS = "app_prefs";
 
     //Supported domains
@@ -75,10 +79,32 @@ public class MainActivity extends AppCompatActivity {
 
         TextInputEditText nitter_instance = findViewById(R.id.nitter_instance);
         TextInputEditText invidious_instance = findViewById(R.id.invidious_instance);
+
+        SwitchCompat enable_nitter = findViewById(R.id.enable_nitter);
+        SwitchCompat enable_invidious = findViewById(R.id.enable_invidious);
+
+        boolean nitter_enabled = sharedpreferences.getBoolean(SET_NITTER_ENABLED, true);
+        boolean invidious_enabled = sharedpreferences.getBoolean(SET_INVIDIOUS_ENABLED, true);
+
+        enable_nitter.setChecked(nitter_enabled);
+        enable_invidious.setChecked(invidious_enabled);
+
         Button button_save = findViewById(R.id.button_save);
         RecyclerView list_apps = findViewById(R.id.list_apps);
         String nitterHost = sharedpreferences.getString(SET_NITTER_HOST, null);
         String invidiousHost = sharedpreferences.getString(SET_INVIDIOUS_HOST, null);
+
+        enable_invidious.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            SharedPreferences.Editor editor = sharedpreferences.edit();
+            editor.putBoolean(SET_INVIDIOUS_ENABLED, isChecked);
+            editor.apply();
+        });
+        enable_nitter.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            SharedPreferences.Editor editor = sharedpreferences.edit();
+            editor.putBoolean(SET_NITTER_ENABLED, isChecked);
+            editor.apply();
+        });
+
         if(nitterHost!=null) {
             nitter_instance.setText(nitterHost);
         }
