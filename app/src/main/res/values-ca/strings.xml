@@ -22,4 +22,5 @@
     <string name="valid">Vàlid</string>
     <string name="icon_of_the_app">Icona de l\'aplicació</string>
     <string name="open_with">Open with</string>
+    <string name="redirect_gm_to_osm">Redirect Google Map to OpenStreetMap</string>
 </resources>
