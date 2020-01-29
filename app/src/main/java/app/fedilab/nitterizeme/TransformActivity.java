@@ -41,7 +41,7 @@ public class TransformActivity extends AppCompatActivity {
 
     final Pattern youtubePattern = Pattern.compile("(www\\.|m\\.)?(youtube\\.com|youtu\\.be|youtube-nocookie\\.com)/(((?!([\"'<])).)*)");
     final Pattern nitterPattern = Pattern.compile("(mobile\\.|www\\.)?twitter.com([\\w-/]+)");
-
+    final Pattern googleMap = Pattern.compile("google\\.com/maps[^@]+@([\\d.,z]{3,}).*");
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,6 +59,34 @@ public class TransformActivity extends AppCompatActivity {
                         final String nitter_directory = matcher.group(2);
                         String nitterHost = sharedpreferences.getString(MainActivity.SET_NITTER_HOST, MainActivity.DEFAULT_NITTER_HOST).toLowerCase();
                         newUrl = "https://" + nitterHost + nitter_directory;
+                    }
+                    Intent delegate = new Intent(Intent.ACTION_VIEW);
+                    delegate.setData(Uri.parse(newUrl));
+                    delegate.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    if (delegate.resolveActivity(getPackageManager()) != null) {
+                        startActivity(delegate);
+                    }
+                } else {
+                    forwardToBrowser(intent);
+                }
+            }else if( url.contains("google")) {
+                boolean osm_enabled = sharedpreferences.getBoolean(MainActivity.SET_OSM_ENABLED, true);
+                if(osm_enabled) {
+                    Matcher matcher = googleMap.matcher(url);
+                    while (matcher.find()) {
+                        final String localization = matcher.group(1);
+                        assert localization != null;
+                        String[] data = localization.split(",");
+                        if( data.length > 2 ){
+                            String zoom;
+                            String[] details = data[2].split("\\.");
+                            if( details.length > 0 ) {
+                                zoom = details[0];
+                            }else {
+                                zoom = data[2];
+                            }
+                            newUrl = "https://www.openstreetmap.org/#map="+zoom+"/"+data[0]+"/"+data[1];
+                        }
                     }
                     Intent delegate = new Intent(Intent.ACTION_VIEW);
                     delegate.setData(Uri.parse(newUrl));

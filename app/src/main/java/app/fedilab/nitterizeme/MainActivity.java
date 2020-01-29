@@ -52,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
     public  static  String DEFAULT_INVIDIOUS_HOST = "invidio.us";
     public  static  String SET_INVIDIOUS_ENABLED = "set_invidious_enabled";
     public  static  String SET_NITTER_ENABLED = "set_nitter_enabled";
+    public  static  String SET_OSM_ENABLED = "set_osm_enabled";
     public static final String APP_PREFS = "app_prefs";
 
     //Supported domains
@@ -63,7 +64,9 @@ public class MainActivity extends AppCompatActivity {
             "youtube.com",
             "m.youtube.com",
             "youtu.be",
-            "youtube-nocookie.com"
+            "youtube-nocookie.com",
+            "google.com/maps",
+            "www.google.com/maps"
     };
 
     @Override
@@ -82,12 +85,15 @@ public class MainActivity extends AppCompatActivity {
 
         SwitchCompat enable_nitter = findViewById(R.id.enable_nitter);
         SwitchCompat enable_invidious = findViewById(R.id.enable_invidious);
+        SwitchCompat enable_osm = findViewById(R.id.enable_osm);
 
         boolean nitter_enabled = sharedpreferences.getBoolean(SET_NITTER_ENABLED, true);
         boolean invidious_enabled = sharedpreferences.getBoolean(SET_INVIDIOUS_ENABLED, true);
+        boolean osm_enabled = sharedpreferences.getBoolean(SET_OSM_ENABLED, true);
 
         enable_nitter.setChecked(nitter_enabled);
         enable_invidious.setChecked(invidious_enabled);
+        enable_osm.setChecked(osm_enabled);
 
         Button button_save = findViewById(R.id.button_save);
         RecyclerView list_apps = findViewById(R.id.list_apps);
@@ -102,6 +108,11 @@ public class MainActivity extends AppCompatActivity {
         enable_nitter.setOnCheckedChangeListener((buttonView, isChecked) -> {
             SharedPreferences.Editor editor = sharedpreferences.edit();
             editor.putBoolean(SET_NITTER_ENABLED, isChecked);
+            editor.apply();
+        });
+        enable_osm.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            SharedPreferences.Editor editor = sharedpreferences.edit();
+            editor.putBoolean(SET_OSM_ENABLED, isChecked);
             editor.apply();
         });
 

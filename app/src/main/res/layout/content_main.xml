@@ -91,6 +91,27 @@
                 android:id="@+id/enable_invidious"/>
         </LinearLayout>
 
+        <LinearLayout
+            android:layout_marginTop="30dp"
+            android:id="@+id/osm_container"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/nitter_container"
+            android:orientation="horizontal">
+            <TextView
+                android:text="@string/redirect_gm_to_osm"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"/>
+            <androidx.appcompat.widget.SwitchCompat
+                android:layout_margin="5dp"
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/enable_osm"/>
+        </LinearLayout>
 
         <Button
             style="@style/Widget.AppCompat.Button.Colored"
