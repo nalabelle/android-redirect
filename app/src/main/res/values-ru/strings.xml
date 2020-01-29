@@ -22,4 +22,5 @@
     <string name="valid">Допустимо</string>
     <string name="icon_of_the_app">Иконка приложения</string>
     <string name="open_with">Open with</string>
+    <string name="redirect_gm_to_osm">Redirect Google Map to OpenStreetMap</string>
 </resources>
