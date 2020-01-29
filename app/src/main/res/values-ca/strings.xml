@@ -21,4 +21,5 @@
     <string name="error">Error</string>
     <string name="valid">Vàlid</string>
     <string name="icon_of_the_app">Icona de l\'aplicació</string>
+    <string name="open_with">Open with</string>
 </resources>
