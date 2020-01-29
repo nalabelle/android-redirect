@@ -1,0 +1,1 @@
+Transformar enllaços de Youtube i Twitter en enllaços d'Invidious i Nitter

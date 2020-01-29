@@ -1,0 +1,12 @@
+Uma vez definida por padrão para abrir links do Twitter e YouTube, NitterizeMe irá transformá-los em links Nitter e Invidiosos e delegar a ação em outra aplicação.
+
+### O que é Nitter:
+
+Uma alternativa front-end ao Twitter, livre e de código aberto, focada na privacidade.
+Projeto Github: [/zedeus/nitter](https://github.com/zedeus/nitter)
+
+
+### O que é Invidious:
+
+Uma alternativa front-end ao Youtube, livre e de código aberto
+Projeto Github: [/omarroth/invidious](https://github.com/omarroth/invidious)

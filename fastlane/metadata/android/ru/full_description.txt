@@ -1,0 +1,12 @@
+Будучи установленным по умолчанию для открытия ссылок Twitter и YouTube, NitterizeMe будет трансформировать их в ссылки Nitter и Invidious соответственно и делегировать действие другому приложению.
+
+### Что такое Nitter:
+
+Альтернативный клиент Twitter с открытым исходным кодом, ориентированный на конфиденциальность.
+Проект на Github: [/zedeus/nitter](https://github.com/zedeus/nitter)
+
+
+### Что такое Invidious:
+
+Альтернативный клиент для YouTube с открытым исходным кодом
+Проект на Github: [/omarroth/invidious](https://github.com/omarroth/invidious)
