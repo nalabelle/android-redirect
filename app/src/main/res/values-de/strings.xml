@@ -21,6 +21,6 @@
     <string name="error">Fehler</string>
     <string name="valid">Gültig</string>
     <string name="icon_of_the_app">Symbol der App</string>
-    <string name="open_with">Open with</string>
-    <string name="redirect_gm_to_osm">Redirect Google Map to OpenStreetMap</string>
+    <string name="open_with">Öffnen mit</string>
+    <string name="redirect_gm_to_osm">Google Map auf OpenStreetMap umleiten</string>
 </resources>
