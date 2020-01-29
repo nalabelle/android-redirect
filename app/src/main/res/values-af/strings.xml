@@ -21,5 +21,6 @@
     <string name="error">Error</string>
     <string name="valid">Valid</string>
     <string name="icon_of_the_app">Icon of the app</string>
+    <string name="open_with">Open with</string>
     <string name="redirect_gm_to_osm">Redirect Google Map to OpenStreetMap</string>
 </resources>
