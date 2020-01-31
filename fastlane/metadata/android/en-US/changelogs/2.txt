@@ -2,4 +2,3 @@ Added:
 
 - Google Maps links redirected to OpenStreetMap
 - Redirects can be disabled per service (Nitter, Invidious, OSM)
-
