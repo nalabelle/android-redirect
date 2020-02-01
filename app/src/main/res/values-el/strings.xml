@@ -15,7 +15,7 @@
     <string name="close">Κλείσιμο</string>
     <string name="instances_saved">Οι προσαρμοσμένες υποστάσεις αποθηκεύτηκαν!</string>
     <string name="custom_invidious">Προσαρμοσμένη υπόσταση Invidious</string>
-    <string name="no_apps">No applications by default</string>
+    <string name="no_apps">Καμοία εφαρμογή από προεπιλογή</string>
     <string name="Donate">Κάντε Δωρεά</string>
     <string name="warning">Προειδοποίηση</string>
     <string name="error">Σφάλμα</string>
