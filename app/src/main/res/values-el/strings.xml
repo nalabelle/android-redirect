@@ -10,11 +10,11 @@
     <string name="issue_tracker">Καταγραφές προβλημάτων</string>
     <string name="license">Άδεια</string>
     <string name="about_vesrion">Έκδοση %1$s</string>
-    <string name="custom_nitter">Custom Nitter instance</string>
+    <string name="custom_nitter">Προσαρμοσμένη υπόσταση Nitter</string>
     <string name="save">Αποθήκευση</string>
     <string name="close">Κλείσιμο</string>
-    <string name="instances_saved">Custom instances have been saved!</string>
-    <string name="custom_invidious">Custom Invidious instance</string>
+    <string name="instances_saved">Οι προσαρμοσμένες υποστάσεις αποθηκεύτηκαν!</string>
+    <string name="custom_invidious">Προσαρμοσμένη υπόσταση Invidious</string>
     <string name="no_apps">No applications by default</string>
     <string name="Donate">Κάντε Δωρεά</string>
     <string name="warning">Προειδοποίηση</string>
