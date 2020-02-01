@@ -21,6 +21,6 @@
     <string name="error">Errorea</string>
     <string name="valid">Baliozkoa</string>
     <string name="icon_of_the_app">Aplikazioaren ikonoa</string>
-    <string name="open_with">Open with</string>
-    <string name="redirect_gm_to_osm">Redirect Google Map to OpenStreetMap</string>
+    <string name="open_with">Ireki honekin</string>
+    <string name="redirect_gm_to_osm">Birbideratu Google Maps OpenStreetMap-era</string>
 </resources>
