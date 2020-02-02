@@ -21,6 +21,6 @@
     <string name="error">Fout</string>
     <string name="valid">Geldig</string>
     <string name="icon_of_the_app">Icoon van de app</string>
-    <string name="open_with">Open with</string>
-    <string name="redirect_gm_to_osm">Redirect Google Map to OpenStreetMap</string>
+    <string name="open_with">Openen met</string>
+    <string name="redirect_gm_to_osm">Google Map omleiden naar OpenStreetMap</string>
 </resources>
