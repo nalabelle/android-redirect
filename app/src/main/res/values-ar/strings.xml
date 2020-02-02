@@ -23,7 +23,7 @@
     <string name="icon_of_the_app">أيقونة التطبيق</string>
     <string name="open_with">افتح باستخدام</string>
     <string name="redirect_gm_to_osm">إعادة توجيه خريطة غوغل إلى خريطة الشارع المفتوح</string>
-    <string name="custom_osm">Custom OSM hostname</string>
-    <string name="redirect_youtube_to_invidious">Redirect YouTube to Invidious</string>
-    <string name="redirect_twitter_to_nitter">Redirect Twitter to Nitter</string>
+    <string name="custom_osm">مثيل OSM مخصّص</string>
+    <string name="redirect_youtube_to_invidious">يقوم بتحويل Youtube إلى Invidious</string>
+    <string name="redirect_twitter_to_nitter">يقوم بتحويل تويتر إلى Nitter</string>
 </resources>
