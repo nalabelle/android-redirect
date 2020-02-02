@@ -21,9 +21,9 @@
     <string name="error">Ошибка</string>
     <string name="valid">Допустимо</string>
     <string name="icon_of_the_app">Иконка приложения</string>
-    <string name="open_with">Open with</string>
-    <string name="redirect_gm_to_osm">Redirect Google Map to OpenStreetMap</string>
-    <string name="custom_osm">Custom OSM hostname</string>
-    <string name="redirect_youtube_to_invidious">Redirect YouTube to Invidious</string>
-    <string name="redirect_twitter_to_nitter">Redirect Twitter to Nitter</string>
+    <string name="open_with">Открыть с помощью</string>
+    <string name="redirect_gm_to_osm">Перенаправлять Google Карты на OpenStreetMap</string>
+    <string name="custom_osm">Пользовательский сервер OSM</string>
+    <string name="redirect_youtube_to_invidious">Перенаправлять YouTube на Invidious</string>
+    <string name="redirect_twitter_to_nitter">Перенаправлять Twitter на Nitter</string>
 </resources>
