@@ -85,7 +85,8 @@ public class TransformActivity extends AppCompatActivity {
                             }else {
                                 zoom = data[2];
                             }
-                            newUrl = "https://www.openstreetmap.org/#map="+zoom+"/"+data[0]+"/"+data[1];
+                            String osmHost = sharedpreferences.getString(MainActivity.SET_OSM_HOST, MainActivity.DEFAULT_OSM_HOST).toLowerCase();
+                            newUrl = "https://"+osmHost+"/#map="+zoom+"/"+data[0]+"/"+data[1];
                         }
                     }
                     Intent delegate = new Intent(Intent.ACTION_VIEW);

@@ -53,6 +53,8 @@ public class MainActivity extends AppCompatActivity {
     public  static  String SET_INVIDIOUS_ENABLED = "set_invidious_enabled";
     public  static  String SET_NITTER_ENABLED = "set_nitter_enabled";
     public  static  String SET_OSM_ENABLED = "set_osm_enabled";
+    public  static  String SET_OSM_HOST = "set_osm_host";
+    public  static  String DEFAULT_OSM_HOST = "www.openstreetmap.org";
     public static final String APP_PREFS = "app_prefs";
 
     //Supported domains
@@ -82,6 +84,7 @@ public class MainActivity extends AppCompatActivity {
 
         TextInputEditText nitter_instance = findViewById(R.id.nitter_instance);
         TextInputEditText invidious_instance = findViewById(R.id.invidious_instance);
+        TextInputEditText osm_instance = findViewById(R.id.osm_instance);
 
         SwitchCompat enable_nitter = findViewById(R.id.enable_nitter);
         SwitchCompat enable_invidious = findViewById(R.id.enable_invidious);
@@ -99,6 +102,7 @@ public class MainActivity extends AppCompatActivity {
         RecyclerView list_apps = findViewById(R.id.list_apps);
         String nitterHost = sharedpreferences.getString(SET_NITTER_HOST, null);
         String invidiousHost = sharedpreferences.getString(SET_INVIDIOUS_HOST, null);
+        String osmHost = sharedpreferences.getString(SET_OSM_HOST, null);
 
         enable_invidious.setOnCheckedChangeListener((buttonView, isChecked) -> {
             SharedPreferences.Editor editor = sharedpreferences.edit();
@@ -122,6 +126,9 @@ public class MainActivity extends AppCompatActivity {
         if(invidiousHost!=null) {
             invidious_instance.setText(invidiousHost);
         }
+        if(osmHost!=null) {
+            osm_instance.setText(osmHost);
+        }
         button_save.setOnClickListener(v -> {
             SharedPreferences.Editor editor = sharedpreferences.edit();
             if (nitter_instance.getText() != null && nitter_instance.getText().toString().trim().length() > 0) {
@@ -129,11 +136,15 @@ public class MainActivity extends AppCompatActivity {
             } else {
                 editor.putString(SET_NITTER_HOST, null);
             }
-            editor.apply();
             if (invidious_instance.getText() != null && invidious_instance.getText().toString().trim().length() > 0) {
                 editor.putString(SET_INVIDIOUS_HOST, invidious_instance.getText().toString().toLowerCase().trim());
             } else {
                 editor.putString(SET_INVIDIOUS_HOST, null);
+            }
+            if (osm_instance.getText() != null && osm_instance.getText().toString().trim().length() > 0) {
+                editor.putString(SET_OSM_HOST, osm_instance.getText().toString().toLowerCase().trim());
+            } else {
+                editor.putString(SET_OSM_HOST, null);
             }
             editor.apply();
             View parentLayout = findViewById(android.R.id.content);
