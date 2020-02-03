@@ -23,4 +23,7 @@
     <string name="icon_of_the_app">Icono de la aplicación</string>
     <string name="open_with">Abrir con</string>
     <string name="redirect_gm_to_osm">Redireccionar Google Map a OpenStreetMap</string>
+    <string name="custom_osm">Nombre de host OSM personalizado</string>
+    <string name="redirect_youtube_to_invidious">Redirigir YouTube a Invidious</string>
+    <string name="redirect_twitter_to_nitter">Redirigir Twitter a Nitter</string>
 </resources>

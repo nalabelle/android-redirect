@@ -23,4 +23,7 @@
     <string name="icon_of_the_app">Εικονίδιο της εφαρμογής</string>
     <string name="open_with">Άνοιγμα με</string>
     <string name="redirect_gm_to_osm">Ανακατεύθυνση Google Map στο OpenStreetMap</string>
+    <string name="custom_osm">Προσαρμοσμένο όνομα κόμβου OSM</string>
+    <string name="redirect_youtube_to_invidious">Ανακατεύθυνση Youtube σε Invidious</string>
+    <string name="redirect_twitter_to_nitter">Ανακατεύθυνση Twitter σε Nitter</string>
 </resources>
