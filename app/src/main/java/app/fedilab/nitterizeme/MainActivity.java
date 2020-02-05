@@ -30,6 +30,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.provider.Settings;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -56,6 +57,7 @@ public class MainActivity extends AppCompatActivity {
     public  static  String SET_OSM_HOST = "set_osm_host";
     public  static  String DEFAULT_OSM_HOST = "www.openstreetmap.org";
     public static final String APP_PREFS = "app_prefs";
+    private AppInfoAdapter appInfoAdapter;
 
     //Supported domains
     private String[] domains = {
@@ -151,6 +153,14 @@ public class MainActivity extends AppCompatActivity {
             Snackbar.make(parentLayout, R.string.instances_saved, Snackbar.LENGTH_LONG).show();
         });
 
+        Button configure = findViewById(R.id.configure);
+        configure.setOnClickListener(v -> {
+            Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+            Uri uri = Uri.fromParts("package", getApplicationInfo().packageName, null);
+            intent.setData(uri);
+            startActivity(intent);
+        });
+
         ArrayList<AppInfo> appInfos = new ArrayList<>();
         for(String domain: domains) {
             AppInfo appInfo = new AppInfo();
@@ -159,7 +169,7 @@ public class MainActivity extends AppCompatActivity {
             appInfos.add(appInfo);
         }
 
-        AppInfoAdapter appInfoAdapter = new AppInfoAdapter(appInfos);
+        appInfoAdapter = new AppInfoAdapter(appInfos);
         list_apps.setAdapter(appInfoAdapter);
         final LinearLayoutManager mLayoutManager;
         mLayoutManager = new LinearLayoutManager(MainActivity.this);
@@ -211,5 +221,13 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onResume(){
+        super.onResume();
+        if( appInfoAdapter != null) {
+            appInfoAdapter.notifyDataSetChanged();
+        }
     }
 }
