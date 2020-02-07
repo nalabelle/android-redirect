@@ -20,7 +20,7 @@
     <string name="warning">Avertissement</string>
     <string name="error">Erreur</string>
     <string name="valid">Valide</string>
-    <string name="icon_of_the_app">Icône de l\'application</string>
+    <string name="icon_of_the_app">Icône de l’application</string>
     <string name="open_with">Ouvrir avec</string>
     <string name="redirect_gm_to_osm">Rediriger Google Map vers OpenStreetMap</string>
     <string name="custom_osm">Nom d’hôte OSM personnalisé</string>
