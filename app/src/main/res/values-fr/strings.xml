@@ -14,7 +14,7 @@
     <string name="save">Sauvegarder</string>
     <string name="close">Fermer</string>
     <string name="instances_saved">Les instances personnalisées ont été sauvegardées !</string>
-    <string name="custom_invidious">Instance Invidioud personnalisée</string>
+    <string name="custom_invidious">Instance Invidious personnalisée</string>
     <string name="no_apps">Aucune application par défaut</string>
     <string name="Donate">Faire un don</string>
     <string name="warning">Avertissement</string>
@@ -24,6 +24,6 @@
     <string name="open_with">Ouvrir avec</string>
     <string name="redirect_gm_to_osm">Rediriger Google Map vers OpenStreetMap</string>
     <string name="custom_osm">Custom OSM hostname</string>
-    <string name="redirect_youtube_to_invidious">Redirect YouTube to Invidious</string>
+    <string name="redirect_youtube_to_invidious">Rediriger YouTube vers Invidious</string>
     <string name="redirect_twitter_to_nitter">Redirect Twitter to Nitter</string>
 </resources>
