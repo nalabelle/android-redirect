@@ -1,12 +1,12 @@
-NitterizeMe once set by default to open Twitter and YouTube links will transform them into Nitter and Invidious links and delegate the action to another app.
+NitterizeMe una volta impostato come predefinito per aprire i collegamenti di Twitter e YouTube li trasformerà in collegamenti Nitter e Invidious e delegherà l'apertura ad un'altra app.
 
-### What is Nitter:
+### Cos'è Nitter:
 
-A free and open source alternative Twitter front-end focused on privacy.
-Github project: [/zedeus/nitter](https://github.com/zedeus/nitter)
+Un'interfaccia alternativa gratuita e open source a Twitter focalizzata sulla privacy.
+Progetto Github: [/zedeus/nitter](https://github.com/zedeus/nitter)
 
 
-### What is Invidious:
+### Cos'è Invidious:
 
-A free and open source alternative front-end to YouTube
-Github project: [/omarroth/invidious](https://github.com/omarroth/invidious)
+Un'interfaccia alternativa gratuita e open source a YouTube
+Progetto Github: [/omarroth/invidious](https://github.com/omarroth/invidious)
