@@ -27,7 +27,7 @@
     <string name="redirect_twitter_to_nitter">Twitter omleiden naar Nitter</string>
     <string name="redirect_gm_to_geo_uri">Redirect Google Map to Geo URI</string>
     <string name="configure">Configure</string>
-    <string name="display_supported_links">Display supported links</string>
+    <string name="display_supported_links">Ondersteunde links op het scherm</string>
     <string name="hide_supported_links">Hide supported links</string>
     <string name="use_geo_uri">Use geo URI</string>
 </resources>
