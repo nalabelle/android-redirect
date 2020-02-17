@@ -35,11 +35,15 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
 
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 
 import java.util.ArrayList;
 import java.util.Objects;
@@ -57,6 +61,7 @@ public class MainActivity extends AppCompatActivity {
     public  static  String SET_OSM_ENABLED = "set_osm_enabled";
     public  static  String SET_OSM_HOST = "set_osm_host";
     public  static  String DEFAULT_OSM_HOST = "www.openstreetmap.org";
+    public  static  String SET_GEO_URIS = "set_geo_uris";
     public static final String APP_PREFS = "app_prefs";
     private AppInfoAdapter appInfoAdapter;
     private RecyclerView list_apps;
@@ -72,8 +77,7 @@ public class MainActivity extends AppCompatActivity {
             "m.youtube.com",
             "youtu.be",
             "youtube-nocookie.com",
-            "google.com/maps",
-            "www.google.com/maps"
+            "maps",
     };
 
     @Override
@@ -182,6 +186,22 @@ public class MainActivity extends AppCompatActivity {
             appInfo.setApplicationInfo(getDefaultApp("https://"+domain));
             appInfos.add(appInfo);
         }
+
+        CheckBox enable_geo_uris = findViewById(R.id.enable_geo_uris);
+        enable_geo_uris.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            SharedPreferences.Editor editor = sharedpreferences.edit();
+            editor.putBoolean(SET_GEO_URIS, isChecked);
+            editor.apply();
+            TextInputLayout osm_instance_container = findViewById(R.id.osm_instance_container);
+            TextView osm_indications = findViewById(R.id.osm_indications);
+            if( isChecked){
+                osm_instance_container.setVisibility(View.GONE);
+                osm_indications.setText(R.string.redirect_gm_to_geo_uri);
+            }else{
+                osm_instance_container.setVisibility(View.VISIBLE);
+                osm_indications.setText(R.string.redirect_gm_to_osm);
+            }
+        });
 
         appInfoAdapter = new AppInfoAdapter(appInfos);
         list_apps.setAdapter(appInfoAdapter);

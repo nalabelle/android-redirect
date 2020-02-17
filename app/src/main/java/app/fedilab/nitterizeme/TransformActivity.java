@@ -42,7 +42,8 @@ public class TransformActivity extends Activity {
 
     final Pattern youtubePattern = Pattern.compile("(www\\.|m\\.)?(youtube\\.com|youtu\\.be|youtube-nocookie\\.com)/(((?!([\"'<])).)*)");
     final Pattern nitterPattern = Pattern.compile("(mobile\\.|www\\.)?twitter.com([\\w-/]+)");
-    final Pattern googleMap = Pattern.compile("google\\.com/maps[^@]+@([\\d.,z]{3,}).*");
+    final Pattern maps = Pattern.compile("/maps/place/[^@]+@([\\d.,z]{3,}).*");
+    final Pattern extractPlace  = Pattern.compile("/maps/place/(((?!/data).)*)");
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -90,22 +91,32 @@ public class TransformActivity extends Activity {
                 boolean nitter_enabled = sharedpreferences.getBoolean(SET_NITTER_ENABLED, true);
                 if(nitter_enabled) {
                     Intent delegate = new Intent(action);
-                    delegate.setData(Uri.parse(transformUrl(url)));
-                    delegate.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                    if (delegate.resolveActivity(getPackageManager()) != null) {
-                        startActivity(delegate);
+                    String transformedURL = transformUrl(url);
+                    if( transformedURL != null) {
+                        delegate.setData(Uri.parse(transformUrl(url)));
+                        delegate.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        if (delegate.resolveActivity(getPackageManager()) != null) {
+                            startActivity(delegate);
+                        }
+                    }else{
+                        forwardToBrowser(intent, action);
                     }
                 } else {
                     forwardToBrowser(intent, action);
                 }
-            }else if( url.contains("google")) {
+            }else if( url.contains("/maps/place")) {
                 boolean osm_enabled = sharedpreferences.getBoolean(MainActivity.SET_OSM_ENABLED, true);
                 if(osm_enabled) {
                     Intent delegate = new Intent(action);
-                    delegate.setData(Uri.parse(transformUrl(url)));
-                    delegate.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                    if (delegate.resolveActivity(getPackageManager()) != null) {
-                        startActivity(delegate);
+                    String transformedURL = transformUrl(url);
+                    if( transformedURL != null) {
+                        delegate.setData(Uri.parse(transformUrl(url)));
+                        delegate.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        if (delegate.resolveActivity(getPackageManager()) != null) {
+                            startActivity(delegate);
+                        }
+                    }else {
+                        forwardToBrowser(intent, action);
                     }
                 } else {
                     forwardToBrowser(intent, action);
@@ -114,10 +125,15 @@ public class TransformActivity extends Activity {
                 boolean invidious_enabled = sharedpreferences.getBoolean(SET_INVIDIOUS_ENABLED, true);
                 if( invidious_enabled) {
                     Intent delegate = new Intent(action);
-                    delegate.setData(Uri.parse(transformUrl(url)));
-                    delegate.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                    if (delegate.resolveActivity(getPackageManager()) != null) {
-                        startActivity(delegate);
+                    String transformedURL = transformUrl(url);
+                    if( transformedURL != null) {
+                        delegate.setData(Uri.parse(transformUrl(url)));
+                        delegate.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        if (delegate.resolveActivity(getPackageManager()) != null) {
+                            startActivity(delegate);
+                        }
+                    }else {
+                        forwardToBrowser(intent, action);
                     }
                 }else{
                     forwardToBrowser(intent, action);
@@ -171,18 +187,14 @@ public class TransformActivity extends Activity {
                     String nitterHost = sharedpreferences.getString(MainActivity.SET_NITTER_HOST, MainActivity.DEFAULT_NITTER_HOST).toLowerCase();
                     newUrl = "https://" + nitterHost + nitter_directory;
                 }
-                if( newUrl != null) {
-                    return newUrl;
-                }else {
-                    return url;
-                }
+                return newUrl;
             } else {
                 return url;
             }
-        }else if( url.contains("google")) {
+        }else if( url.contains("/maps/place")) {
             boolean osm_enabled = sharedpreferences.getBoolean(MainActivity.SET_OSM_ENABLED, true);
             if(osm_enabled) {
-                Matcher matcher = googleMap.matcher(url);
+                Matcher matcher = maps.matcher(url);
                 while (matcher.find()) {
                     final String localization = matcher.group(1);
                     assert localization != null;
@@ -195,15 +207,24 @@ public class TransformActivity extends Activity {
                         }else {
                             zoom = data[2];
                         }
+
                         String osmHost = sharedpreferences.getString(MainActivity.SET_OSM_HOST, MainActivity.DEFAULT_OSM_HOST).toLowerCase();
-                        newUrl = "https://"+osmHost+"/#map="+zoom+"/"+data[0]+"/"+data[1];
+                        boolean geo_uri_enabled = sharedpreferences.getBoolean(MainActivity.SET_GEO_URIS, false);
+                        if(! geo_uri_enabled) {
+                            newUrl = "https://" + osmHost + "/#map=" + zoom + "/" + data[0] + "/" + data[1];
+                        }else{
+                            newUrl =  "geo:0,0?q="+data[0]+","+data[1]+",z="+zoom;
+                        }
                     }
                 }
-                if( newUrl != null) {
-                    return newUrl;
-                }else {
-                    return url;
+                if( newUrl == null && url.contains("/data=")) {
+                    matcher = extractPlace.matcher(url);
+                    while (matcher.find()) {
+                        final String search = matcher.group(1);
+                        newUrl =  "geo:0,0?q="+search;
+                    }
                 }
+                return newUrl;
             } else {
                 return url;
             }
@@ -220,11 +241,7 @@ public class TransformActivity extends Activity {
                         newUrl = "https://" + invidiousHost + "/" + youtubeId + "&local=true";
                     }
                 }
-                if( newUrl != null) {
-                    return newUrl;
-                }else {
-                    return url;
-                }
+                return newUrl;
             }else{
                 return url;
             }
@@ -271,10 +288,10 @@ public class TransformActivity extends Activity {
                     newUrl = "https://" + nitterHost + nitter_directory;
                 }
             }
-        }else if( url.contains("google")) {
+        }else if( url.contains("/maps/place/")) {
             boolean osm_enabled = sharedpreferences.getBoolean(MainActivity.SET_OSM_ENABLED, true);
             if(osm_enabled) {
-                Matcher matcher = googleMap.matcher(url);
+                Matcher matcher = maps.matcher(url);
                 while (matcher.find()) {
                     final String localization = matcher.group(1);
                     assert localization != null;

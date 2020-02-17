@@ -167,39 +167,23 @@
                     android:host="youtube-nocookie.com" />
             </intent-filter>
 
-            <!-- google.com/maps/ -->
+            <!-- /maps/ -->
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
                 <data android:scheme="https"
-                    android:pathPattern="/maps/.*"
-                    android:host="google.com" />
+                    android:pathPattern="/maps/place/.*"
+                    android:host="*" />
             </intent-filter>
             <intent-filter>
                 <action android:name="android.intent.action.SEND" />
                 <category android:name="android.intent.category.DEFAULT"/>
                 <data android:mimeType="text/plain"
-                    android:pathPattern="/maps/.*"
-                    android:host="google.com" />
+                    android:pathPattern="/maps/place/.*"
+                    android:host="*" />
             </intent-filter>
 
-            <!-- www.google.com/maps/ -->
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
-                <data android:scheme="https"
-                    android:pathPattern="/maps/.*"
-                    android:host="www.google.com" />
-            </intent-filter>
-            <intent-filter>
-                <action android:name="android.intent.action.SEND" />
-                <category android:name="android.intent.category.DEFAULT"/>
-                <data android:mimeType="text/plain"
-                    android:pathPattern="/maps/.*"
-                    android:host="www.google.com" />
-            </intent-filter>
 
         </activity>
 
