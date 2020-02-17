@@ -61,6 +61,7 @@ public class MainActivity extends AppCompatActivity {
 
     //Supported domains
     private String[] domains = {
+            "t.co",
             "twitter.com",
             "mobile.twitter.com",
             "www.twitter.com",

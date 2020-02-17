@@ -23,6 +23,26 @@
         </activity>
         <activity android:name=".TransformActivity" android:theme="@android:style/Theme.Translucent.NoTitleBar">
             <!-- The app should handle these domains, more can be added here -->
+
+
+            <!-- t.co -->
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="https"
+                    android:host="t.co"
+                    android:pathPattern=".*"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.SEND" />
+                <category android:name="android.intent.category.DEFAULT"/>
+                <data android:mimeType="text/plain"
+                    android:host="t.co" />
+            </intent-filter>
+
+
+            <!-- mobile.twitter.com -->
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.DEFAULT" />
@@ -32,6 +52,14 @@
                     android:pathPattern=".*"/>
             </intent-filter>
             <intent-filter>
+                <action android:name="android.intent.action.SEND" />
+                <category android:name="android.intent.category.DEFAULT"/>
+                <data android:mimeType="text/plain"
+                    android:host="mobile.twitter.com" />
+            </intent-filter>
+
+            <!-- www.twitter.com -->
+            <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
@@ -39,6 +67,14 @@
                     android:host="www.twitter.com"
                     android:pathPattern=".*"/>
             </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.SEND" />
+                <category android:name="android.intent.category.DEFAULT"/>
+                <data android:mimeType="text/plain"
+                    android:host="www.twitter.com" />
+            </intent-filter>
+
+            <!-- twitter.com -->
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.DEFAULT" />
@@ -48,12 +84,29 @@
                     android:pathPattern=".*"/>
             </intent-filter>
             <intent-filter>
+                <action android:name="android.intent.action.SEND" />
+                <category android:name="android.intent.category.DEFAULT"/>
+                <data
+                    android:mimeType="text/plain"
+                    android:host="twitter.com" />
+            </intent-filter>
+
+            <!-- www.youtube.com -->
+            <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
                 <data android:scheme="https"
                     android:host="www.youtube.com" />
             </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.SEND" />
+                <category android:name="android.intent.category.DEFAULT"/>
+                <data android:mimeType="text/plain"
+                    android:host="www.youtube.com" />
+            </intent-filter>
+
+            <!-- m.youtube.com -->
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.DEFAULT" />
@@ -62,12 +115,28 @@
                     android:host="m.youtube.com" />
             </intent-filter>
             <intent-filter>
+                <action android:name="android.intent.action.SEND" />
+                <category android:name="android.intent.category.DEFAULT"/>
+                <data android:mimeType="text/plain"
+                    android:host="m.youtube.com" />
+            </intent-filter>
+
+            <!-- youtube.com -->
+            <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
                 <data android:scheme="https"
                     android:host="youtube.com" />
             </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.SEND" />
+                <category android:name="android.intent.category.DEFAULT"/>
+                <data android:mimeType="text/plain"
+                    android:host="youtube.com" />
+            </intent-filter>
+
+            <!-- youtu.be -->
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.DEFAULT" />
@@ -76,12 +145,28 @@
                     android:host="youtu.be" />
             </intent-filter>
             <intent-filter>
+                <action android:name="android.intent.action.SEND" />
+                <category android:name="android.intent.category.DEFAULT"/>
+                <data android:mimeType="text/plain"
+                    android:host="youtu.be" />
+            </intent-filter>
+
+            <!-- youtube-nocookie.com -->
+            <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
                 <data android:scheme="https"
                     android:host="youtube-nocookie.com" />
             </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.SEND" />
+                <category android:name="android.intent.category.DEFAULT"/>
+                <data android:mimeType="text/plain"
+                    android:host="youtube-nocookie.com" />
+            </intent-filter>
+
+            <!-- google.com/maps/ -->
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.DEFAULT" />
@@ -91,6 +176,15 @@
                     android:host="google.com" />
             </intent-filter>
             <intent-filter>
+                <action android:name="android.intent.action.SEND" />
+                <category android:name="android.intent.category.DEFAULT"/>
+                <data android:mimeType="text/plain"
+                    android:pathPattern="/maps/.*"
+                    android:host="google.com" />
+            </intent-filter>
+
+            <!-- www.google.com/maps/ -->
+            <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
@@ -98,6 +192,14 @@
                     android:pathPattern="/maps/.*"
                     android:host="www.google.com" />
             </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.SEND" />
+                <category android:name="android.intent.category.DEFAULT"/>
+                <data android:mimeType="text/plain"
+                    android:pathPattern="/maps/.*"
+                    android:host="www.google.com" />
+            </intent-filter>
+
         </activity>
 
         <activity
