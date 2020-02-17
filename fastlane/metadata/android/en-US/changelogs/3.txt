@@ -3,6 +3,8 @@ Added:
 - Handle shares containing Twitter, YouTube, GMaps URLs for transforming them
 - GMaps URL can be transformed in geo URI
 - Clicking on unknown applications for opening links will allow to quickly set NitterizeMe as the default one
+- Shortcut to configure
+- Add how-to link
 
 Fixed:
 
