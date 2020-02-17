@@ -25,7 +25,7 @@
             android:name=".TransformActivity"
             android:theme="@android:style/Theme.Translucent.NoTitleBar"
             android:noHistory="true">
-            <!-- The app should handle these domains, more can be added here -->²
+            <!-- The app should handle these domains, more can be added here -->
             <!-- t.co -->
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
