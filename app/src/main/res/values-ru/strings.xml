@@ -30,4 +30,5 @@
     <string name="display_supported_links">Display supported links</string>
     <string name="hide_supported_links">Hide supported links</string>
     <string name="use_geo_uri">Use geo URI</string>
+    <string name="how_to">How-to</string>
 </resources>
