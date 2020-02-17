@@ -104,6 +104,12 @@ public class AboutActivity extends AppCompatActivity {
             startActivity(browserIntent);
         });
 
+        Button how_to = findViewById(R.id.how_to);
+        how_to.setOnClickListener(v -> {
+            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://fedilab.app/wiki/nitterizeme/"));
+            startActivity(browserIntent);
+        });
+
         TextView license = findViewById(R.id.license);
         content = new SpannableString(license.getText().toString());
         content.setSpan(new ForegroundColorSpan(ContextCompat.getColor(AboutActivity.this,R.color.colorAccent)), 0, content.length(), 0);
@@ -113,9 +119,8 @@ public class AboutActivity extends AppCompatActivity {
             Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.gnu.org/licenses/quick-guide-gplv3.fr.html"));
             startActivity(browserIntent);
         });
-
-
     }
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
