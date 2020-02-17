@@ -76,8 +76,7 @@ public class MainActivity extends AppCompatActivity {
             "youtube.com",
             "m.youtube.com",
             "youtu.be",
-            "youtube-nocookie.com",
-            "maps",
+            "youtube-nocookie.com"
     };
 
     @Override

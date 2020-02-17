@@ -93,13 +93,16 @@ public class AboutActivity extends AppCompatActivity {
         });
 
         //Developer donation
-        Button donate = findViewById(R.id.donate);
-
-        donate.setOnClickListener(v -> {
+        Button donatePaypal = findViewById(R.id.donate_paypal);
+        donatePaypal.setOnClickListener(v -> {
             Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.paypal.me/Mastalab"));
             startActivity(browserIntent);
         });
-
+        Button donateLiberapay = findViewById(R.id.donate_liberapay);
+        donateLiberapay.setOnClickListener(v -> {
+            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://liberapay.com/tom79/donate"));
+            startActivity(browserIntent);
+        });
 
         TextView license = findViewById(R.id.license);
         content = new SpannableString(license.getText().toString());

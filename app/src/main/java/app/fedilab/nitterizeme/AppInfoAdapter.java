@@ -88,9 +88,6 @@ public class AppInfoAdapter extends RecyclerView.Adapter {
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 intent.putExtra("nitterizeme","test");
                 String url = "https://"+appInfo.getDomain();
-                if( appInfo.getDomain().contains("/maps/place")) {
-                    url = "https://google.com/maps/place";
-                }
                 intent.setData(Uri.parse(url));
                 context.startActivity(intent);
             });
