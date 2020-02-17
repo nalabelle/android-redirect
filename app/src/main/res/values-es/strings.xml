@@ -25,5 +25,9 @@
     <string name="custom_osm">Nombre de host OSM personalizado</string>
     <string name="redirect_youtube_to_invidious">Redirigir YouTube a Invidious</string>
     <string name="redirect_twitter_to_nitter">Redirigir Twitter a Nitter</string>
+    <string name="redirect_gm_to_geo_uri">Redirect Google Map to Geo URI</string>
     <string name="configure">Configurar</string>
+    <string name="display_supported_links">Mostrar enlaces compatibles</string>
+    <string name="hide_supported_links">Ocultar enlaces compatibles</string>
+    <string name="use_geo_uri">Use geo URI</string>
 </resources>

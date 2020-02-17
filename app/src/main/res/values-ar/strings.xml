@@ -25,5 +25,9 @@
     <string name="custom_osm">مثيل OSM مخصّص</string>
     <string name="redirect_youtube_to_invidious">يقوم بتحويل Youtube إلى Invidious</string>
     <string name="redirect_twitter_to_nitter">يقوم بتحويل تويتر إلى Nitter</string>
+    <string name="redirect_gm_to_geo_uri">Redirect Google Map to Geo URI</string>
     <string name="configure">Configure</string>
+    <string name="display_supported_links">Display supported links</string>
+    <string name="hide_supported_links">Hide supported links</string>
+    <string name="use_geo_uri">Use geo URI</string>
 </resources>
