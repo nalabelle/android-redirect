@@ -13,7 +13,7 @@
     <string name="save">Speichern</string>
     <string name="close">Schließen</string>
     <string name="instances_saved">Benutzerdefinierte Instanzen wurden gespeichert!</string>
-    <string name="custom_invidious">Benuzerdefinierte Invidious Instanz</string>
+    <string name="custom_invidious">Eigene Invidious Instanz</string>
     <string name="no_apps">Keine Anwendungen standardmäßig</string>
     <string name="Donate">Spenden</string>
     <string name="warning">Warnung</string>
@@ -22,12 +22,12 @@
     <string name="icon_of_the_app">Symbol der App</string>
     <string name="open_with">Öffnen mit</string>
     <string name="redirect_gm_to_osm">Google Map auf OpenStreetMap umleiten</string>
-    <string name="custom_osm">Custom OSM hostname</string>
-    <string name="redirect_youtube_to_invidious">Redirect YouTube to Invidious</string>
-    <string name="redirect_twitter_to_nitter">Redirect Twitter to Nitter</string>
-    <string name="redirect_gm_to_geo_uri">Redirect Google Map to Geo URI</string>
-    <string name="configure">Configure</string>
-    <string name="display_supported_links">Display supported links</string>
-    <string name="hide_supported_links">Hide supported links</string>
-    <string name="use_geo_uri">Use geo URI</string>
+    <string name="custom_osm">Benutzerdefinierter OSM Hostname</string>
+    <string name="redirect_youtube_to_invidious">YouTube auf Invidious umleiten</string>
+    <string name="redirect_twitter_to_nitter">Twitter zu Nitter umleiten</string>
+    <string name="redirect_gm_to_geo_uri">Google Map auf Geo URI umleiten</string>
+    <string name="configure">Konfigurieren</string>
+    <string name="display_supported_links">Unterstützte Links anzeigen</string>
+    <string name="hide_supported_links">Unterstützte Links ausblenden</string>
+    <string name="use_geo_uri">Geo URI benutzen</string>
 </resources>
