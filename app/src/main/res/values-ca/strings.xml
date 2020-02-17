@@ -26,4 +26,6 @@
     <string name="redirect_youtube_to_invidious">Redirect YouTube to Invidious</string>
     <string name="redirect_twitter_to_nitter">Redirect Twitter to Nitter</string>
     <string name="configure">Configure</string>
+    <string name="display_supported_links">Display supported links</string>
+    <string name="hide_supported_links">Hide supported links</string>
 </resources>
