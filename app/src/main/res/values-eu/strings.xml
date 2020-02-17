@@ -26,4 +26,6 @@
     <string name="redirect_youtube_to_invidious">Birbideratu YouTube Invidious-era</string>
     <string name="redirect_twitter_to_nitter">Birbideratu Twitter Nitter-era</string>
     <string name="configure">Configure</string>
+    <string name="display_supported_links">Display supported links</string>
+    <string name="hide_supported_links">Hide supported links</string>
 </resources>
