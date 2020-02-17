@@ -30,5 +30,5 @@
     <string name="display_supported_links">Ouvrir les liens compatibles</string>
     <string name="hide_supported_links">Masquer les liens pris en charge</string>
     <string name="use_geo_uri">Utiliser OpenStreetMap</string>
-    <string name="how_to">How-to</string>
+    <string name="how_to">Mode d\'emploi</string>
 </resources>
