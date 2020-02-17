@@ -35,6 +35,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 
 
 import com.google.android.material.snackbar.Snackbar;
@@ -58,6 +59,7 @@ public class MainActivity extends AppCompatActivity {
     public  static  String DEFAULT_OSM_HOST = "www.openstreetmap.org";
     public static final String APP_PREFS = "app_prefs";
     private AppInfoAdapter appInfoAdapter;
+    private RecyclerView list_apps;
 
     //Supported domains
     private String[] domains = {
@@ -102,7 +104,7 @@ public class MainActivity extends AppCompatActivity {
         enable_osm.setChecked(osm_enabled);
 
         Button button_save = findViewById(R.id.button_save);
-        RecyclerView list_apps = findViewById(R.id.list_apps);
+        list_apps = findViewById(R.id.list_apps);
         String nitterHost = sharedpreferences.getString(SET_NITTER_HOST, null);
         String invidiousHost = sharedpreferences.getString(SET_INVIDIOUS_HOST, null);
         String osmHost = sharedpreferences.getString(SET_OSM_HOST, null);
@@ -160,6 +162,17 @@ public class MainActivity extends AppCompatActivity {
             Uri uri = Uri.fromParts("package", getApplicationInfo().packageName, null);
             intent.setData(uri);
             startActivity(intent);
+        });
+
+        ImageButton buttonExpand = findViewById(R.id.button_expand);
+        buttonExpand.setOnClickListener(v -> {
+            if( list_apps.getVisibility() == View.VISIBLE){
+                list_apps.setVisibility(View.GONE);
+                buttonExpand.setContentDescription(getString(R.string.display_supported_links));
+            }else{
+                list_apps.setVisibility(View.VISIBLE);
+                buttonExpand.setContentDescription(getString(R.string.hide_supported_links));
+            }
         });
 
         ArrayList<AppInfo> appInfos = new ArrayList<>();
@@ -227,8 +240,16 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume(){
         super.onResume();
-        if( appInfoAdapter != null) {
-            appInfoAdapter.notifyDataSetChanged();
+        if( list_apps != null) {
+            ArrayList<AppInfo> appInfos = new ArrayList<>();
+            for(String domain: domains) {
+                AppInfo appInfo = new AppInfo();
+                appInfo.setDomain(domain);
+                appInfo.setApplicationInfo(getDefaultApp("https://"+domain));
+                appInfos.add(appInfo);
+            }
+            appInfoAdapter = new AppInfoAdapter(appInfos);
+            list_apps.setAdapter(appInfoAdapter);
         }
     }
 }

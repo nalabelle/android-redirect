@@ -14,6 +14,7 @@ package app.fedilab.nitterizeme;
  * You should have received a copy of the GNU General Public License along with NitterizeMe; if not,
  * see <http://www.gnu.org/licenses>. */
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
@@ -83,10 +84,18 @@ public class AppInfoAdapter extends RecyclerView.Adapter {
             holder.app_icon.setImageResource(R.drawable.ic_android);
             holder.valid.setContentDescription(context.getString(R.string.warning));
             holder.valid.setImageResource(R.drawable.ic_warning);
+            holder.main_container.setOnClickListener(v -> {
+                Intent intent = new Intent(Intent.ACTION_VIEW);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.putExtra("nitterizeme","test");
+                String url = "https://"+appInfo.getDomain();
+                if( appInfo.getDomain().contains("google.com")) {
+                    url += "/maps/";
+                }
+                intent.setData(Uri.parse(url));
+                context.startActivity(intent);
+            });
         }
-
-
-
     }
 
     @Override

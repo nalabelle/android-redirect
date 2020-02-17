@@ -21,10 +21,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".TransformActivity" android:theme="@android:style/Theme.Translucent.NoTitleBar">
-            <!-- The app should handle these domains, more can be added here -->
-
-
+        <activity
+            android:name=".TransformActivity"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"
+            android:noHistory="true">
+            <!-- The app should handle these domains, more can be added here -->²
             <!-- t.co -->
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />

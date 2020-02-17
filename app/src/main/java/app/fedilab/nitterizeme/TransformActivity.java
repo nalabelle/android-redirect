@@ -48,6 +48,11 @@ public class TransformActivity extends Activity {
         super.onCreate(savedInstanceState);
         SharedPreferences sharedpreferences = getSharedPreferences(MainActivity.APP_PREFS, Context.MODE_PRIVATE);
         Intent intent = getIntent();
+        if( intent != null && intent.getStringExtra("nitterizeme") != null ) {
+            finish();
+            return;
+        }
+        assert intent != null;
         if( Objects.requireNonNull(intent.getAction()).equals(Intent.ACTION_VIEW)){
             String action = intent.getAction();
             String  url = Objects.requireNonNull(intent.getData()).toString();
