@@ -1,12 +1,16 @@
 Το NitterizeMe μόλις ρυθμιστεί να ανοίγει, από προεπιλογή, τους συνδέσμους Twitter και YouTube θα τους μετατρέψει σε συνδέσμους Nitter και Invidious και θα αναθέσει τη δράση σε μια άλλη εφαρμογή.
 
-### Τι είναι το Nitter:
+It also supports Google Maps links to transform them into OpenStreetMap links or Geo URI.
+
+When sharing a Twitter, YouTube or Google Maps link just pick up NitterizeMe to transform it before sharing it with another app.
+
+What is Nitter:
 
 Μία εναλλακτική, ανοιχτού κώδικα, διεπαφή για το Twitter με έμφαση στην ιδιωτικότητα.
-Έργο Github: [/zedeus/nitter](https://github.com/zedeus/nitter)
+Github project: https://github.com/zedeus/nitter
 
 
-### Τι είναι το Invidious:
+What is Invidious:
 
 Μία δωρεάν και ανοιχτού κώδικα εναλλακτική διεπαφή για το YouTube
-Έργο Github: [/omarroth/δυσάρεστη](https://github.com/omarroth/invidious)
+Github project: https://github.com/omarroth/invidious
