@@ -1,12 +1,16 @@
 Une fois NitterizeMe est spécifiée par défaut pour ouvrir les liens Twitter et YouTube, elle les transformera en liens Nitter et Invidious et déléguera l’action à une autre application.
 
-### C’est quoi Nitter :
+It also supports Google Maps links to transform them into OpenStreetMap links or Geo URI.
+
+When sharing a Twitter, YouTube or Google Maps link just pick up NitterizeMe to transform it before sharing it with another app.
+
+What is Nitter:
 
 Un front-end Twitter alternatif, libre et open source, axé sur la protection de la vie privée.
-Projet sur Github : [/zedeus/nitter](https://github.com/zedeus/nitter)
+Github project: https://github.com/zedeus/nitter
 
 
-### C’est quoi Invidious :
+What is Invidious:
 
 Une alternative gratuite et open source à YouTube
-Projet sur Github : [/omarroth/invidious](https://github.com/omarroth/invidious)
+Github project: https://github.com/omarroth/invidious
