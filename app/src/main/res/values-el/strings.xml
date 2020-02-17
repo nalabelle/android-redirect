@@ -25,5 +25,5 @@
     <string name="custom_osm">Προσαρμοσμένο όνομα κόμβου OSM</string>
     <string name="redirect_youtube_to_invidious">Ανακατεύθυνση Youtube σε Invidious</string>
     <string name="redirect_twitter_to_nitter">Ανακατεύθυνση Twitter σε Nitter</string>
-    <string name="configure">Configure</string>
+    <string name="configure">Ρύθμιση</string>
 </resources>
