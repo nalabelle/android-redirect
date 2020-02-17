@@ -25,5 +25,5 @@
     <string name="custom_osm">Nombre de host OSM personalizado</string>
     <string name="redirect_youtube_to_invidious">Redirigir YouTube a Invidious</string>
     <string name="redirect_twitter_to_nitter">Redirigir Twitter a Nitter</string>
-    <string name="configure">Configure</string>
+    <string name="configure">Configurar</string>
 </resources>
