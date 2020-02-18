@@ -31,11 +31,11 @@
     <string name="hide_supported_links">Masquer les liens pris en charge</string>
     <string name="use_geo_uri">Utiliser OpenStreetMap</string>
     <string name="how_to">Mode d\'emploi</string>
-    <string name="shortened_detected">Shortened URL</string>
-    <string name="open">Open</string>
-    <string name="dismiss">Dismiss</string>
-    <string name="resolving_shortened">Resolving shortened URL, please wait…</string>
-    <string name="try_to_redirect">%1$s \n\nwill redirect you to\n\n<b>%2$s</b></string>
-    <string name="try_to_redirect_again">Then it will redirect you to\n\n<b>%1$s</b></string>
-    <string name="the_app_failed_shortened">The app didn\'t manage to retrieve the full URL</string>
+    <string name="shortened_detected">URL raccourcie</string>
+    <string name="open">Ouvrir</string>
+    <string name="dismiss">Ignorer</string>
+    <string name="resolving_shortened">Résolution de l\'URL raccourcie, veuillez patienter…</string>
+    <string name="try_to_redirect">%1$s\n\nva vous rediriger vers\n\n<b>%2$s</b></string>
+    <string name="try_to_redirect_again">Il vous redirigera ensuite vers\n\n<b>%1$s</b></string>
+    <string name="the_app_failed_shortened">L\'application n\'a pas réussi à récupérer l\'URL complète</string>
 </resources>
