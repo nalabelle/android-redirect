@@ -2,7 +2,7 @@ Une fois que NitterizeMe est spécifiée par défaut pour ouvrir les liens Twitt
 
 Il supporte également les liens Google Maps pour les transformer en liens OpenStreetMap ou en Geo URI.
 
-The app will detect shortened URLs and will display the full URL before visiting the site.
+L'application détectera les URL raccourcies et affichera l'URL complète avant de visiter le site.
 
 Lorsque vous partagez un lien Twitter, YouTube ou Google Maps il vous suffit de récupérer NitterizeMe pour le transformer avant de le partager avec une autre application.
 
