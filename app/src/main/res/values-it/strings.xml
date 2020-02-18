@@ -30,12 +30,12 @@
     <string name="display_supported_links">Mostra link supportati</string>
     <string name="hide_supported_links">Nascondi link supportati</string>
     <string name="use_geo_uri">Usa geo URI</string>
-    <string name="how_to">How-to</string>
-    <string name="shortened_detected">Shortened URL</string>
-    <string name="open">Open</string>
-    <string name="dismiss">Dismiss</string>
-    <string name="resolving_shortened">Resolving shortened URL, please wait…</string>
-    <string name="try_to_redirect">%1$s \n\nwill redirect you to\n\n<b>%2$s</b></string>
-    <string name="try_to_redirect_again">Then it will redirect you to\n\n<b>%1$s</b></string>
-    <string name="the_app_failed_shortened">The app didn\'t manage to retrieve the full URL</string>
+    <string name="how_to">Come fare</string>
+    <string name="shortened_detected">URL Accorciato</string>
+    <string name="open">Apri</string>
+    <string name="dismiss">Abbandona</string>
+    <string name="resolving_shortened">Risoluzione URL accorciato, attendere prego…</string>
+    <string name="try_to_redirect">%1$s \n\nti reindirizzerà su\n\n<b>%2$s</b></string>
+    <string name="try_to_redirect_again">Poi ti reindirizzerà su\n\n<b>%1$s</b></string>
+    <string name="the_app_failed_shortened">L\'app non è riuscita a recuperare l\'URL completo</string>
 </resources>
