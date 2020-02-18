@@ -387,8 +387,20 @@ public class TransformActivity extends Activity {
                     if( notShortnedURL == null) {
                         notShortnedURL = finalUrl;
                     }
+
+                    URL url_;
+                    String host = null;
+                    try {
+                        url_ = new URL(notShortnedURL);
+                        host = url_.getHost();
+                    } catch (MalformedURLException e) {
+                        e.printStackTrace();
+                    }
+
                     boolean nitter_enabled = sharedpreferences.getBoolean(SET_NITTER_ENABLED, true);
-                    if(nitter_enabled) {
+                    boolean invidious_enabled = sharedpreferences.getBoolean(SET_INVIDIOUS_ENABLED, true);
+                    boolean osm_enabled = sharedpreferences.getBoolean(MainActivity.SET_OSM_ENABLED, true);
+                    if(nitter_enabled && Arrays.asList(twitter_domains).contains(host)) {
                         String newUrlFinal = notShortnedURL;
                         Matcher matcher = nitterPattern.matcher(notShortnedURL);
                         while (matcher.find()) {
@@ -397,6 +409,56 @@ public class TransformActivity extends Activity {
                             newUrlFinal = "https://" + nitterHost + nitter_directory;
                         }
                         String newExtraText = finalExtraText.replaceAll(Pattern.quote(finalUrl), Matcher.quoteReplacement(newUrlFinal));
+                        Intent sendIntent = new Intent();
+                        sendIntent.setAction(Intent.ACTION_SEND);
+                        sendIntent.putExtra(Intent.EXTRA_TEXT, newExtraText);
+                        sendIntent.setType("text/plain");
+                        startActivity(sendIntent);
+                    }else if( invidious_enabled && Arrays.asList(youtube_domains).contains(host)) {
+                        Matcher matcher = youtubePattern.matcher(notShortnedURL);
+                        String newUrlFinal = notShortnedURL;
+                        while (matcher.find()) {
+                            final String youtubeId = matcher.group(3);
+                            String invidiousHost = sharedpreferences.getString(MainActivity.SET_INVIDIOUS_HOST, MainActivity.DEFAULT_INVIDIOUS_HOST).toLowerCase();
+                            if (Objects.requireNonNull(matcher.group(2)).compareTo("youtu.be") == 0) {
+                                newUrlFinal = "https://" + invidiousHost + "/watch?v=" + youtubeId + "&local=true";
+                            } else {
+                                newUrlFinal = "https://" + invidiousHost + "/" + youtubeId + "&local=true";
+                            }
+                        }
+                        String newExtraText = finalExtraText.replaceAll(Pattern.quote(finalUrl), Matcher.quoteReplacement(newUrlFinal));
+                        Intent sendIntent = new Intent();
+                        sendIntent.setAction(Intent.ACTION_SEND);
+                        sendIntent.putExtra(Intent.EXTRA_TEXT, newExtraText);
+                        sendIntent.setType("text/plain");
+                        startActivity(sendIntent);
+                    }else if( osm_enabled && notShortnedURL.contains("/maps/place/")) {
+                        String newUrlFinal = notShortnedURL;
+                        Matcher matcher = maps.matcher(notShortnedURL);
+                        while (matcher.find()) {
+                            final String localization = matcher.group(1);
+                            assert localization != null;
+                            String[] data = localization.split(",");
+                            if( data.length > 2 ){
+                                String zoom;
+                                String[] details = data[2].split("\\.");
+                                if( details.length > 0 ) {
+                                    zoom = details[0];
+                                }else {
+                                    zoom = data[2];
+                                }
+                                String osmHost = sharedpreferences.getString(MainActivity.SET_OSM_HOST, MainActivity.DEFAULT_OSM_HOST).toLowerCase();
+                                newUrlFinal = "https://"+osmHost+"/#map="+zoom+"/"+data[0]+"/"+data[1];
+                            }
+                        }
+                        String newExtraText = finalExtraText.replaceAll(Pattern.quote(finalUrl), Matcher.quoteReplacement(newUrlFinal));
+                        Intent sendIntent = new Intent();
+                        sendIntent.setAction(Intent.ACTION_SEND);
+                        sendIntent.putExtra(Intent.EXTRA_TEXT, newExtraText);
+                        sendIntent.setType("text/plain");
+                        startActivity(sendIntent);
+                    }else{
+                        String newExtraText = finalExtraText.replaceAll(Pattern.quote(finalUrl), Matcher.quoteReplacement(notShortnedURL));
                         Intent sendIntent = new Intent();
                         sendIntent.setAction(Intent.ACTION_SEND);
                         sendIntent.putExtra(Intent.EXTRA_TEXT, newExtraText);
