@@ -2,6 +2,8 @@ Una vez establecido por defecto NitterizeMe para la apertura de enlaces de Twitt
 
 También soporta enlaces de Google Maps para transformarlos en enlaces de OpenStreetMap o Geo URI.
 
+The app will detect shortened URLs and will display the full URL before visiting the site.
+
 Si vas a compartir un enlace de Twitter, YouTube o Google Maps, simplemente utiliza NitterizeMe para transformarlo antes de compartirlo con otra aplicación.
 
 Qué es Nitter:
