@@ -26,7 +26,10 @@ import android.os.Parcelable;
 import android.util.Patterns;
 
 
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.regex.Matcher;
@@ -34,6 +37,9 @@ import java.util.regex.Pattern;
 
 import static app.fedilab.nitterizeme.MainActivity.SET_INVIDIOUS_ENABLED;
 import static app.fedilab.nitterizeme.MainActivity.SET_NITTER_ENABLED;
+import static app.fedilab.nitterizeme.MainActivity.shortener_domains;
+import static app.fedilab.nitterizeme.MainActivity.twitter_domains;
+import static app.fedilab.nitterizeme.MainActivity.youtube_domains;
 
 
 public class TransformActivity extends Activity {
@@ -54,11 +60,21 @@ public class TransformActivity extends Activity {
             return;
         }
         assert intent != null;
+        //Dealing with URLs
         if( Objects.requireNonNull(intent.getAction()).equals(Intent.ACTION_VIEW)){
-            String action = intent.getAction();
+
             String  url = Objects.requireNonNull(intent.getData()).toString();
-            //Twitter URLs
-            if( url.contains("t.co")) {
+            URL url_;
+            String host = null;
+            try {
+                url_ = new URL(url);
+                host = url_.getHost();
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            }
+
+            //Shortened URLs
+            if( Arrays.asList(shortener_domains).contains(host)) {
                 Thread thread = new Thread() {
                     @Override
                     public void run() {
@@ -75,22 +91,24 @@ public class TransformActivity extends Activity {
                                 String nitterHost = sharedpreferences.getString(MainActivity.SET_NITTER_HOST, MainActivity.DEFAULT_NITTER_HOST).toLowerCase();
                                 newUrlFinal = "https://" + nitterHost + nitter_directory;
                             }
-                            Intent delegate = new Intent(action);
+                            Intent delegate = new Intent(Intent.ACTION_VIEW);
                             delegate.setData(Uri.parse(newUrlFinal));
                             delegate.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                             if (delegate.resolveActivity(getPackageManager()) != null) {
                                 startActivity(delegate);
                             }
                         } else {
-                            forwardToBrowser(intent, action);
+                            forwardToBrowser(intent);
                         }
                     }
                 };
                 thread.start();
-            } else if( url.contains("twitter")) {
+            }
+            //Twitter URLs
+            else if( Arrays.asList(twitter_domains).contains(host)) {
                 boolean nitter_enabled = sharedpreferences.getBoolean(SET_NITTER_ENABLED, true);
                 if(nitter_enabled) {
-                    Intent delegate = new Intent(action);
+                    Intent delegate = new Intent(Intent.ACTION_VIEW);
                     String transformedURL = transformUrl(url);
                     if( transformedURL != null) {
                         delegate.setData(Uri.parse(transformUrl(url)));
@@ -99,15 +117,17 @@ public class TransformActivity extends Activity {
                             startActivity(delegate);
                         }
                     }else{
-                        forwardToBrowser(intent, action);
+                        forwardToBrowser(intent);
                     }
                 } else {
-                    forwardToBrowser(intent, action);
+                    forwardToBrowser(intent);
                 }
-            }else if( url.contains("/maps/place")) {
+            }
+            //Maps URLs (containing /maps/place like Google Maps links)
+            else if( url.contains("/maps/place")) {
                 boolean osm_enabled = sharedpreferences.getBoolean(MainActivity.SET_OSM_ENABLED, true);
                 if(osm_enabled) {
-                    Intent delegate = new Intent(action);
+                    Intent delegate = new Intent(Intent.ACTION_VIEW);
                     String transformedURL = transformUrl(url);
                     if( transformedURL != null) {
                         delegate.setData(Uri.parse(transformUrl(url)));
@@ -116,15 +136,17 @@ public class TransformActivity extends Activity {
                             startActivity(delegate);
                         }
                     }else {
-                        forwardToBrowser(intent, action);
+                        forwardToBrowser(intent);
                     }
                 } else {
-                    forwardToBrowser(intent, action);
+                    forwardToBrowser(intent);
                 }
-            }else{ //Youtube URL
+            }
+            //YouTube URLs
+            else if(Arrays.asList(youtube_domains).contains(host)){ //Youtube URL
                 boolean invidious_enabled = sharedpreferences.getBoolean(SET_INVIDIOUS_ENABLED, true);
                 if( invidious_enabled) {
-                    Intent delegate = new Intent(action);
+                    Intent delegate = new Intent(Intent.ACTION_VIEW);
                     String transformedURL = transformUrl(url);
                     if( transformedURL != null) {
                         delegate.setData(Uri.parse(transformUrl(url)));
@@ -133,25 +155,28 @@ public class TransformActivity extends Activity {
                             startActivity(delegate);
                         }
                     }else {
-                        forwardToBrowser(intent, action);
+                        forwardToBrowser(intent);
                     }
                 }else{
-                    forwardToBrowser(intent, action);
+                    forwardToBrowser(intent);
                 }
             }
 
         }
+        //It's a sharing intent
         else  if( Objects.requireNonNull(intent.getAction()).equals(Intent.ACTION_SEND)){
             share(intent.getStringExtra(Intent.EXTRA_TEXT));
         }
     }
 
 
-
-
-    private void forwardToBrowser(Intent i, String action) {
+    /**
+     * Forward the intent to a browser
+     * @param i original intent
+     */
+    private void forwardToBrowser(Intent i) {
         Intent intent = new Intent();
-        intent.setAction(action);
+        intent.setAction(Intent.ACTION_VIEW);
         intent.setDataAndType(i.getData(), i.getType());
         List<ResolveInfo> activities = getPackageManager().queryIntentActivities(intent, 0);
         ArrayList<Intent> targetIntents = new ArrayList<>();
@@ -159,7 +184,7 @@ public class TransformActivity extends Activity {
         for (ResolveInfo currentInfo : activities) {
             String packageName = currentInfo.activityInfo.packageName;
             if (!thisPackageName.equals(packageName)) {
-                Intent targetIntent = new Intent(action);
+                Intent targetIntent = new Intent(Intent.ACTION_VIEW);
                 targetIntent.setDataAndType(intent.getData(), intent.getType());
                 targetIntent.setPackage(intent.getPackage());
                 targetIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
@@ -177,10 +202,24 @@ public class TransformActivity extends Activity {
     }
 
 
+    /**
+     * Transform the URL to a Nitter, Invidious or OSM ones
+     * @param url String original URL
+     * @return String transformed URL
+     */
     private String transformUrl(String url) {
         SharedPreferences sharedpreferences = getSharedPreferences(MainActivity.APP_PREFS, Context.MODE_PRIVATE);
         String newUrl = null;
-        if( url.contains("twitter")) {
+
+        URL url_;
+        String host = null;
+        try {
+            url_ = new URL(url);
+            host = url_.getHost();
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+        if(Arrays.asList(twitter_domains).contains(host)) {
             boolean nitter_enabled = sharedpreferences.getBoolean(SET_NITTER_ENABLED, true);
             if(nitter_enabled) {
                 Matcher matcher = nitterPattern.matcher(url);
@@ -230,7 +269,7 @@ public class TransformActivity extends Activity {
             } else {
                 return url;
             }
-        }else{ //Youtube URL
+        }else if(Arrays.asList(youtube_domains).contains(host)){ //Youtube URL
             boolean invidious_enabled = sharedpreferences.getBoolean(SET_INVIDIOUS_ENABLED, true);
             if( invidious_enabled) {
                 Matcher matcher = youtubePattern.matcher(url);
@@ -248,9 +287,14 @@ public class TransformActivity extends Activity {
                 return url;
             }
         }
+        return null;
     }
 
 
+    /**
+     * Transform URL inside the shared content without modifying the whole content
+     * @param extraText String the new extra text
+     */
     private void share(String extraText) {
         SharedPreferences sharedpreferences = getSharedPreferences(MainActivity.APP_PREFS, Context.MODE_PRIVATE);
 
@@ -269,7 +313,14 @@ public class TransformActivity extends Activity {
                 }
             }
         }
-
+        URL url_;
+        String host = null;
+        try {
+            url_ = new URL(url);
+            host = url_.getHost();
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
         String newUrl = null;
         if( url == null){
             Intent sendIntent = new Intent();
@@ -280,7 +331,7 @@ public class TransformActivity extends Activity {
             return;
         }
 
-        if( url.contains("twitter")) {
+        if( Arrays.asList(twitter_domains).contains(host) ) {
             boolean nitter_enabled = sharedpreferences.getBoolean(SET_NITTER_ENABLED, true);
             if(nitter_enabled) {
                 Matcher matcher = nitterPattern.matcher(url);
@@ -311,7 +362,7 @@ public class TransformActivity extends Activity {
                     }
                 }
             }
-        }else{ //Youtube URL
+        }else if(Arrays.asList(youtube_domains).contains(host)){ //Youtube URL
             boolean invidious_enabled = sharedpreferences.getBoolean(SET_INVIDIOUS_ENABLED, true);
             if( invidious_enabled) {
                 Matcher matcher = youtubePattern.matcher(url);
@@ -325,7 +376,8 @@ public class TransformActivity extends Activity {
                     }
                 }
             }
-        } if( url.contains("t.co")) {
+        }
+        else if(Arrays.asList(shortener_domains).contains(host)) {
             String finalUrl = url;
             String finalExtraText = extraText;
             Thread thread = new Thread() {

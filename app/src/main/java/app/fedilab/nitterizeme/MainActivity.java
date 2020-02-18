@@ -45,6 +45,7 @@ import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
@@ -65,17 +66,30 @@ public class MainActivity extends AppCompatActivity {
     private AppInfoAdapter appInfoAdapter;
     private RecyclerView list_apps;
 
+
+    private String[] domains;
+
     //Supported domains
-    private String[] domains = {
-            "t.co",
+    public static String[] twitter_domains = {
             "twitter.com",
             "mobile.twitter.com",
             "www.twitter.com",
+    };
+
+    public static String[] youtube_domains = {
             "www.youtube.com",
             "youtube.com",
             "m.youtube.com",
             "youtu.be",
             "youtube-nocookie.com"
+    };
+
+    public static String[] shortener_domains = {
+            "t.co",
+            "nyti.ms",
+            "bit.ly",
+            "tinyurl.com",
+            "goo.gl",
     };
 
     @Override
@@ -86,6 +100,21 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         Objects.requireNonNull(getSupportActionBar()).setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        domains = new String[twitter_domains.length+youtube_domains.length+shortener_domains.length];
+        int i = 0;
+        for(String host: twitter_domains){
+            domains[i] = host;
+            i++;
+        }
+        for(String host: youtube_domains){
+            domains[i] = host;
+            i++;
+        }
+        for(String host: shortener_domains){
+            domains[i] = host;
+            i++;
+        }
 
         SharedPreferences sharedpreferences = getSharedPreferences(APP_PREFS, Context.MODE_PRIVATE);
 
