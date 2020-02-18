@@ -1,16 +1,16 @@
 NitterizeMe, behin Twitter eta Youtube estekak irekitzeko lehenetsita ezarrita, Nitter eta n Twitter esteka bihurtuko ditu eta beste aplikazio bati pasatu.
 
-It also supports Google Maps links to transform them into OpenStreetMap links or Geo URI.
+Google Maps estekak OpenStreetMap edo Geo URI esteka bihurtu ditzake ere.
 
-When sharing a Twitter, YouTube or Google Maps link just pick up NitterizeMe to transform it before sharing it with another app.
+Twitter, YouTube edo Google map esteka bat partekatzean, hautatu NitterizeMe beste aplikazio batekin partekatu aurretik eraldatzeko.
 
-What is Nitter:
+Zer da Nitter:
 
 Pribatutasuna aintzat duen Twitter bezero librea.
-Github project: https://github.com/zedeus/nitter
+GitHub proiektua: https://github.com/zedeus/nitter
 
 
-What is Invidious:
+Zer da Invidious:
 
 Youtube ikusteko bezero libre alternatiboa
-Github project: https://github.com/omarroth/invidious
+GitHub proiektua: https://github.com/omarroth/invidious
