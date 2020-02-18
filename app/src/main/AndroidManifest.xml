@@ -38,6 +38,9 @@
                 <data android:scheme="https"
                     android:host="t.co"
                     android:pathPattern=".*"/>
+                <data android:scheme="http"
+                    android:host="t.co"
+                    android:pathPattern=".*"/>
             </intent-filter>
             <intent-filter>
                 <action android:name="android.intent.action.SEND" />
@@ -51,6 +54,9 @@
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
                 <data android:scheme="https"
+                    android:host="nyti.ms"
+                    android:pathPattern=".*"/>
+                <data android:scheme="http"
                     android:host="nyti.ms"
                     android:pathPattern=".*"/>
             </intent-filter>
@@ -68,6 +74,9 @@
                 <data android:scheme="https"
                     android:host="bit.ly"
                     android:pathPattern=".*"/>
+                <data android:scheme="http"
+                    android:host="bit.ly"
+                    android:pathPattern=".*"/>
             </intent-filter>
             <intent-filter>
                 <action android:name="android.intent.action.SEND" />
@@ -83,6 +92,9 @@
                 <data android:scheme="https"
                     android:host="tinyurl.com"
                     android:pathPattern=".*"/>
+                <data android:scheme="http"
+                    android:host="tinyurl.com"
+                    android:pathPattern=".*"/>
             </intent-filter>
             <intent-filter>
                 <action android:name="android.intent.action.SEND" />
@@ -96,6 +108,9 @@
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
                 <data android:scheme="https"
+                    android:host="goo.gl"
+                    android:pathPattern=".*"/>
+                <data android:scheme="http"
                     android:host="goo.gl"
                     android:pathPattern=".*"/>
             </intent-filter>
@@ -115,6 +130,9 @@
                 <data android:scheme="https"
                     android:host="mobile.twitter.com"
                     android:pathPattern=".*"/>
+                <data android:scheme="http"
+                    android:host="mobile.twitter.com"
+                    android:pathPattern=".*"/>
             </intent-filter>
             <intent-filter>
                 <action android:name="android.intent.action.SEND" />
@@ -130,6 +148,9 @@
                 <data android:scheme="https"
                     android:host="www.twitter.com"
                     android:pathPattern=".*"/>
+                <data android:scheme="http"
+                    android:host="www.twitter.com"
+                    android:pathPattern=".*"/>
             </intent-filter>
             <intent-filter>
                 <action android:name="android.intent.action.SEND" />
@@ -143,6 +164,9 @@
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
                 <data android:scheme="https"
+                    android:host="twitter.com"
+                    android:pathPattern=".*"/>
+                <data android:scheme="http"
                     android:host="twitter.com"
                     android:pathPattern=".*"/>
             </intent-filter>
@@ -162,6 +186,8 @@
                 <category android:name="android.intent.category.BROWSABLE" />
                 <data android:scheme="https"
                     android:host="www.youtube.com" />
+                <data android:scheme="http"
+                    android:host="www.youtube.com" />
             </intent-filter>
             <intent-filter>
                 <action android:name="android.intent.action.SEND" />
@@ -175,6 +201,8 @@
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
                 <data android:scheme="https"
+                    android:host="m.youtube.com" />
+                <data android:scheme="http"
                     android:host="m.youtube.com" />
             </intent-filter>
             <intent-filter>
@@ -190,6 +218,8 @@
                 <category android:name="android.intent.category.BROWSABLE" />
                 <data android:scheme="https"
                     android:host="youtube.com" />
+                <data android:scheme="http"
+                    android:host="youtube.com" />
             </intent-filter>
             <intent-filter>
                 <action android:name="android.intent.action.SEND" />
@@ -204,6 +234,8 @@
                 <category android:name="android.intent.category.BROWSABLE" />
                 <data android:scheme="https"
                     android:host="youtu.be" />
+                <data android:scheme="http"
+                    android:host="youtu.be" />
             </intent-filter>
             <intent-filter>
                 <action android:name="android.intent.action.SEND" />
@@ -217,6 +249,8 @@
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
                 <data android:scheme="https"
+                    android:host="youtube-nocookie.com" />
+                <data android:scheme="http"
                     android:host="youtube-nocookie.com" />
             </intent-filter>
             <intent-filter>
@@ -233,6 +267,9 @@
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
                 <data android:scheme="https"
+                    android:pathPattern="/maps/place/.*"
+                    android:host="*" />
+                <data android:scheme="http"
                     android:pathPattern="/maps/place/.*"
                     android:host="*" />
             </intent-filter>
