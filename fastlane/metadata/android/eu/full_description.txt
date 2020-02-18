@@ -2,6 +2,8 @@ NitterizeMe, behin Twitter eta Youtube estekak irekitzeko lehenetsita ezarrita, 
 
 Google Maps estekak OpenStreetMap edo Geo URI esteka bihurtu ditzake ere.
 
+The app will detect shortened URLs and will display the full URL before visiting the site.
+
 Twitter, YouTube edo Google map esteka bat partekatzean, hautatu NitterizeMe beste aplikazio batekin partekatu aurretik eraldatzeko.
 
 Zer da Nitter:
