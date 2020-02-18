@@ -25,9 +25,10 @@
     <string name="custom_osm">OSM ostalari-izen pertsonalizatua</string>
     <string name="redirect_youtube_to_invidious">Birbideratu YouTube Invidious-era</string>
     <string name="redirect_twitter_to_nitter">Birbideratu Twitter Nitter-era</string>
-    <string name="redirect_gm_to_geo_uri">Redirect Google Map to Geo URI</string>
-    <string name="configure">Configure</string>
-    <string name="display_supported_links">Display supported links</string>
-    <string name="hide_supported_links">Hide supported links</string>
-    <string name="use_geo_uri">Use geo URI</string>
+    <string name="redirect_gm_to_geo_uri">Berbideratu Google Map Geo URI-ra</string>
+    <string name="configure">Konfiguratu</string>
+    <string name="display_supported_links">Erakutsi onartutako estekak</string>
+    <string name="hide_supported_links">Ezkutatu onartutako estekak</string>
+    <string name="use_geo_uri">Erabili Geo URI</string>
+    <string name="how_to">Nola egin</string>
 </resources>

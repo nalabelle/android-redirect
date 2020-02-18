@@ -30,4 +30,5 @@
     <string name="display_supported_links">Mostra link supportati</string>
     <string name="hide_supported_links">Nascondi link supportati</string>
     <string name="use_geo_uri">Usa geo URI</string>
+    <string name="how_to">How-to</string>
 </resources>
