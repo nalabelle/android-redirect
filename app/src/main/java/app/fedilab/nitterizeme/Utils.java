@@ -13,14 +13,19 @@ package app.fedilab.nitterizeme;
  *
  * You should have received a copy of the GNU General Public License along with NitterizeMe; if not,
  * see <http://www.gnu.org/licenses>. */
+
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import javax.net.ssl.HttpsURLConnection;
+
+import static app.fedilab.nitterizeme.MainActivity.shortener_domains;
 
 class Utils {
 
@@ -31,14 +36,19 @@ class Utils {
 
     /**
      * Returns the unshortened URL
-     * @param urlStr String URL to check
-     * @return String the Unshortened URL
+     * @param urls  ArrayList<String> URL to check
      */
-    static String checkUrl(String urlStr){
+    static void checkUrl(ArrayList<String> urls){
         URL url;
-        String redirect = null;
+        String newURL = null;
+        String comingURl;
         try {
-            url = new URL(urlStr);
+            comingURl = urls.get(urls.size()-1);
+
+            if( comingURl.startsWith("http://")){
+                comingURl = comingURl.replace("http://", "https://");
+            }
+            url = new URL(comingURl);
             HttpsURLConnection httpsURLConnection = (HttpsURLConnection) url.openConnection();
             httpsURLConnection.setRequestProperty("http.keepAlive", "false");
             httpsURLConnection.setInstanceFollowRedirects(false);
@@ -49,24 +59,25 @@ class Utils {
                     if (entry.toString().toLowerCase().startsWith("location")) {
                         Matcher matcher = urlPattern.matcher(entry.toString());
                         if (matcher.find()) {
-                            redirect = matcher.group(1);
+                            urls.add(matcher.group(1));
+                            newURL = matcher.group(1);
                         }
                     }
                 }
             }
             httpsURLConnection.getInputStream().close();
-            if (redirect != null && redirect.compareTo(urlStr)!=0){
-                URL redirectURL = new URL(redirect);
+            if (newURL != null && newURL.compareTo(comingURl)!=0){
+                URL redirectURL = new URL(newURL);
                 String host = redirectURL.getHost();
                 String protocol = redirectURL.getProtocol();
-                if( protocol == null || host == null){
-                    redirect = null;
+                if( protocol != null && host != null){
+                    if( Arrays.asList(shortener_domains).contains(host)) {
+                        checkUrl(urls);
+                    }
                 }
             }
-            return redirect;
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return null;
     }
 }

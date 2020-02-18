@@ -55,7 +55,7 @@ public class TransformActivity extends Activity {
 
 
     private Thread thread;
-    private String notShortnedURLDialog;
+    private ArrayList<String> notShortnedURLDialog;
     final Pattern youtubePattern = Pattern.compile("(www\\.|m\\.)?(youtube\\.com|youtu\\.be|youtube-nocookie\\.com)/(((?!([\"'<])).)*)");
     final Pattern nitterPattern = Pattern.compile("(mobile\\.|www\\.)?twitter.com([\\w-/]+)");
     final Pattern maps = Pattern.compile("/maps/place/[^@]+@([\\d.,z]{3,}).*");
@@ -69,6 +69,7 @@ public class TransformActivity extends Activity {
             finish();
             return;
         }
+        notShortnedURLDialog = new ArrayList<>();
         assert intent != null;
         //Dealing with URLs
         if( Objects.requireNonNull(intent.getAction()).equals(Intent.ACTION_VIEW)){
@@ -91,11 +92,11 @@ public class TransformActivity extends Activity {
                 unshortenAlertBuilder.setView(view);
                 unshortenAlertBuilder.setIcon(R.mipmap.ic_launcher);
                 unshortenAlertBuilder.setPositiveButton(R.string.open, (dialog, id) -> {
-                    if( notShortnedURLDialog != null){
+                    if( notShortnedURLDialog.size() > 0){
                         URL url_1;
                         String realHost = null;
                         try {
-                            url_1 = new URL(notShortnedURLDialog);
+                            url_1 = new URL(notShortnedURLDialog.get(notShortnedURLDialog.size()-1));
                             realHost = url_1.getHost();
                         } catch (MalformedURLException e) {
                             e.printStackTrace();
@@ -157,7 +158,7 @@ public class TransformActivity extends Activity {
                             }
                         }else {
                             Intent delegate = new Intent(Intent.ACTION_VIEW);
-                            delegate.setData(Uri.parse(notShortnedURLDialog));
+                            delegate.setData(Uri.parse(notShortnedURLDialog.get(notShortnedURLDialog.size()-1)));
                             delegate.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                             if (delegate.resolveActivity(getPackageManager()) != null) {
                                 startActivity(delegate);
@@ -178,17 +179,26 @@ public class TransformActivity extends Activity {
                 thread = new Thread() {
                     @Override
                     public void run() {
-                        notShortnedURLDialog = Utils.checkUrl(url);
-                        if( notShortnedURLDialog == null) {
-                            notShortnedURLDialog = url;
-                        }
+                        notShortnedURLDialog = new ArrayList<>();
+                        notShortnedURLDialog.add(url);
+                        Utils.checkUrl(notShortnedURLDialog);
                         Handler mainHandler = new Handler(Looper.getMainLooper());
                         Runnable myRunnable = () -> {
                             positiveButton.setEnabled(true);
-                            String message = getString(R.string.try_to_redirect, url, notShortnedURLDialog);
+                            StringBuilder message;
+                            if( notShortnedURLDialog.size() <= 1 ) {
+                                message = new StringBuilder(getString(R.string.the_app_failed_shortened));
+                            }else {
+                                message = new StringBuilder(getString(R.string.try_to_redirect, notShortnedURLDialog.get(0), notShortnedURLDialog.get(1)));
+                                if( notShortnedURLDialog.size() >  2 ){
+                                    for(int i=2 ; i < notShortnedURLDialog.size(); i++){
+                                        message.append("\n\n").append(getString(R.string.try_to_redirect_again, notShortnedURLDialog.get(i)));
+                                    }
+                                }
+                            }
                             TextView indications = view.findViewById(R.id.indications);
                             RelativeLayout progress = view.findViewById(R.id.progress);
-                            indications.setText(message);
+                            indications.setText(message.toString());
                             indications.setVisibility(View.VISIBLE);
                             progress.setVisibility(View.GONE);
                         };
@@ -483,15 +493,13 @@ public class TransformActivity extends Activity {
             Thread thread = new Thread() {
                 @Override
                 public void run() {
-                    String notShortnedURL = Utils.checkUrl(finalUrl);
-                    if( notShortnedURL == null) {
-                        notShortnedURL = finalUrl;
-                    }
+                    notShortnedURLDialog.add(finalUrl);
+                    Utils.checkUrl(notShortnedURLDialog);
 
                     URL url_;
                     String host = null;
                     try {
-                        url_ = new URL(notShortnedURL);
+                        url_ = new URL(notShortnedURLDialog.get(notShortnedURLDialog.size()-1));
                         host = url_.getHost();
                     } catch (MalformedURLException e) {
                         e.printStackTrace();
@@ -501,8 +509,8 @@ public class TransformActivity extends Activity {
                     boolean invidious_enabled = sharedpreferences.getBoolean(SET_INVIDIOUS_ENABLED, true);
                     boolean osm_enabled = sharedpreferences.getBoolean(MainActivity.SET_OSM_ENABLED, true);
                     if(nitter_enabled && Arrays.asList(twitter_domains).contains(host)) {
-                        String newUrlFinal = notShortnedURL;
-                        Matcher matcher = nitterPattern.matcher(notShortnedURL);
+                        Matcher matcher = nitterPattern.matcher(notShortnedURLDialog.get(notShortnedURLDialog.size()-1));
+                        String newUrlFinal = notShortnedURLDialog.get(notShortnedURLDialog.size()-1);
                         while (matcher.find()) {
                             final String nitter_directory = matcher.group(2);
                             String nitterHost = sharedpreferences.getString(MainActivity.SET_NITTER_HOST, MainActivity.DEFAULT_NITTER_HOST).toLowerCase();
@@ -515,8 +523,8 @@ public class TransformActivity extends Activity {
                         sendIntent.setType("text/plain");
                         startActivity(sendIntent);
                     }else if( invidious_enabled && Arrays.asList(youtube_domains).contains(host)) {
-                        Matcher matcher = youtubePattern.matcher(notShortnedURL);
-                        String newUrlFinal = notShortnedURL;
+                        Matcher matcher = youtubePattern.matcher(notShortnedURLDialog.get(notShortnedURLDialog.size()-1));
+                        String newUrlFinal = notShortnedURLDialog.get(notShortnedURLDialog.size()-1);
                         while (matcher.find()) {
                             final String youtubeId = matcher.group(3);
                             String invidiousHost = sharedpreferences.getString(MainActivity.SET_INVIDIOUS_HOST, MainActivity.DEFAULT_INVIDIOUS_HOST).toLowerCase();
@@ -532,9 +540,9 @@ public class TransformActivity extends Activity {
                         sendIntent.putExtra(Intent.EXTRA_TEXT, newExtraText);
                         sendIntent.setType("text/plain");
                         startActivity(sendIntent);
-                    }else if( osm_enabled && notShortnedURL.contains("/maps/place/")) {
-                        String newUrlFinal = notShortnedURL;
-                        Matcher matcher = maps.matcher(notShortnedURL);
+                    }else if( osm_enabled && notShortnedURLDialog.get(notShortnedURLDialog.size()-1).contains("/maps/place/")) {
+                        String newUrlFinal = notShortnedURLDialog.get(notShortnedURLDialog.size()-1);
+                        Matcher matcher = maps.matcher(notShortnedURLDialog.get(notShortnedURLDialog.size()-1));
                         while (matcher.find()) {
                             final String localization = matcher.group(1);
                             assert localization != null;
@@ -558,7 +566,7 @@ public class TransformActivity extends Activity {
                         sendIntent.setType("text/plain");
                         startActivity(sendIntent);
                     }else{
-                        String newExtraText = finalExtraText.replaceAll(Pattern.quote(finalUrl), Matcher.quoteReplacement(notShortnedURL));
+                        String newExtraText = finalExtraText.replaceAll(Pattern.quote(finalUrl), Matcher.quoteReplacement(notShortnedURLDialog.get(notShortnedURLDialog.size()-1)));
                         Intent sendIntent = new Intent();
                         sendIntent.setAction(Intent.ACTION_SEND);
                         sendIntent.putExtra(Intent.EXTRA_TEXT, newExtraText);
