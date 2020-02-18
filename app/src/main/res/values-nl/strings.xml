@@ -31,11 +31,11 @@
     <string name="hide_supported_links">Verberg ondersteunde links</string>
     <string name="use_geo_uri">Gebruik geo-URI</string>
     <string name="how_to">Hoe werkt</string>
-    <string name="shortened_detected">Shortened URL</string>
+    <string name="shortened_detected">Verkorte URL</string>
     <string name="open">Open</string>
-    <string name="dismiss">Dismiss</string>
-    <string name="resolving_shortened">Resolving shortened URL, please wait…</string>
+    <string name="dismiss">Ontslag</string>
+    <string name="resolving_shortened">Het oplossen van verkorte URL please wait…</string>
     <string name="try_to_redirect">%1$s \n\nwill redirect you to\n\n<b>%2$s</b></string>
     <string name="try_to_redirect_again">Then it will redirect you to\n\n<b>%1$s</b></string>
-    <string name="the_app_failed_shortened">The app didn\'t manage to retrieve the full URL</string>
+    <string name="the_app_failed_shortened">De app slaagde er niet in om de volledige URL op te halen</string>
 </resources>
