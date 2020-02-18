@@ -2,7 +2,7 @@
 
 Υποστηρίζει επίσης συνδέσμους Google Maps και τους μετατρέπει σε συνδέσμους OpenStreetMap ή Geo URI.
 
-The app will detect shortened URLs and will display the full URL before visiting the site.
+Η εφαρμογή θα ανιχνεύσει συντομευμένες URL και θα εμφανίσει τις πλήρης URL πριν την επίσκεψη στον ιστότοπο.
 
 Όταν μοιράζεστε ένα σύνδεσμο Twitter, YouTube ή Google Maps απλά επιλέξτε το NitterizeMe για να τον μετατρέψετε πρίν τον μοιραστείτε με μια άλλη εφαρμογή.
 
