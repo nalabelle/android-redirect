@@ -2,6 +2,8 @@ NitterizeMe, un cop configurat per defecte per obrir enllaços de Twitter i YouT
 
 It also supports Google Maps links to transform them into OpenStreetMap links or Geo URI.
 
+The app will detect shortened URLs and will display the full URL before visiting the site.
+
 When sharing a Twitter, YouTube or Google Maps link just pick up NitterizeMe to transform it before sharing it with another app.
 
 What is Nitter:

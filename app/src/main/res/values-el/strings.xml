@@ -31,4 +31,11 @@
     <string name="hide_supported_links">Απόκρυψη υποστηριζόμενων συνδέσμων</string>
     <string name="use_geo_uri">Χρήση geo URI</string>
     <string name="how_to">Πώς-να</string>
+    <string name="shortened_detected">Shortened URL</string>
+    <string name="open">Open</string>
+    <string name="dismiss">Dismiss</string>
+    <string name="resolving_shortened">Resolving shortened URL, please wait…</string>
+    <string name="try_to_redirect">%1$s \n\nwill redirect you to\n\n<b>%2$s</b></string>
+    <string name="try_to_redirect_again">Then it will redirect you to\n\n<b>%1$s</b></string>
+    <string name="the_app_failed_shortened">The app didn\'t manage to retrieve the full URL</string>
 </resources>
