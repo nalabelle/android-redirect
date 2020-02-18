@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
 /* Copyright 2020 Thomas Schneider
  *
  * This file is a part of NitterizeMe
@@ -17,69 +16,73 @@
  -->
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/main_layout"
-    android:scrollbars="none"
     android:layout_margin="@dimen/fab_margin"
+    android:scrollbars="none"
     tools:context=".AboutActivity">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
-        <TextView
-            android:layout_marginTop="10dp"
-            android:textSize="20sp"
-            android:layout_gravity="center_horizontal"
-            android:gravity="center_horizontal"
-            android:text="@string/app_name"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
 
         <TextView
-            android:layout_marginTop="10dp"
-            android:id="@+id/about_version"
-            android:textSize="16sp"
-            android:layout_gravity="center_horizontal"
-            android:gravity="center_horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-
-
-        <TextView
-            android:layout_margin="5dp"
-            android:textStyle="bold"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp"
+            android:gravity="center_horizontal"
+            android:text="@string/app_name"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/about_version"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp"
+            android:gravity="center_horizontal"
+            android:textSize="16sp" />
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
             android:gravity="center"
             android:text="@string/developer"
-            />
+            android:textStyle="bold" />
 
         <!-- Developer info -->
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:layout_marginTop="10dp">
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp">
 
             <LinearLayout
-                android:padding="5dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:baselineAligned="false"
                 android:orientation="horizontal"
-                android:baselineAligned="false">
+                android:padding="5dp">
+
                 <LinearLayout
                     android:layout_width="0dp"
-                    android:layout_weight="1"
                     android:layout_height="wrap_content"
+                    android:layout_weight="1"
                     android:orientation="vertical"
                     tools:ignore="UseCompoundDrawables">
+
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="tom79"
                         android:textSize="16sp"
                         tools:ignore="HardcodedText" />
+
                     <ImageView
                         android:layout_width="50dp"
                         android:layout_height="50dp"
@@ -89,45 +92,50 @@
 
                 <LinearLayout
                     android:layout_width="0dp"
-                    android:layout_weight="3"
                     android:layout_height="wrap_content"
+                    android:layout_weight="3"
                     android:orientation="vertical">
+
                     <TextView
-                        android:textSize="16sp"
                         android:id="@+id/developer_mastodon"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textStyle="bold"
                         android:text="\@fedilab@toot.fedilab.org"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
                         tools:ignore="HardcodedText" />
+
                     <LinearLayout
-                        android:layout_marginTop="10dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
                         android:orientation="horizontal">
+
                         <TextView
-                            android:textSize="16sp"
                             android:id="@+id/framagit"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
                             android:text="Framagit"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            tools:ignore="HardcodedText" />
-                        <TextView
                             android:textSize="16sp"
+                            tools:ignore="HardcodedText" />
+
+                        <TextView
                             android:id="@+id/github"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
                             android:text="Github"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            tools:ignore="HardcodedText" />
-                        <TextView
                             android:textSize="16sp"
+                            tools:ignore="HardcodedText" />
+
+                        <TextView
                             android:id="@+id/codeberg"
-                            android:text="Codeberg"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
+                            android:text="Codeberg"
+                            android:textSize="16sp"
                             tools:ignore="HardcodedText" />
                     </LinearLayout>
                 </LinearLayout>
@@ -138,38 +146,39 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/Donate"/>
+            android:text="@string/Donate" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
             android:layout_marginBottom="20dp"
+            android:gravity="center"
             android:orientation="horizontal">
-            <Button
-                style="@style/Widget.AppCompat.Button.Colored"
-                android:textColor="@android:color/white"
-                android:layout_marginTop="10dp"
-                android:layout_gravity="center"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Paypal"
-                android:id="@+id/donate_paypal"
-                android:layout_marginEnd="10dp"
-                android:layout_marginRight="10dp"
-                tools:ignore="HardcodedText"
-                 />
 
             <Button
+                android:id="@+id/donate_paypal"
                 style="@style/Widget.AppCompat.Button.Colored"
-                android:textColor="@android:color/white"
-                android:layout_marginTop="10dp"
-                android:layout_gravity="center"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Liberapay"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginRight="10dp"
+                android:text="Paypal"
+                android:textColor="@android:color/white"
+                tools:ignore="HardcodedText" />
+
+            <Button
                 android:id="@+id/donate_liberapay"
+                style="@style/Widget.AppCompat.Button.Colored"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:layout_marginStart="10dp"
                 android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:text="Liberapay"
+                android:textColor="@android:color/white"
                 tools:ignore="HardcodedText" />
         </LinearLayout>
 
@@ -181,104 +190,105 @@
             tools:ignore="HardcodedText" />
 
         <Button
+            android:id="@+id/how_to"
             style="@style/Widget.AppCompat.Button.Colored"
-            android:textColor="@android:color/white"
-            android:layout_marginTop="10dp"
-            android:layout_gravity="center"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/how_to"
-            android:paddingRight="30dp"
-            android:paddingStart="30dp"
-            android:paddingEnd="30dp"
-            android:paddingLeft="30dp"
-            android:id="@+id/how_to"
+            android:layout_gravity="center"
             android:layout_marginStart="10dp"
             android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
             android:layout_marginBottom="20dp"
-            />
+            android:paddingStart="30dp"
+            android:paddingLeft="30dp"
+            android:paddingEnd="30dp"
+            android:paddingRight="30dp"
+            android:text="@string/how_to"
+            android:textColor="@android:color/white" />
 
         <!-- About the app -->
         <TextView
-            android:layout_margin="10dp"
-            android:textStyle="bold"
-            android:textSize="16sp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_margin="10dp"
             android:gravity="center"
             android:text="@string/about_the_app"
-            />
+            android:textSize="16sp"
+            android:textStyle="bold" />
 
 
         <!-- Code info -->
         <LinearLayout
-            android:layout_marginTop="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
             android:orientation="horizontal">
+
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="@string/source_code"
-                />
+                android:text="@string/source_code" />
+
             <TextView
-                android:layout_marginStart="5dp"
                 android:id="@+id/source_code"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_marginLeft="5dp"
                 android:layout_weight="3"
                 android:autoLink="web"
                 android:text="https://framagit.org/tom79/nitterizeme"
-                tools:ignore="HardcodedText"
-                android:layout_marginLeft="5dp" />
+                tools:ignore="HardcodedText" />
         </LinearLayout>
 
         <!-- Support info -->
         <LinearLayout
-            android:layout_marginTop="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
             android:orientation="horizontal">
+
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="@string/issue_tracker"
-                />
+                android:text="@string/issue_tracker" />
+
             <TextView
-                android:layout_marginStart="5dp"
                 android:id="@+id/issue_tracker"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_marginLeft="5dp"
                 android:layout_weight="3"
                 android:autoLink="web"
                 android:text="https://framagit.org/tom79/nitterizeme/issues"
-                tools:ignore="HardcodedText"
-                android:layout_marginLeft="5dp" />
+                tools:ignore="HardcodedText" />
         </LinearLayout>
 
         <!-- License info -->
         <LinearLayout
-            android:layout_marginTop="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
             android:orientation="horizontal">
+
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="@string/license"
-                />
+                android:text="@string/license" />
+
             <TextView
-                android:layout_marginStart="5dp"
                 android:id="@+id/license"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_marginLeft="5dp"
                 android:layout_weight="3"
                 android:text="GPL3"
-                tools:ignore="HardcodedText"
-                android:layout_marginLeft="5dp" />
+                tools:ignore="HardcodedText" />
         </LinearLayout>
     </LinearLayout>
 </ScrollView>

@@ -27,7 +27,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -57,7 +56,7 @@ public class AppInfoAdapter extends RecyclerView.Adapter {
         AppInfo appInfo = appInfos.get(viewHolder.getAdapterPosition());
         Context context = holder.itemView.getContext();
         holder.domain.setText(appInfo.getDomain());
-        if( appInfo.getApplicationInfo() != null ) {
+        if (appInfo.getApplicationInfo() != null) {
             Drawable icon = appInfo.getApplicationInfo().loadIcon(context.getPackageManager());
             try {
                 holder.app_icon.setImageDrawable(icon);
@@ -65,10 +64,10 @@ public class AppInfoAdapter extends RecyclerView.Adapter {
                 holder.app_icon.setImageResource(R.drawable.ic_android);
             }
             holder.information.setText(appInfo.getApplicationInfo().packageName);
-            if( appInfo.getApplicationInfo().packageName.compareTo(BuildConfig.APPLICATION_ID) == 0 ) {
+            if (appInfo.getApplicationInfo().packageName.compareTo(BuildConfig.APPLICATION_ID) == 0) {
                 holder.valid.setImageResource(R.drawable.ic_check);
                 holder.valid.setContentDescription(context.getString(R.string.valid));
-            }else {
+            } else {
                 holder.valid.setImageResource(R.drawable.ic_error);
                 holder.valid.setContentDescription(context.getString(R.string.error));
             }
@@ -78,7 +77,7 @@ public class AppInfoAdapter extends RecyclerView.Adapter {
                 intent.setData(uri);
                 context.startActivity(intent);
             });
-        }else{
+        } else {
             holder.information.setText(R.string.no_apps);
             holder.app_icon.setImageResource(R.drawable.ic_android);
             holder.valid.setContentDescription(context.getString(R.string.warning));
@@ -86,8 +85,8 @@ public class AppInfoAdapter extends RecyclerView.Adapter {
             holder.main_container.setOnClickListener(v -> {
                 Intent intent = new Intent(Intent.ACTION_VIEW);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                intent.putExtra("nitterizeme","test");
-                String url = "https://"+appInfo.getDomain();
+                intent.putExtra("nitterizeme", "test");
+                String url = "https://" + appInfo.getDomain();
                 intent.setData(Uri.parse(url));
                 context.startActivity(intent);
             });

@@ -36,16 +36,17 @@ class Utils {
 
     /**
      * Returns the unshortened URL
-     * @param urls  ArrayList<String> URL to check
+     *
+     * @param urls ArrayList<String> URL to check
      */
-    static void checkUrl(ArrayList<String> urls){
+    static void checkUrl(ArrayList<String> urls) {
         URL url;
         String newURL = null;
         String comingURl;
         try {
-            comingURl = urls.get(urls.size()-1);
+            comingURl = urls.get(urls.size() - 1);
 
-            if( comingURl.startsWith("http://")){
+            if (comingURl.startsWith("http://")) {
                 comingURl = comingURl.replace("http://", "https://");
             }
             url = new URL(comingURl);
@@ -53,7 +54,7 @@ class Utils {
             httpsURLConnection.setRequestProperty("http.keepAlive", "false");
             httpsURLConnection.setInstanceFollowRedirects(false);
             httpsURLConnection.setRequestMethod("HEAD");
-            if( httpsURLConnection.getResponseCode() == 301) {
+            if (httpsURLConnection.getResponseCode() == 301) {
                 Map<String, List<String>> map = httpsURLConnection.getHeaderFields();
                 for (Map.Entry<String, List<String>> entry : map.entrySet()) {
                     if (entry.toString().toLowerCase().startsWith("location")) {
@@ -66,12 +67,12 @@ class Utils {
                 }
             }
             httpsURLConnection.getInputStream().close();
-            if (newURL != null && newURL.compareTo(comingURl)!=0){
+            if (newURL != null && newURL.compareTo(comingURl) != 0) {
                 URL redirectURL = new URL(newURL);
                 String host = redirectURL.getHost();
                 String protocol = redirectURL.getProtocol();
-                if( protocol != null && host != null){
-                    if( Arrays.asList(shortener_domains).contains(host)) {
+                if (protocol != null && host != null) {
+                    if (Arrays.asList(shortener_domains).contains(host)) {
                         checkUrl(urls);
                     }
                 }

@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="app.fedilab.nitterizeme">
+
     <uses-permission android:name="android.permission.INTERNET" />
     <application
         android:allowBackup="false"
@@ -9,8 +10,8 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:usesCleartextTraffic="true"
         android:theme="@style/AppTheme"
+        android:usesCleartextTraffic="true"
         tools:ignore="GoogleAppIndexingWarning">
 
         <activity
@@ -25,268 +26,337 @@
 
         <activity
             android:name=".TransformActivity"
-            android:theme="@style/Theme.AppCompat.Translucent"
-            android:noHistory="true">
+            android:noHistory="true"
+            android:theme="@style/Theme.AppCompat.Translucent">
             <!-- The app should handle these domains, more can be added here -->
 
             <!-- SHORTENED URLs  -->
             <!-- t.co -->
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
-                <data android:scheme="https"
+
+                <data
                     android:host="t.co"
-                    android:pathPattern=".*"/>
-                <data android:scheme="http"
+                    android:pathPattern=".*"
+                    android:scheme="https" />
+                <data
                     android:host="t.co"
-                    android:pathPattern=".*"/>
+                    android:pathPattern=".*"
+                    android:scheme="http" />
             </intent-filter>
             <intent-filter>
                 <action android:name="android.intent.action.SEND" />
-                <category android:name="android.intent.category.DEFAULT"/>
-                <data android:mimeType="text/plain"
-                    android:host="t.co" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data
+                    android:host="t.co"
+                    android:mimeType="text/plain" />
             </intent-filter>
             <!-- nyti.ms -->
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
-                <data android:scheme="https"
+
+                <data
                     android:host="nyti.ms"
-                    android:pathPattern=".*"/>
-                <data android:scheme="http"
+                    android:pathPattern=".*"
+                    android:scheme="https" />
+                <data
                     android:host="nyti.ms"
-                    android:pathPattern=".*"/>
+                    android:pathPattern=".*"
+                    android:scheme="http" />
             </intent-filter>
             <intent-filter>
                 <action android:name="android.intent.action.SEND" />
-                <category android:name="android.intent.category.DEFAULT"/>
-                <data android:mimeType="text/plain"
-                    android:host="nyti.ms" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data
+                    android:host="nyti.ms"
+                    android:mimeType="text/plain" />
             </intent-filter>
             <!-- bit.ly -->
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
-                <data android:scheme="https"
+
+                <data
                     android:host="bit.ly"
-                    android:pathPattern=".*"/>
-                <data android:scheme="http"
+                    android:pathPattern=".*"
+                    android:scheme="https" />
+                <data
                     android:host="bit.ly"
-                    android:pathPattern=".*"/>
+                    android:pathPattern=".*"
+                    android:scheme="http" />
             </intent-filter>
             <intent-filter>
                 <action android:name="android.intent.action.SEND" />
-                <category android:name="android.intent.category.DEFAULT"/>
-                <data android:mimeType="text/plain"
-                    android:host="bit.ly" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data
+                    android:host="bit.ly"
+                    android:mimeType="text/plain" />
             </intent-filter>
             <!-- tinyurl.com -->
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
-                <data android:scheme="https"
+
+                <data
                     android:host="tinyurl.com"
-                    android:pathPattern=".*"/>
-                <data android:scheme="http"
+                    android:pathPattern=".*"
+                    android:scheme="https" />
+                <data
                     android:host="tinyurl.com"
-                    android:pathPattern=".*"/>
+                    android:pathPattern=".*"
+                    android:scheme="http" />
             </intent-filter>
             <intent-filter>
                 <action android:name="android.intent.action.SEND" />
-                <category android:name="android.intent.category.DEFAULT"/>
-                <data android:mimeType="text/plain"
-                    android:host="tinyurl.com" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data
+                    android:host="tinyurl.com"
+                    android:mimeType="text/plain" />
             </intent-filter>
             <!-- goo.gl -->
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
-                <data android:scheme="https"
+
+                <data
                     android:host="goo.gl"
-                    android:pathPattern=".*"/>
-                <data android:scheme="http"
+                    android:pathPattern=".*"
+                    android:scheme="https" />
+                <data
                     android:host="goo.gl"
-                    android:pathPattern=".*"/>
+                    android:pathPattern=".*"
+                    android:scheme="http" />
             </intent-filter>
             <intent-filter>
                 <action android:name="android.intent.action.SEND" />
-                <category android:name="android.intent.category.DEFAULT"/>
-                <data android:mimeType="text/plain"
-                    android:host="goo.gl" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data
+                    android:host="goo.gl"
+                    android:mimeType="text/plain" />
             </intent-filter>
 
             <!-- TWITTER URLs  -->
             <!-- mobile.twitter.com -->
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
-                <data android:scheme="https"
+
+                <data
                     android:host="mobile.twitter.com"
-                    android:pathPattern=".*"/>
-                <data android:scheme="http"
+                    android:pathPattern=".*"
+                    android:scheme="https" />
+                <data
                     android:host="mobile.twitter.com"
-                    android:pathPattern=".*"/>
+                    android:pathPattern=".*"
+                    android:scheme="http" />
             </intent-filter>
             <intent-filter>
                 <action android:name="android.intent.action.SEND" />
-                <category android:name="android.intent.category.DEFAULT"/>
-                <data android:mimeType="text/plain"
-                    android:host="mobile.twitter.com" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data
+                    android:host="mobile.twitter.com"
+                    android:mimeType="text/plain" />
             </intent-filter>
             <!-- www.twitter.com -->
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
-                <data android:scheme="https"
+
+                <data
                     android:host="www.twitter.com"
-                    android:pathPattern=".*"/>
-                <data android:scheme="http"
+                    android:pathPattern=".*"
+                    android:scheme="https" />
+                <data
                     android:host="www.twitter.com"
-                    android:pathPattern=".*"/>
+                    android:pathPattern=".*"
+                    android:scheme="http" />
             </intent-filter>
             <intent-filter>
                 <action android:name="android.intent.action.SEND" />
-                <category android:name="android.intent.category.DEFAULT"/>
-                <data android:mimeType="text/plain"
-                    android:host="www.twitter.com" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data
+                    android:host="www.twitter.com"
+                    android:mimeType="text/plain" />
             </intent-filter>
             <!-- twitter.com -->
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
-                <data android:scheme="https"
+
+                <data
                     android:host="twitter.com"
-                    android:pathPattern=".*"/>
-                <data android:scheme="http"
+                    android:pathPattern=".*"
+                    android:scheme="https" />
+                <data
                     android:host="twitter.com"
-                    android:pathPattern=".*"/>
+                    android:pathPattern=".*"
+                    android:scheme="http" />
             </intent-filter>
             <intent-filter>
                 <action android:name="android.intent.action.SEND" />
-                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.DEFAULT" />
                 <data
-                    android:mimeType="text/plain"
-                    android:host="twitter.com" />
+                    android:host="twitter.com"
+                    android:mimeType="text/plain" />
             </intent-filter>
 
             <!-- YOUTUBE URLs  -->
             <!-- www.youtube.com -->
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
-                <data android:scheme="https"
-                    android:host="www.youtube.com" />
-                <data android:scheme="http"
-                    android:host="www.youtube.com" />
+
+                <data
+                    android:host="www.youtube.com"
+                    android:scheme="https" />
+                <data
+                    android:host="www.youtube.com"
+                    android:scheme="http" />
             </intent-filter>
             <intent-filter>
                 <action android:name="android.intent.action.SEND" />
-                <category android:name="android.intent.category.DEFAULT"/>
-                <data android:mimeType="text/plain"
-                    android:host="www.youtube.com" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data
+                    android:host="www.youtube.com"
+                    android:mimeType="text/plain" />
             </intent-filter>
             <!-- m.youtube.com -->
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
-                <data android:scheme="https"
-                    android:host="m.youtube.com" />
-                <data android:scheme="http"
-                    android:host="m.youtube.com" />
+
+                <data
+                    android:host="m.youtube.com"
+                    android:scheme="https" />
+                <data
+                    android:host="m.youtube.com"
+                    android:scheme="http" />
             </intent-filter>
             <intent-filter>
                 <action android:name="android.intent.action.SEND" />
-                <category android:name="android.intent.category.DEFAULT"/>
-                <data android:mimeType="text/plain"
-                    android:host="m.youtube.com" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data
+                    android:host="m.youtube.com"
+                    android:mimeType="text/plain" />
             </intent-filter>
             <!-- youtube.com -->
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
-                <data android:scheme="https"
-                    android:host="youtube.com" />
-                <data android:scheme="http"
-                    android:host="youtube.com" />
+
+                <data
+                    android:host="youtube.com"
+                    android:scheme="https" />
+                <data
+                    android:host="youtube.com"
+                    android:scheme="http" />
             </intent-filter>
             <intent-filter>
                 <action android:name="android.intent.action.SEND" />
-                <category android:name="android.intent.category.DEFAULT"/>
-                <data android:mimeType="text/plain"
-                    android:host="youtube.com" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data
+                    android:host="youtube.com"
+                    android:mimeType="text/plain" />
             </intent-filter>
             <!-- youtu.be -->
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
-                <data android:scheme="https"
-                    android:host="youtu.be" />
-                <data android:scheme="http"
-                    android:host="youtu.be" />
+
+                <data
+                    android:host="youtu.be"
+                    android:scheme="https" />
+                <data
+                    android:host="youtu.be"
+                    android:scheme="http" />
             </intent-filter>
             <intent-filter>
                 <action android:name="android.intent.action.SEND" />
-                <category android:name="android.intent.category.DEFAULT"/>
-                <data android:mimeType="text/plain"
-                    android:host="youtu.be" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data
+                    android:host="youtu.be"
+                    android:mimeType="text/plain" />
             </intent-filter>
             <!-- youtube-nocookie.com -->
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
-                <data android:scheme="https"
-                    android:host="youtube-nocookie.com" />
-                <data android:scheme="http"
-                    android:host="youtube-nocookie.com" />
+
+                <data
+                    android:host="youtube-nocookie.com"
+                    android:scheme="https" />
+                <data
+                    android:host="youtube-nocookie.com"
+                    android:scheme="http" />
             </intent-filter>
             <intent-filter>
                 <action android:name="android.intent.action.SEND" />
-                <category android:name="android.intent.category.DEFAULT"/>
-                <data android:mimeType="text/plain"
-                    android:host="youtube-nocookie.com" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data
+                    android:host="youtube-nocookie.com"
+                    android:mimeType="text/plain" />
             </intent-filter>
 
             <!-- MAPS URLs  -->
             <!-- /maps/ -->
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
-                <data android:scheme="https"
+
+                <data
+                    android:host="*"
                     android:pathPattern="/maps/place/.*"
-                    android:host="*" />
-                <data android:scheme="http"
+                    android:scheme="https" />
+                <data
+                    android:host="*"
                     android:pathPattern="/maps/place/.*"
-                    android:host="*" />
+                    android:scheme="http" />
             </intent-filter>
             <intent-filter>
                 <action android:name="android.intent.action.SEND" />
-                <category android:name="android.intent.category.DEFAULT"/>
-                <data android:mimeType="text/plain"
-                    android:pathPattern="/maps/place/.*"
-                    android:host="*" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data
+                    android:host="*"
+                    android:mimeType="text/plain"
+                    android:pathPattern="/maps/place/.*" />
             </intent-filter>
         </activity>
 
         <activity
             android:name=".AboutActivity"
-            android:label="@string/app_name"
             android:configChanges="orientation|screenSize"
-            android:theme="@style/AppTheme"/>
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme" />
     </application>
 
 </manifest>

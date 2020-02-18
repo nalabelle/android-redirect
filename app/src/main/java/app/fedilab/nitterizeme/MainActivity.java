@@ -13,6 +13,7 @@ package app.fedilab.nitterizeme;
  *
  * You should have received a copy of the GNU General Public License along with NitterizeMe; if not,
  * see <http://www.gnu.org/licenses>. */
+
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -22,14 +23,6 @@ import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.net.Uri;
 import android.os.Bundle;
-
-
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.SwitchCompat;
-import androidx.appcompat.widget.Toolbar;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.provider.Settings;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -39,43 +32,40 @@ import android.widget.CheckBox;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SwitchCompat;
+import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
 
+    public static final String APP_PREFS = "app_prefs";
     @SuppressWarnings("unused")
     public static String TAG = "NitterizeMe";
-    public  static  String SET_NITTER_HOST = "set_nitter_host";
-    public  static  String DEFAULT_NITTER_HOST = "nitter.net";
-    public  static  String SET_INVIDIOUS_HOST = "set_invidious_host";
-    public  static  String DEFAULT_INVIDIOUS_HOST = "invidio.us";
-    public  static  String SET_INVIDIOUS_ENABLED = "set_invidious_enabled";
-    public  static  String SET_NITTER_ENABLED = "set_nitter_enabled";
-    public  static  String SET_OSM_ENABLED = "set_osm_enabled";
-    public  static  String SET_OSM_HOST = "set_osm_host";
-    public  static  String DEFAULT_OSM_HOST = "www.openstreetmap.org";
-    public  static  String SET_GEO_URIS = "set_geo_uris";
-    public static final String APP_PREFS = "app_prefs";
-    private AppInfoAdapter appInfoAdapter;
-    private RecyclerView list_apps;
-
-
-    private String[] domains;
-
+    public static String SET_NITTER_HOST = "set_nitter_host";
+    public static String DEFAULT_NITTER_HOST = "nitter.net";
+    public static String SET_INVIDIOUS_HOST = "set_invidious_host";
+    public static String DEFAULT_INVIDIOUS_HOST = "invidio.us";
+    public static String SET_INVIDIOUS_ENABLED = "set_invidious_enabled";
+    public static String SET_NITTER_ENABLED = "set_nitter_enabled";
+    public static String SET_OSM_ENABLED = "set_osm_enabled";
+    public static String SET_OSM_HOST = "set_osm_host";
+    public static String DEFAULT_OSM_HOST = "www.openstreetmap.org";
+    public static String SET_GEO_URIS = "set_geo_uris";
     //Supported domains
     public static String[] twitter_domains = {
             "twitter.com",
             "mobile.twitter.com",
             "www.twitter.com",
     };
-
     public static String[] youtube_domains = {
             "www.youtube.com",
             "youtube.com",
@@ -83,7 +73,6 @@ public class MainActivity extends AppCompatActivity {
             "youtu.be",
             "youtube-nocookie.com"
     };
-
     public static String[] shortener_domains = {
             "t.co",
             "nyti.ms",
@@ -91,6 +80,9 @@ public class MainActivity extends AppCompatActivity {
             "tinyurl.com",
             "goo.gl",
     };
+    private AppInfoAdapter appInfoAdapter;
+    private RecyclerView list_apps;
+    private String[] domains;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -101,17 +93,17 @@ public class MainActivity extends AppCompatActivity {
         Objects.requireNonNull(getSupportActionBar()).setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        domains = new String[twitter_domains.length+youtube_domains.length+shortener_domains.length];
+        domains = new String[twitter_domains.length + youtube_domains.length + shortener_domains.length];
         int i = 0;
-        for(String host: twitter_domains){
+        for (String host : twitter_domains) {
             domains[i] = host;
             i++;
         }
-        for(String host: youtube_domains){
+        for (String host : youtube_domains) {
             domains[i] = host;
             i++;
         }
-        for(String host: shortener_domains){
+        for (String host : shortener_domains) {
             domains[i] = host;
             i++;
         }
@@ -156,13 +148,13 @@ public class MainActivity extends AppCompatActivity {
             editor.apply();
         });
 
-        if(nitterHost!=null) {
+        if (nitterHost != null) {
             nitter_instance.setText(nitterHost);
         }
-        if(invidiousHost!=null) {
+        if (invidiousHost != null) {
             invidious_instance.setText(invidiousHost);
         }
-        if(osmHost!=null) {
+        if (osmHost != null) {
             osm_instance.setText(osmHost);
         }
         button_save.setOnClickListener(v -> {
@@ -197,20 +189,20 @@ public class MainActivity extends AppCompatActivity {
 
         ImageButton buttonExpand = findViewById(R.id.button_expand);
         buttonExpand.setOnClickListener(v -> {
-            if( list_apps.getVisibility() == View.VISIBLE){
+            if (list_apps.getVisibility() == View.VISIBLE) {
                 list_apps.setVisibility(View.GONE);
                 buttonExpand.setContentDescription(getString(R.string.display_supported_links));
-            }else{
+            } else {
                 list_apps.setVisibility(View.VISIBLE);
                 buttonExpand.setContentDescription(getString(R.string.hide_supported_links));
             }
         });
 
         ArrayList<AppInfo> appInfos = new ArrayList<>();
-        for(String domain: domains) {
+        for (String domain : domains) {
             AppInfo appInfo = new AppInfo();
             appInfo.setDomain(domain);
-            appInfo.setApplicationInfo(getDefaultApp("https://"+domain));
+            appInfo.setApplicationInfo(getDefaultApp("https://" + domain));
             appInfos.add(appInfo);
         }
 
@@ -221,10 +213,10 @@ public class MainActivity extends AppCompatActivity {
             editor.apply();
             TextInputLayout osm_instance_container = findViewById(R.id.osm_instance_container);
             TextView osm_indications = findViewById(R.id.osm_indications);
-            if( isChecked){
+            if (isChecked) {
                 osm_instance_container.setVisibility(View.GONE);
                 osm_indications.setText(R.string.redirect_gm_to_geo_uri);
-            }else{
+            } else {
                 osm_instance_container.setVisibility(View.VISIBLE);
                 osm_indications.setText(R.string.redirect_gm_to_osm);
             }
@@ -241,6 +233,7 @@ public class MainActivity extends AppCompatActivity {
 
     /**
      * Allow to get info about application that opens the link by default
+     *
      * @param url String url for test
      * @return ApplicationInfo info about the application
      */
@@ -277,7 +270,7 @@ public class MainActivity extends AppCompatActivity {
             Intent intent = new Intent(MainActivity.this, AboutActivity.class);
             startActivity(intent);
             return true;
-        }else if(id == android.R.id.home){
+        } else if (id == android.R.id.home) {
             finish();
         }
 
@@ -285,14 +278,14 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onResume(){
+    protected void onResume() {
         super.onResume();
-        if( list_apps != null) {
+        if (list_apps != null) {
             ArrayList<AppInfo> appInfos = new ArrayList<>();
-            for(String domain: domains) {
+            for (String domain : domains) {
                 AppInfo appInfo = new AppInfo();
                 appInfo.setDomain(domain);
-                appInfo.setApplicationInfo(getDefaultApp("https://"+domain));
+                appInfo.setApplicationInfo(getDefaultApp("https://" + domain));
                 appInfos.add(appInfo);
             }
             appInfoAdapter = new AppInfoAdapter(appInfos);

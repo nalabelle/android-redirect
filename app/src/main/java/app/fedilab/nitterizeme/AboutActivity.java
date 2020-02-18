@@ -30,9 +30,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
 
-
 public class AboutActivity extends AppCompatActivity {
-
 
 
     @Override
@@ -45,17 +43,18 @@ public class AboutActivity extends AppCompatActivity {
             PackageInfo pInfo = getPackageManager().getPackageInfo(getPackageName(), 0);
             String version = pInfo.versionName;
             about_version.setText(getResources().getString(R.string.about_vesrion, version));
-        } catch (PackageManager.NameNotFoundException ignored) {}
+        } catch (PackageManager.NameNotFoundException ignored) {
+        }
 
         setTitle(R.string.about_the_app);
-        if( getSupportActionBar() != null) {
+        if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setDisplayShowHomeEnabled(true);
         }
         //Developer click for Mastodon account
         TextView developer_mastodon = findViewById(R.id.developer_mastodon);
         SpannableString content = new SpannableString(developer_mastodon.getText().toString());
-        content.setSpan(new ForegroundColorSpan(ContextCompat.getColor(AboutActivity.this,R.color.colorAccent)), 0, content.length(), 0);
+        content.setSpan(new ForegroundColorSpan(ContextCompat.getColor(AboutActivity.this, R.color.colorAccent)), 0, content.length(), 0);
         developer_mastodon.setText(content);
         developer_mastodon.setOnClickListener(v -> {
             Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://toot.fedilab.app/@fedilab"));
@@ -112,7 +111,7 @@ public class AboutActivity extends AppCompatActivity {
 
         TextView license = findViewById(R.id.license);
         content = new SpannableString(license.getText().toString());
-        content.setSpan(new ForegroundColorSpan(ContextCompat.getColor(AboutActivity.this,R.color.colorAccent)), 0, content.length(), 0);
+        content.setSpan(new ForegroundColorSpan(ContextCompat.getColor(AboutActivity.this, R.color.colorAccent)), 0, content.length(), 0);
         content.setSpan(new UnderlineSpan(), 0, content.length(), 0);
         license.setText(content);
         license.setOnClickListener(v -> {
