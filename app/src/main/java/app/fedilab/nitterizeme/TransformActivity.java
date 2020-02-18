@@ -162,6 +162,8 @@ public class TransformActivity extends Activity {
                 Intent targetIntent = new Intent(action);
                 targetIntent.setDataAndType(intent.getData(), intent.getType());
                 targetIntent.setPackage(intent.getPackage());
+                targetIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                targetIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 targetIntent.setComponent(new ComponentName(packageName, currentInfo.activityInfo.name));
                 targetIntents.add(targetIntent);
             }
