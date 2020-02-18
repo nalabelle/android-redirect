@@ -22,9 +22,18 @@ import android.content.pm.ResolveInfo;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.os.Parcelable;
 import android.util.Patterns;
+import android.view.View;
+import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 
+
+import androidx.appcompat.app.AlertDialog;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -45,7 +54,8 @@ import static app.fedilab.nitterizeme.MainActivity.youtube_domains;
 public class TransformActivity extends Activity {
 
 
-
+    private Thread thread;
+    private String notShortnedURLDialog;
     final Pattern youtubePattern = Pattern.compile("(www\\.|m\\.)?(youtube\\.com|youtu\\.be|youtube-nocookie\\.com)/(((?!([\"'<])).)*)");
     final Pattern nitterPattern = Pattern.compile("(mobile\\.|www\\.)?twitter.com([\\w-/]+)");
     final Pattern maps = Pattern.compile("/maps/place/[^@]+@([\\d.,z]{3,}).*");
@@ -72,34 +82,117 @@ public class TransformActivity extends Activity {
             } catch (MalformedURLException e) {
                 e.printStackTrace();
             }
-
             //Shortened URLs
             if( Arrays.asList(shortener_domains).contains(host)) {
-                Thread thread = new Thread() {
-                    @Override
-                    public void run() {
-                        String notShortnedURL = Utils.checkUrl(url);
-                        if( notShortnedURL == null) {
-                            notShortnedURL = url;
+
+                AlertDialog.Builder unshortenAlertBuilder = new AlertDialog.Builder(TransformActivity.this);
+                unshortenAlertBuilder.setTitle(R.string.shortened_detected);
+                View view = getLayoutInflater().inflate(R.layout.popup_unshorten, new LinearLayout(getApplicationContext()), false);
+                unshortenAlertBuilder.setView(view);
+                unshortenAlertBuilder.setIcon(R.mipmap.ic_launcher);
+                unshortenAlertBuilder.setPositiveButton(R.string.open, (dialog, id) -> {
+                    if( notShortnedURLDialog != null){
+                        URL url_1;
+                        String realHost = null;
+                        try {
+                            url_1 = new URL(notShortnedURLDialog);
+                            realHost = url_1.getHost();
+                        } catch (MalformedURLException e) {
+                            e.printStackTrace();
                         }
-                        boolean nitter_enabled = sharedpreferences.getBoolean(SET_NITTER_ENABLED, true);
-                        if(nitter_enabled) {
-                            String newUrlFinal = notShortnedURL;
-                            Matcher matcher = nitterPattern.matcher(notShortnedURL);
-                            while (matcher.find()) {
-                                final String nitter_directory = matcher.group(2);
-                                String nitterHost = sharedpreferences.getString(MainActivity.SET_NITTER_HOST, MainActivity.DEFAULT_NITTER_HOST).toLowerCase();
-                                newUrlFinal = "https://" + nitterHost + nitter_directory;
+                        if( Arrays.asList(twitter_domains).contains(realHost)) {
+                            boolean nitter_enabled = sharedpreferences.getBoolean(SET_NITTER_ENABLED, true);
+                            if(nitter_enabled) {
+                                Intent delegate = new Intent(Intent.ACTION_VIEW);
+                                String transformedURL = transformUrl(url);
+                                if( transformedURL != null) {
+                                    delegate.setData(Uri.parse(transformUrl(url)));
+                                    delegate.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                    if (delegate.resolveActivity(getPackageManager()) != null) {
+                                        startActivity(delegate);
+                                    }
+                                }else{
+                                    forwardToBrowser(intent);
+                                }
+                            } else {
+                                forwardToBrowser(intent);
                             }
+                        }
+                        //Maps URLs (containing /maps/place like Google Maps links)
+                        else if( url.contains("/maps/place")) {
+                            boolean osm_enabled = sharedpreferences.getBoolean(MainActivity.SET_OSM_ENABLED, true);
+                            if(osm_enabled) {
+                                Intent delegate = new Intent(Intent.ACTION_VIEW);
+                                String transformedURL = transformUrl(url);
+                                if( transformedURL != null) {
+                                    delegate.setData(Uri.parse(transformUrl(url)));
+                                    delegate.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                    if (delegate.resolveActivity(getPackageManager()) != null) {
+                                        startActivity(delegate);
+                                    }
+                                }else {
+                                    forwardToBrowser(intent);
+                                }
+                            } else {
+                                forwardToBrowser(intent);
+                            }
+                        }
+                        //YouTube URLs
+                        else if(Arrays.asList(youtube_domains).contains(realHost)){ //Youtube URL
+                            boolean invidious_enabled = sharedpreferences.getBoolean(SET_INVIDIOUS_ENABLED, true);
+                            if( invidious_enabled) {
+                                Intent delegate = new Intent(Intent.ACTION_VIEW);
+                                String transformedURL = transformUrl(url);
+                                if( transformedURL != null) {
+                                    delegate.setData(Uri.parse(transformUrl(url)));
+                                    delegate.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                    if (delegate.resolveActivity(getPackageManager()) != null) {
+                                        startActivity(delegate);
+                                    }
+                                }else {
+                                    forwardToBrowser(intent);
+                                }
+                            }else{
+                                forwardToBrowser(intent);
+                            }
+                        }else {
                             Intent delegate = new Intent(Intent.ACTION_VIEW);
-                            delegate.setData(Uri.parse(newUrlFinal));
+                            delegate.setData(Uri.parse(notShortnedURLDialog));
                             delegate.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                             if (delegate.resolveActivity(getPackageManager()) != null) {
                                 startActivity(delegate);
                             }
-                        } else {
-                            forwardToBrowser(intent);
                         }
+                    }
+                    dialog.dismiss();
+                    finish();
+                });
+                unshortenAlertBuilder.setNegativeButton(R.string.dismiss, (dialog, id) -> {
+                    dialog.dismiss();
+                    finish();
+                });
+                AlertDialog alertDialog = unshortenAlertBuilder.create();
+                alertDialog.show();
+                Button positiveButton = (alertDialog).getButton(AlertDialog.BUTTON_POSITIVE);
+                positiveButton.setEnabled(false);
+                thread = new Thread() {
+                    @Override
+                    public void run() {
+                        notShortnedURLDialog = Utils.checkUrl(url);
+                        if( notShortnedURLDialog == null) {
+                            notShortnedURLDialog = url;
+                        }
+                        Handler mainHandler = new Handler(Looper.getMainLooper());
+                        Runnable myRunnable = () -> {
+                            positiveButton.setEnabled(true);
+                            String message = getString(R.string.try_to_redirect, url, notShortnedURLDialog);
+                            TextView indications = view.findViewById(R.id.indications);
+                            RelativeLayout progress = view.findViewById(R.id.progress);
+                            indications.setText(message);
+                            indications.setVisibility(View.VISIBLE);
+                            progress.setVisibility(View.GONE);
+                        };
+                        mainHandler.post(myRunnable);
                     }
                 };
                 thread.start();
@@ -169,6 +262,13 @@ public class TransformActivity extends Activity {
         }
     }
 
+    @Override
+    protected void onDestroy(){
+        if( thread != null && thread.isAlive()){
+            thread.interrupt();
+        }
+        super.onDestroy();
+    }
 
     /**
      * Forward the intent to a browser

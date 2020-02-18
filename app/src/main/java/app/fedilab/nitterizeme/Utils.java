@@ -28,11 +28,17 @@ class Utils {
             "(?i)\\b((?:[a-z][\\w-]+:(?:/{1,3}|[a-z0-9%])|www\\d{0,3}[.]|[a-z0-9.\\-]+[.][a-z]{2,10}/)(?:[^\\s()<>]+|\\(([^\\s()<>]+|(\\([^\\s()<>]+\\)))*\\))+(?:\\(([^\\s()<>]+|(\\([^\\s()<>]+\\)))*\\)|[^\\s`!()\\[\\]{};:'\".,<>?«»“”‘’]))",
             Pattern.CASE_INSENSITIVE | Pattern.MULTILINE | Pattern.DOTALL);
 
-    static String checkUrl(String urlConnection){
+
+    /**
+     * Returns the unshortened URL
+     * @param urlStr String URL to check
+     * @return String the Unshortened URL
+     */
+    static String checkUrl(String urlStr){
         URL url;
         String redirect = null;
         try {
-            url = new URL(urlConnection);
+            url = new URL(urlStr);
             HttpsURLConnection httpsURLConnection = (HttpsURLConnection) url.openConnection();
             httpsURLConnection.setRequestProperty("http.keepAlive", "false");
             httpsURLConnection.setInstanceFollowRedirects(false);
@@ -49,7 +55,7 @@ class Utils {
                 }
             }
             httpsURLConnection.getInputStream().close();
-            if (redirect != null && redirect.compareTo(urlConnection)!=0){
+            if (redirect != null && redirect.compareTo(urlStr)!=0){
                 URL redirectURL = new URL(redirect);
                 String host = redirectURL.getHost();
                 String protocol = redirectURL.getProtocol();
