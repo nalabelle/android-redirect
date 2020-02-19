@@ -25,8 +25,8 @@
     <string name="custom_osm">Προσαρμοσμένο όνομα κόμβου OSM</string>
     <string name="redirect_youtube_to_invidious">Ανακατεύθυνση Youtube σε Invidious</string>
     <string name="redirect_twitter_to_nitter">Ανακατεύθυνση Twitter σε Nitter</string>
-    <string name="redirect_instagram_to_bibliogram">Redirect Instagram to Bibliogram</string>
-    <string name="custom_bibliogram">Custom Bibliogram instance</string>
+    <string name="redirect_instagram_to_bibliogram">Ανακατεύθυνση Instagram σε Bibliogram</string>
+    <string name="custom_bibliogram">Προσαρμοσμένη υπόσταση Bibliogram</string>
     <string name="redirect_gm_to_geo_uri">Ανακατεύθυνση Google Map σε Geo URI</string>
     <string name="configure">Ρύθμιση</string>
     <string name="display_supported_links">Εμφάνιση υποστηριζόμενων συνδέσμων</string>
