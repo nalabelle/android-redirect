@@ -25,6 +25,8 @@
     <string name="custom_osm">Benutzerdefinierter OSM Hostname</string>
     <string name="redirect_youtube_to_invidious">YouTube auf Invidious umleiten</string>
     <string name="redirect_twitter_to_nitter">Twitter zu Nitter umleiten</string>
+    <string name="redirect_instagram_to_bibliogram">Redirect Instagram to Bibliogram</string>
+    <string name="custom_bibliogram">Custom Bibliogram instance</string>
     <string name="redirect_gm_to_geo_uri">Google Map auf Geo URI umleiten</string>
     <string name="configure">Konfigurieren</string>
     <string name="display_supported_links">Unterstützte Links anzeigen</string>
