@@ -44,8 +44,10 @@ import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import static app.fedilab.nitterizeme.MainActivity.SET_BIBLIOGRAM_ENABLED;
 import static app.fedilab.nitterizeme.MainActivity.SET_INVIDIOUS_ENABLED;
 import static app.fedilab.nitterizeme.MainActivity.SET_NITTER_ENABLED;
+import static app.fedilab.nitterizeme.MainActivity.instagram_domains;
 import static app.fedilab.nitterizeme.MainActivity.shortener_domains;
 import static app.fedilab.nitterizeme.MainActivity.twitter_domains;
 import static app.fedilab.nitterizeme.MainActivity.youtube_domains;
@@ -56,6 +58,7 @@ public class TransformActivity extends Activity {
 
     final Pattern youtubePattern = Pattern.compile("(www\\.|m\\.)?(youtube\\.com|youtu\\.be|youtube-nocookie\\.com)/(((?!([\"'<])).)*)");
     final Pattern nitterPattern = Pattern.compile("(mobile\\.|www\\.)?twitter.com([\\w-/]+)");
+    final Pattern bibliogramPattern = Pattern.compile("(m\\.|www\\.)?instagram.com([\\w-/]+)");
     final Pattern maps = Pattern.compile("/maps/place/[^@]+@([\\d.,z]{3,}).*");
     final Pattern extractPlace = Pattern.compile("/maps/place/(((?!/data).)*)");
     private Thread thread;
@@ -226,6 +229,24 @@ public class TransformActivity extends Activity {
                 } else {
                     forwardToBrowser(intent);
                 }
+            } //Instagram URLs
+            else if (Arrays.asList(instagram_domains).contains(host)) {
+                boolean bibliogram_enabled = sharedpreferences.getBoolean(SET_BIBLIOGRAM_ENABLED, true);
+                if (bibliogram_enabled) {
+                    Intent delegate = new Intent(Intent.ACTION_VIEW);
+                    String transformedURL = transformUrl(url);
+                    if (transformedURL != null) {
+                        delegate.setData(Uri.parse(transformUrl(url)));
+                        delegate.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        if (delegate.resolveActivity(getPackageManager()) != null) {
+                            startActivity(delegate);
+                        }
+                    } else {
+                        forwardToBrowser(intent);
+                    }
+                } else {
+                    forwardToBrowser(intent);
+                }
             }
             //Maps URLs (containing /maps/place like Google Maps links)
             else if (url.contains("/maps/place")) {
@@ -345,6 +366,19 @@ public class TransformActivity extends Activity {
             } else {
                 return url;
             }
+        }else if (Arrays.asList(instagram_domains).contains(host)) {
+            boolean bibliogram_enabled = sharedpreferences.getBoolean(SET_BIBLIOGRAM_ENABLED, true);
+            if (bibliogram_enabled) {
+                Matcher matcher = bibliogramPattern.matcher(url);
+                while (matcher.find()) {
+                    final String bibliogram_directory = matcher.group(2);
+                    String bibliogramHost = sharedpreferences.getString(MainActivity.SET_BIBLIOGRAM_HOST, MainActivity.DEFAULT_BIBLIOGRAM_HOST).toLowerCase();
+                    newUrl = "https://" + bibliogramHost + bibliogram_directory;
+                }
+                return newUrl;
+            } else {
+                return url;
+            }
         } else if (url.contains("/maps/place")) {
             boolean osm_enabled = sharedpreferences.getBoolean(MainActivity.SET_OSM_ENABLED, true);
             if (osm_enabled) {
@@ -453,6 +487,16 @@ public class TransformActivity extends Activity {
                     final String nitter_directory = matcher.group(2);
                     String nitterHost = sharedpreferences.getString(MainActivity.SET_NITTER_HOST, MainActivity.DEFAULT_NITTER_HOST).toLowerCase();
                     newUrl = "https://" + nitterHost + nitter_directory;
+                }
+            }
+        } else if (Arrays.asList(instagram_domains).contains(host)) {
+            boolean bibliogram_enabled = sharedpreferences.getBoolean(SET_BIBLIOGRAM_ENABLED, true);
+            if (bibliogram_enabled) {
+                Matcher matcher = bibliogramPattern.matcher(url);
+                while (matcher.find()) {
+                    final String bibliogram_directory = matcher.group(2);
+                    String bibliogramHost = sharedpreferences.getString(MainActivity.SET_BIBLIOGRAM_HOST, MainActivity.DEFAULT_BIBLIOGRAM_HOST).toLowerCase();
+                    newUrl = "https://" + bibliogramHost + bibliogram_directory;
                 }
             }
         } else if (url.contains("/maps/place/")) {

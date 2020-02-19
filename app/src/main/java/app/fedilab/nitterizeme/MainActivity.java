@@ -101,7 +101,7 @@ public class MainActivity extends AppCompatActivity {
         Objects.requireNonNull(getSupportActionBar()).setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        domains = new String[twitter_domains.length + youtube_domains.length + shortener_domains.length];
+        domains = new String[twitter_domains.length + youtube_domains.length + shortener_domains.length + instagram_domains.length];
         int i = 0;
         for (String host : twitter_domains) {
             domains[i] = host;
