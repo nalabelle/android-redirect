@@ -19,18 +19,13 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
-import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.style.ForegroundColorSpan;
 import android.text.style.UnderlineSpan;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
@@ -99,45 +94,13 @@ public class AboutActivity extends AppCompatActivity {
         //Developer donation
         Button donatePaypal = findViewById(R.id.donate_paypal);
         donatePaypal.setOnClickListener(v -> {
-            if (BuildConfig.DONATIONS) {
-                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.paypal.me/Mastalab"));
-                startActivity(browserIntent);
-            }else{
-                AlertDialog.Builder builder = new AlertDialog.Builder(AboutActivity.this);
-                builder.setTitle(R.string.donation_unavailable);
-                View view = getLayoutInflater().inflate(R.layout.popup_cannot_donate, new LinearLayout(getApplicationContext()), false);
-                ImageView get_fdroid = view.findViewById(R.id.get_fdroid);
-                get_fdroid.setOnClickListener( v1->{
-                    Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://f-droid.org/packages/app.fedilab.nitterizeme/"));
-                    startActivity(browserIntent);
-                });
-                builder.setView(view);
-                builder.setPositiveButton(R.string.close, (dialog, id) -> dialog.dismiss());
-                TextView textView = view.findViewById(R.id.text);
-                setColor(textView,getString(R.string.donation_unavailable_title,"PayPal"), "PayPal",  ContextCompat.getColor(AboutActivity.this, R.color.colorAccent));
-                builder.show();
-            }
+            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.paypal.me/Mastalab"));
+            startActivity(browserIntent);
         });
         Button donateLiberapay = findViewById(R.id.donate_liberapay);
         donateLiberapay.setOnClickListener(v -> {
-            if (BuildConfig.DONATIONS) {
-                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://liberapay.com/tom79/donate"));
-                startActivity(browserIntent);
-            }else{
-                AlertDialog.Builder builder = new AlertDialog.Builder(AboutActivity.this);
-                builder.setTitle(R.string.donation_unavailable);
-                View view = getLayoutInflater().inflate(R.layout.popup_cannot_donate, new LinearLayout(getApplicationContext()), false);
-                ImageView get_fdroid = view.findViewById(R.id.get_fdroid);
-                get_fdroid.setOnClickListener( v1->{
-                    Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://f-droid.org/packages/app.fedilab.nitterizeme/"));
-                    startActivity(browserIntent);
-                });
-                builder.setView(view);
-                builder.setPositiveButton(R.string.close, (dialog, id) -> dialog.dismiss());
-                TextView textView = view.findViewById(R.id.text);
-                setColor(textView,getString(R.string.donation_unavailable_title,"Liberapay"), "Liberapay", ContextCompat.getColor(AboutActivity.this, R.color.colorAccent));
-                builder.show();
-            }
+            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://liberapay.com/tom79/donate"));
+            startActivity(browserIntent);
         });
 
         Button how_to = findViewById(R.id.how_to);
@@ -165,14 +128,6 @@ public class AboutActivity extends AppCompatActivity {
             return true;
         }
         return super.onOptionsItemSelected(item);
-    }
-
-
-    private void setColor(TextView view, String fulltext, String subtext, int color) {
-        view.setText(fulltext, TextView.BufferType.SPANNABLE);
-        Spannable str = (Spannable) view.getText();
-        int i = fulltext.indexOf(subtext);
-        str.setSpan(new ForegroundColorSpan(color), i, i + subtext.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
     }
 
 }
