@@ -40,8 +40,4 @@
     <string name="try_to_redirect">%1$s\n\nva vous rediriger vers\n\n<b>%2$s</b></string>
     <string name="try_to_redirect_again">Il vous redirigera ensuite vers\n\n<b>%1$s</b></string>
     <string name="the_app_failed_shortened">L\'application n\'a pas réussi à récupérer l\'URL complète</string>
-    <string name="donation_unavailable">Les dons sont indisponibles</string>
-    <string name="donation_unavailable_title">Ce bouton aurais du vous rediriger vers ma %1$s page de dons mais Google ne le permet pas.\n\nLe meilleur endroit pour soutenir les applications libres et open sources est <a href="https://f-droid.org/">https://f-droid.org/</a></string>
-    <string name="get_fdroid">Obtenez-la sur F-Droid</string>
-    <string name="download_with_fdroid">Téléchargez l\'application sur F-Droid</string>
 </resources>
