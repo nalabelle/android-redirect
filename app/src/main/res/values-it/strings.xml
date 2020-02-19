@@ -25,6 +25,8 @@
     <string name="custom_osm">Hostname OSM personalizzato</string>
     <string name="redirect_youtube_to_invidious">Reindirizza YouTube a Invidious</string>
     <string name="redirect_twitter_to_nitter">Reindirizza Twitter a Nitter</string>
+    <string name="redirect_instagram_to_bibliogram">Redirect Instagram to Bibliogram</string>
+    <string name="custom_bibliogram">Custom Bibliogram instance</string>
     <string name="redirect_gm_to_geo_uri">Reindirizza Google Map a Geo URI</string>
     <string name="configure">Configura</string>
     <string name="display_supported_links">Mostra link supportati</string>
@@ -38,8 +40,8 @@
     <string name="try_to_redirect">%1$s \n\nti reindirizzerà su\n\n<b>%2$s</b></string>
     <string name="try_to_redirect_again">Poi ti reindirizzerà su\n\n<b>%1$s</b></string>
     <string name="the_app_failed_shortened">L\'app non è riuscita a recuperare l\'URL completo</string>
-    <string name="donation_unavailable">Donations are unavailable</string>
-    <string name="donation_unavailable_title">This button should have redirected you to my %1$s donation page but Google does not allow it.\n\nThe best place for using and supporting FOSS apps is <a href="https://f-droid.org/">https://f-droid.org/</a></string>
-    <string name="get_fdroid">Get it on F-Droid</string>
-    <string name="download_with_fdroid">Get the app on F-Droid</string>
+    <string name="donation_unavailable">Donazioni non disponibili</string>
+    <string name="donation_unavailable_title">Questo pulsante ti avrebbe reindirizzato alla mia pagina delle donazioni %1$s ma Google non lo consente.\n\nIl posto migliore per utilizzare e supportare le app FOSS è <a href="https://f-droid.org/">https://f-droid.org/</a></string>
+    <string name="get_fdroid">Scaricala da F-Droid</string>
+    <string name="download_with_fdroid">Scarica l\'app da F-Droid</string>
 </resources>
