@@ -1,10 +1,16 @@
-# NitterizeMe [![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0) [![Crowdin](https://badges.crowdin.net/nitterizeme/localized.svg)](https://crowdin.com/project/nitterizeme)
+# NitterizeMe [![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0) [![Crowdin](https://badges.crowdin.net/nitterizeme/localized.svg)](https://crowdin.com/project/nitterizeme)  [![pipeline status](https://framagit.org/tom79/nitterizeme/badges/develop/pipeline.svg)](https://framagit.org/tom79/nitterizeme/commits/develop)
 
 NitterizeMe once set by default to open Twitter and YouTube links will transform them into Nitter and Invidious links and delegate the action to another app.
 
-You can download the debug apk here:
 
-[app-debug-1.0.0.apk](./apk/app-debug-1.0.0.apk) - from 01/26/2020
+## Donate
+
+[<img alt="Donate using Liberapay" src="http://img.shields.io/liberapay/patrons/tom79.svg?logo=liberapay"/>](https://liberapay.com/tom79/donate)
+
+## Download
+
+[<img alt='Get it on Google Play' src='./images/get-it-on-play.png' height="80"/>](https://play.google.com/store/apps/details?id=app.fedilab.nitterizeme)
+&nbsp;&nbsp;[<img alt='Get it on F-Droid' src='./images/get-it-on-fdroid.png' height="80"/>](https://f-droid.org/app/app.fedilab.nitterizeme)
 
 
 ### What is Nitter:
