@@ -59,12 +59,20 @@ public class MainActivity extends AppCompatActivity {
     public static String SET_OSM_ENABLED = "set_osm_enabled";
     public static String SET_OSM_HOST = "set_osm_host";
     public static String DEFAULT_OSM_HOST = "www.openstreetmap.org";
+    public static String SET_BIBLIOGRAM_ENABLED = "set_bibliogram_enabled";
+    public static String SET_BIBLIOGRAM_HOST = "set_bibliogram_host";
+    public static String DEFAULT_BIBLIOGRAM_HOST = "bibliogram.art";
     public static String SET_GEO_URIS = "set_geo_uris";
     //Supported domains
     public static String[] twitter_domains = {
             "twitter.com",
             "mobile.twitter.com",
             "www.twitter.com",
+    };
+    public static String[] instagram_domains = {
+            "instagram.com",
+            "www.instagram.com",
+            "m.instagram.com",
     };
     public static String[] youtube_domains = {
             "www.youtube.com",
@@ -107,29 +115,38 @@ public class MainActivity extends AppCompatActivity {
             domains[i] = host;
             i++;
         }
+        for (String host : instagram_domains) {
+            domains[i] = host;
+            i++;
+        }
 
         SharedPreferences sharedpreferences = getSharedPreferences(APP_PREFS, Context.MODE_PRIVATE);
 
         TextInputEditText nitter_instance = findViewById(R.id.nitter_instance);
         TextInputEditText invidious_instance = findViewById(R.id.invidious_instance);
+        TextInputEditText bibliogram_instance = findViewById(R.id.bibliogram_instance);
         TextInputEditText osm_instance = findViewById(R.id.osm_instance);
 
         SwitchCompat enable_nitter = findViewById(R.id.enable_nitter);
         SwitchCompat enable_invidious = findViewById(R.id.enable_invidious);
+        SwitchCompat enable_bibliogram = findViewById(R.id.enable_bibliogram);
         SwitchCompat enable_osm = findViewById(R.id.enable_osm);
 
         boolean nitter_enabled = sharedpreferences.getBoolean(SET_NITTER_ENABLED, true);
         boolean invidious_enabled = sharedpreferences.getBoolean(SET_INVIDIOUS_ENABLED, true);
         boolean osm_enabled = sharedpreferences.getBoolean(SET_OSM_ENABLED, true);
+        boolean bibliogram_enabled = sharedpreferences.getBoolean(SET_BIBLIOGRAM_ENABLED, true);
 
         enable_nitter.setChecked(nitter_enabled);
         enable_invidious.setChecked(invidious_enabled);
+        enable_bibliogram.setChecked(bibliogram_enabled);
         enable_osm.setChecked(osm_enabled);
 
         Button button_save = findViewById(R.id.button_save);
         list_apps = findViewById(R.id.list_apps);
         String nitterHost = sharedpreferences.getString(SET_NITTER_HOST, null);
         String invidiousHost = sharedpreferences.getString(SET_INVIDIOUS_HOST, null);
+        String bibliogramHost = sharedpreferences.getString(SET_BIBLIOGRAM_HOST, null);
         String osmHost = sharedpreferences.getString(SET_OSM_HOST, null);
 
         enable_invidious.setOnCheckedChangeListener((buttonView, isChecked) -> {
@@ -140,6 +157,11 @@ public class MainActivity extends AppCompatActivity {
         enable_nitter.setOnCheckedChangeListener((buttonView, isChecked) -> {
             SharedPreferences.Editor editor = sharedpreferences.edit();
             editor.putBoolean(SET_NITTER_ENABLED, isChecked);
+            editor.apply();
+        });
+        enable_bibliogram.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            SharedPreferences.Editor editor = sharedpreferences.edit();
+            editor.putBoolean(SET_BIBLIOGRAM_ENABLED, isChecked);
             editor.apply();
         });
         enable_osm.setOnCheckedChangeListener((buttonView, isChecked) -> {
@@ -153,6 +175,9 @@ public class MainActivity extends AppCompatActivity {
         }
         if (invidiousHost != null) {
             invidious_instance.setText(invidiousHost);
+        }
+        if (bibliogramHost != null) {
+            bibliogram_instance.setText(bibliogramHost);
         }
         if (osmHost != null) {
             osm_instance.setText(osmHost);
@@ -168,6 +193,11 @@ public class MainActivity extends AppCompatActivity {
                 editor.putString(SET_INVIDIOUS_HOST, invidious_instance.getText().toString().toLowerCase().trim());
             } else {
                 editor.putString(SET_INVIDIOUS_HOST, null);
+            }
+            if (bibliogram_instance.getText() != null && bibliogram_instance.getText().toString().trim().length() > 0) {
+                editor.putString(SET_BIBLIOGRAM_HOST, bibliogram_instance.getText().toString().toLowerCase().trim());
+            } else {
+                editor.putString(SET_BIBLIOGRAM_HOST, null);
             }
             if (osm_instance.getText() != null && osm_instance.getText().toString().trim().length() > 0) {
                 editor.putString(SET_OSM_HOST, osm_instance.getText().toString().toLowerCase().trim());
