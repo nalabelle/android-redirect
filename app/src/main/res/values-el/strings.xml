@@ -40,8 +40,4 @@
     <string name="try_to_redirect">%1$s \n\nθα σας ανακατευθύνει σε\n\n<b>%2$s</b></string>
     <string name="try_to_redirect_again">Μετά θα σας ανακατευθήνει στο\n\n<b>%1$s</b></string>
     <string name="the_app_failed_shortened">Η εφαρμογή δεν κατάφερε να ανακτήσει την πλήρη URL</string>
-    <string name="donation_unavailable">Οι δωρεές δεν είναι διαθέσιμες</string>
-    <string name="donation_unavailable_title">Αυτό το κουμπί θα έπρεπε να σας έχει ανακατεύθυνει στην σελίδα δωρεάς μου %1$s, αλλά το Google δεν το επιτρέπει.\n\nΤο καλύτερο μέρος για τη χρήση και την υποστήριξη ΕΛΛΑΚ εφαρμογών είναι το <a href="https://f-droid.org/">https://f-droid.org/</a></string>
-    <string name="get_fdroid">Κατεβάστε το στο F-Droid</string>
-    <string name="download_with_fdroid">Κατεβάστε το app στο F-Droid</string>
 </resources>
