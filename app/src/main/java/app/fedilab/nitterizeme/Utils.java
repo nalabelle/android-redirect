@@ -15,6 +15,7 @@ package app.fedilab.nitterizeme;
  * see <http://www.gnu.org/licenses>. */
 
 import java.io.IOException;
+import java.net.InetAddress;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -80,5 +81,22 @@ class Utils {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    /**
+     * Get time for reaching a domain
+     * @param domain String domain name
+     * @return long delay
+     */
+    public static long ping(String domain){
+        long timeDifference = -2;
+        try {
+            long beforeTime = System.currentTimeMillis();
+            //noinspection ResultOfMethodCallIgnored
+            InetAddress.getByName(domain).isReachable(10000);
+            long afterTime = System.currentTimeMillis();
+            timeDifference = afterTime - beforeTime;
+        } catch (IOException ignored) {}
+        return timeDifference;
     }
 }

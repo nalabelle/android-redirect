@@ -423,7 +423,10 @@
                     android:pathPattern="/maps/place/.*" />
             </intent-filter>
         </activity>
-
+        <activity
+            android:name="app.fedilab.nitterizeme.InstanceActivity"
+            android:excludeFromRecents="true"
+            android:theme="@style/Base.V7.Theme.AppCompat.Dialog" />
         <activity
             android:name=".AboutActivity"
             android:configChanges="orientation|screenSize"

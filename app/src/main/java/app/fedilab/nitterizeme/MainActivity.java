@@ -143,6 +143,7 @@ public class MainActivity extends AppCompatActivity {
         enable_osm.setChecked(osm_enabled);
 
         Button button_save = findViewById(R.id.button_save);
+        CheckBox enable_geo_uris = findViewById(R.id.enable_geo_uris);
         list_apps = findViewById(R.id.list_apps);
         String nitterHost = sharedpreferences.getString(SET_NITTER_HOST, null);
         String invidiousHost = sharedpreferences.getString(SET_INVIDIOUS_HOST, null);
@@ -153,21 +154,26 @@ public class MainActivity extends AppCompatActivity {
             SharedPreferences.Editor editor = sharedpreferences.edit();
             editor.putBoolean(SET_INVIDIOUS_ENABLED, isChecked);
             editor.apply();
+            invidious_instance.setVisibility(isChecked?View.VISIBLE:View.GONE);
         });
         enable_nitter.setOnCheckedChangeListener((buttonView, isChecked) -> {
             SharedPreferences.Editor editor = sharedpreferences.edit();
             editor.putBoolean(SET_NITTER_ENABLED, isChecked);
             editor.apply();
+            nitter_instance.setVisibility(isChecked?View.VISIBLE:View.GONE);
         });
         enable_bibliogram.setOnCheckedChangeListener((buttonView, isChecked) -> {
             SharedPreferences.Editor editor = sharedpreferences.edit();
             editor.putBoolean(SET_BIBLIOGRAM_ENABLED, isChecked);
             editor.apply();
+            bibliogram_instance.setVisibility(isChecked?View.VISIBLE:View.GONE);
         });
         enable_osm.setOnCheckedChangeListener((buttonView, isChecked) -> {
             SharedPreferences.Editor editor = sharedpreferences.edit();
             editor.putBoolean(SET_OSM_ENABLED, isChecked);
             editor.apply();
+            osm_instance.setVisibility(isChecked?View.VISIBLE:View.GONE);
+            enable_geo_uris.setVisibility(isChecked?View.VISIBLE:View.GONE);
         });
 
         if (nitterHost != null) {
@@ -222,12 +228,19 @@ public class MainActivity extends AppCompatActivity {
             if (list_apps.getVisibility() == View.VISIBLE) {
                 list_apps.setVisibility(View.GONE);
                 buttonExpand.setContentDescription(getString(R.string.display_supported_links));
+                buttonExpand.setImageResource(R.drawable.ic_expand_more);
             } else {
                 list_apps.setVisibility(View.VISIBLE);
                 buttonExpand.setContentDescription(getString(R.string.hide_supported_links));
+                buttonExpand.setImageResource(R.drawable.ic_expand_less);
             }
         });
 
+        ImageButton buttonPing = findViewById(R.id.instances);
+        buttonPing.setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, InstanceActivity.class);
+            startActivity(intent);
+        });
         ArrayList<AppInfo> appInfos = new ArrayList<>();
         for (String domain : domains) {
             AppInfo appInfo = new AppInfo();
@@ -236,7 +249,7 @@ public class MainActivity extends AppCompatActivity {
             appInfos.add(appInfo);
         }
 
-        CheckBox enable_geo_uris = findViewById(R.id.enable_geo_uris);
+
         enable_geo_uris.setOnCheckedChangeListener((buttonView, isChecked) -> {
             SharedPreferences.Editor editor = sharedpreferences.edit();
             editor.putBoolean(SET_GEO_URIS, isChecked);
