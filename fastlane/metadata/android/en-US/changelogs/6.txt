@@ -1,0 +1,9 @@
+Added:
+
+- Support for Bibliogram
+- Easy instance pick up with latencies
+
+Changed:
+
+ - Layout improvements
+
