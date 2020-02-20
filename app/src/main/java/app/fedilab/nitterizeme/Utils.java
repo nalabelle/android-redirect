@@ -85,10 +85,11 @@ class Utils {
 
     /**
      * Get time for reaching a domain
+     *
      * @param domain String domain name
      * @return long delay
      */
-    static long ping(String domain){
+    static long ping(String domain) {
         long timeDifference = -2;
         try {
             long beforeTime = System.currentTimeMillis();
@@ -96,7 +97,8 @@ class Utils {
             InetAddress.getByName(domain).isReachable(10000);
             long afterTime = System.currentTimeMillis();
             timeDifference = afterTime - beforeTime;
-        } catch (IOException ignored) {}
+        } catch (IOException ignored) {
+        }
         return timeDifference;
     }
 }

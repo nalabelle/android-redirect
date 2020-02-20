@@ -28,7 +28,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -60,11 +59,11 @@ public class InstanceActivity extends AppCompatActivity {
     }
 
 
-    static class SearchInstances extends AsyncTask<Void, Void, String>{
+    static class SearchInstances extends AsyncTask<Void, Void, String> {
 
         private WeakReference<Activity> activityWeakReference;
 
-        SearchInstances(Activity activity){
+        SearchInstances(Activity activity) {
             activityWeakReference = new WeakReference<>(activity);
         }
 
@@ -103,8 +102,8 @@ public class InstanceActivity extends AppCompatActivity {
             RecyclerView invidious_instances = activity.findViewById(R.id.invidious_instances);
             RecyclerView nitter_instances = activity.findViewById(R.id.nitter_instances);
             RecyclerView bibliogram_instances = activity.findViewById(R.id.bibliogram_instances);
-            Button latency_test =  activity.findViewById(R.id.latency_test);
-            Button close =  activity.findViewById(R.id.close);
+            Button latency_test = activity.findViewById(R.id.latency_test);
+            Button close = activity.findViewById(R.id.close);
             try {
                 JSONObject jsonObject = new JSONObject(result);
                 JSONArray jsonArrayInvidious = jsonObject.getJSONArray("invidious");
@@ -117,30 +116,30 @@ public class InstanceActivity extends AppCompatActivity {
                 String defaultBibliogram = sharedpreferences.getString(SET_BIBLIOGRAM_HOST, DEFAULT_BIBLIOGRAM_HOST);
 
                 List<Instance> invidiousInstances = new ArrayList<>();
-                for(int i = 0; i < jsonArrayInvidious.length(); i++){
+                for (int i = 0; i < jsonArrayInvidious.length(); i++) {
                     Instance instance = new Instance();
                     instance.setDomain(jsonArrayInvidious.getString(i));
-                    if( instance.getDomain().compareTo(defaultInvidious) == 0 ){
+                    if (instance.getDomain().compareTo(defaultInvidious) == 0) {
                         instance.setChecked(true);
                     }
                     instance.setType(Instance.instanceType.INVIDIOUS);
                     invidiousInstances.add(instance);
                 }
                 List<Instance> nitterInstances = new ArrayList<>();
-                for(int i = 0; i < jsonArrayNitter.length(); i++){
+                for (int i = 0; i < jsonArrayNitter.length(); i++) {
                     Instance instance = new Instance();
                     instance.setDomain(jsonArrayNitter.getString(i));
-                    if( instance.getDomain().compareTo(defaultNitter) == 0 ){
+                    if (instance.getDomain().compareTo(defaultNitter) == 0) {
                         instance.setChecked(true);
                     }
                     instance.setType(Instance.instanceType.NITTER);
                     nitterInstances.add(instance);
                 }
                 List<Instance> bibliogramInstances = new ArrayList<>();
-                for(int i = 0; i < jsonArrayBibliogram.length(); i++){
+                for (int i = 0; i < jsonArrayBibliogram.length(); i++) {
                     Instance instance = new Instance();
                     instance.setDomain(jsonArrayBibliogram.getString(i));
-                    if( instance.getDomain().compareTo(defaultBibliogram) == 0 ){
+                    if (instance.getDomain().compareTo(defaultBibliogram) == 0) {
                         instance.setChecked(true);
                     }
                     instance.setType(Instance.instanceType.BIBLIOGRAM);
@@ -163,7 +162,7 @@ public class InstanceActivity extends AppCompatActivity {
                 bibliogram_instances.setLayoutManager(bLayoutManager);
 
                 latency_test.setOnClickListener(
-                        v-> {
+                        v -> {
                             invidiousAdapter.evalLatency();
                             nitterAdapter.evalLatency();
                             bibliogramAdapter.evalLatency();
@@ -174,8 +173,7 @@ public class InstanceActivity extends AppCompatActivity {
                 e.printStackTrace();
             }
 
-            close.setOnClickListener(v-> activity.finish());
-
+            close.setOnClickListener(v -> activity.finish());
 
 
             instance_container.setVisibility(View.VISIBLE);

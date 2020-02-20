@@ -127,6 +127,13 @@ public class MainActivity extends AppCompatActivity {
         TextInputEditText bibliogram_instance = findViewById(R.id.bibliogram_instance);
         TextInputEditText osm_instance = findViewById(R.id.osm_instance);
 
+
+        TextInputLayout invidious_instance_container = findViewById(R.id.invidious_instance_container);
+        TextInputLayout nitter_instance_container = findViewById(R.id.nitter_instance_container);
+        TextInputLayout bibliogram_instance_container = findViewById(R.id.bibliogram_instance_container);
+        TextInputLayout osm_instance_container = findViewById(R.id.osm_instance_container);
+
+
         SwitchCompat enable_nitter = findViewById(R.id.enable_nitter);
         SwitchCompat enable_invidious = findViewById(R.id.enable_invidious);
         SwitchCompat enable_bibliogram = findViewById(R.id.enable_bibliogram);
@@ -136,6 +143,7 @@ public class MainActivity extends AppCompatActivity {
         boolean invidious_enabled = sharedpreferences.getBoolean(SET_INVIDIOUS_ENABLED, true);
         boolean osm_enabled = sharedpreferences.getBoolean(SET_OSM_ENABLED, true);
         boolean bibliogram_enabled = sharedpreferences.getBoolean(SET_BIBLIOGRAM_ENABLED, true);
+        boolean geouri_enabled = sharedpreferences.getBoolean(SET_GEO_URIS, false);
 
         enable_nitter.setChecked(nitter_enabled);
         enable_invidious.setChecked(invidious_enabled);
@@ -150,30 +158,40 @@ public class MainActivity extends AppCompatActivity {
         String bibliogramHost = sharedpreferences.getString(SET_BIBLIOGRAM_HOST, null);
         String osmHost = sharedpreferences.getString(SET_OSM_HOST, null);
 
+        invidious_instance_container.setVisibility(invidious_enabled ? View.VISIBLE : View.GONE);
+        nitter_instance_container.setVisibility(nitter_enabled ? View.VISIBLE : View.GONE);
+        bibliogram_instance_container.setVisibility(bibliogram_enabled ? View.VISIBLE : View.GONE);
+        osm_instance_container.setVisibility(osm_enabled ? View.VISIBLE : View.GONE);
+
         enable_invidious.setOnCheckedChangeListener((buttonView, isChecked) -> {
             SharedPreferences.Editor editor = sharedpreferences.edit();
             editor.putBoolean(SET_INVIDIOUS_ENABLED, isChecked);
             editor.apply();
-            invidious_instance.setVisibility(isChecked?View.VISIBLE:View.GONE);
+            invidious_instance_container.setVisibility(isChecked ? View.VISIBLE : View.GONE);
         });
         enable_nitter.setOnCheckedChangeListener((buttonView, isChecked) -> {
             SharedPreferences.Editor editor = sharedpreferences.edit();
             editor.putBoolean(SET_NITTER_ENABLED, isChecked);
             editor.apply();
-            nitter_instance.setVisibility(isChecked?View.VISIBLE:View.GONE);
+            nitter_instance_container.setVisibility(isChecked ? View.VISIBLE : View.GONE);
         });
         enable_bibliogram.setOnCheckedChangeListener((buttonView, isChecked) -> {
             SharedPreferences.Editor editor = sharedpreferences.edit();
             editor.putBoolean(SET_BIBLIOGRAM_ENABLED, isChecked);
             editor.apply();
-            bibliogram_instance.setVisibility(isChecked?View.VISIBLE:View.GONE);
+            bibliogram_instance_container.setVisibility(isChecked ? View.VISIBLE : View.GONE);
         });
         enable_osm.setOnCheckedChangeListener((buttonView, isChecked) -> {
             SharedPreferences.Editor editor = sharedpreferences.edit();
             editor.putBoolean(SET_OSM_ENABLED, isChecked);
             editor.apply();
-            osm_instance.setVisibility(isChecked?View.VISIBLE:View.GONE);
-            enable_geo_uris.setVisibility(isChecked?View.VISIBLE:View.GONE);
+            enable_geo_uris.setVisibility(isChecked ? View.VISIBLE : View.GONE);
+            boolean geo = sharedpreferences.getBoolean(SET_GEO_URIS, false);
+            if (geo) {
+                osm_instance_container.setVisibility(View.GONE);
+            } else {
+                osm_instance_container.setVisibility(isChecked ? View.VISIBLE : View.GONE);
+            }
         });
 
         if (nitterHost != null) {
@@ -188,6 +206,13 @@ public class MainActivity extends AppCompatActivity {
         if (osmHost != null) {
             osm_instance.setText(osmHost);
         }
+        enable_geo_uris.setChecked(geouri_enabled);
+        if (geouri_enabled) {
+            osm_instance_container.setVisibility(View.GONE);
+        } else {
+            osm_instance_container.setVisibility(View.VISIBLE);
+        }
+
         button_save.setOnClickListener(v -> {
             SharedPreferences.Editor editor = sharedpreferences.edit();
             if (nitter_instance.getText() != null && nitter_instance.getText().toString().trim().length() > 0) {
@@ -254,7 +279,6 @@ public class MainActivity extends AppCompatActivity {
             SharedPreferences.Editor editor = sharedpreferences.edit();
             editor.putBoolean(SET_GEO_URIS, isChecked);
             editor.apply();
-            TextInputLayout osm_instance_container = findViewById(R.id.osm_instance_container);
             TextView osm_indications = findViewById(R.id.osm_indications);
             if (isChecked) {
                 osm_instance_container.setVisibility(View.GONE);

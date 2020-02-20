@@ -1,4 +1,5 @@
 package app.fedilab.nitterizeme;
+
 /* Copyright 2020 Thomas Schneider
  *
  * This file is a part of NitterizeMe
@@ -15,11 +16,6 @@ package app.fedilab.nitterizeme;
  * see <http://www.gnu.org/licenses>. */
 class Instance {
 
-    enum instanceType{
-        INVIDIOUS,
-        NITTER,
-        BIBLIOGRAM
-    }
     private String domain;
     private long latency = -1;
     private boolean checked = false;
@@ -55,5 +51,11 @@ class Instance {
 
     void setType(instanceType type) {
         this.type = type;
+    }
+
+    enum instanceType {
+        INVIDIOUS,
+        NITTER,
+        BIBLIOGRAM
     }
 }

@@ -41,37 +41,40 @@
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-      
 
         <LinearLayout
-            android:layout_marginTop="20dp"
             android:id="@+id/nitter_container"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
             android:orientation="horizontal"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/introduction">
+
             <TextView
                 android:id="@+id/nitter_indications"
                 android:layout_width="0dp"
-                android:layout_weight="1"
                 android:layout_height="wrap_content"
-                android:text="@string/redirect_twitter_to_nitter"/>
+                android:layout_weight="1"
+                android:text="@string/redirect_twitter_to_nitter" />
+
             <androidx.appcompat.widget.SwitchCompat
                 android:id="@+id/enable_nitter"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"/>
+                android:layout_gravity="center" />
         </LinearLayout>
+
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/nitter_instance_container"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/nitter_container"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1">
+            android:layout_weight="1"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/nitter_container">
+
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/nitter_instance"
                 android:layout_width="match_parent"
@@ -84,35 +87,37 @@
 
         <LinearLayout
             android:id="@+id/invidious_container"
-            android:layout_marginTop="10dp"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
             android:orientation="horizontal"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/nitter_instance_container"
-            >
+            app:layout_constraintTop_toBottomOf="@+id/nitter_instance_container">
+
             <TextView
                 android:id="@+id/invidious_indications"
                 android:layout_width="0dp"
-                android:layout_weight="1"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:text="@string/redirect_youtube_to_invidious" />
+
             <androidx.appcompat.widget.SwitchCompat
                 android:id="@+id/enable_invidious"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"/>
+                android:layout_gravity="center" />
         </LinearLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/invidious_instance_container"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/invidious_container"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1">
+            android:layout_weight="1"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/invidious_container">
+
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/invidious_instance"
                 android:layout_width="match_parent"
@@ -123,39 +128,42 @@
         </com.google.android.material.textfield.TextInputLayout>
 
 
-
         <LinearLayout
-            android:layout_marginTop="10dp"
             android:id="@+id/bibliogram_container"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
             android:orientation="horizontal"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/invidious_instance_container">
+
             <TextView
                 android:id="@+id/bibliogram_indications"
                 android:layout_width="0dp"
-                android:layout_weight="1"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:text="@string/redirect_instagram_to_bibliogram"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/invidious_container" />
+
             <androidx.appcompat.widget.SwitchCompat
                 android:id="@+id/enable_bibliogram"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center" />
         </LinearLayout>
+
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/bibliogram_instance_container"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/bibliogram_container"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1">
+            android:layout_weight="1"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/bibliogram_container">
+
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/bibliogram_instance"
                 android:layout_width="match_parent"
@@ -170,11 +178,12 @@
             android:id="@+id/osm_container"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="20dp"
             android:orientation="horizontal"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/bibliogram_instance_container">
+
             <TextView
                 android:id="@+id/osm_indications"
                 android:layout_width="0dp"
@@ -184,19 +193,22 @@
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/bibliogram_container" />
+
             <androidx.appcompat.widget.SwitchCompat
                 android:id="@+id/enable_osm"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center" />
         </LinearLayout>
+
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/osm_instance_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/osm_container"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            app:layout_constraintTop_toBottomOf="@+id/osm_container">
+
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/osm_instance"
                 android:layout_width="match_parent"
@@ -207,15 +219,14 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <CheckBox
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/osm_instance_container"
             android:id="@+id/enable_geo_uris"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="@string/use_geo_uri" />
-
+            android:text="@string/use_geo_uri"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/osm_instance_container" />
 
 
         <Button
@@ -224,10 +235,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
-            android:minWidth="100dp"
             android:drawableStart="@drawable/ic_save"
             android:drawableLeft="@drawable/ic_save"
             android:drawablePadding="5dp"
+            android:minWidth="100dp"
             android:text="@string/save"
             android:textColor="@android:color/white"
             app:layout_constraintRight_toRightOf="parent"
@@ -261,8 +272,8 @@
             android:src="@drawable/ic_expand_more"
             android:textColor="@android:color/white"
             app:layout_constraintLeft_toRightOf="@+id/configure"
-            app:layout_constraintTop_toBottomOf="@+id/button_save"
-            app:layout_constraintRight_toLeftOf="@+id/instances"/>
+            app:layout_constraintRight_toLeftOf="@+id/instances"
+            app:layout_constraintTop_toBottomOf="@+id/button_save" />
 
         <ImageButton
             android:id="@+id/instances"
@@ -277,8 +288,7 @@
             android:src="@drawable/ic_public"
             android:textColor="@android:color/white"
             app:layout_constraintLeft_toRightOf="@+id/button_expand"
-            app:layout_constraintTop_toBottomOf="@+id/button_save"
-            />
+            app:layout_constraintTop_toBottomOf="@+id/button_save" />
 
 
         <androidx.recyclerview.widget.RecyclerView

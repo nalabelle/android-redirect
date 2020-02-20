@@ -72,18 +72,18 @@ public class InstanceAdapter extends RecyclerView.Adapter {
 
 
         holder.checkbox_instance.setText(instance.getDomain());
-        if (instance.getLatency() == -1){
+        if (instance.getLatency() == -1) {
             holder.latency.setVisibility(View.GONE);
             holder.progress.setVisibility(View.GONE);
-        }else if(instance.getLatency() == 0 ){
+        } else if (instance.getLatency() == 0) {
             holder.latency.setVisibility(View.GONE);
             holder.progress.setVisibility(View.VISIBLE);
-        }else if(instance.getLatency() == -2 ){
+        } else if (instance.getLatency() == -2) {
             holder.latency.setText(R.string.error);
             holder.latency.setVisibility(View.GONE);
             holder.progress.setVisibility(View.VISIBLE);
-        }else{
-            holder.latency.setText(String.format(Locale.getDefault(),"%d ms", instance.getLatency()));
+        } else {
+            holder.latency.setText(String.format(Locale.getDefault(), "%d ms", instance.getLatency()));
             holder.latency.setVisibility(View.VISIBLE);
             holder.progress.setVisibility(View.GONE);
         }
@@ -91,35 +91,35 @@ public class InstanceAdapter extends RecyclerView.Adapter {
 
         holder.checkbox_instance.setChecked(instance.isChecked());
 
-        holder.checkbox_instance.setOnClickListener(v->{
+        holder.checkbox_instance.setOnClickListener(v -> {
 
             boolean isChecked = !instance.isChecked();
-            for(Instance _ins: instances){
+            for (Instance _ins : instances) {
                 _ins.setChecked(false);
             }
             instance.setChecked(true);
             SharedPreferences.Editor editor = sharedpreferences.edit();
-            switch (instance.getType()){
+            switch (instance.getType()) {
                 case INVIDIOUS:
-                    if( isChecked) {
+                    if (isChecked) {
                         editor.putString(SET_INVIDIOUS_HOST, instance.getDomain().trim());
-                    }else{
+                    } else {
                         editor.putString(SET_INVIDIOUS_HOST, null);
                     }
                     editor.apply();
                     break;
                 case NITTER:
-                    if( isChecked) {
+                    if (isChecked) {
                         editor.putString(SET_NITTER_HOST, instance.getDomain().trim());
-                    }else{
+                    } else {
                         editor.putString(SET_NITTER_HOST, null);
                     }
                     editor.apply();
                     break;
                 case BIBLIOGRAM:
-                    if( isChecked) {
+                    if (isChecked) {
                         editor.putString(SET_BIBLIOGRAM_HOST, instance.getDomain().trim());
-                    }else{
+                    } else {
                         editor.putString(SET_BIBLIOGRAM_HOST, null);
                     }
                     editor.apply();
@@ -131,8 +131,8 @@ public class InstanceAdapter extends RecyclerView.Adapter {
 
     }
 
-    void evalLatency(){
-        for(Instance instance: instances){
+    void evalLatency() {
+        for (Instance instance : instances) {
             instance.setLatency(0);
             Thread thread = new Thread() {
                 @Override

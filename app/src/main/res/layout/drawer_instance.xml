@@ -10,17 +10,19 @@
         android:id="@+id/checkbox_instance"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:singleLine="true"
-        android:layout_weight="1"/>
+        android:layout_weight="1"
+        android:singleLine="true" />
+
     <TextView
+        android:id="@+id/latency"
         android:layout_width="80dp"
         android:layout_height="wrap_content"
-        android:id="@+id/latency"
-        android:gravity="end"/>
+        android:gravity="end" />
+
     <ProgressBar
+        android:id="@+id/progress"
         android:layout_width="20dp"
         android:layout_height="20dp"
-        android:visibility="gone"
         android:layout_gravity="center_vertical|end"
-        android:id="@+id/progress"/>
+        android:visibility="gone" />
 </LinearLayout>

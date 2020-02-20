@@ -366,7 +366,7 @@ public class TransformActivity extends Activity {
             } else {
                 return url;
             }
-        }else if (Arrays.asList(instagram_domains).contains(host)) {
+        } else if (Arrays.asList(instagram_domains).contains(host)) {
             boolean bibliogram_enabled = sharedpreferences.getBoolean(SET_BIBLIOGRAM_ENABLED, true);
             if (bibliogram_enabled) {
                 Matcher matcher = bibliogramPattern.matcher(url);
