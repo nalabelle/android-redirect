@@ -40,4 +40,8 @@
     <string name="try_to_redirect">%1$s \n\nzal u doorverwijzen naar\n\n<b>%2$s</b></string>
     <string name="try_to_redirect_again">Then it will redirect you to\n\n<b>%1$s</b></string>
     <string name="the_app_failed_shortened">De app slaagde er niet in om de volledige URL op te halen</string>
+    <string name="invidious_instances">Invidious instances</string>
+    <string name="nitter_instances">Nitter instances</string>
+    <string name="bibliogram_instances">Bibliogram instances</string>
+    <string name="latency">Latency</string>
 </resources>
