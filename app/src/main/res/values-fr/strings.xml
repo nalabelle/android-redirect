@@ -40,8 +40,8 @@
     <string name="try_to_redirect">%1$s\n\nva vous rediriger vers\n\n<b>%2$s</b></string>
     <string name="try_to_redirect_again">Il vous redirigera ensuite vers\n\n<b>%1$s</b></string>
     <string name="the_app_failed_shortened">L\'application n\'a pas réussi à récupérer l\'URL complète</string>
-    <string name="invidious_instances">Invidious instances</string>
-    <string name="nitter_instances">Nitter instances</string>
-    <string name="bibliogram_instances">Bibliogram instances</string>
-    <string name="latency">Latency</string>
+    <string name="invidious_instances">Instances Invidious</string>
+    <string name="nitter_instances">Instances Nitter</string>
+    <string name="bibliogram_instances">Instances Bibliogram</string>
+    <string name="latency">Latence</string>
 </resources>
