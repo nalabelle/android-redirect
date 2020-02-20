@@ -334,5 +334,22 @@ public class MainActivity extends AppCompatActivity {
             appInfoAdapter = new AppInfoAdapter(appInfos);
             list_apps.setAdapter(appInfoAdapter);
         }
+        TextInputEditText nitter_instance = findViewById(R.id.nitter_instance);
+        TextInputEditText invidious_instance = findViewById(R.id.invidious_instance);
+        TextInputEditText bibliogram_instance = findViewById(R.id.bibliogram_instance);
+        SharedPreferences sharedpreferences = getSharedPreferences(APP_PREFS, Context.MODE_PRIVATE);
+        String nitterHost = sharedpreferences.getString(SET_NITTER_HOST, null);
+        String invidiousHost = sharedpreferences.getString(SET_INVIDIOUS_HOST, null);
+        String bibliogramHost = sharedpreferences.getString(SET_BIBLIOGRAM_HOST, null);
+        if (nitterHost != null) {
+            nitter_instance.setText(nitterHost);
+        }
+        if (invidiousHost != null) {
+            invidious_instance.setText(invidiousHost);
+        }
+        if (bibliogramHost != null) {
+            bibliogram_instance.setText(bibliogramHost);
+        }
+
     }
 }

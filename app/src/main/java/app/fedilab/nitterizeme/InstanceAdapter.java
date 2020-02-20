@@ -23,19 +23,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.ProgressBar;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import static app.fedilab.nitterizeme.MainActivity.APP_PREFS;
-import static app.fedilab.nitterizeme.MainActivity.DEFAULT_BIBLIOGRAM_HOST;
-import static app.fedilab.nitterizeme.MainActivity.DEFAULT_INVIDIOUS_HOST;
-import static app.fedilab.nitterizeme.MainActivity.DEFAULT_NITTER_HOST;
 import static app.fedilab.nitterizeme.MainActivity.SET_BIBLIOGRAM_HOST;
 import static app.fedilab.nitterizeme.MainActivity.SET_INVIDIOUS_HOST;
 import static app.fedilab.nitterizeme.MainActivity.SET_NITTER_HOST;
@@ -43,11 +39,19 @@ import static app.fedilab.nitterizeme.MainActivity.SET_NITTER_HOST;
 public class InstanceAdapter extends RecyclerView.Adapter {
 
     private List<Instance> instances;
+    private InstanceAdapter instanceAdapter;
 
     InstanceAdapter(List<Instance> instances) {
         this.instances = instances;
+        this.instanceAdapter = this;
     }
 
+
+    @Override
+    public void onAttachedToRecyclerView(@NonNull RecyclerView recyclerView) {
+        super.onAttachedToRecyclerView(recyclerView);
+
+    }
 
     @NonNull
     @Override
@@ -66,46 +70,34 @@ public class InstanceAdapter extends RecyclerView.Adapter {
         SharedPreferences sharedpreferences = context.getSharedPreferences(APP_PREFS, Context.MODE_PRIVATE);
         //Reset checked instances by type when tipping
 
-        String defaultInvidious = sharedpreferences.getString(SET_INVIDIOUS_HOST, DEFAULT_INVIDIOUS_HOST);
-        String defaultNitter = sharedpreferences.getString(SET_NITTER_HOST, DEFAULT_NITTER_HOST);
-        String defaultBibliogram = sharedpreferences.getString(SET_BIBLIOGRAM_HOST, DEFAULT_BIBLIOGRAM_HOST);
 
-
+        holder.checkbox_instance.setText(instance.getDomain());
         if (instance.getLatency() == -1){
             holder.latency.setVisibility(View.GONE);
             holder.progress.setVisibility(View.GONE);
         }else if(instance.getLatency() == 0 ){
             holder.latency.setVisibility(View.GONE);
             holder.progress.setVisibility(View.VISIBLE);
+        }else if(instance.getLatency() == -2 ){
+            holder.latency.setText(R.string.error);
+            holder.latency.setVisibility(View.GONE);
+            holder.progress.setVisibility(View.VISIBLE);
         }else{
+            holder.latency.setText(String.format(Locale.getDefault(),"%d ms", instance.getLatency()));
             holder.latency.setVisibility(View.VISIBLE);
             holder.progress.setVisibility(View.GONE);
         }
 
-        switch (instance.getType()){
-            case INVIDIOUS:
-                if( instance.getDomain().compareTo(defaultInvidious) == 0 ){
-                    holder.checkbox_instance.setChecked(true);
-                }
-                break;
-            case NITTER:
-                if( instance.getDomain().compareTo(defaultNitter) == 0 ){
-                    holder.checkbox_instance.setChecked(true);
-                }
-                break;
-            case BIBLIOGRAM:
-                if( instance.getDomain().compareTo(defaultBibliogram) == 0 ){
-                    holder.checkbox_instance.setChecked(true);
-                }
-                break;
-        }
 
-        holder.checkbox_instance.setOnCheckedChangeListener((buttonView, isChecked) -> {
+        holder.checkbox_instance.setChecked(instance.isChecked());
+
+        holder.checkbox_instance.setOnClickListener(v->{
+
+            boolean isChecked = !instance.isChecked();
             for(Instance _ins: instances){
-                if(instance.getType() == _ins.getType() && instance.getDomain().compareTo(_ins.getDomain()) != 0 ){
-                    _ins.setChecked(false);
-                }
+                _ins.setChecked(false);
             }
+            instance.setChecked(true);
             SharedPreferences.Editor editor = sharedpreferences.edit();
             switch (instance.getType()){
                 case INVIDIOUS:
@@ -133,7 +125,9 @@ public class InstanceAdapter extends RecyclerView.Adapter {
                     editor.apply();
                     break;
             }
+            instanceAdapter.notifyItemRangeChanged(0, instances.size());
         });
+
 
     }
 
@@ -146,11 +140,7 @@ public class InstanceAdapter extends RecyclerView.Adapter {
                     long ping = Utils.ping(instance.getDomain());
                     Handler mainHandler = new Handler(Looper.getMainLooper());
                     Runnable myRunnable = () -> {
-                        if( ping > 0 ) {
-                            instance.setLatency(ping);
-                        }else{
-                            instance.setLatency(R.string.error);
-                        }
+                        instance.setLatency(ping);
                         notifyDataSetChanged();
                     };
                     mainHandler.post(myRunnable);

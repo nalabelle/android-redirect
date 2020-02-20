@@ -13,7 +13,7 @@ package app.fedilab.nitterizeme;
  *
  * You should have received a copy of the GNU General Public License along with NitterizeMe; if not,
  * see <http://www.gnu.org/licenses>. */
-public class Instance {
+class Instance {
 
     enum instanceType{
         INVIDIOUS,
@@ -22,38 +22,38 @@ public class Instance {
     }
     private String domain;
     private long latency = -1;
-    private boolean checked;
+    private boolean checked = false;
     private instanceType type;
 
-    public String getDomain() {
+    String getDomain() {
         return domain;
     }
 
-    public void setDomain(String domain) {
+    void setDomain(String domain) {
         this.domain = domain;
     }
 
-    public long getLatency() {
+    long getLatency() {
         return latency;
     }
 
-    public void setLatency(long latency) {
+    void setLatency(long latency) {
         this.latency = latency;
     }
 
-    public boolean isChecked() {
+    boolean isChecked() {
         return checked;
     }
 
-    public void setChecked(boolean checked) {
+    void setChecked(boolean checked) {
         this.checked = checked;
     }
 
-    public instanceType getType() {
+    instanceType getType() {
         return type;
     }
 
-    public void setType(instanceType type) {
+    void setType(instanceType type) {
         this.type = type;
     }
 }

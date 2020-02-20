@@ -15,6 +15,8 @@ package app.fedilab.nitterizeme;
  * see <http://www.gnu.org/licenses>. */
 
 import android.app.Activity;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
@@ -38,6 +40,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.net.ssl.HttpsURLConnection;
+
+import static app.fedilab.nitterizeme.MainActivity.APP_PREFS;
+import static app.fedilab.nitterizeme.MainActivity.DEFAULT_BIBLIOGRAM_HOST;
+import static app.fedilab.nitterizeme.MainActivity.DEFAULT_INVIDIOUS_HOST;
+import static app.fedilab.nitterizeme.MainActivity.DEFAULT_NITTER_HOST;
+import static app.fedilab.nitterizeme.MainActivity.SET_BIBLIOGRAM_HOST;
+import static app.fedilab.nitterizeme.MainActivity.SET_INVIDIOUS_HOST;
+import static app.fedilab.nitterizeme.MainActivity.SET_NITTER_HOST;
 
 
 public class InstanceActivity extends AppCompatActivity {
@@ -101,24 +111,38 @@ public class InstanceActivity extends AppCompatActivity {
                 JSONArray jsonArrayNitter = jsonObject.getJSONArray("nitter");
                 JSONArray jsonArrayBibliogram = jsonObject.getJSONArray("bibliogram");
 
+                SharedPreferences sharedpreferences = activity.getSharedPreferences(APP_PREFS, Context.MODE_PRIVATE);
+                String defaultInvidious = sharedpreferences.getString(SET_INVIDIOUS_HOST, DEFAULT_INVIDIOUS_HOST);
+                String defaultNitter = sharedpreferences.getString(SET_NITTER_HOST, DEFAULT_NITTER_HOST);
+                String defaultBibliogram = sharedpreferences.getString(SET_BIBLIOGRAM_HOST, DEFAULT_BIBLIOGRAM_HOST);
+
                 List<Instance> invidiousInstances = new ArrayList<>();
                 for(int i = 0; i < jsonArrayInvidious.length(); i++){
                     Instance instance = new Instance();
                     instance.setDomain(jsonArrayInvidious.getString(i));
+                    if( instance.getDomain().compareTo(defaultInvidious) == 0 ){
+                        instance.setChecked(true);
+                    }
                     instance.setType(Instance.instanceType.INVIDIOUS);
                     invidiousInstances.add(instance);
                 }
                 List<Instance> nitterInstances = new ArrayList<>();
                 for(int i = 0; i < jsonArrayNitter.length(); i++){
                     Instance instance = new Instance();
-                    instance.setDomain(jsonArrayInvidious.getString(i));
+                    instance.setDomain(jsonArrayNitter.getString(i));
+                    if( instance.getDomain().compareTo(defaultNitter) == 0 ){
+                        instance.setChecked(true);
+                    }
                     instance.setType(Instance.instanceType.NITTER);
                     nitterInstances.add(instance);
                 }
                 List<Instance> bibliogramInstances = new ArrayList<>();
                 for(int i = 0; i < jsonArrayBibliogram.length(); i++){
                     Instance instance = new Instance();
-                    instance.setDomain(jsonArrayInvidious.getString(i));
+                    instance.setDomain(jsonArrayBibliogram.getString(i));
+                    if( instance.getDomain().compareTo(defaultBibliogram) == 0 ){
+                        instance.setChecked(true);
+                    }
                     instance.setType(Instance.instanceType.BIBLIOGRAM);
                     bibliogramInstances.add(instance);
                 }
@@ -138,7 +162,13 @@ public class InstanceActivity extends AppCompatActivity {
                 bibliogram_instances.setAdapter(bibliogramAdapter);
                 bibliogram_instances.setLayoutManager(bLayoutManager);
 
-                latency_test.setOnClickListener(v-> invidiousAdapter.evalLatency());
+                latency_test.setOnClickListener(
+                        v-> {
+                            invidiousAdapter.evalLatency();
+                            nitterAdapter.evalLatency();
+                            bibliogramAdapter.evalLatency();
+                        }
+                );
 
             } catch (JSONException e) {
                 e.printStackTrace();

@@ -426,7 +426,7 @@
         <activity
             android:name="app.fedilab.nitterizeme.InstanceActivity"
             android:excludeFromRecents="true"
-            android:theme="@style/Base.V7.Theme.AppCompat.Dialog" />
+            android:theme="@style/AppThemeDilaog" />
         <activity
             android:name=".AboutActivity"
             android:configChanges="orientation|screenSize"

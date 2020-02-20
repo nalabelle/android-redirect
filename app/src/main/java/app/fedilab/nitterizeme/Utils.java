@@ -88,7 +88,7 @@ class Utils {
      * @param domain String domain name
      * @return long delay
      */
-    public static long ping(String domain){
+    static long ping(String domain){
         long timeDifference = -2;
         try {
             long beforeTime = System.currentTimeMillis();
