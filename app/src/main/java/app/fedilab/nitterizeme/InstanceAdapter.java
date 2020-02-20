@@ -21,8 +21,8 @@ import android.os.Looper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CheckBox;
 import android.widget.ProgressBar;
+import android.widget.RadioButton;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -163,7 +163,7 @@ public class InstanceAdapter extends RecyclerView.Adapter {
 
 
     class ViewHolder extends RecyclerView.ViewHolder {
-        CheckBox checkbox_instance;
+        RadioButton checkbox_instance;
         TextView latency;
         ProgressBar progress;
 
