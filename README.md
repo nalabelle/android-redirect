@@ -9,8 +9,7 @@ NitterizeMe once set by default to open Twitter and YouTube links will transform
 
 ## Download
 
-[<img alt='Get it on Google Play' src='./images/get-it-on-play.png' height="80"/>](https://play.google.com/store/apps/details?id=app.fedilab.nitterizeme)
-&nbsp;&nbsp;[<img alt='Get it on F-Droid' src='./images/get-it-on-fdroid.png' height="80"/>](https://f-droid.org/app/app.fedilab.nitterizeme)
+[<img alt='Get it on F-Droid' src='./images/get-it-on-fdroid.png' height="80"/>](https://f-droid.org/app/app.fedilab.nitterizeme)
 
 
 ### What is Nitter:
@@ -27,9 +26,9 @@ Github project: [/omarroth/invidious](https://github.com/omarroth/invidious)
 
 ### Screenshots:
 
-![A simple interface to cusomize instances](./images/img1.png) ![Clicking on app will open settings](./images/img2.png)
+![A simple interface to cusomize instances](./images/img1.png) ![Clicking on app will open settings](./images/img2.png)  ![You can get latencies for instances and pick up them here](./images/img3.png)
 
- ![A YouTube link received via a text message](./images/img3.png) ![The app handled and transformed it before delegating the action](./images/img4.png) ![The app opened the transformed link](./images/img5.png)
+ ![A YouTube link received via a text message](./images/img4.png) ![The app handled and transformed it before delegating the action](./images/img5.png) ![The app opened the transformed link](./images/img6.png)
 
 
 ### Going further
