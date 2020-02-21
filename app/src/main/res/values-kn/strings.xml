@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="action_settings">ಸಂಯೋಜನೆಗಳು</string>
+    <string name="action_about">ಬಗ್ಗೆ</string>
+    <string name="developer">ನಿರ್ಮಾಣಕರು</string>
+    <string name="donations">ದೇಣಿಗೆ</string>
+    <string name="about_the_app">ಅನ್ವಯದ ಬಗ್ಗೆ</string>
+    <string name="source_code">ಮೂಲ ಕೊಡ್</string>
+    <string name="issue_tracker">ದೋಷ ವರದಿಗಳು</string>
+    <string name="license">ಪರವಾನಗಿ</string>
+    <string name="about_vesrion">ಬಿಡುಗಡೆ %1$s</string>
+    <string name="custom_nitter">ಬೇರೆ ನಿಟ್ಟರ್ ನಿದರ್ಶನ</string>
+    <string name="save">ಉಳಿಸು</string>
+    <string name="close">ಮುಚ್ಚು</string>
+    <string name="instances_saved">ಬೇರೆ ನಿದರ್ಶನಗಳನ್ನು ಉಳಿಸಲಾಗಿದೆ!</string>
+    <string name="custom_invidious">ಬೇರೆ ಇನ್ವಿಡಿಯೌಸ್ ನಿದರ್ಶನ</string>
+    <string name="no_apps">ಪೂರ್ವನಿಯೋಜಿತವಾಗಿರುವ ಅನ್ವಯಗಳಿಲ್ಲ</string>
+    <string name="Donate">ದಾನ</string>
+    <string name="warning">ಎಚ್ಚರಿಕೆ</string>
+    <string name="error">ದೋಷ</string>
+    <string name="valid">ಮಾನ್ಯ</string>
+    <string name="icon_of_the_app">ಅನ್ವಯದ ಚಿತ್ರ</string>
+    <string name="open_with">ಇದರೊಂದಿಗೆ ತೆರೆ</string>
+    <string name="redirect_gm_to_osm">ಗೂಗಲ್ ನಕ್ಷೆಯನ್ನು ಓಪನ್‌ಸ್ಟ್ರೀಟ್‌ ನಕ್ಷೆಗೆ ರವಾನಿಸು</string>
+    <string name="custom_osm">ಬೇರೆ ಓಪನ್ ಸ್ಟ್ರೀಟ್ ಮ್ಯಾಪ್ ಸಂಕುಲ</string>
+    <string name="redirect_youtube_to_invidious">ಯೂಟ್ಯೂಬನ್ನು ಇನ್ವಿಡಿಯೋಸ್ ಗೆ ರವಾನಿಸು</string>
+    <string name="redirect_twitter_to_nitter">ಟ್ವಿಟ್ಟರ್ ಅನ್ನು ನಿಟ್ಟರ್ ಗೆ ರವಾನಿಸು</string>
+    <string name="redirect_instagram_to_bibliogram">ಇನ್ಸ್ಟಾಗ್ರಾಂ ಅನ್ನು ಬಿಬ್ಲಿಯೊಗ್ರಾಂ ಗೆ ರವಾನಿಸು</string>
+    <string name="custom_bibliogram">ಬೇರೆ ಬಿಬ್ಲಿಯೋಗ್ರಾಂ ನಿದರ್ಶನ</string>
+    <string name="redirect_gm_to_geo_uri">ಗೂಗಲ್ ನಕ್ಷೆಯನ್ನು ಭೂ ಸಂಪನ್ಮೂಲ ಗುರುತಿಗೆ (Geo URI) ರವಾನಿಸು</string>
+    <string name="configure">ಜೋಡಿಸು</string>
+    <string name="display_supported_links">ಬೆಂಬಲಿತ ಲಿಂಕ್‌ಗಳ ಪ್ರದರ್ಶನ</string>
+    <string name="hide_supported_links">ಬೆಂಬಲಿತ ಲಿಂಕ್‌ಗಳ ಮರೆಮಾಡು</string>
+    <string name="use_geo_uri">ಭೂ ಸಂಪನ್ಮೂಲ ಗುರುತು ಬಳಸು</string>
+    <string name="how_to">ಹೇಗೆ</string>
+    <string name="shortened_detected">ಸಂಕ್ಷಿಪ್ತ URL</string>
+    <string name="open">ತೆರೆ</string>
+    <string name="dismiss">ವಜಾಗೊಳಿಸು</string>
+    <string name="resolving_shortened">ದಯವಿಟ್ಟು ನಿರೀಕ್ಷಿಸಿ, ಸಂಕ್ಷಿಪ್ತ URL ಪರಿಹರಿಸುತ್ತಾ…</string>
+    <string name="try_to_redirect">%1$s \n\nನಮ್ಮನ್ನು ರವಾನಿಸುತ್ತದೆ‌ ಇಲ್ಲಿಗೆ:\n\n<b>%2$s</b></string>
+    <string name="try_to_redirect_again">ನಂತರ ಇದು ರವಾನಿಸುತ್ತದೆ ನಿಮ್ಮನ್ನು ಇಲ್ಲಿಗೆ:\n\n<b>%1$s</b></string>
+    <string name="the_app_failed_shortened">ಪೂರ್ಣ ಲಿಂಕ್ಅನ್ನು ಹಿಂಪಡೆಯಲು ಅನ್ವಯಕ್ಕಾಗಲಿಲ್ಲ</string>
+    <string name="invidious_instances">ಇನ್ವಿಡಿಯೋಸ್ ನಿದರ್ಶನಗಳು</string>
+    <string name="nitter_instances">ನಿಟ್ಟರ್ ನಿದರ್ಶನಗಳು</string>
+    <string name="bibliogram_instances">ಬಿಬ್ಲಿಯೊಗ್ರಾಂ ನಿದರ್ಶನಗಳು</string>
+    <string name="latency">ವಿಳಂಬ</string>
+</resources>
