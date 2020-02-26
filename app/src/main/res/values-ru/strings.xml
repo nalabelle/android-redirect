@@ -40,8 +40,8 @@
     <string name="try_to_redirect">%1$s \n\nперенаправит вас на\n\n<b>%2$s</b></string>
     <string name="try_to_redirect_again">Затем перенаправит вас на\n\n<b>%1$s</b></string>
     <string name="the_app_failed_shortened">Приложению не удалось получить полную ссылку</string>
-    <string name="invidious_instances">Invidious instances</string>
-    <string name="nitter_instances">Nitter instances</string>
-    <string name="bibliogram_instances">Bibliogram instances</string>
-    <string name="latency">Latency</string>
+    <string name="invidious_instances">Сервера Invidious</string>
+    <string name="nitter_instances">Сервера Nitter</string>
+    <string name="bibliogram_instances">Сервера Bibliogram</string>
+    <string name="latency">Задержка</string>
 </resources>
