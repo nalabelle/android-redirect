@@ -6,13 +6,13 @@ The app will detect shortened URLs and will display the full URL before visiting
 
 When sharing a Twitter, YouTube or Google Maps link just pick up NitterizeMe to transform it before sharing it with another app.
 
-What is Nitter:
+Что такое Nitter:
 
 Альтернативный клиент Twitter с открытым исходным кодом, ориентированный на конфиденциальность.
-Github project: https://github.com/zedeus/nitter
+Проект на Github: https://github.com/zedeus/nitter
 
 
-What is Invidious:
+Что такое Invidious:
 
 Альтернативный клиент для YouTube с открытым исходным кодом
-Github project: https://github.com/omarroth/invidious
+Проект на Github: https://github.com/omarroth/invidious
