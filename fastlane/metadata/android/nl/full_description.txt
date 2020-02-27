@@ -2,7 +2,7 @@ NitterizeMe is standaard ingesteld om Twitter en YouTube links te openen en zal 
 
 Het ondersteunt ook de Google Maps links om ze om te zetten in OpenStreetMap links of Geo URI.
 
-The app will detect shortened URLs and will display the full URL before visiting the site.
+De app detecteert verkorte URL's en geeft de volledige URL weer voordat u de site bezoekt.
 
 Bij het delen van een Twitter, YouTube of Google Maps link gewoon pick-up NitterizeMe om het te veranderen voordat het te delen met andere app.
 
