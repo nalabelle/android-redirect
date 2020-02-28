@@ -44,4 +44,5 @@
     <string name="nitter_instances">Nitter instances</string>
     <string name="bibliogram_instances">Bibliogram instances</string>
     <string name="latency">Latency</string>
+    <string name="instance_label">Instance:</string>
 </resources>
