@@ -21,6 +21,7 @@ import android.os.Looper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.TextView;
@@ -88,6 +89,12 @@ public class InstanceAdapter extends RecyclerView.Adapter {
             holder.progress.setVisibility(View.GONE);
         }
 
+        holder.locale.setText(instance.getLocale());
+        if( instance.isCloudflare()){
+            holder.useCloudflare.setVisibility(View.VISIBLE);
+        }else{
+            holder.useCloudflare.setVisibility(View.GONE);
+        }
 
         holder.checkbox_instance.setChecked(instance.isChecked());
 
@@ -164,14 +171,17 @@ public class InstanceAdapter extends RecyclerView.Adapter {
 
     class ViewHolder extends RecyclerView.ViewHolder {
         RadioButton checkbox_instance;
-        TextView latency;
+        TextView latency, locale;
         ProgressBar progress;
+        ImageView useCloudflare;
 
         ViewHolder(@NonNull View itemView) {
             super(itemView);
             checkbox_instance = itemView.findViewById(R.id.checkbox_instance);
             latency = itemView.findViewById(R.id.latency);
             progress = itemView.findViewById(R.id.progress);
+            locale = itemView.findViewById(R.id.locale);
+            useCloudflare = itemView.findViewById(R.id.use_cloudflare);
         }
     }
 

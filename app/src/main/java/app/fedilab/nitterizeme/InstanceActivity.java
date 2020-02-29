@@ -73,7 +73,7 @@ public class InstanceActivity extends AppCompatActivity {
         protected String doInBackground(Void... voids) {
             HttpsURLConnection httpsURLConnection;
             try {
-                String instances_url = "https://fedilab.app/nitterizeme_instances/payload.json";
+                String instances_url = "https://fedilab.app/nitterizeme_instances/payload_2.json";
                 URL url = new URL(instances_url);
                 httpsURLConnection = (HttpsURLConnection) url.openConnection();
                 httpsURLConnection.setConnectTimeout(10 * 1000);
@@ -125,8 +125,13 @@ public class InstanceActivity extends AppCompatActivity {
                 List<Instance> invidiousInstances = new ArrayList<>();
                 for (int i = 0; i < jsonArrayInvidious.length(); i++) {
                     Instance instance = new Instance();
-                    instance.setDomain(jsonArrayInvidious.getString(i));
-                    if (instance.getDomain().compareTo(defaultInvidious) == 0) {
+                    String domain = jsonArrayInvidious.getJSONObject(i).getString("domain");
+                    boolean cloudFlare = jsonArrayInvidious.getJSONObject(i).getBoolean("cloudflare");
+                    String locale = jsonArrayInvidious.getJSONObject(i).getString("locale");
+                    instance.setDomain(domain);
+                    instance.setCloudflare(cloudFlare);
+                    instance.setLocale(locale);
+                    if (domain.compareTo(defaultInvidious) == 0) {
                         instance.setChecked(true);
                     }
                     instance.setType(Instance.instanceType.INVIDIOUS);
@@ -135,8 +140,13 @@ public class InstanceActivity extends AppCompatActivity {
                 List<Instance> nitterInstances = new ArrayList<>();
                 for (int i = 0; i < jsonArrayNitter.length(); i++) {
                     Instance instance = new Instance();
-                    instance.setDomain(jsonArrayNitter.getString(i));
-                    if (instance.getDomain().compareTo(defaultNitter) == 0) {
+                    String domain = jsonArrayNitter.getJSONObject(i).getString("domain");
+                    boolean cloudFlare = jsonArrayNitter.getJSONObject(i).getBoolean("cloudflare");
+                    String locale = jsonArrayNitter.getJSONObject(i).getString("locale");
+                    instance.setDomain(domain);
+                    instance.setCloudflare(cloudFlare);
+                    instance.setLocale(locale);
+                    if (domain.compareTo(defaultNitter) == 0) {
                         instance.setChecked(true);
                     }
                     instance.setType(Instance.instanceType.NITTER);
@@ -145,8 +155,13 @@ public class InstanceActivity extends AppCompatActivity {
                 List<Instance> bibliogramInstances = new ArrayList<>();
                 for (int i = 0; i < jsonArrayBibliogram.length(); i++) {
                     Instance instance = new Instance();
-                    instance.setDomain(jsonArrayBibliogram.getString(i));
-                    if (instance.getDomain().compareTo(defaultBibliogram) == 0) {
+                    String domain = jsonArrayBibliogram.getJSONObject(i).getString("domain");
+                    boolean cloudFlare = jsonArrayBibliogram.getJSONObject(i).getBoolean("cloudflare");
+                    String locale = jsonArrayBibliogram.getJSONObject(i).getString("locale");
+                    instance.setDomain(domain);
+                    instance.setCloudflare(cloudFlare);
+                    instance.setLocale(locale);
+                    if (domain.compareTo(defaultBibliogram) == 0) {
                         instance.setChecked(true);
                     }
                     instance.setType(Instance.instanceType.BIBLIOGRAM);

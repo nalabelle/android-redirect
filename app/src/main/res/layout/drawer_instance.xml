@@ -8,17 +8,30 @@
 
     <RadioButton
         android:id="@+id/checkbox_instance"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
+        android:ellipsize="end"
         android:singleLine="true" />
-
+    <ImageView
+        android:layout_gravity="center"
+        android:layout_marginStart="3dp"
+        android:layout_marginLeft="3dp"
+        android:id="@+id/use_cloudflare"
+        android:layout_width="30dp"
+        android:src="@drawable/ic_cloudflare"
+        android:layout_height="20dp"
+        android:contentDescription="@string/cloudflare" />
+    <TextView
+        android:layout_marginStart="3dp"
+        android:layout_marginLeft="3dp"
+        android:layout_width="20dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/locale"/>
     <TextView
         android:id="@+id/latency"
-        android:layout_width="80dp"
+        android:layout_width="50dp"
         android:layout_height="wrap_content"
         android:gravity="end" />
-
     <ProgressBar
         android:id="@+id/progress"
         android:layout_width="20dp"

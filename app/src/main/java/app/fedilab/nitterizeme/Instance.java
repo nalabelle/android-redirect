@@ -20,6 +20,8 @@ class Instance {
     private long latency = -1;
     private boolean checked = false;
     private instanceType type;
+    private boolean cloudflare =false;
+    private String locale;
 
     String getDomain() {
         return domain;
@@ -51,6 +53,22 @@ class Instance {
 
     void setType(instanceType type) {
         this.type = type;
+    }
+
+    public boolean isCloudflare() {
+        return cloudflare;
+    }
+
+    public void setCloudflare(boolean cloudflare) {
+        this.cloudflare = cloudflare;
+    }
+
+    public String getLocale() {
+        return locale;
+    }
+
+    public void setLocale(String locale) {
+        this.locale = locale;
     }
 
     enum instanceType {
