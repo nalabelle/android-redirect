@@ -82,28 +82,6 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
-                <TextView
-                    android:id="@+id/label_instance_nitter"
-                    android:layout_width="wrap_content"
-                    android:layout_height="30dp"
-                    android:layout_marginStart="5dp"
-                    android:layout_marginLeft="5dp"
-                    android:gravity="center_vertical"
-                    android:text="@string/instance_label"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@id/guide_nitter" />
-
-                <TextView
-                    android:id="@+id/current_instance_nitter"
-                    android:layout_width="wrap_content"
-                    android:layout_height="30dp"
-                    android:layout_marginStart="5dp"
-                    android:layout_marginLeft="5dp"
-                    android:gravity="center_vertical"
-                    android:textColor="#fff"
-                    app:layout_constraintStart_toEndOf="@id/label_instance_nitter"
-                    app:layout_constraintTop_toTopOf="@id/guide_nitter" />
-
                 <ImageButton
                     android:id="@+id/button_expand_instance_nitter"
                     android:layout_width="30dp"
@@ -112,7 +90,30 @@
                     android:contentDescription="@string/expand_instance_details"
                     android:scaleType="fitCenter"
                     android:src="@drawable/ic_expand_more"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/guide_nitter" />
+
+                <TextView
+                    android:id="@+id/label_instance_nitter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:layout_marginStart="@dimen/label_instance_margin_start"
+                    android:layout_marginLeft="@dimen/label_instance_margin_start"
+                    android:gravity="center_vertical"
+                    android:text="@string/instance_label"
+                    app:layout_constraintStart_toEndOf="@id/button_expand_instance_nitter"
+                    app:layout_constraintTop_toTopOf="@id/guide_nitter" />
+
+                <TextView
+                    android:id="@+id/current_instance_nitter"
+                    android:layout_width="0dp"
+                    android:layout_height="30dp"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginLeft="5dp"
+                    android:gravity="center_vertical"
+                    android:textColor="#fff"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/label_instance_nitter"
                     app:layout_constraintTop_toTopOf="@id/guide_nitter" />
 
                 <androidx.constraintlayout.widget.Barrier
@@ -223,28 +224,6 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
-                <TextView
-                    android:id="@+id/label_instance_invidious"
-                    android:layout_width="wrap_content"
-                    android:layout_height="30dp"
-                    android:layout_marginStart="5dp"
-                    android:layout_marginLeft="5dp"
-                    android:gravity="center_vertical"
-                    android:text="@string/instance_label"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@id/guide_invidious" />
-
-                <TextView
-                    android:id="@+id/current_instance_invidious"
-                    android:layout_width="wrap_content"
-                    android:layout_height="30dp"
-                    android:layout_marginStart="5dp"
-                    android:layout_marginLeft="5dp"
-                    android:gravity="center_vertical"
-                    android:textColor="#fff"
-                    app:layout_constraintStart_toEndOf="@id/label_instance_invidious"
-                    app:layout_constraintTop_toTopOf="@id/guide_invidious" />
-
                 <ImageButton
                     android:id="@+id/button_expand_instance_invidious"
                     android:layout_width="30dp"
@@ -253,7 +232,30 @@
                     android:contentDescription="@string/expand_instance_details"
                     android:scaleType="fitCenter"
                     android:src="@drawable/ic_expand_more"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/guide_invidious" />
+
+                <TextView
+                    android:id="@+id/label_instance_invidious"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:layout_marginStart="@dimen/label_instance_margin_start"
+                    android:layout_marginLeft="@dimen/label_instance_margin_start"
+                    android:gravity="center_vertical"
+                    android:text="@string/instance_label"
+                    app:layout_constraintStart_toEndOf="@id/button_expand_instance_invidious"
+                    app:layout_constraintTop_toTopOf="@id/guide_invidious" />
+
+                <TextView
+                    android:id="@+id/current_instance_invidious"
+                    android:layout_width="0dp"
+                    android:layout_height="30dp"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginLeft="5dp"
+                    android:gravity="center_vertical"
+                    android:textColor="#fff"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/label_instance_invidious"
                     app:layout_constraintTop_toTopOf="@id/guide_invidious" />
 
                 <androidx.constraintlayout.widget.Barrier
@@ -364,28 +366,6 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
-                <TextView
-                    android:id="@+id/label_instance_bibliogram"
-                    android:layout_width="wrap_content"
-                    android:layout_height="30dp"
-                    android:layout_marginStart="5dp"
-                    android:layout_marginLeft="5dp"
-                    android:gravity="center_vertical"
-                    android:text="@string/instance_label"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@id/guide_bibliogram" />
-
-                <TextView
-                    android:id="@+id/current_instance_bibliogram"
-                    android:layout_width="wrap_content"
-                    android:layout_height="30dp"
-                    android:layout_marginStart="5dp"
-                    android:layout_marginLeft="5dp"
-                    android:gravity="center_vertical"
-                    android:textColor="#fff"
-                    app:layout_constraintStart_toEndOf="@id/label_instance_bibliogram"
-                    app:layout_constraintTop_toTopOf="@id/guide_bibliogram" />
-
                 <ImageButton
                     android:id="@+id/button_expand_instance_bibliogram"
                     android:layout_width="30dp"
@@ -394,7 +374,30 @@
                     android:contentDescription="@string/expand_instance_details"
                     android:scaleType="fitCenter"
                     android:src="@drawable/ic_expand_more"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/guide_bibliogram" />
+
+                <TextView
+                    android:id="@+id/label_instance_bibliogram"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:layout_marginStart="@dimen/label_instance_margin_start"
+                    android:layout_marginLeft="@dimen/label_instance_margin_start"
+                    android:gravity="center_vertical"
+                    android:text="@string/instance_label"
+                    app:layout_constraintStart_toEndOf="@id/button_expand_instance_bibliogram"
+                    app:layout_constraintTop_toTopOf="@id/guide_bibliogram" />
+
+                <TextView
+                    android:id="@+id/current_instance_bibliogram"
+                    android:layout_width="0dp"
+                    android:layout_height="30dp"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginLeft="5dp"
+                    android:gravity="center_vertical"
+                    android:textColor="#fff"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/label_instance_bibliogram"
                     app:layout_constraintTop_toTopOf="@id/guide_bibliogram" />
 
                 <androidx.constraintlayout.widget.Barrier
@@ -505,28 +508,6 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
-                <TextView
-                    android:id="@+id/label_instance_osm"
-                    android:layout_width="wrap_content"
-                    android:layout_height="30dp"
-                    android:layout_marginStart="5dp"
-                    android:layout_marginLeft="5dp"
-                    android:gravity="center_vertical"
-                    android:text="@string/instance_label"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@id/guide_osm" />
-
-                <TextView
-                    android:id="@+id/current_instance_osm"
-                    android:layout_width="wrap_content"
-                    android:layout_height="30dp"
-                    android:layout_marginStart="5dp"
-                    android:layout_marginLeft="5dp"
-                    android:gravity="center_vertical"
-                    android:textColor="#fff"
-                    app:layout_constraintStart_toEndOf="@id/label_instance_osm"
-                    app:layout_constraintTop_toTopOf="@id/guide_osm" />
-
                 <ImageButton
                     android:id="@+id/button_expand_instance_osm"
                     android:layout_width="30dp"
@@ -535,7 +516,30 @@
                     android:contentDescription="@string/expand_instance_details"
                     android:scaleType="fitCenter"
                     android:src="@drawable/ic_expand_more"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/guide_osm" />
+
+                <TextView
+                    android:id="@+id/label_instance_osm"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:layout_marginStart="@dimen/label_instance_margin_start"
+                    android:layout_marginLeft="@dimen/label_instance_margin_start"
+                    android:gravity="center_vertical"
+                    android:text="@string/instance_label"
+                    app:layout_constraintStart_toEndOf="@id/button_expand_instance_osm"
+                    app:layout_constraintTop_toTopOf="@id/guide_osm" />
+
+                <TextView
+                    android:id="@+id/current_instance_osm"
+                    android:layout_width="0dp"
+                    android:layout_height="30dp"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginLeft="5dp"
+                    android:gravity="center_vertical"
+                    android:textColor="#fff"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/label_instance_osm"
                     app:layout_constraintTop_toTopOf="@id/guide_osm" />
 
                 <androidx.constraintlayout.widget.Barrier
