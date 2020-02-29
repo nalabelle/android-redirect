@@ -46,5 +46,5 @@
     <string name="latency">Καθυστέρηση</string>
     <string name="error_message_internet">Ελέγξτε τη σύνδεσή σας στο Internet</string>
     <string name="instance_label">Κόμβος:</string>
-    <string name="expand_instance_details">Expand instance details</string>
+    <string name="expand_instance_details">Επέκταση λεπτομερειών κόμβου</string>
 </resources>
