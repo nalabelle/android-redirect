@@ -2,17 +2,17 @@
 
 It also supports Google Maps links to transform them into OpenStreetMap links or Geo URI.
 
-The app will detect shortened URLs and will display the full URL before visiting the site.
+يقوم التطبيق بالكشف عن تقصير عناوين المواقع و يعرض عنوان URL الكامل قبل زيارة الموقع.
 
 When sharing a Twitter, YouTube or Google Maps link just pick up NitterizeMe to transform it before sharing it with another app.
 
-What is Nitter:
+ما هو Nitter:
 
 إن Nitter واجهة أمامية مفتوحة المصدر بديلة لـ Twitter تركز على الخصوصية.
-Github project: https://github.com/zedeus/nitter
+المشروع على غيت هب: https://github.com/zedeus/nitter
 
 
-What is Invidious:
+ما هو Invidious:
 
 واجهة بديلة حرة ومفتوحة المصدر لـ يوتيوب
-Github project: https://github.com/omarroth/invidious
+المشروع على غيت هب: https://github.com/omarroth/invidious

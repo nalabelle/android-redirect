@@ -35,17 +35,17 @@
     <string name="how_to">Anleitung</string>
     <string name="shortened_detected">Verkürzte URL</string>
     <string name="open">Öffnen</string>
-    <string name="dismiss">Dismiss</string>
-    <string name="resolving_shortened">Resolving shortened URL, please wait…</string>
-    <string name="try_to_redirect">%1$s \n\nwill redirect you to\n\n<b>%2$s</b></string>
-    <string name="try_to_redirect_again">Then it will redirect you to\n\n<b>%1$s</b></string>
+    <string name="dismiss">Beenden</string>
+    <string name="resolving_shortened">Verkürzte URL auflösen, bitte warten…</string>
+    <string name="try_to_redirect">%1$s \n\nwird Sie zu\n\n<b>%2$s</b> weiterleiten</string>
+    <string name="try_to_redirect_again">Danach wird Sie zu\n\n<b>%1$s</b> umgeleitet</string>
     <string name="the_app_failed_shortened">Die App hat es nicht geschafft, die vollständige URL abzurufen</string>
     <string name="invidious_instances">Invidious-Instanzen</string>
     <string name="nitter_instances">Nitter-Instanzen</string>
     <string name="bibliogram_instances">Bibliogram-Instanzen</string>
     <string name="latency">Latenz</string>
-    <string name="error_message_internet">Check your Internet connection</string>
-    <string name="instance_label">Instance:</string>
-    <string name="expand_instance_details">Expand instance details</string>
-    <string name="cloudflare">This instance uses Cloudflare</string>
+    <string name="error_message_internet">Überprüfe deine Internetverbindung</string>
+    <string name="instance_label">Instanz:</string>
+    <string name="expand_instance_details">Details der Instanz erweitern</string>
+    <string name="cloudflare">Diese Instanz verwendet Cloudflare</string>
 </resources>
