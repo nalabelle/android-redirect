@@ -48,19 +48,19 @@ import java.util.Objects;
 public class MainActivity extends AppCompatActivity {
 
     public static final String APP_PREFS = "app_prefs";
+    public static final String SET_NITTER_HOST = "set_nitter_host";
+    public static final String SET_INVIDIOUS_HOST = "set_invidious_host";
+    public static final String SET_OSM_HOST = "set_osm_host";
+    public static final String SET_BIBLIOGRAM_HOST = "set_bibliogram_host";
     @SuppressWarnings("unused")
     public static String TAG = "NitterizeMe";
-    public static final String SET_NITTER_HOST = "set_nitter_host";
     public static String DEFAULT_NITTER_HOST = "nitter.net";
-    public static final String SET_INVIDIOUS_HOST = "set_invidious_host";
     public static String DEFAULT_INVIDIOUS_HOST = "invidio.us";
     public static String SET_INVIDIOUS_ENABLED = "set_invidious_enabled";
     public static String SET_NITTER_ENABLED = "set_nitter_enabled";
     public static String SET_OSM_ENABLED = "set_osm_enabled";
-    public static final String SET_OSM_HOST = "set_osm_host";
     public static String DEFAULT_OSM_HOST = "www.openstreetmap.org";
     public static String SET_BIBLIOGRAM_ENABLED = "set_bibliogram_enabled";
-    public static final String SET_BIBLIOGRAM_HOST = "set_bibliogram_host";
     public static String DEFAULT_BIBLIOGRAM_HOST = "bibliogram.art";
     public static String SET_GEO_URIS = "set_geo_uris";
     //Supported domains
@@ -236,7 +236,6 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-
         expand_instance_nitter.setOnClickListener(v -> {
             boolean custom_instance_visibility = nitter_custom_group.getVisibility() == View.VISIBLE;
             if (custom_instance_visibility) {
@@ -301,7 +300,6 @@ public class MainActivity extends AppCompatActivity {
                 osm_instance.setText("");
             }
         });
-
 
 
         if (nitterHost != null) {

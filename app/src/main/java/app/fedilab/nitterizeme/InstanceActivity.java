@@ -106,7 +106,7 @@ public class InstanceActivity extends AppCompatActivity {
             RecyclerView bibliogram_instances = activity.findViewById(R.id.bibliogram_instances);
             Button latency_test = activity.findViewById(R.id.latency_test);
             Button close = activity.findViewById(R.id.close);
-            if( result == null ) {
+            if (result == null) {
                 View parentLayout = activity.findViewById(android.R.id.content);
                 Snackbar.make(parentLayout, R.string.error_message_internet, Snackbar.LENGTH_LONG).setAction(R.string.close, v -> activity.finish()).show();
                 return;

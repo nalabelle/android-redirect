@@ -109,11 +109,11 @@
                     android:layout_width="30dp"
                     android:layout_height="30dp"
                     android:background="@null"
+                    android:contentDescription="@string/expand_instance_details"
                     android:scaleType="fitCenter"
                     android:src="@drawable/ic_expand_more"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@id/guide_nitter"
-                    android:contentDescription="@string/expand_instance_details" />
+                    app:layout_constraintTop_toTopOf="@id/guide_nitter" />
 
                 <androidx.constraintlayout.widget.Barrier
                     android:id="@+id/barrier_nitter"
@@ -250,11 +250,11 @@
                     android:layout_width="30dp"
                     android:layout_height="30dp"
                     android:background="@null"
+                    android:contentDescription="@string/expand_instance_details"
                     android:scaleType="fitCenter"
                     android:src="@drawable/ic_expand_more"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@id/guide_invidious"
-                    android:contentDescription="@string/expand_instance_details"/>
+                    app:layout_constraintTop_toTopOf="@id/guide_invidious" />
 
                 <androidx.constraintlayout.widget.Barrier
                     android:id="@+id/barrier_invidious"
@@ -391,11 +391,11 @@
                     android:layout_width="30dp"
                     android:layout_height="30dp"
                     android:background="@null"
+                    android:contentDescription="@string/expand_instance_details"
                     android:scaleType="fitCenter"
                     android:src="@drawable/ic_expand_more"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@id/guide_bibliogram"
-                    android:contentDescription="@string/expand_instance_details"/>
+                    app:layout_constraintTop_toTopOf="@id/guide_bibliogram" />
 
                 <androidx.constraintlayout.widget.Barrier
                     android:id="@+id/barrier_bibliogram"
@@ -532,11 +532,11 @@
                     android:layout_width="30dp"
                     android:layout_height="30dp"
                     android:background="@null"
+                    android:contentDescription="@string/expand_instance_details"
                     android:scaleType="fitCenter"
                     android:src="@drawable/ic_expand_more"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@id/guide_osm"
-                    android:contentDescription="@string/expand_instance_details"/>
+                    app:layout_constraintTop_toTopOf="@id/guide_osm" />
 
                 <androidx.constraintlayout.widget.Barrier
                     android:id="@+id/barrier_osm"
