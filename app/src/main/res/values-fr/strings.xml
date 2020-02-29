@@ -45,4 +45,5 @@
     <string name="bibliogram_instances">Instances Bibliogram</string>
     <string name="latency">Latence</string>
     <string name="error_message_internet">Check your Internet connection</string>
+    <string name="instance_label">Instance:</string>
 </resources>
