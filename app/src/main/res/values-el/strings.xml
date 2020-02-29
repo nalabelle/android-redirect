@@ -9,11 +9,11 @@
     <string name="issue_tracker">Καταγραφές προβλημάτων</string>
     <string name="license">Άδεια</string>
     <string name="about_vesrion">Έκδοση %1$s</string>
-    <string name="custom_nitter">Προσαρμοσμένη υπόσταση Nitter</string>
+    <string name="custom_nitter">Προσαρμοσμένος κόμβος Nitter</string>
     <string name="save">Αποθήκευση</string>
     <string name="close">Κλείσιμο</string>
-    <string name="instances_saved">Οι προσαρμοσμένες υποστάσεις αποθηκεύτηκαν!</string>
-    <string name="custom_invidious">Προσαρμοσμένη υπόσταση Invidious</string>
+    <string name="instances_saved">Οι προσαρμοσμένοι κόμβοι αποθηκεύτηκαν!</string>
+    <string name="custom_invidious">Προσαρμοσμένος κόμβος Invidious</string>
     <string name="no_apps">Καμοία εφαρμογή από προεπιλογή</string>
     <string name="Donate">Κάντε Δωρεά</string>
     <string name="warning">Προειδοποίηση</string>
@@ -26,7 +26,7 @@
     <string name="redirect_youtube_to_invidious">Ανακατεύθυνση Youtube σε Invidious</string>
     <string name="redirect_twitter_to_nitter">Ανακατεύθυνση Twitter σε Nitter</string>
     <string name="redirect_instagram_to_bibliogram">Ανακατεύθυνση Instagram σε Bibliogram</string>
-    <string name="custom_bibliogram">Προσαρμοσμένη υπόσταση Bibliogram</string>
+    <string name="custom_bibliogram">Προσαρμοσμένος κόμβος Bibliogram</string>
     <string name="redirect_gm_to_geo_uri">Ανακατεύθυνση Google Map σε Geo URI</string>
     <string name="configure">Ρύθμιση</string>
     <string name="display_supported_links">Εμφάνιση υποστηριζόμενων συνδέσμων</string>
@@ -40,10 +40,10 @@
     <string name="try_to_redirect">%1$s \n\nθα σας ανακατευθύνει σε\n\n<b>%2$s</b></string>
     <string name="try_to_redirect_again">Μετά θα σας ανακατευθήνει στο\n\n<b>%1$s</b></string>
     <string name="the_app_failed_shortened">Η εφαρμογή δεν κατάφερε να ανακτήσει την πλήρη URL</string>
-    <string name="invidious_instances">Υποστάσεις Invidious</string>
-    <string name="nitter_instances">Υποστάσεις Nitter</string>
-    <string name="bibliogram_instances">Υποστάσεις Bibliogram</string>
+    <string name="invidious_instances">Κόμβοι Invidious</string>
+    <string name="nitter_instances">Κόμβοι Nitter</string>
+    <string name="bibliogram_instances">Κόμβοι Bibliogram</string>
     <string name="latency">Καθυστέρηση</string>
     <string name="error_message_internet">Ελέγξτε τη σύνδεσή σας στο Internet</string>
-    <string name="instance_label">Instance:</string>
+    <string name="instance_label">Κόμβος:</string>
 </resources>
