@@ -172,17 +172,19 @@ public class InstanceActivity extends AppCompatActivity {
                 InstanceAdapter invidiousAdapter = new InstanceAdapter(invidiousInstances);
                 invidious_instances.setAdapter(invidiousAdapter);
                 invidious_instances.setLayoutManager(iLayoutManager);
+                invidious_instances.setNestedScrollingEnabled(false);
 
                 final LinearLayoutManager nLayoutManager = new LinearLayoutManager(activity);
                 InstanceAdapter nitterAdapter = new InstanceAdapter(nitterInstances);
                 nitter_instances.setAdapter(nitterAdapter);
                 nitter_instances.setLayoutManager(nLayoutManager);
+                nitter_instances.setNestedScrollingEnabled(false);
 
                 final LinearLayoutManager bLayoutManager = new LinearLayoutManager(activity);
                 InstanceAdapter bibliogramAdapter = new InstanceAdapter(bibliogramInstances);
                 bibliogram_instances.setAdapter(bibliogramAdapter);
                 bibliogram_instances.setLayoutManager(bLayoutManager);
-
+                bibliogram_instances.setNestedScrollingEnabled(false);
                 latency_test.setOnClickListener(
                         v -> {
                             invidiousAdapter.evalLatency();

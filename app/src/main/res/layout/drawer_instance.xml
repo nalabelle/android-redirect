@@ -8,34 +8,50 @@
 
     <RadioButton
         android:id="@+id/checkbox_instance"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
+        android:layout_weight="1"
         android:layout_height="wrap_content"
         android:ellipsize="end"
         android:singleLine="true" />
-    <ImageView
-        android:layout_gravity="center"
-        android:layout_marginStart="3dp"
-        android:layout_marginLeft="3dp"
-        android:id="@+id/use_cloudflare"
-        android:layout_width="30dp"
-        android:src="@drawable/ic_cloudflare"
-        android:layout_height="20dp"
-        android:contentDescription="@string/cloudflare" />
-    <TextView
-        android:layout_marginStart="3dp"
-        android:layout_marginLeft="3dp"
-        android:layout_width="20dp"
-        android:layout_height="wrap_content"
-        android:id="@+id/locale"/>
-    <TextView
-        android:id="@+id/latency"
+    <LinearLayout
         android:layout_width="50dp"
         android:layout_height="wrap_content"
-        android:gravity="end" />
-    <ProgressBar
-        android:id="@+id/progress"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
-        android:layout_gravity="center_vertical|end"
-        android:visibility="gone" />
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:textAllCaps="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/locale"/>
+            <ImageView
+                android:layout_gravity="center"
+                android:layout_marginStart="5dp"
+                android:layout_marginLeft="5dp"
+                android:id="@+id/use_cloudflare"
+                android:layout_width="20dp"
+                android:src="@drawable/ic_cloudflare"
+                android:layout_height="15dp"
+                android:contentDescription="@string/cloudflare" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:id="@+id/latency"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:gravity="end" />
+            <ProgressBar
+                android:id="@+id/progress"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_gravity="center_vertical|end"
+                android:visibility="gone" />
+        </LinearLayout>
+    </LinearLayout>
+
 </LinearLayout>

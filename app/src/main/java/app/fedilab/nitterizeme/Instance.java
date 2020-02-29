@@ -55,19 +55,19 @@ class Instance {
         this.type = type;
     }
 
-    public boolean isCloudflare() {
+    boolean isCloudflare() {
         return cloudflare;
     }
 
-    public void setCloudflare(boolean cloudflare) {
+    void setCloudflare(boolean cloudflare) {
         this.cloudflare = cloudflare;
     }
 
-    public String getLocale() {
+    String getLocale() {
         return locale;
     }
 
-    public void setLocale(String locale) {
+    void setLocale(String locale) {
         this.locale = locale;
     }
 
