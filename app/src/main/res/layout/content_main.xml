@@ -112,7 +112,8 @@
                     android:scaleType="fitCenter"
                     android:src="@drawable/ic_expand_more"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@id/guide_nitter" />
+                    app:layout_constraintTop_toTopOf="@id/guide_nitter"
+                    android:contentDescription="@string/expand_instance_details" />
 
                 <androidx.constraintlayout.widget.Barrier
                     android:id="@+id/barrier_nitter"
@@ -252,7 +253,8 @@
                     android:scaleType="fitCenter"
                     android:src="@drawable/ic_expand_more"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@id/guide_invidious" />
+                    app:layout_constraintTop_toTopOf="@id/guide_invidious"
+                    android:contentDescription="@string/expand_instance_details"/>
 
                 <androidx.constraintlayout.widget.Barrier
                     android:id="@+id/barrier_invidious"
@@ -392,7 +394,8 @@
                     android:scaleType="fitCenter"
                     android:src="@drawable/ic_expand_more"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@id/guide_bibliogram" />
+                    app:layout_constraintTop_toTopOf="@id/guide_bibliogram"
+                    android:contentDescription="@string/expand_instance_details"/>
 
                 <androidx.constraintlayout.widget.Barrier
                     android:id="@+id/barrier_bibliogram"
@@ -532,7 +535,8 @@
                     android:scaleType="fitCenter"
                     android:src="@drawable/ic_expand_more"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@id/guide_osm" />
+                    app:layout_constraintTop_toTopOf="@id/guide_osm"
+                    android:contentDescription="@string/expand_instance_details"/>
 
                 <androidx.constraintlayout.widget.Barrier
                     android:id="@+id/barrier_osm"
