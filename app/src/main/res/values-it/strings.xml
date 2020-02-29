@@ -25,8 +25,8 @@
     <string name="custom_osm">Hostname OSM personalizzato</string>
     <string name="redirect_youtube_to_invidious">Reindirizza YouTube a Invidious</string>
     <string name="redirect_twitter_to_nitter">Reindirizza Twitter a Nitter</string>
-    <string name="redirect_instagram_to_bibliogram">Redirect Instagram to Bibliogram</string>
-    <string name="custom_bibliogram">Custom Bibliogram instance</string>
+    <string name="redirect_instagram_to_bibliogram">Reindirizza Instagram a Bibliogram</string>
+    <string name="custom_bibliogram">Istanza Bibliogram personalizzata</string>
     <string name="redirect_gm_to_geo_uri">Reindirizza Google Map a Geo URI</string>
     <string name="configure">Configura</string>
     <string name="display_supported_links">Mostra link supportati</string>
@@ -40,8 +40,8 @@
     <string name="try_to_redirect">%1$s \n\nti reindirizzerà su\n\n<b>%2$s</b></string>
     <string name="try_to_redirect_again">Poi ti reindirizzerà su\n\n<b>%1$s</b></string>
     <string name="the_app_failed_shortened">L\'app non è riuscita a recuperare l\'URL completo</string>
-    <string name="invidious_instances">Invidious instances</string>
-    <string name="nitter_instances">Nitter instances</string>
-    <string name="bibliogram_instances">Bibliogram instances</string>
-    <string name="latency">Latency</string>
+    <string name="invidious_instances">Istanze Invidious</string>
+    <string name="nitter_instances">Istanze Nitter</string>
+    <string name="bibliogram_instances">Istanze Bibliogram</string>
+    <string name="latency">Latenza</string>
 </resources>
