@@ -25,7 +25,7 @@
     <string name="custom_osm">Benutzerdefinierter OSM Hostname</string>
     <string name="redirect_youtube_to_invidious">YouTube auf Invidious umleiten</string>
     <string name="redirect_twitter_to_nitter">Twitter zu Nitter umleiten</string>
-    <string name="redirect_instagram_to_bibliogram">Redirect Instagram to Bibliogram</string>
+    <string name="redirect_instagram_to_bibliogram">Instagram auf Bibliogramm umleiten</string>
     <string name="custom_bibliogram">Benutzerdefinierte Bibliogram Instanz</string>
     <string name="redirect_gm_to_geo_uri">Google Map auf Geo URI umleiten</string>
     <string name="configure">Konfigurieren</string>
@@ -34,7 +34,7 @@
     <string name="use_geo_uri">Geo URI benutzen</string>
     <string name="how_to">Anleitung</string>
     <string name="shortened_detected">Verkürzte URL</string>
-    <string name="open">Open</string>
+    <string name="open">Öffnen</string>
     <string name="dismiss">Dismiss</string>
     <string name="resolving_shortened">Resolving shortened URL, please wait…</string>
     <string name="try_to_redirect">%1$s \n\nwill redirect you to\n\n<b>%2$s</b></string>
@@ -44,4 +44,5 @@
     <string name="nitter_instances">Nitter-Instanzen</string>
     <string name="bibliogram_instances">Bibliogram-Instanzen</string>
     <string name="latency">Latenz</string>
+    <string name="error_message_internet">Check your Internet connection</string>
 </resources>

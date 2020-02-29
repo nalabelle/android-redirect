@@ -44,4 +44,5 @@
     <string name="nitter_instances">Instancje Nitter</string>
     <string name="bibliogram_instances">Instancje Bibliogram</string>
     <string name="latency">Opóźnienie</string>
+    <string name="error_message_internet">Check your Internet connection</string>
 </resources>

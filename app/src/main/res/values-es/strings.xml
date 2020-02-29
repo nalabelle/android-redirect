@@ -44,4 +44,5 @@
     <string name="nitter_instances">Nodos de Nitter</string>
     <string name="bibliogram_instances">Nodos de Bibliogram</string>
     <string name="latency">Latencia</string>
+    <string name="error_message_internet">Check your Internet connection</string>
 </resources>
