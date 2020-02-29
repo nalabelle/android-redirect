@@ -1,0 +1,8 @@
+Added:
+- More details about instances (locale & behind Cloudflare)
+
+Changed:
+ - New UI (Thanks to @ashlk)
+
+Fixed:
+- Crash with no Internet connection when clicking the globe icon
