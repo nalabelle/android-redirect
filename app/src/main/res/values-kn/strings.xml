@@ -44,4 +44,5 @@
     <string name="nitter_instances">ನಿಟ್ಟರ್ ನಿದರ್ಶನಗಳು</string>
     <string name="bibliogram_instances">ಬಿಬ್ಲಿಯೊಗ್ರಾಂ ನಿದರ್ಶನಗಳು</string>
     <string name="latency">ವಿಳಂಬ</string>
+    <string name="error_message_internet">Check your Internet connection</string>
 </resources>
