@@ -47,4 +47,5 @@
     <string name="error_message_internet">Vérifiez votre connexion Internet</string>
     <string name="instance_label">Instance :</string>
     <string name="expand_instance_details">Expand instance details</string>
+    <string name="cloudflare">This instance uses Cloudflare</string>
 </resources>

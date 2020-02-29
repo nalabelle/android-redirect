@@ -47,4 +47,5 @@
     <string name="error_message_internet">Ελέγξτε τη σύνδεσή σας στο Internet</string>
     <string name="instance_label">Κόμβος:</string>
     <string name="expand_instance_details">Επέκταση λεπτομερειών κόμβου</string>
+    <string name="cloudflare">Αυτό ο κόμβος χρησιμοποιεί Cloudflare</string>
 </resources>
