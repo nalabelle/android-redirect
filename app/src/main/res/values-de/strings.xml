@@ -46,4 +46,5 @@
     <string name="latency">Latenz</string>
     <string name="error_message_internet">Check your Internet connection</string>
     <string name="instance_label">Instance:</string>
+    <string name="expand_instance_details">Expand instance details</string>
 </resources>
