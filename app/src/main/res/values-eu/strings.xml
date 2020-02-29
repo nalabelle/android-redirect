@@ -39,13 +39,13 @@
     <string name="resolving_shortened">Laburtutako URLa ebazten, itxaron…</string>
     <string name="try_to_redirect">%1$s \n\nhelbideak hona darama:\n\n<b>%2$s</b></string>
     <string name="try_to_redirect_again">Gero hona eramango zaitu: \n\n<b>%1$s</b></string>
-    <string name="the_app_failed_shortened">The app didn\'t manage to retrieve the full URL</string>
-    <string name="invidious_instances">Invidious instances</string>
-    <string name="nitter_instances">Nitter instances</string>
-    <string name="bibliogram_instances">Bibliogram instances</string>
-    <string name="latency">Latency</string>
-    <string name="error_message_internet">Check your Internet connection</string>
-    <string name="instance_label">Instance:</string>
-    <string name="expand_instance_details">Expand instance details</string>
-    <string name="cloudflare">This instance uses Cloudflare</string>
+    <string name="the_app_failed_shortened">Aplikazioak ezin izan du URL osoa jaso</string>
+    <string name="invidious_instances">Invidious instantziak</string>
+    <string name="nitter_instances">Nitter instantziak</string>
+    <string name="bibliogram_instances">Bibliogram instantziak</string>
+    <string name="latency">Latentzia</string>
+    <string name="error_message_internet">Egiaztatu zure internet konexioa</string>
+    <string name="instance_label">Instantzia:</string>
+    <string name="expand_instance_details">Hedatu instantziaren xehetasunak</string>
+    <string name="cloudflare">Instantzia honek Cloudflare darabil</string>
 </resources>
