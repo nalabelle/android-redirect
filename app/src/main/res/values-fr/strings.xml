@@ -46,6 +46,6 @@
     <string name="latency">Latence</string>
     <string name="error_message_internet">Vérifiez votre connexion Internet</string>
     <string name="instance_label">Instance :</string>
-    <string name="expand_instance_details">Expand instance details</string>
-    <string name="cloudflare">This instance uses Cloudflare</string>
+    <string name="expand_instance_details">Développer les détails de l\'instance</string>
+    <string name="cloudflare">Cette instance utilise Cloudflare</string>
 </resources>
