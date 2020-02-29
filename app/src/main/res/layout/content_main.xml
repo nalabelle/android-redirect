@@ -23,285 +23,654 @@
     android:scrollbars="none"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".MainActivity"
-    tools:showIn="@layout/activity_main"
-
-    >
+    tools:showIn="@layout/activity_main">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/fab_margin"
-        android:animateLayoutChanges="true">
+        android:layout_margin="6dp"
+        android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/introduction"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-
-        <LinearLayout
+        <androidx.cardview.widget.CardView
             android:id="@+id/nitter_container"
-            android:layout_width="0dp"
+            style="@style/containerCard"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:orientation="horizontal"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/introduction">
+            app:layout_constraintBottom_toTopOf="@id/invidious_container"
+            app:layout_constraintTop_toTopOf="parent">
 
-            <TextView
-                android:id="@+id/nitter_indications"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/redirect_twitter_to_nitter" />
-
-            <androidx.appcompat.widget.SwitchCompat
-                android:id="@+id/enable_nitter"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center" />
-        </LinearLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/nitter_instance_container"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/nitter_container">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/nitter_instance"
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/custom_nitter"
-                android:inputType="textUri"
-                android:maxLines="1" />
-        </com.google.android.material.textfield.TextInputLayout>
+                android:animateLayoutChanges="true">
 
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/guide_nitter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    app:layout_constraintGuide_begin="40dp" />
 
-        <LinearLayout
+                <View
+                    android:id="@+id/top_part_bg_nitter"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:background="#404040"
+                    app:layout_constraintBottom_toBottomOf="@id/guide_nitter"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/nitter_indications"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:text="@string/redirect_twitter_to_nitter"
+                    app:layout_constraintBottom_toBottomOf="@id/guide_nitter"
+                    app:layout_constraintEnd_toStartOf="@id/enable_nitter"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.appcompat.widget.SwitchCompat
+                    android:id="@+id/enable_nitter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginRight="10dp"
+                    app:layout_constraintBottom_toBottomOf="@id/guide_nitter"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/label_instance_nitter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginLeft="5dp"
+                    android:gravity="center_vertical"
+                    android:text="@string/instance_label"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/guide_nitter" />
+
+                <TextView
+                    android:id="@+id/current_instance_nitter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginLeft="5dp"
+                    android:gravity="center_vertical"
+                    android:textColor="#fff"
+                    app:layout_constraintStart_toEndOf="@id/label_instance_nitter"
+                    app:layout_constraintTop_toTopOf="@id/guide_nitter" />
+
+                <ImageButton
+                    android:id="@+id/button_expand_instance_nitter"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:background="@null"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/ic_expand_more"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/guide_nitter" />
+
+                <androidx.constraintlayout.widget.Barrier
+                    android:id="@+id/barrier_nitter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:barrierDirection="bottom"
+                    app:constraint_referenced_ids="label_instance_nitter,current_instance_nitter,button_expand_instance_nitter" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/nitter_instance_container"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/button_save_instance_nitter"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/barrier_nitter">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/nitter_instance"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/custom_nitter"
+                        android:inputType="textUri"
+                        android:maxLines="1"
+                        android:textSize="@dimen/custom_instance_input_text_size" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <ImageButton
+                    android:id="@+id/button_save_instance_nitter"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_margin="5dp"
+                    android:background="@null"
+                    android:contentDescription="@string/save"
+                    android:src="@drawable/ic_save"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/barrier_nitter" />
+
+                <androidx.constraintlayout.widget.Group
+                    android:id="@+id/group_current_nitter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:constraint_referenced_ids="label_instance_nitter,current_instance_nitter,button_expand_instance_nitter" />
+
+                <androidx.constraintlayout.widget.Group
+                    android:id="@+id/group_custom_nitter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    app:constraint_referenced_ids="nitter_instance_container,button_save_instance_nitter" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
             android:id="@+id/invidious_container"
-            android:layout_width="0dp"
+            style="@style/containerCard"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:orientation="horizontal"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/nitter_instance_container">
+            app:layout_constraintBottom_toTopOf="@id/bibliogram_container"
+            app:layout_constraintTop_toBottomOf="@id/nitter_container">
 
-            <TextView
-                android:id="@+id/invidious_indications"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/redirect_youtube_to_invidious" />
-
-            <androidx.appcompat.widget.SwitchCompat
-                android:id="@+id/enable_invidious"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center" />
-        </LinearLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/invidious_instance_container"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/invidious_container">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/invidious_instance"
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/custom_invidious"
-                android:inputType="textUri"
-                android:maxLines="1" />
-        </com.google.android.material.textfield.TextInputLayout>
+                android:animateLayoutChanges="true">
 
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/guide_invidious"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    app:layout_constraintGuide_begin="40dp" />
 
-        <LinearLayout
+                <View
+                    android:id="@+id/top_part_bg_invidious"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:background="#404040"
+                    app:layout_constraintBottom_toBottomOf="@id/guide_invidious"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/invidious_indications"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:text="@string/redirect_youtube_to_invidious"
+                    app:layout_constraintBottom_toBottomOf="@id/guide_invidious"
+                    app:layout_constraintEnd_toStartOf="@id/enable_invidious"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.appcompat.widget.SwitchCompat
+                    android:id="@+id/enable_invidious"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginRight="10dp"
+                    app:layout_constraintBottom_toBottomOf="@id/guide_invidious"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/label_instance_invidious"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginLeft="5dp"
+                    android:gravity="center_vertical"
+                    android:text="@string/instance_label"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/guide_invidious" />
+
+                <TextView
+                    android:id="@+id/current_instance_invidious"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginLeft="5dp"
+                    android:gravity="center_vertical"
+                    android:textColor="#fff"
+                    app:layout_constraintStart_toEndOf="@id/label_instance_invidious"
+                    app:layout_constraintTop_toTopOf="@id/guide_invidious" />
+
+                <ImageButton
+                    android:id="@+id/button_expand_instance_invidious"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:background="@null"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/ic_expand_more"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/guide_invidious" />
+
+                <androidx.constraintlayout.widget.Barrier
+                    android:id="@+id/barrier_invidious"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:barrierDirection="bottom"
+                    app:constraint_referenced_ids="label_instance_invidious,current_instance_invidious,button_expand_instance_invidious" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/invidious_instance_container"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/button_save_instance_invidious"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/barrier_invidious">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/invidious_instance"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/custom_invidious"
+                        android:inputType="textUri"
+                        android:maxLines="1"
+                        android:textSize="@dimen/custom_instance_input_text_size" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <ImageButton
+                    android:id="@+id/button_save_instance_invidious"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_margin="5dp"
+                    android:background="@null"
+                    android:contentDescription="@string/save"
+                    android:src="@drawable/ic_save"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/barrier_invidious" />
+
+                <androidx.constraintlayout.widget.Group
+                    android:id="@+id/group_current_invidious"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:constraint_referenced_ids="label_instance_invidious,current_instance_invidious,button_expand_instance_invidious" />
+
+                <androidx.constraintlayout.widget.Group
+                    android:id="@+id/group_custom_invidious"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    app:constraint_referenced_ids="invidious_instance_container,button_save_instance_invidious" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
             android:id="@+id/bibliogram_container"
-            android:layout_width="0dp"
+            style="@style/containerCard"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:orientation="horizontal"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/invidious_instance_container">
+            app:layout_constraintBottom_toTopOf="@id/osm_container"
+            app:layout_constraintTop_toBottomOf="@id/invidious_container">
 
-            <TextView
-                android:id="@+id/bibliogram_indications"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/redirect_instagram_to_bibliogram"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/invidious_container" />
-
-            <androidx.appcompat.widget.SwitchCompat
-                android:id="@+id/enable_bibliogram"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center" />
-        </LinearLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/bibliogram_instance_container"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/bibliogram_container">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/bibliogram_instance"
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/custom_bibliogram"
-                android:inputType="textUri"
-                android:maxLines="1" />
-        </com.google.android.material.textfield.TextInputLayout>
+                android:animateLayoutChanges="true">
 
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/guide_bibliogram"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    app:layout_constraintGuide_begin="40dp" />
 
-        <LinearLayout
+                <View
+                    android:id="@+id/top_part_bg_bibliogram"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:background="#404040"
+                    app:layout_constraintBottom_toBottomOf="@id/guide_bibliogram"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/bibliogram_indications"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:text="@string/redirect_instagram_to_bibliogram"
+                    app:layout_constraintBottom_toBottomOf="@id/guide_bibliogram"
+                    app:layout_constraintEnd_toStartOf="@id/enable_bibliogram"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.appcompat.widget.SwitchCompat
+                    android:id="@+id/enable_bibliogram"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginRight="10dp"
+                    app:layout_constraintBottom_toBottomOf="@id/guide_bibliogram"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/label_instance_bibliogram"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginLeft="5dp"
+                    android:gravity="center_vertical"
+                    android:text="@string/instance_label"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/guide_bibliogram" />
+
+                <TextView
+                    android:id="@+id/current_instance_bibliogram"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginLeft="5dp"
+                    android:gravity="center_vertical"
+                    android:textColor="#fff"
+                    app:layout_constraintStart_toEndOf="@id/label_instance_bibliogram"
+                    app:layout_constraintTop_toTopOf="@id/guide_bibliogram" />
+
+                <ImageButton
+                    android:id="@+id/button_expand_instance_bibliogram"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:background="@null"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/ic_expand_more"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/guide_bibliogram" />
+
+                <androidx.constraintlayout.widget.Barrier
+                    android:id="@+id/barrier_bibliogram"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:barrierDirection="bottom"
+                    app:constraint_referenced_ids="label_instance_bibliogram,current_instance_bibliogram,button_expand_instance_bibliogram" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/bibliogram_instance_container"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/button_save_instance_bibliogram"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/barrier_bibliogram">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/bibliogram_instance"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/custom_bibliogram"
+                        android:inputType="textUri"
+                        android:maxLines="1"
+                        android:textSize="@dimen/custom_instance_input_text_size" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <ImageButton
+                    android:id="@+id/button_save_instance_bibliogram"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_margin="5dp"
+                    android:background="@null"
+                    android:contentDescription="@string/save"
+                    android:src="@drawable/ic_save"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/barrier_bibliogram" />
+
+                <androidx.constraintlayout.widget.Group
+                    android:id="@+id/group_current_bibliogram"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:constraint_referenced_ids="label_instance_bibliogram,current_instance_bibliogram,button_expand_instance_bibliogram" />
+
+                <androidx.constraintlayout.widget.Group
+                    android:id="@+id/group_custom_bibliogram"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    app:constraint_referenced_ids="bibliogram_instance_container,button_save_instance_bibliogram" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
             android:id="@+id/osm_container"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:orientation="horizontal"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/bibliogram_instance_container">
-
-            <TextView
-                android:id="@+id/osm_indications"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/redirect_gm_to_osm"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/bibliogram_container" />
-
-            <androidx.appcompat.widget.SwitchCompat
-                android:id="@+id/enable_osm"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center" />
-        </LinearLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/osm_instance_container"
+            style="@style/containerCard"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/osm_container">
+            app:layout_constraintBottom_toTopOf="@id/buttons_container"
+            app:layout_constraintTop_toBottomOf="@id/bibliogram_container">
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/osm_instance"
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/custom_osm"
-                android:inputType="textUri"
-                android:maxLines="1" />
-        </com.google.android.material.textfield.TextInputLayout>
+                android:animateLayoutChanges="true">
 
-        <CheckBox
-            android:id="@+id/enable_geo_uris"
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/guide_osm"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    app:layout_constraintGuide_begin="40dp" />
+
+                <View
+                    android:id="@+id/top_part_bg_osm"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:background="#404040"
+                    app:layout_constraintBottom_toBottomOf="@id/guide_osm"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/osm_indications"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:text="@string/redirect_gm_to_osm"
+                    app:layout_constraintBottom_toBottomOf="@id/guide_osm"
+                    app:layout_constraintEnd_toStartOf="@id/enable_osm"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.appcompat.widget.SwitchCompat
+                    android:id="@+id/enable_osm"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginRight="10dp"
+                    app:layout_constraintBottom_toBottomOf="@id/guide_osm"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/label_instance_osm"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginLeft="5dp"
+                    android:gravity="center_vertical"
+                    android:text="@string/instance_label"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/guide_osm" />
+
+                <TextView
+                    android:id="@+id/current_instance_osm"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginLeft="5dp"
+                    android:gravity="center_vertical"
+                    android:textColor="#fff"
+                    app:layout_constraintStart_toEndOf="@id/label_instance_osm"
+                    app:layout_constraintTop_toTopOf="@id/guide_osm" />
+
+                <ImageButton
+                    android:id="@+id/button_expand_instance_osm"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:background="@null"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/ic_expand_more"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/guide_osm" />
+
+                <androidx.constraintlayout.widget.Barrier
+                    android:id="@+id/barrier_osm"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:barrierDirection="bottom"
+                    app:constraint_referenced_ids="label_instance_osm,current_instance_osm,button_expand_instance_osm" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/osm_instance_container"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    app:layout_constraintBottom_toBottomOf="@id/barrier_osm_2"
+                    app:layout_constraintEnd_toStartOf="@id/button_save_instance_osm"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/barrier_osm">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/osm_instance"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/custom_osm"
+                        android:inputType="textUri"
+                        android:maxLines="1"
+                        android:textSize="@dimen/custom_instance_input_text_size" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <ImageButton
+                    android:id="@+id/button_save_instance_osm"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_margin="5dp"
+                    android:background="@null"
+                    android:contentDescription="@string/save"
+                    android:src="@drawable/ic_save"
+                    app:layout_constraintBottom_toBottomOf="@id/barrier_osm_2"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/barrier_osm" />
+
+                <androidx.constraintlayout.widget.Barrier
+                    android:id="@+id/barrier_osm_2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:barrierDirection="bottom"
+                    app:constraint_referenced_ids="osm_instance_container,button_save_instance_osm" />
+
+                <CheckBox
+                    android:id="@+id/enable_geo_uris"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:text="@string/use_geo_uri"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/barrier_osm_2" />
+
+                <androidx.constraintlayout.widget.Group
+                    android:id="@+id/group_current_osm"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:constraint_referenced_ids="label_instance_osm,current_instance_osm,button_expand_instance_osm" />
+
+                <androidx.constraintlayout.widget.Group
+                    android:id="@+id/group_custom_osm"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    app:constraint_referenced_ids="osm_instance_container,button_save_instance_osm" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/buttons_container"
+            style="@style/containerCard"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="@string/use_geo_uri"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/osm_instance_container" />
+            app:layout_constraintBottom_toTopOf="@id/list_apps"
+            app:layout_constraintTop_toBottomOf="@id/osm_container">
 
+            <Button
+                android:id="@+id/configure"
+                style="@style/Widget.AppCompat.Button.Colored"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_margin="5dp"
+                android:drawableStart="@drawable/ic_settings"
+                android:drawableLeft="@drawable/ic_settings"
+                android:drawablePadding="5dp"
+                android:text="@string/configure"
+                android:textColor="@android:color/white"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/instances"
+                app:layout_constraintHorizontal_weight="2"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        <Button
-            android:id="@+id/button_save"
-            style="@style/Widget.AppCompat.Button.Colored"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:drawableStart="@drawable/ic_save"
-            android:drawableLeft="@drawable/ic_save"
-            android:drawablePadding="5dp"
-            android:minWidth="100dp"
-            android:text="@string/save"
-            android:textColor="@android:color/white"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/enable_geo_uris" />
+            <ImageButton
+                android:id="@+id/instances"
+                style="@style/Widget.AppCompat.Button.Colored"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_margin="5dp"
+                android:contentDescription="@string/display_supported_links"
+                android:src="@drawable/ic_public"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/button_expand"
+                app:layout_constraintHorizontal_weight="1"
+                app:layout_constraintStart_toEndOf="@id/configure"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        <Button
-            android:id="@+id/configure"
-            style="@style/Widget.AppCompat.Button.Colored"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:drawableStart="@drawable/ic_settings"
-            android:drawableLeft="@drawable/ic_settings"
-            android:drawablePadding="5dp"
-            android:text="@string/configure"
-            android:textColor="@android:color/white"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toLeftOf="@+id/button_expand"
-            app:layout_constraintTop_toBottomOf="@+id/button_save" />
+            <ImageButton
+                android:id="@+id/button_expand"
+                style="@style/Widget.AppCompat.Button.Colored"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_margin="5dp"
+                android:contentDescription="@string/display_supported_links"
+                android:src="@drawable/ic_expand_more"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_weight="1"
+                app:layout_constraintStart_toEndOf="@id/instances"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        <ImageButton
-            android:id="@+id/button_expand"
-            style="@style/Widget.AppCompat.Button.Colored"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:contentDescription="@string/display_supported_links"
-            android:drawableStart="@drawable/ic_save"
-            android:drawableLeft="@drawable/ic_save"
-            android:drawablePadding="5dp"
-            android:src="@drawable/ic_expand_more"
-            android:textColor="@android:color/white"
-            app:layout_constraintLeft_toRightOf="@+id/configure"
-            app:layout_constraintRight_toLeftOf="@+id/instances"
-            app:layout_constraintTop_toBottomOf="@+id/button_save" />
-
-        <ImageButton
-            android:id="@+id/instances"
-            style="@style/Widget.AppCompat.Button.Colored"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:contentDescription="@string/display_supported_links"
-            android:drawableStart="@drawable/ic_save"
-            android:drawableLeft="@drawable/ic_save"
-            android:drawablePadding="5dp"
-            android:src="@drawable/ic_public"
-            android:textColor="@android:color/white"
-            app:layout_constraintLeft_toRightOf="@+id/button_expand"
-            app:layout_constraintTop_toBottomOf="@+id/button_save" />
-
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/list_apps"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
             android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/configure" />
+            app:layout_constraintTop_toBottomOf="@+id/buttons_container" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

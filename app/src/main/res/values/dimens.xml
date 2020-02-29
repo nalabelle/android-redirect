@@ -1,4 +1,5 @@
 <resources>
     <dimen name="about_margin">5dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
+    <dimen name="custom_instance_input_text_size">16sp</dimen>
 </resources>

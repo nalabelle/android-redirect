@@ -35,6 +35,7 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SwitchCompat;
 import androidx.appcompat.widget.Toolbar;
+import androidx.constraintlayout.widget.Group;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -50,17 +51,17 @@ public class MainActivity extends AppCompatActivity {
     public static final String APP_PREFS = "app_prefs";
     @SuppressWarnings("unused")
     public static String TAG = "NitterizeMe";
-    public static String SET_NITTER_HOST = "set_nitter_host";
+    public static final String SET_NITTER_HOST = "set_nitter_host";
     public static String DEFAULT_NITTER_HOST = "nitter.net";
-    public static String SET_INVIDIOUS_HOST = "set_invidious_host";
+    public static final String SET_INVIDIOUS_HOST = "set_invidious_host";
     public static String DEFAULT_INVIDIOUS_HOST = "invidio.us";
     public static String SET_INVIDIOUS_ENABLED = "set_invidious_enabled";
     public static String SET_NITTER_ENABLED = "set_nitter_enabled";
     public static String SET_OSM_ENABLED = "set_osm_enabled";
-    public static String SET_OSM_HOST = "set_osm_host";
+    public static final String SET_OSM_HOST = "set_osm_host";
     public static String DEFAULT_OSM_HOST = "www.openstreetmap.org";
     public static String SET_BIBLIOGRAM_ENABLED = "set_bibliogram_enabled";
-    public static String SET_BIBLIOGRAM_HOST = "set_bibliogram_host";
+    public static final String SET_BIBLIOGRAM_HOST = "set_bibliogram_host";
     public static String DEFAULT_BIBLIOGRAM_HOST = "bibliogram.art";
     public static String SET_GEO_URIS = "set_geo_uris";
     //Supported domains
@@ -92,6 +93,11 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView list_apps;
     private String[] domains;
 
+    private String nitterHost;
+    private String invidiousHost;
+    private String bibliogramHost;
+    private String osmHost;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -122,22 +128,41 @@ public class MainActivity extends AppCompatActivity {
 
         SharedPreferences sharedpreferences = getSharedPreferences(APP_PREFS, Context.MODE_PRIVATE);
 
+        TextView current_instance_nitter = findViewById(R.id.current_instance_nitter);
+        TextView current_instance_invidious = findViewById(R.id.current_instance_invidious);
+        TextView current_instance_bibliogram = findViewById(R.id.current_instance_bibliogram);
+        TextView current_instance_osm = findViewById(R.id.current_instance_osm);
+
+
         TextInputEditText nitter_instance = findViewById(R.id.nitter_instance);
         TextInputEditText invidious_instance = findViewById(R.id.invidious_instance);
         TextInputEditText bibliogram_instance = findViewById(R.id.bibliogram_instance);
         TextInputEditText osm_instance = findViewById(R.id.osm_instance);
 
 
-        TextInputLayout invidious_instance_container = findViewById(R.id.invidious_instance_container);
-        TextInputLayout nitter_instance_container = findViewById(R.id.nitter_instance_container);
-        TextInputLayout bibliogram_instance_container = findViewById(R.id.bibliogram_instance_container);
-        TextInputLayout osm_instance_container = findViewById(R.id.osm_instance_container);
+        Group invidious_current_group = findViewById(R.id.group_current_invidious);
+        Group nitter_current_group = findViewById(R.id.group_current_nitter);
+        Group bibliogram_current_group = findViewById(R.id.group_current_bibliogram);
+        Group osm_current_group = findViewById(R.id.group_current_osm);
+
+
+        Group invidious_custom_group = findViewById(R.id.group_custom_invidious);
+        Group nitter_custom_group = findViewById(R.id.group_custom_nitter);
+        Group bibliogram_custom_group = findViewById(R.id.group_custom_bibliogram);
+        Group osm_custom_group = findViewById(R.id.group_custom_osm);
 
 
         SwitchCompat enable_nitter = findViewById(R.id.enable_nitter);
         SwitchCompat enable_invidious = findViewById(R.id.enable_invidious);
         SwitchCompat enable_bibliogram = findViewById(R.id.enable_bibliogram);
         SwitchCompat enable_osm = findViewById(R.id.enable_osm);
+
+
+        ImageButton expand_instance_nitter = findViewById(R.id.button_expand_instance_nitter);
+        ImageButton expand_instance_invidious = findViewById(R.id.button_expand_instance_invidious);
+        ImageButton expand_instance_bibliogram = findViewById(R.id.button_expand_instance_bibliogram);
+        ImageButton expand_instance_osm = findViewById(R.id.button_expand_instance_osm);
+
 
         boolean nitter_enabled = sharedpreferences.getBoolean(SET_NITTER_ENABLED, true);
         boolean invidious_enabled = sharedpreferences.getBoolean(SET_INVIDIOUS_ENABLED, true);
@@ -150,94 +175,214 @@ public class MainActivity extends AppCompatActivity {
         enable_bibliogram.setChecked(bibliogram_enabled);
         enable_osm.setChecked(osm_enabled);
 
-        Button button_save = findViewById(R.id.button_save);
+        ImageButton save_instance_nitter = findViewById(R.id.button_save_instance_nitter);
+        ImageButton save_instance_invidious = findViewById(R.id.button_save_instance_invidious);
+        ImageButton save_instance_bibliogram = findViewById(R.id.button_save_instance_bibliogram);
+        ImageButton save_instance_osm = findViewById(R.id.button_save_instance_osm);
+
         CheckBox enable_geo_uris = findViewById(R.id.enable_geo_uris);
         list_apps = findViewById(R.id.list_apps);
-        String nitterHost = sharedpreferences.getString(SET_NITTER_HOST, null);
-        String invidiousHost = sharedpreferences.getString(SET_INVIDIOUS_HOST, null);
-        String bibliogramHost = sharedpreferences.getString(SET_BIBLIOGRAM_HOST, null);
-        String osmHost = sharedpreferences.getString(SET_OSM_HOST, null);
+        nitterHost = sharedpreferences.getString(SET_NITTER_HOST, null);
+        invidiousHost = sharedpreferences.getString(SET_INVIDIOUS_HOST, null);
+        bibliogramHost = sharedpreferences.getString(SET_BIBLIOGRAM_HOST, null);
+        osmHost = sharedpreferences.getString(SET_OSM_HOST, null);
 
-        invidious_instance_container.setVisibility(invidious_enabled ? View.VISIBLE : View.GONE);
-        nitter_instance_container.setVisibility(nitter_enabled ? View.VISIBLE : View.GONE);
-        bibliogram_instance_container.setVisibility(bibliogram_enabled ? View.VISIBLE : View.GONE);
-        osm_instance_container.setVisibility(osm_enabled ? View.VISIBLE : View.GONE);
+        invidious_current_group.setVisibility(invidious_enabled ? View.VISIBLE : View.GONE);
+        nitter_current_group.setVisibility(nitter_enabled ? View.VISIBLE : View.GONE);
+        bibliogram_current_group.setVisibility(bibliogram_enabled ? View.VISIBLE : View.GONE);
+        osm_current_group.setVisibility((osm_enabled && geouri_enabled) ? View.VISIBLE : View.GONE);
+        enable_geo_uris.setVisibility(osm_enabled ? View.VISIBLE : View.GONE);
 
         enable_invidious.setOnCheckedChangeListener((buttonView, isChecked) -> {
             SharedPreferences.Editor editor = sharedpreferences.edit();
             editor.putBoolean(SET_INVIDIOUS_ENABLED, isChecked);
             editor.apply();
-            invidious_instance_container.setVisibility(isChecked ? View.VISIBLE : View.GONE);
+            invidious_current_group.setVisibility(isChecked ? View.VISIBLE : View.GONE);
+            invidious_custom_group.setVisibility(View.GONE);
+            expand_instance_invidious.setRotation(0);
         });
         enable_nitter.setOnCheckedChangeListener((buttonView, isChecked) -> {
             SharedPreferences.Editor editor = sharedpreferences.edit();
             editor.putBoolean(SET_NITTER_ENABLED, isChecked);
             editor.apply();
-            nitter_instance_container.setVisibility(isChecked ? View.VISIBLE : View.GONE);
+            nitter_current_group.setVisibility(isChecked ? View.VISIBLE : View.GONE);
+            nitter_custom_group.setVisibility(View.GONE);
+            expand_instance_nitter.setRotation(0);
         });
         enable_bibliogram.setOnCheckedChangeListener((buttonView, isChecked) -> {
             SharedPreferences.Editor editor = sharedpreferences.edit();
             editor.putBoolean(SET_BIBLIOGRAM_ENABLED, isChecked);
             editor.apply();
-            bibliogram_instance_container.setVisibility(isChecked ? View.VISIBLE : View.GONE);
+            bibliogram_current_group.setVisibility(isChecked ? View.VISIBLE : View.GONE);
+            bibliogram_custom_group.setVisibility(View.GONE);
+            expand_instance_bibliogram.setRotation(0);
         });
         enable_osm.setOnCheckedChangeListener((buttonView, isChecked) -> {
             SharedPreferences.Editor editor = sharedpreferences.edit();
             editor.putBoolean(SET_OSM_ENABLED, isChecked);
             editor.apply();
+            osm_current_group.setVisibility(isChecked ? View.VISIBLE : View.GONE);
+            osm_custom_group.setVisibility(View.GONE);
             enable_geo_uris.setVisibility(isChecked ? View.VISIBLE : View.GONE);
+            expand_instance_osm.setRotation(0);
             boolean geo = sharedpreferences.getBoolean(SET_GEO_URIS, false);
-            if (geo) {
-                osm_instance_container.setVisibility(View.GONE);
-            } else {
-                osm_instance_container.setVisibility(isChecked ? View.VISIBLE : View.GONE);
+            if (isChecked) {
+                if (geo) {
+                    osm_current_group.setVisibility(View.GONE);
+                    osm_custom_group.setVisibility(View.GONE);
+                } else {
+                    osm_current_group.setVisibility(View.VISIBLE);
+                }
             }
         });
 
+
+
+        expand_instance_nitter.setOnClickListener(v -> {
+            boolean custom_instance_visibility = nitter_custom_group.getVisibility() == View.VISIBLE;
+            if (custom_instance_visibility) {
+                expand_instance_nitter.setRotation(0f);
+                nitter_custom_group.setVisibility(View.GONE);
+            } else {
+                expand_instance_nitter.setRotation(180f);
+                nitter_custom_group.setVisibility(View.VISIBLE);
+            }
+
+            if (nitterHost != null) {
+                nitter_instance.setText(nitterHost);
+            } else {
+                nitter_instance.setText("");
+            }
+        });
+        expand_instance_invidious.setOnClickListener(v -> {
+            boolean custom_instance_visibility = invidious_custom_group.getVisibility() == View.VISIBLE;
+            if (custom_instance_visibility) {
+                expand_instance_invidious.setRotation(0f);
+                invidious_custom_group.setVisibility(View.GONE);
+            } else {
+                expand_instance_invidious.setRotation(180f);
+                invidious_custom_group.setVisibility(View.VISIBLE);
+            }
+
+            if (invidiousHost != null) {
+                invidious_instance.setText(invidiousHost);
+            } else {
+                invidious_instance.setText("");
+            }
+        });
+        expand_instance_bibliogram.setOnClickListener(v -> {
+            boolean custom_instance_visibility = bibliogram_custom_group.getVisibility() == View.VISIBLE;
+            if (custom_instance_visibility) {
+                expand_instance_bibliogram.setRotation(0f);
+                bibliogram_custom_group.setVisibility(View.GONE);
+            } else {
+                expand_instance_bibliogram.setRotation(180f);
+                bibliogram_custom_group.setVisibility(View.VISIBLE);
+            }
+
+            if (bibliogramHost != null) {
+                bibliogram_instance.setText(bibliogramHost);
+            } else {
+                bibliogram_instance.setText("");
+            }
+        });
+        expand_instance_osm.setOnClickListener(v -> {
+            boolean custom_instance_visibility = osm_custom_group.getVisibility() == View.VISIBLE;
+            if (custom_instance_visibility) {
+                expand_instance_osm.setRotation(0f);
+                osm_custom_group.setVisibility(View.GONE);
+            } else {
+                expand_instance_osm.setRotation(180f);
+                osm_custom_group.setVisibility(View.VISIBLE);
+            }
+
+            if (osmHost != null) {
+                osm_instance.setText(osmHost);
+            } else {
+                osm_instance.setText("");
+            }
+        });
+
+
+
         if (nitterHost != null) {
             nitter_instance.setText(nitterHost);
+            current_instance_nitter.setText(nitterHost);
+        } else {
+            current_instance_nitter.setText(DEFAULT_NITTER_HOST);
         }
         if (invidiousHost != null) {
             invidious_instance.setText(invidiousHost);
+            current_instance_invidious.setText(invidiousHost);
+        } else {
+            current_instance_invidious.setText(DEFAULT_INVIDIOUS_HOST);
         }
         if (bibliogramHost != null) {
             bibliogram_instance.setText(bibliogramHost);
+            current_instance_bibliogram.setText(bibliogramHost);
+        } else {
+            current_instance_bibliogram.setText(DEFAULT_BIBLIOGRAM_HOST);
         }
         if (osmHost != null) {
             osm_instance.setText(osmHost);
+            current_instance_osm.setText(osmHost);
+        } else {
+            current_instance_osm.setText(DEFAULT_OSM_HOST);
         }
         enable_geo_uris.setChecked(geouri_enabled);
         if (geouri_enabled) {
-            osm_instance_container.setVisibility(View.GONE);
+            osm_current_group.setVisibility(View.GONE);
+            osm_custom_group.setVisibility(View.GONE);
         } else {
-            osm_instance_container.setVisibility(View.VISIBLE);
+            osm_current_group.setVisibility(View.VISIBLE);
         }
 
-        button_save.setOnClickListener(v -> {
+        save_instance_nitter.setOnClickListener(v -> {
             SharedPreferences.Editor editor = sharedpreferences.edit();
             if (nitter_instance.getText() != null && nitter_instance.getText().toString().trim().length() > 0) {
-                editor.putString(SET_NITTER_HOST, nitter_instance.getText().toString().toLowerCase().trim());
+                String custom_instance = nitter_instance.getText().toString().toLowerCase().trim();
+                editor.putString(SET_NITTER_HOST, custom_instance);
+                current_instance_nitter.setText(custom_instance);
             } else {
                 editor.putString(SET_NITTER_HOST, null);
-            }
-            if (invidious_instance.getText() != null && invidious_instance.getText().toString().trim().length() > 0) {
-                editor.putString(SET_INVIDIOUS_HOST, invidious_instance.getText().toString().toLowerCase().trim());
-            } else {
-                editor.putString(SET_INVIDIOUS_HOST, null);
-            }
-            if (bibliogram_instance.getText() != null && bibliogram_instance.getText().toString().trim().length() > 0) {
-                editor.putString(SET_BIBLIOGRAM_HOST, bibliogram_instance.getText().toString().toLowerCase().trim());
-            } else {
-                editor.putString(SET_BIBLIOGRAM_HOST, null);
-            }
-            if (osm_instance.getText() != null && osm_instance.getText().toString().trim().length() > 0) {
-                editor.putString(SET_OSM_HOST, osm_instance.getText().toString().toLowerCase().trim());
-            } else {
-                editor.putString(SET_OSM_HOST, null);
+                current_instance_nitter.setText(DEFAULT_NITTER_HOST);
             }
             editor.apply();
-            View parentLayout = findViewById(android.R.id.content);
-            Snackbar.make(parentLayout, R.string.instances_saved, Snackbar.LENGTH_LONG).show();
+        });
+        save_instance_invidious.setOnClickListener(v -> {
+            SharedPreferences.Editor editor = sharedpreferences.edit();
+            if (invidious_instance.getText() != null && invidious_instance.getText().toString().trim().length() > 0) {
+                String custom_instance = invidious_instance.getText().toString().toLowerCase().trim();
+                editor.putString(SET_INVIDIOUS_HOST, custom_instance);
+                current_instance_invidious.setText(custom_instance);
+            } else {
+                editor.putString(SET_INVIDIOUS_HOST, null);
+                current_instance_invidious.setText(DEFAULT_INVIDIOUS_HOST);
+            }
+            editor.apply();
+        });
+        save_instance_bibliogram.setOnClickListener(v -> {
+            SharedPreferences.Editor editor = sharedpreferences.edit();
+            if (bibliogram_instance.getText() != null && bibliogram_instance.getText().toString().trim().length() > 0) {
+                String custom_instance = bibliogram_instance.getText().toString().toLowerCase().trim();
+                editor.putString(SET_BIBLIOGRAM_HOST, custom_instance);
+                current_instance_bibliogram.setText(custom_instance);
+            } else {
+                editor.putString(SET_BIBLIOGRAM_HOST, null);
+                current_instance_bibliogram.setText(DEFAULT_BIBLIOGRAM_HOST);
+            }
+            editor.apply();
+        });
+        save_instance_osm.setOnClickListener(v -> {
+            SharedPreferences.Editor editor = sharedpreferences.edit();
+            if (osm_instance.getText() != null && osm_instance.getText().toString().trim().length() > 0) {
+                String custom_instance = osm_instance.getText().toString().toLowerCase().trim();
+                editor.putString(SET_OSM_HOST, custom_instance);
+            } else {
+                editor.putString(SET_OSM_HOST, null);
+                current_instance_osm.setText(DEFAULT_OSM_HOST);
+            }
+            editor.apply();
         });
 
         Button configure = findViewById(R.id.configure);
@@ -281,13 +426,63 @@ public class MainActivity extends AppCompatActivity {
             editor.apply();
             TextView osm_indications = findViewById(R.id.osm_indications);
             if (isChecked) {
-                osm_instance_container.setVisibility(View.GONE);
+                osm_current_group.setVisibility(View.GONE);
+                osm_custom_group.setVisibility(View.GONE);
                 osm_indications.setText(R.string.redirect_gm_to_geo_uri);
             } else {
-                osm_instance_container.setVisibility(View.VISIBLE);
+                osm_current_group.setVisibility(View.VISIBLE);
                 osm_indications.setText(R.string.redirect_gm_to_osm);
             }
         });
+
+        sharedpreferences.registerOnSharedPreferenceChangeListener(
+                (sharedPreferences, key) -> {
+                    switch (key) {
+                        case SET_NITTER_HOST:
+                            nitterHost = sharedpreferences.getString(SET_NITTER_HOST, null);
+                            nitter_custom_group.setVisibility(View.GONE);
+                            if (nitterHost != null && nitterHost.trim().length() > 0)
+                                current_instance_nitter.setText(nitterHost);
+                            else
+                                current_instance_nitter.setText(DEFAULT_NITTER_HOST);
+                            expand_instance_nitter.setRotation(0f);
+                            break;
+                        case SET_INVIDIOUS_HOST:
+                            invidiousHost = sharedpreferences.getString(SET_INVIDIOUS_HOST, null);
+                            invidious_custom_group.setVisibility(View.GONE);
+                            if (invidiousHost != null && invidiousHost.trim().length() > 0)
+                                current_instance_invidious.setText(invidiousHost);
+                            else
+                                current_instance_invidious.setText(DEFAULT_INVIDIOUS_HOST);
+                            expand_instance_invidious.setRotation(0f);
+                            break;
+                        case SET_BIBLIOGRAM_HOST:
+                            bibliogramHost = sharedpreferences.getString(SET_BIBLIOGRAM_HOST, null);
+                            bibliogram_custom_group.setVisibility(View.GONE);
+                            if (bibliogramHost != null && bibliogramHost.trim().length() > 0)
+                                current_instance_bibliogram.setText(bibliogramHost);
+                            else
+                                current_instance_bibliogram.setText(DEFAULT_BIBLIOGRAM_HOST);
+                            expand_instance_bibliogram.setRotation(0f);
+                            break;
+                        case SET_OSM_HOST:
+                            osmHost = sharedpreferences.getString(SET_OSM_HOST, null);
+                            osm_custom_group.setVisibility(View.GONE);
+                            if (osmHost != null && osmHost.trim().length() > 0)
+                                current_instance_osm.setText(osmHost);
+                            else
+                                current_instance_osm.setText(DEFAULT_OSM_HOST);
+                            expand_instance_osm.setRotation(0f);
+                            break;
+                    }
+
+                    if (key.equals(SET_NITTER_HOST) || key.equals(SET_INVIDIOUS_HOST) || key.equals(SET_BIBLIOGRAM_HOST) || key.equals(SET_OSM_HOST)) {
+                        View parentLayout = findViewById(android.R.id.content);
+                        Snackbar.make(parentLayout, R.string.instances_saved, Snackbar.LENGTH_LONG).show();
+                    }
+
+                }
+        );
 
         appInfoAdapter = new AppInfoAdapter(appInfos);
         list_apps.setAdapter(appInfoAdapter);
