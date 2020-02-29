@@ -45,4 +45,5 @@
     <string name="bibliogram_instances">ಬಿಬ್ಲಿಯೊಗ್ರಾಂ ನಿದರ್ಶನಗಳು</string>
     <string name="latency">ವಿಳಂಬ</string>
     <string name="error_message_internet">Check your Internet connection</string>
+    <string name="instance_label">Instance:</string>
 </resources>
