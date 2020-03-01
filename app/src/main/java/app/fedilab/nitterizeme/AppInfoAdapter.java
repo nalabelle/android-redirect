@@ -24,7 +24,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -63,11 +63,17 @@ public class AppInfoAdapter extends RecyclerView.Adapter {
             } catch (Resources.NotFoundException e) {
                 holder.app_icon.setImageResource(R.drawable.ic_android);
             }
-            holder.information.setText(appInfo.getApplicationInfo().packageName);
+            String app_label = context.getPackageManager().getApplicationLabel(appInfo.getApplicationInfo()).toString();
             if (appInfo.getApplicationInfo().packageName.compareTo(BuildConfig.APPLICATION_ID) == 0) {
+                holder.application_label.setText(app_label);
+                holder.package_name.setVisibility(View.GONE);
                 holder.valid.setImageResource(R.drawable.ic_check);
                 holder.valid.setContentDescription(context.getString(R.string.valid));
             } else {
+                String package_name = appInfo.getApplicationInfo().packageName;
+                holder.application_label.setText(app_label);
+                holder.package_name.setVisibility(View.VISIBLE);
+                holder.package_name.setText(String.format("(%s)", package_name));
                 holder.valid.setImageResource(R.drawable.ic_error);
                 holder.valid.setContentDescription(context.getString(R.string.error));
             }
@@ -78,7 +84,7 @@ public class AppInfoAdapter extends RecyclerView.Adapter {
                 context.startActivity(intent);
             });
         } else {
-            holder.information.setText(R.string.no_apps);
+            holder.application_label.setText(R.string.no_apps);
             holder.app_icon.setImageResource(R.drawable.ic_android);
             holder.valid.setContentDescription(context.getString(R.string.warning));
             holder.valid.setImageResource(R.drawable.ic_warning);
@@ -106,14 +112,15 @@ public class AppInfoAdapter extends RecyclerView.Adapter {
 
     static class ViewHolder extends RecyclerView.ViewHolder {
         ImageView app_icon, valid;
-        TextView information, domain;
-        LinearLayout main_container;
+        TextView application_label, package_name, domain;
+        ConstraintLayout main_container;
 
         ViewHolder(@NonNull View itemView) {
             super(itemView);
             app_icon = itemView.findViewById(R.id.app_icon);
             valid = itemView.findViewById(R.id.valid);
-            information = itemView.findViewById(R.id.information);
+            application_label = itemView.findViewById(R.id.application_label);
+            package_name = itemView.findViewById(R.id.package_name);
             domain = itemView.findViewById(R.id.domain);
             main_container = itemView.findViewById(R.id.main_container);
         }
