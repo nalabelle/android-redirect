@@ -21,9 +21,12 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -52,6 +55,8 @@ import static app.fedilab.nitterizeme.MainActivity.SET_NITTER_HOST;
 
 
 public class InstanceActivity extends AppCompatActivity {
+
+    private static String list_for_instances = "https://framagit.org/tom79/fedilab_app/-/blob/master/content/nitterizeme_instances/payload_2.json";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -105,6 +110,7 @@ public class InstanceActivity extends AppCompatActivity {
             RecyclerView nitter_instances = activity.findViewById(R.id.nitter_instances);
             RecyclerView bibliogram_instances = activity.findViewById(R.id.bibliogram_instances);
             Button latency_test = activity.findViewById(R.id.latency_test);
+            ImageButton instance_info = activity.findViewById(R.id.instance_info);
             Button close = activity.findViewById(R.id.close);
             if (result == null) {
                 View parentLayout = activity.findViewById(android.R.id.content);
@@ -192,6 +198,18 @@ public class InstanceActivity extends AppCompatActivity {
                             bibliogramAdapter.evalLatency();
                         }
                 );
+
+                instance_info.setOnClickListener(v -> {
+                    AlertDialog.Builder instanceInfo = new AlertDialog.Builder(activity);
+                    instanceInfo.setTitle(R.string.about_instances_title);
+                    View view = activity.getLayoutInflater().inflate(R.layout.popup_instance_info, new LinearLayout(activity.getApplicationContext()), false);
+                    instanceInfo.setView(view);
+                    TextView infoInstancesTextview = view.findViewById(R.id.info_instances);
+                    infoInstancesTextview.setText(activity.getString(R.string.about_instances, list_for_instances, list_for_instances));
+                    instanceInfo.setPositiveButton(R.string.close, (dialog, id) -> dialog.dismiss());
+                    AlertDialog alertDialog = instanceInfo.create();
+                    alertDialog.show();
+                });
 
             } catch (JSONException e) {
                 e.printStackTrace();
