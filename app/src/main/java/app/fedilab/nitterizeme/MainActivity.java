@@ -220,7 +220,6 @@ public class MainActivity extends AppCompatActivity {
             SharedPreferences.Editor editor = sharedpreferences.edit();
             editor.putBoolean(SET_OSM_ENABLED, isChecked);
             editor.apply();
-            osm_current_group.setVisibility(isChecked ? View.VISIBLE : View.GONE);
             osm_custom_group.setVisibility(View.GONE);
             enable_geo_uris.setVisibility(isChecked ? View.VISIBLE : View.GONE);
             expand_instance_osm.setRotation(0);
@@ -232,6 +231,8 @@ public class MainActivity extends AppCompatActivity {
                 } else {
                     osm_current_group.setVisibility(View.VISIBLE);
                 }
+            } else {
+                osm_current_group.setVisibility(View.GONE);
             }
         });
 
@@ -330,8 +331,10 @@ public class MainActivity extends AppCompatActivity {
         if (geouri_enabled) {
             osm_current_group.setVisibility(View.GONE);
             osm_custom_group.setVisibility(View.GONE);
-        } else {
+        } else if (osm_enabled){
             osm_current_group.setVisibility(View.VISIBLE);
+        } else {
+            osm_custom_group.setVisibility(View.GONE);
         }
 
         save_instance_nitter.setOnClickListener(v -> {
