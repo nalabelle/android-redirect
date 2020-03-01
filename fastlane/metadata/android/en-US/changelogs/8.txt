@@ -1,3 +1,5 @@
+Added:
+ - Indications about how instances are added and how to contribute to the list
 Changed:
  - New UI improvements
  - Add some missing content descriptions
