@@ -6,7 +6,7 @@
     <string name="donations">Dons</string>
     <string name="about_the_app">À propos de l’application</string>
     <string name="source_code">Code source</string>
-    <string name="issue_tracker">Suivi des questions</string>
+    <string name="issue_tracker">Suivi des tickets</string>
     <string name="license">Licence</string>
     <string name="about_vesrion">Version %1$s</string>
     <string name="custom_nitter">Instance Nitter personnalisée</string>
@@ -29,23 +29,26 @@
     <string name="custom_bibliogram">Instance Bibliogram personnalisée</string>
     <string name="redirect_gm_to_geo_uri">Rediriger Google Map vers Geo URI</string>
     <string name="configure">Configuration</string>
-    <string name="display_supported_links">Ouvrir les liens compatibles</string>
+    <string name="display_supported_links">Afficher les liens pris en charge</string>
     <string name="hide_supported_links">Masquer les liens pris en charge</string>
-    <string name="use_geo_uri">Utiliser OpenStreetMap</string>
-    <string name="how_to">Mode d\'emploi</string>
+    <string name="use_geo_uri">Utiliser geo URI</string>
+    <string name="how_to">Mode d’emploi</string>
     <string name="shortened_detected">URL raccourcie</string>
     <string name="open">Ouvrir</string>
     <string name="dismiss">Ignorer</string>
-    <string name="resolving_shortened">Résolution de l\'URL raccourcie, veuillez patienter…</string>
-    <string name="try_to_redirect">%1$s\n\nva vous rediriger vers\n\n<b>%2$s</b></string>
+    <string name="resolving_shortened">Résolution de l’URL raccourcie, veuillez patienter …</string>
+    <string name="try_to_redirect">%1$s \n\nva vous rediriger vers\n\n<b>%2$s</b></string>
     <string name="try_to_redirect_again">Il vous redirigera ensuite vers\n\n<b>%1$s</b></string>
-    <string name="the_app_failed_shortened">L\'application n\'a pas réussi à récupérer l\'URL complète</string>
+    <string name="the_app_failed_shortened">L’application n’a pas réussi à récupérer l’URL complète</string>
     <string name="invidious_instances">Instances Invidious</string>
     <string name="nitter_instances">Instances Nitter</string>
     <string name="bibliogram_instances">Instances Bibliogram</string>
     <string name="latency">Latence</string>
     <string name="error_message_internet">Vérifiez votre connexion Internet</string>
     <string name="instance_label">Instance :</string>
-    <string name="expand_instance_details">Développer les détails de l\'instance</string>
+    <string name="expand_instance_details">Développer les détails de l’instance</string>
     <string name="cloudflare">Cette instance utilise Cloudflare</string>
+    <string name="instance_info">Informations sur les instances listées</string>
+    <string name="about_instances">La liste des instances provient de\n\n <a href="%1$s">%2$s</a>\n\nVous pouvez contribuer à cette liste en ajoutant ou en supprimant des instances.</string>
+    <string name="about_instances_title">À propos des instances</string>
 </resources>

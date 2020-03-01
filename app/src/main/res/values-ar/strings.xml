@@ -48,4 +48,7 @@
     <string name="instance_label">مثيل الخادم:</string>
     <string name="expand_instance_details">توسيع تفاصيل مثيل الخادم</string>
     <string name="cloudflare">مثيل الخادم هذا يستخدم Cloudflare</string>
+    <string name="instance_info">Information about listed instances</string>
+    <string name="about_instances">The list of instances comes from\n\n <a href="%1$s">%2$s</a>\n\nYou can contribute to this list by adding or removing instances.</string>
+    <string name="about_instances_title">About instances</string>
 </resources>
