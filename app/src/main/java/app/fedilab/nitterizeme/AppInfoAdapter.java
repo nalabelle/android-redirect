@@ -104,7 +104,7 @@ public class AppInfoAdapter extends RecyclerView.Adapter {
     }
 
 
-    class ViewHolder extends RecyclerView.ViewHolder {
+    static class ViewHolder extends RecyclerView.ViewHolder {
         ImageView app_icon, valid;
         TextView information, domain;
         LinearLayout main_container;

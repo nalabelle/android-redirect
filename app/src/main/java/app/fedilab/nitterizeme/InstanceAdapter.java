@@ -91,10 +91,10 @@ public class InstanceAdapter extends RecyclerView.Adapter {
         }
 
         holder.locale.setText(instance.getLocale());
-        if( instance.isCloudflare()){
+        if (instance.isCloudflare()) {
             holder.useCloudflare.setVisibility(View.VISIBLE);
-            holder.useCloudflare.setOnClickListener(v -> Toast.makeText(context,R.string.cloudflare,Toast.LENGTH_SHORT).show());
-        }else{
+            holder.useCloudflare.setOnClickListener(v -> Toast.makeText(context, R.string.cloudflare, Toast.LENGTH_SHORT).show());
+        } else {
             holder.useCloudflare.setVisibility(View.GONE);
         }
 
@@ -171,7 +171,7 @@ public class InstanceAdapter extends RecyclerView.Adapter {
     }
 
 
-    class ViewHolder extends RecyclerView.ViewHolder {
+    static class ViewHolder extends RecyclerView.ViewHolder {
         RadioButton checkbox_instance;
         TextView latency, locale;
         ProgressBar progress;

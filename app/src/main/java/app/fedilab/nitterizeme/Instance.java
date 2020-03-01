@@ -20,7 +20,7 @@ class Instance {
     private long latency = -1;
     private boolean checked = false;
     private instanceType type;
-    private boolean cloudflare =false;
+    private boolean cloudflare = false;
     private String locale;
 
     String getDomain() {
