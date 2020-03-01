@@ -25,6 +25,7 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -92,6 +93,7 @@ public class InstanceAdapter extends RecyclerView.Adapter {
         holder.locale.setText(instance.getLocale());
         if( instance.isCloudflare()){
             holder.useCloudflare.setVisibility(View.VISIBLE);
+            holder.useCloudflare.setOnClickListener(v -> Toast.makeText(context,R.string.cloudflare,Toast.LENGTH_SHORT).show());
         }else{
             holder.useCloudflare.setVisibility(View.GONE);
         }
