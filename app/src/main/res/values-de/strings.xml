@@ -48,7 +48,7 @@
     <string name="instance_label">Instanz:</string>
     <string name="expand_instance_details">Details der Instanz erweitern</string>
     <string name="cloudflare">Diese Instanz verwendet Cloudflare</string>
-    <string name="instance_info">Information about listed instances</string>
-    <string name="about_instances">The list of instances comes from\n\n <a href="%1$s">%2$s</a>\n\nYou can contribute to this list by adding or removing instances.</string>
-    <string name="about_instances_title">About instances</string>
+    <string name="instance_info">Informationen über aufgelisteten Instanzen</string>
+    <string name="about_instances">Die Liste der Instanzen kommt von\n\n <a href="%1$s">%2$s</a>\n\nDu kannst zu dieser Liste beitragen, indem Du Instanzen hinzufügst oder löschst.</string>
+    <string name="about_instances_title">Über die Instanzen</string>
 </resources>
