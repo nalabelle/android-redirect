@@ -44,11 +44,11 @@
     <string name="nitter_instances">Сервера Nitter</string>
     <string name="bibliogram_instances">Сервера Bibliogram</string>
     <string name="latency">Задержка</string>
-    <string name="error_message_internet">Check your Internet connection</string>
-    <string name="instance_label">Instance:</string>
-    <string name="expand_instance_details">Expand instance details</string>
-    <string name="cloudflare">This instance uses Cloudflare</string>
-    <string name="instance_info">Information about listed instances</string>
-    <string name="about_instances">The list of instances comes from\n\n <a href="%1$s">%2$s</a>\n\nYou can contribute to this list by adding or removing instances.</string>
-    <string name="about_instances_title">About instances</string>
+    <string name="error_message_internet">Проверьте подключение к Интернету</string>
+    <string name="instance_label">Сервер:</string>
+    <string name="expand_instance_details">Развернуть описание сервера</string>
+    <string name="cloudflare">Этот сервер использует Cloudflare</string>
+    <string name="instance_info">Информация о серверах</string>
+    <string name="about_instances">Список серверов берётся из\n\n <a href="%1$s">%2$s</a>\n\nВы можете внести свой вклад добавлением новых серверов в список.</string>
+    <string name="about_instances_title">О серверах</string>
 </resources>

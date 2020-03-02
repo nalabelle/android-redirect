@@ -1,10 +1,10 @@
 Будучи установленным по умолчанию для открытия ссылок Twitter и YouTube, NitterizeMe будет трансформировать их в ссылки Nitter и Invidious соответственно и делегировать действие другому приложению.
 
-It also supports Google Maps links to transform them into OpenStreetMap links or Geo URI.
+Также поддерживается трансформация ссылок Google карт в Geo URI или ссылки OpenStreetMap.
 
-The app will detect shortened URLs and will display the full URL before visiting the site.
+Приложение будет определять укороченные ссылки и отображать полный путь перед посещением сайта.
 
-When sharing a Twitter, YouTube or Google Maps link just pick up NitterizeMe to transform it before sharing it with another app.
+Делясь ссылкой в Twitter, YouTube или Google карты просто выберите NitterizeMe чтобы трансформировать её перед отправкой в другом приложении.
 
 Что такое Nitter:
 
