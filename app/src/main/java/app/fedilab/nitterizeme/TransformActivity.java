@@ -58,7 +58,8 @@ public class TransformActivity extends Activity {
 
     final Pattern youtubePattern = Pattern.compile("(www\\.|m\\.)?(youtube\\.com|youtu\\.be|youtube-nocookie\\.com)/(((?!([\"'<])).)*)");
     final Pattern nitterPattern = Pattern.compile("(mobile\\.|www\\.)?twitter.com([\\w-/]+)");
-    final Pattern bibliogramPattern = Pattern.compile("(m\\.|www\\.)?instagram.com([\\w-/]+)");
+    final Pattern bibliogramPostPattern = Pattern.compile("(m\\.|www\\.)?instagram.com(/p/[\\w-/]+)");
+    final Pattern bibliogramAccountPattern = Pattern.compile("(m\\.|www\\.)?instagram.com(((?!/p/).)+)");
     final Pattern maps = Pattern.compile("/maps/place/[^@]+@([\\d.,z]{3,}).*");
     final Pattern extractPlace = Pattern.compile("/maps/place/(((?!/data).)*)");
     private Thread thread;
@@ -369,11 +370,21 @@ public class TransformActivity extends Activity {
         } else if (Arrays.asList(instagram_domains).contains(host)) {
             boolean bibliogram_enabled = sharedpreferences.getBoolean(SET_BIBLIOGRAM_ENABLED, true);
             if (bibliogram_enabled) {
-                Matcher matcher = bibliogramPattern.matcher(url);
+                Matcher matcher = bibliogramPostPattern.matcher(url);
                 while (matcher.find()) {
                     final String bibliogram_directory = matcher.group(2);
                     String bibliogramHost = sharedpreferences.getString(MainActivity.SET_BIBLIOGRAM_HOST, MainActivity.DEFAULT_BIBLIOGRAM_HOST).toLowerCase();
                     newUrl = "https://" + bibliogramHost + bibliogram_directory;
+                }
+                matcher = bibliogramAccountPattern.matcher(url);
+                while (matcher.find()) {
+                    final String bibliogram_directory = matcher.group(2);
+                    String bibliogramHost = sharedpreferences.getString(MainActivity.SET_BIBLIOGRAM_HOST, MainActivity.DEFAULT_BIBLIOGRAM_HOST).toLowerCase();
+                    if( bibliogram_directory != null && bibliogram_directory.compareTo("privacy") != 0 ) {
+                        newUrl = "https://" + bibliogramHost + "/u" + bibliogram_directory;
+                    }else{
+                        newUrl = "https://" + bibliogramHost + bibliogram_directory;
+                    }
                 }
                 return newUrl;
             } else {
@@ -492,11 +503,21 @@ public class TransformActivity extends Activity {
         } else if (Arrays.asList(instagram_domains).contains(host)) {
             boolean bibliogram_enabled = sharedpreferences.getBoolean(SET_BIBLIOGRAM_ENABLED, true);
             if (bibliogram_enabled) {
-                Matcher matcher = bibliogramPattern.matcher(url);
+                Matcher matcher = bibliogramPostPattern.matcher(url);
                 while (matcher.find()) {
                     final String bibliogram_directory = matcher.group(2);
                     String bibliogramHost = sharedpreferences.getString(MainActivity.SET_BIBLIOGRAM_HOST, MainActivity.DEFAULT_BIBLIOGRAM_HOST).toLowerCase();
                     newUrl = "https://" + bibliogramHost + bibliogram_directory;
+                }
+                matcher = bibliogramAccountPattern.matcher(url);
+                while (matcher.find()) {
+                    final String bibliogram_directory = matcher.group(2);
+                    String bibliogramHost = sharedpreferences.getString(MainActivity.SET_BIBLIOGRAM_HOST, MainActivity.DEFAULT_BIBLIOGRAM_HOST).toLowerCase();
+                    if( bibliogram_directory != null && bibliogram_directory.compareTo("privacy") != 0 ) {
+                        newUrl = "https://" + bibliogramHost + "/u" + bibliogram_directory;
+                    }else{
+                        newUrl = "https://" + bibliogramHost + bibliogram_directory;
+                    }
                 }
             }
         } else if (url.contains("/maps/place/")) {
