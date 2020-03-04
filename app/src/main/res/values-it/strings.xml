@@ -44,11 +44,11 @@
     <string name="nitter_instances">Istanze Nitter</string>
     <string name="bibliogram_instances">Istanze Bibliogram</string>
     <string name="latency">Latenza</string>
-    <string name="error_message_internet">Check your Internet connection</string>
-    <string name="instance_label">Instance:</string>
-    <string name="expand_instance_details">Expand instance details</string>
-    <string name="cloudflare">This instance uses Cloudflare</string>
-    <string name="instance_info">Information about listed instances</string>
-    <string name="about_instances">The list of instances comes from\n\n <a href="%1$s">%2$s</a>\n\nYou can contribute to this list by adding or removing instances.</string>
-    <string name="about_instances_title">About instances</string>
+    <string name="error_message_internet">Controlla la tua connessione Internet</string>
+    <string name="instance_label">Istanza:</string>
+    <string name="expand_instance_details">Espandi dettagli istanza</string>
+    <string name="cloudflare">Questa istanza utilizza Cloudflare</string>
+    <string name="instance_info">Informazioni sulle istanze elencate</string>
+    <string name="about_instances">L\'elenco delle istanze proviene da\n\n <a href="%1$s">%2$s</a>\n\nPuoi contribuire a questa lista tramite l\'aggiunta o la rimozione di istanze.</string>
+    <string name="about_instances_title">Informazioni sulle istanze</string>
 </resources>

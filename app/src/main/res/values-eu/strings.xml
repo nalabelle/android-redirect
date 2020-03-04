@@ -48,7 +48,7 @@
     <string name="instance_label">Instantzia:</string>
     <string name="expand_instance_details">Hedatu instantziaren xehetasunak</string>
     <string name="cloudflare">Instantzia honek Cloudflare darabil</string>
-    <string name="instance_info">Information about listed instances</string>
-    <string name="about_instances">The list of instances comes from\n\n <a href="%1$s">%2$s</a>\n\nYou can contribute to this list by adding or removing instances.</string>
-    <string name="about_instances_title">About instances</string>
+    <string name="instance_info">Zerrendatutako instantziei buruzko informazioa</string>
+    <string name="about_instances">Instantzien zerrenda \n\n <a href="%1$s">%2$s</a>\n\n gunetik dator. Zuk ere instantziak gehitu edo kendu ditzakezu.</string>
+    <string name="about_instances_title">Instantziei buruz</string>
 </resources>
