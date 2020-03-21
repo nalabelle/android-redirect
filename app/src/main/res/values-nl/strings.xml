@@ -38,17 +38,17 @@
     <string name="dismiss">Ontslag</string>
     <string name="resolving_shortened">Het oplossen van verkorte URL please wait…</string>
     <string name="try_to_redirect">%1$s \n\nzal u doorverwijzen naar\n\n<b>%2$s</b></string>
-    <string name="try_to_redirect_again">Then it will redirect you to\n\n<b>%1$s</b></string>
+    <string name="try_to_redirect_again">Dan wordt u doorgestuurd naar\n\n<b>%1$s</b></string>
     <string name="the_app_failed_shortened">De app slaagde er niet in om de volledige URL op te halen</string>
     <string name="invidious_instances">Ongewenste gevallen</string>
-    <string name="nitter_instances">Nitter instances</string>
-    <string name="bibliogram_instances">Bibliogram instances</string>
-    <string name="latency">Latency</string>
-    <string name="error_message_internet">Check your Internet connection</string>
-    <string name="instance_label">Instance:</string>
-    <string name="expand_instance_details">Expand instance details</string>
-    <string name="cloudflare">This instance uses Cloudflare</string>
-    <string name="instance_info">Information about listed instances</string>
-    <string name="about_instances">The list of instances comes from\n\n <a href="%1$s">%2$s</a>\n\nYou can contribute to this list by adding or removing instances.</string>
-    <string name="about_instances_title">About instances</string>
+    <string name="nitter_instances">Nitter instanties</string>
+    <string name="bibliogram_instances">Bibliografische voorbeelden</string>
+    <string name="latency">Latentie</string>
+    <string name="error_message_internet">Controleer uw internetverbinding</string>
+    <string name="instance_label">Instantie:</string>
+    <string name="expand_instance_details">Details van voorbeelden uitbreiden</string>
+    <string name="cloudflare">Dit exemplaar maakt gebruik van Cloudflare</string>
+    <string name="instance_info">Informatie over vermelde instanties</string>
+    <string name="about_instances">De lijst van instanties komt van\n\n <a href="%1$s">%2$s</a>\n\nU kunt bijdragen aan deze lijst door instanties toe te voegen of te verwijderen.</string>
+    <string name="about_instances_title">Ongewenste gevallen</string>
 </resources>

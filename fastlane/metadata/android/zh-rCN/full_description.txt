@@ -1,18 +1,18 @@
-NitterizeMe once set by default to open Twitter and YouTube links will transform them into Nitter and Invidious links and delegate the action to another app.
+一旦NitterizeMe被设定为打开Twitter和YouTube链接的默认应用，它会将这类链接将转换为Nitter和Invidious链接，并将操作委派给另一个应用。
 
-It also supports Google Maps links to transform them into OpenStreetMap links or Geo URI.
+它还支持谷歌地图链接，将其转换为 OpenStreetMap 链接或 Geo URI。
 
-The app will detect shortened URLs and will display the full URL before visiting the site.
+应用会检测短网址并在访问站点之前显示完整网址。
 
-When sharing a Twitter, YouTube or Google Maps link just pick up NitterizeMe to transform it before sharing it with another app.
+要分享Twitter、YouTube 或 Google Maps 链接，只需在使用另一个应用分享前选中Nitterizeme来转换原链接即可
 
-What is Nitter:
+什么是Nitter:
 
-A free and open source alternative Twitter front-end focused on privacy.
-Github project: https://github.com/zedeus/nitter
+Niter是自由和开放源码的替代 Twitter 的前端，注重保护隐私。
+Github 项目：https://github.com/zedeus/nitter
 
 
-What is Invidious:
+Invidious是什么：
 
-A free and open source alternative front-end to YouTube
-Github project: https://github.com/omarroth/invidious
+YouTube的一个自由和开源的替代前端
+Github 项目：https://github.com/omarroth/invidious
