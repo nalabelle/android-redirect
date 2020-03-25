@@ -1,18 +1,18 @@
-NitterizeMe once set by default to open Twitter and YouTube links will transform them into Nitter and Invidious links and delegate the action to another app.
+NitterizeMe når de er indstillet som standard til at åbne Twitter og YouTube links vil omdanne dem til Nitter og Uheldige, links og uddelegere handling til en anden app.
 
-It also supports Google Maps links to transform them into OpenStreetMap links or Geo URI.
+Det understøtter også Google Maps links til at omdanne dem til OpenStreetMap links eller Geo-URI.
 
-The app will detect shortened URLs and will display the full URL before visiting the site.
+App 'en vil opdage kortere url' er og vil vise den fulde URL-adresse, før du besøger hjemmesiden.
 
-When sharing a Twitter, YouTube or Google Maps link just pick up NitterizeMe to transform it before sharing it with another app.
+Når du deler en Twitter, YouTube eller Google Maps link, du blot vælge op NitterizeMe til at ændre det, før du deler det med en anden app.
 
-What is Nitter:
+Hvad er Nitter:
 
-A free and open source alternative Twitter front-end focused on privacy.
-Github project: https://github.com/zedeus/nitter
+En gratis og open source alternativ Twitter front-end fokus på privatlivets fred.
+Github projektet: https://github.com/zedeus/nitter
 
 
-What is Invidious:
+Hvad er Uheldige:
 
-A free and open source alternative front-end to YouTube
-Github project: https://github.com/omarroth/invidious
+En gratis og open source alternativ Twitter front-end fokus på privatlivets fred
+Github projektet: https://github.com/omarroth/invidious
