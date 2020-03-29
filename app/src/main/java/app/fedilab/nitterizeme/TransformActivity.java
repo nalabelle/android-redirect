@@ -93,6 +93,7 @@ public class TransformActivity extends Activity {
 
                 AlertDialog.Builder unshortenAlertBuilder = new AlertDialog.Builder(TransformActivity.this);
                 unshortenAlertBuilder.setTitle(R.string.shortened_detected);
+                unshortenAlertBuilder.setOnDismissListener(dialog -> finish());
                 View view = getLayoutInflater().inflate(R.layout.popup_unshorten, new LinearLayout(getApplicationContext()), false);
                 unshortenAlertBuilder.setView(view);
                 unshortenAlertBuilder.setIcon(R.mipmap.ic_launcher);
@@ -116,6 +117,7 @@ public class TransformActivity extends Activity {
                                     delegate.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                                     if (delegate.resolveActivity(getPackageManager()) != null) {
                                         startActivity(delegate);
+                                        finish();
                                     }
                                 } else {
                                     forwardToBrowser(intent);
@@ -135,6 +137,7 @@ public class TransformActivity extends Activity {
                                     delegate.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                                     if (delegate.resolveActivity(getPackageManager()) != null) {
                                         startActivity(delegate);
+                                        finish();
                                     }
                                 } else {
                                     forwardToBrowser(intent);
@@ -154,6 +157,7 @@ public class TransformActivity extends Activity {
                                     delegate.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                                     if (delegate.resolveActivity(getPackageManager()) != null) {
                                         startActivity(delegate);
+                                        finish();
                                     }
                                 } else {
                                     forwardToBrowser(intent);
@@ -167,6 +171,7 @@ public class TransformActivity extends Activity {
                             delegate.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                             if (delegate.resolveActivity(getPackageManager()) != null) {
                                 startActivity(delegate);
+                                finish();
                             }
                         }
                     }
@@ -223,6 +228,7 @@ public class TransformActivity extends Activity {
                         delegate.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                         if (delegate.resolveActivity(getPackageManager()) != null) {
                             startActivity(delegate);
+                            finish();
                         }
                     } else {
                         forwardToBrowser(intent);
@@ -241,6 +247,7 @@ public class TransformActivity extends Activity {
                         delegate.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                         if (delegate.resolveActivity(getPackageManager()) != null) {
                             startActivity(delegate);
+                            finish();
                         }
                     } else {
                         forwardToBrowser(intent);
@@ -260,6 +267,7 @@ public class TransformActivity extends Activity {
                         delegate.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                         if (delegate.resolveActivity(getPackageManager()) != null) {
                             startActivity(delegate);
+                            finish();
                         }
                     } else {
                         forwardToBrowser(intent);
@@ -279,6 +287,7 @@ public class TransformActivity extends Activity {
                         delegate.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                         if (delegate.resolveActivity(getPackageManager()) != null) {
                             startActivity(delegate);
+                            finish();
                         }
                     } else {
                         forwardToBrowser(intent);
@@ -380,9 +389,9 @@ public class TransformActivity extends Activity {
                 while (matcher.find()) {
                     final String bibliogram_directory = matcher.group(2);
                     String bibliogramHost = sharedpreferences.getString(MainActivity.SET_BIBLIOGRAM_HOST, MainActivity.DEFAULT_BIBLIOGRAM_HOST).toLowerCase();
-                    if( bibliogram_directory != null && bibliogram_directory.compareTo("privacy") != 0 ) {
+                    if (bibliogram_directory != null && bibliogram_directory.compareTo("privacy") != 0) {
                         newUrl = "https://" + bibliogramHost + "/u" + bibliogram_directory;
-                    }else{
+                    } else {
                         newUrl = "https://" + bibliogramHost + bibliogram_directory;
                     }
                 }
@@ -513,9 +522,9 @@ public class TransformActivity extends Activity {
                 while (matcher.find()) {
                     final String bibliogram_directory = matcher.group(2);
                     String bibliogramHost = sharedpreferences.getString(MainActivity.SET_BIBLIOGRAM_HOST, MainActivity.DEFAULT_BIBLIOGRAM_HOST).toLowerCase();
-                    if( bibliogram_directory != null && bibliogram_directory.compareTo("privacy") != 0 ) {
+                    if (bibliogram_directory != null && bibliogram_directory.compareTo("privacy") != 0) {
                         newUrl = "https://" + bibliogramHost + "/u" + bibliogram_directory;
-                    }else{
+                    } else {
                         newUrl = "https://" + bibliogramHost + bibliogram_directory;
                     }
                 }

@@ -14,6 +14,7 @@ package app.fedilab.nitterizeme;
  * You should have received a copy of the GNU General Public License along with NitterizeMe; if not,
  * see <http://www.gnu.org/licenses>. */
 
+
 import java.io.IOException;
 import java.net.InetAddress;
 import java.net.URL;
@@ -33,7 +34,32 @@ class Utils {
     static final Pattern urlPattern = Pattern.compile(
             "(?i)\\b((?:[a-z][\\w-]+:(?:/{1,3}|[a-z0-9%])|www\\d{0,3}[.]|[a-z0-9.\\-]+[.][a-z]{2,10}/)(?:[^\\s()<>]+|\\(([^\\s()<>]+|(\\([^\\s()<>]+\\)))*\\))+(?:\\(([^\\s()<>]+|(\\([^\\s()<>]+\\)))*\\)|[^\\s`!()\\[\\]{};:'\".,<>?«»“”‘’]))",
             Pattern.CASE_INSENSITIVE | Pattern.MULTILINE | Pattern.DOTALL);
+    private static final String[] UTM_PARAMS = {
+            "utm_\\w+",
+            "ga_source",
+            "ga_medium",
+            "ga_term",
+            "ga_content",
+            "ga_campaign",
+            "ga_place",
+            "yclid",
+            "_openstat",
+            "fb_action_ids",
+            "fb_action_types",
+            "fb_source",
+            "fb_ref",
+            "fbclid",
+            "action_object_map",
+            "action_type_map",
+            "action_ref_map",
+            "gs_l",
+            "mkt_tok",
+            "hmb_campaign",
+            "hmb_medium",
+            "hmb_source",
+            "[\\?|&]ref[\\_]?"
 
+    };
 
     /**
      * Returns the unshortened URL
@@ -61,8 +87,9 @@ class Utils {
                     if (entry.toString().toLowerCase().startsWith("location")) {
                         Matcher matcher = urlPattern.matcher(entry.toString());
                         if (matcher.find()) {
-                            urls.add(matcher.group(1));
-                            newURL = matcher.group(1);
+                            newURL = remove_tracking_param(matcher.group(1));
+                            urls.add(newURL);
+
                         }
                     }
                 }
@@ -100,5 +127,25 @@ class Utils {
         } catch (IOException ignored) {
         }
         return timeDifference;
+    }
+
+    /**
+     * Clean URLs from utm parameters
+     *
+     * @param url String URL
+     * @return cleaned URL String
+     */
+    private static String remove_tracking_param(String url) {
+        if (url != null) {
+            for (String utm : UTM_PARAMS) {
+                url = url.replaceAll("&amp;" + utm + "=[0-9a-zA-Z._-]*", "");
+                url = url.replaceAll("&" + utm + "=[0-9a-zA-Z._-]*", "");
+                url = url.replaceAll("\\?" + utm + "=[0-9a-zA-Z._-]*", "?");
+            }
+        }
+        if (url != null && url.endsWith("?")) {
+            url = url.substring(0, url.length() - 1);
+        }
+        return url;
     }
 }

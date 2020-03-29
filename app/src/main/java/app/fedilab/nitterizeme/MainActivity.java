@@ -87,6 +87,8 @@ public class MainActivity extends AppCompatActivity {
             "bit.ly",
             "tinyurl.com",
             "goo.gl",
+            "ow.ly",
+            "bl.ink"
     };
     private AppInfoAdapter appInfoAdapter;
     private RecyclerView list_apps;
@@ -331,7 +333,7 @@ public class MainActivity extends AppCompatActivity {
         if (geouri_enabled) {
             osm_current_group.setVisibility(View.GONE);
             osm_custom_group.setVisibility(View.GONE);
-        } else if (osm_enabled){
+        } else if (osm_enabled) {
             osm_current_group.setVisibility(View.VISIBLE);
         } else {
             osm_custom_group.setVisibility(View.GONE);

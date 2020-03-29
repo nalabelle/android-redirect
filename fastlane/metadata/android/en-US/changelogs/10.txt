@@ -1,0 +1,6 @@
+Added:
+- Unshorten support: ow.ly, bl.ink (Think to allow the app for opening them)
+- Remove tracking parameters after unshorteninng URLs
+
+Fixed:
+- Fix transparent background when dismissing

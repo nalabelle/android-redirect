@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
-        tools:ignore="GoogleAppIndexingWarning">
+        tools:ignore="GoogleAppIndexingWarning,UnusedAttribute">
 
         <activity
             android:name=".MainActivity"
@@ -144,6 +144,54 @@
                 <category android:name="android.intent.category.DEFAULT" />
                 <data
                     android:host="goo.gl"
+                    android:mimeType="text/plain" />
+            </intent-filter>
+
+            <!-- ow.ly -->
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:host="ow.ly"
+                    android:pathPattern=".*"
+                    android:scheme="https" />
+                <data
+                    android:host="ow.ly"
+                    android:pathPattern=".*"
+                    android:scheme="http" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.SEND" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data
+                    android:host="ow.ly"
+                    android:mimeType="text/plain" />
+            </intent-filter>
+
+            <!-- bl.ink -->
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:host="bl.ink"
+                    android:pathPattern=".*"
+                    android:scheme="https" />
+                <data
+                    android:host="bl.ink"
+                    android:pathPattern=".*"
+                    android:scheme="http" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.SEND" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data
+                    android:host="bl.ink"
                     android:mimeType="text/plain" />
             </intent-filter>
 
