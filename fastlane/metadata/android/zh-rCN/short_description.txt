@@ -1,1 +1,1 @@
-Transform Youtube and Twitter links into Invidious and Nitter links
+将 Youtube 和 Twitter 链接转换成Invidious链接和 Nitter 链接
