@@ -195,6 +195,31 @@
                     android:mimeType="text/plain" />
             </intent-filter>
 
+
+            <!-- buff.ly -->
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:host="buff.ly"
+                    android:pathPattern=".*"
+                    android:scheme="https" />
+                <data
+                    android:host="buff.ly"
+                    android:pathPattern=".*"
+                    android:scheme="http" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.SEND" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data
+                    android:host="buff.ly"
+                    android:mimeType="text/plain" />
+            </intent-filter>
+
             <!-- INSTAGRAM URLs  -->
             <!-- instagram.com -->
             <intent-filter>

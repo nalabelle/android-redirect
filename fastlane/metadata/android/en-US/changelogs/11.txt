@@ -1,0 +1,2 @@
+Added:
+- Unshorten support for buff.ly

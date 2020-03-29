@@ -88,7 +88,8 @@ public class MainActivity extends AppCompatActivity {
             "tinyurl.com",
             "goo.gl",
             "ow.ly",
-            "bl.ink"
+            "bl.ink",
+            "buff.ly"
     };
     private AppInfoAdapter appInfoAdapter;
     private RecyclerView list_apps;
