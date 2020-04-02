@@ -91,6 +91,30 @@ public class MainActivity extends AppCompatActivity {
             "bl.ink",
             "buff.ly"
     };
+
+    //Supported instances to redirect one instance to another faster for the user
+    public static String[] invidious_instances = {
+            "invidio.us",
+            "invidious.snopyta.org",
+            "invidiou.sh",
+            "invidious.toot.koeln",
+            "invidious.ggc-project.de"
+    };
+    public static String[] nitter_instances = {
+            "nitter.net",
+            "nitter.snopyta.org",
+            "nitter.42l.fr",
+            "nitter.13ad.de",
+            "tw.openalgeria.org",
+            "nitter.pussthecat.org"
+    };
+    public static String[] bibliogram_instances = {
+            "bibliogram.art",
+            "bibliogram.snopyta.org",
+            "bibliogram.dsrev.ru",
+            "bibliogram.pussthecat.org"
+    };
+
     private AppInfoAdapter appInfoAdapter;
     private RecyclerView list_apps;
     private String[] domains;
@@ -109,7 +133,7 @@ public class MainActivity extends AppCompatActivity {
         Objects.requireNonNull(getSupportActionBar()).setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        domains = new String[twitter_domains.length + youtube_domains.length + shortener_domains.length + instagram_domains.length];
+        domains = new String[twitter_domains.length + youtube_domains.length + shortener_domains.length + instagram_domains.length + invidious_instances.length + nitter_instances.length + bibliogram_instances.length];
         int i = 0;
         for (String host : twitter_domains) {
             domains[i] = host;
@@ -124,6 +148,18 @@ public class MainActivity extends AppCompatActivity {
             i++;
         }
         for (String host : instagram_domains) {
+            domains[i] = host;
+            i++;
+        }
+        for (String host : invidious_instances) {
+            domains[i] = host;
+            i++;
+        }
+        for (String host : nitter_instances) {
+            domains[i] = host;
+            i++;
+        }
+        for (String host : bibliogram_instances) {
             domains[i] = host;
             i++;
         }

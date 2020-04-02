@@ -19,6 +19,7 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.net.Uri;
 import android.os.Build;
@@ -26,6 +27,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Parcelable;
+import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
@@ -47,7 +49,10 @@ import java.util.regex.Pattern;
 import static app.fedilab.nitterizeme.MainActivity.SET_BIBLIOGRAM_ENABLED;
 import static app.fedilab.nitterizeme.MainActivity.SET_INVIDIOUS_ENABLED;
 import static app.fedilab.nitterizeme.MainActivity.SET_NITTER_ENABLED;
+import static app.fedilab.nitterizeme.MainActivity.bibliogram_instances;
 import static app.fedilab.nitterizeme.MainActivity.instagram_domains;
+import static app.fedilab.nitterizeme.MainActivity.invidious_instances;
+import static app.fedilab.nitterizeme.MainActivity.nitter_instances;
 import static app.fedilab.nitterizeme.MainActivity.shortener_domains;
 import static app.fedilab.nitterizeme.MainActivity.twitter_domains;
 import static app.fedilab.nitterizeme.MainActivity.youtube_domains;
@@ -70,6 +75,7 @@ public class TransformActivity extends Activity {
         super.onCreate(savedInstanceState);
         SharedPreferences sharedpreferences = getSharedPreferences(MainActivity.APP_PREFS, Context.MODE_PRIVATE);
         Intent intent = getIntent();
+        Log.v(MainActivity.TAG,"intent: " + intent);
         if (intent != null && intent.getStringExtra("nitterizeme") != null) {
             finish();
             return;
@@ -77,9 +83,12 @@ public class TransformActivity extends Activity {
         notShortnedURLDialog = new ArrayList<>();
         assert intent != null;
         //Dealing with URLs
+
+        Log.v(MainActivity.TAG,"intent: " + intent);
         if (Objects.requireNonNull(intent.getAction()).equals(Intent.ACTION_VIEW)) {
 
             String url = Objects.requireNonNull(intent.getData()).toString();
+            Log.v(MainActivity.TAG,"url: " + url);
             URL url_;
             String host = null;
             try {
@@ -220,9 +229,11 @@ public class TransformActivity extends Activity {
             //Twitter URLs
             else if (Arrays.asList(twitter_domains).contains(host)) {
                 boolean nitter_enabled = sharedpreferences.getBoolean(SET_NITTER_ENABLED, true);
+                Log.v(MainActivity.TAG,"nitter_enabled: " + nitter_enabled);
                 if (nitter_enabled) {
                     Intent delegate = new Intent(Intent.ACTION_VIEW);
                     String transformedURL = transformUrl(url);
+                    Log.v(MainActivity.TAG,"urlT: " + url);
                     if (transformedURL != null) {
                         delegate.setData(Uri.parse(transformUrl(url)));
                         delegate.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -296,6 +307,61 @@ public class TransformActivity extends Activity {
                     forwardToBrowser(intent);
                 }
             }
+            //Transform an Invidious URL from an instance to another one selected by the end user.
+            else if (Arrays.asList(invidious_instances).contains(host)) {
+                boolean invidious_enabled = sharedpreferences.getBoolean(SET_INVIDIOUS_ENABLED, true);
+                if (invidious_enabled) {
+                    String invidiousHost = sharedpreferences.getString(MainActivity.SET_INVIDIOUS_HOST, MainActivity.DEFAULT_INVIDIOUS_HOST).toLowerCase();
+                    String transformedURL = url;
+                    if( host != null && host.compareTo(invidiousHost) != 0 ){
+                        transformedURL = url.replace(host, invidiousHost);
+                    }
+                    Intent delegate = new Intent(Intent.ACTION_VIEW);
+                    delegate.setData(Uri.parse(transformedURL));
+                    delegate.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    if (delegate.resolveActivity(getPackageManager()) != null) {
+                        startActivity(delegate);
+                        finish();
+                    }
+                } else {
+                    forwardToBrowser(intent);
+                }
+            }
+            //Transform a Nitter URL from an instance to another one selected by the end user.
+            else if (Arrays.asList(nitter_instances).contains(host)) {
+                boolean nitter_enabled = sharedpreferences.getBoolean(SET_NITTER_ENABLED, true);
+                if (nitter_enabled) {
+                    String nitterHost = sharedpreferences.getString(MainActivity.SET_NITTER_HOST, MainActivity.DEFAULT_NITTER_HOST).toLowerCase();
+                    String transformedURL = url;
+                    if( host != null && host.compareTo(nitterHost) != 0 ){
+                        transformedURL = url.replace(host, nitterHost);
+                    }
+                    intent.setData(Uri.parse(transformedURL));
+                    forwardToBrowser(intent);
+                } else {
+                    forwardToBrowser(intent);
+                }
+            }
+            //Transform a Bibliogram URL from an instance to another one selected by the end user.
+            else if (Arrays.asList(bibliogram_instances).contains(host)) {
+                boolean bibliogram_enabled = sharedpreferences.getBoolean(SET_BIBLIOGRAM_ENABLED, true);
+                if (bibliogram_enabled) {
+                    String bibliogramHost = sharedpreferences.getString(MainActivity.SET_BIBLIOGRAM_HOST, MainActivity.DEFAULT_BIBLIOGRAM_HOST).toLowerCase();
+                    String transformedURL = url;
+                    if( host != null && host.compareTo(bibliogramHost) != 0 ){
+                        transformedURL = url.replace(host, bibliogramHost);
+                    }
+                    Intent delegate = new Intent(Intent.ACTION_VIEW);
+                    delegate.setData(Uri.parse(transformedURL));
+                    delegate.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    if (delegate.resolveActivity(getPackageManager()) != null) {
+                        startActivity(delegate);
+                        finish();
+                    }
+                } else {
+                    forwardToBrowser(intent);
+                }
+            }
 
         }
         //It's a sharing intent
@@ -320,7 +386,11 @@ public class TransformActivity extends Activity {
     private void forwardToBrowser(Intent i) {
         Intent intent = new Intent();
         intent.setAction(Intent.ACTION_VIEW);
-        intent.setDataAndType(i.getData(), i.getType());
+        String type = i.getType();
+        if( type == null) {
+            type = "text/html";
+        }
+        intent.setDataAndType(i.getData(), type);
         List<ResolveInfo> activities = getPackageManager().queryIntentActivities(intent, 0);
         ArrayList<Intent> targetIntents = new ArrayList<>();
         String thisPackageName = getApplicationContext().getPackageName();
@@ -340,8 +410,8 @@ public class TransformActivity extends Activity {
             Intent chooserIntent = Intent.createChooser(targetIntents.remove(0), getString(R.string.open_with));
             chooserIntent.putExtra(Intent.EXTRA_INITIAL_INTENTS, targetIntents.toArray(new Parcelable[]{}));
             startActivity(chooserIntent);
-            finish();
         }
+        finish();
     }
 
 

@@ -1,2 +1,3 @@
 Added:
+- Allow to redirect Invidious, Nitter and Bibliogram links from an instance to your selected one.
 - Unshorten support for buff.ly

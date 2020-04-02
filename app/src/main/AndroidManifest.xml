@@ -34,10 +34,8 @@
             <!-- t.co -->
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
-
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
-
                 <data
                     android:host="t.co"
                     android:pathPattern=".*"
@@ -57,10 +55,8 @@
             <!-- nyti.ms -->
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
-
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
-
                 <data
                     android:host="nyti.ms"
                     android:pathPattern=".*"
@@ -80,10 +76,8 @@
             <!-- bit.ly -->
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
-
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
-
                 <data
                     android:host="bit.ly"
                     android:pathPattern=".*"
@@ -146,7 +140,6 @@
                     android:host="goo.gl"
                     android:mimeType="text/plain" />
             </intent-filter>
-
             <!-- ow.ly -->
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
@@ -170,7 +163,6 @@
                     android:host="ow.ly"
                     android:mimeType="text/plain" />
             </intent-filter>
-
             <!-- bl.ink -->
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
@@ -194,8 +186,6 @@
                     android:host="bl.ink"
                     android:mimeType="text/plain" />
             </intent-filter>
-
-
             <!-- buff.ly -->
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
@@ -342,10 +332,8 @@
             <!-- twitter.com -->
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
-
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
-
                 <data
                     android:host="twitter.com"
                     android:pathPattern=".*"
@@ -495,6 +483,238 @@
                     android:mimeType="text/plain"
                     android:pathPattern="/maps/place/.*" />
             </intent-filter>
+
+            <!-- INSTANCES FOR REDIRECT TO THE PREFERRED ONES -->
+            <!-- NITTER INSTANCES -->
+            <!-- nitter.net -->
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data
+                    android:host="nitter.net"
+                    android:pathPattern=".*"
+                    android:scheme="https" />
+                <data
+                    android:host="nitter.net"
+                    android:pathPattern=".*"
+                    android:scheme="http" />
+            </intent-filter>
+            <!-- nitter.snopyta.org -->
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data
+                    android:host="nitter.snopyta.org"
+                    android:pathPattern=".*"
+                    android:scheme="https" />
+                <data
+                    android:host="nitter.snopyta.org"
+                    android:pathPattern=".*"
+                    android:scheme="http" />
+            </intent-filter>
+            <!-- nitter.42l.fr -->
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data
+                    android:host="nitter.42l.fr"
+                    android:pathPattern=".*"
+                    android:scheme="https" />
+                <data
+                    android:host="nitter.42l.fr"
+                    android:pathPattern=".*"
+                    android:scheme="http" />
+            </intent-filter>
+            <!-- nitter.nixnet.services -->
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data
+                    android:host="nitter.nixnet.services"
+                    android:pathPattern=".*"
+                    android:scheme="https" />
+                <data
+                    android:host="nitter.nixnet.services"
+                    android:pathPattern=".*"
+                    android:scheme="http" />
+            </intent-filter>
+            <!-- nitter.13ad.de -->
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data
+                    android:host="nitter.13ad.de"
+                    android:pathPattern=".*"
+                    android:scheme="https" />
+                <data
+                    android:host="nitter.13ad.de"
+                    android:pathPattern=".*"
+                    android:scheme="http" />
+            </intent-filter>
+            <!-- tw.openalgeria.org -->
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data
+                    android:host="tw.openalgeria.org"
+                    android:pathPattern=".*"
+                    android:scheme="https" />
+                <data
+                    android:host="tw.openalgeria.org"
+                    android:pathPattern=".*"
+                    android:scheme="http" />
+            </intent-filter>
+            <!-- nitter.pussthecat.org -->
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data
+                    android:host="nitter.pussthecat.org"
+                    android:pathPattern=".*"
+                    android:scheme="https" />
+                <data
+                    android:host="nitter.pussthecat.org"
+                    android:pathPattern=".*"
+                    android:scheme="http" />
+            </intent-filter>
+
+            <!-- INVIDIOUS INSTANCES -->
+            <!-- invidio.us -->
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data
+                    android:host="invidio.us"
+                    android:pathPattern=".*"
+                    android:scheme="https" />
+                <data
+                    android:host="invidio.us"
+                    android:pathPattern=".*"
+                    android:scheme="http" />
+            </intent-filter>
+            <!-- invidious.snopyta.org -->
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data
+                    android:host="invidious.snopyta.org"
+                    android:pathPattern=".*"
+                    android:scheme="https" />
+                <data
+                    android:host="invidious.snopyta.org"
+                    android:pathPattern=".*"
+                    android:scheme="http" />
+            </intent-filter>
+            <!-- invidiou.sh -->
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data
+                    android:host="invidiou.sh"
+                    android:pathPattern=".*"
+                    android:scheme="https" />
+                <data
+                    android:host="invidiou.sh"
+                    android:pathPattern=".*"
+                    android:scheme="http" />
+            </intent-filter>
+            <!-- invidious.toot.koeln -->
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data
+                    android:host="invidious.toot.koeln"
+                    android:pathPattern=".*"
+                    android:scheme="https" />
+                <data
+                    android:host="invidious.toot.koeln"
+                    android:pathPattern=".*"
+                    android:scheme="http" />
+            </intent-filter>
+            <!-- invidious.ggc-project.de -->
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data
+                    android:host="invidious.ggc-project.de"
+                    android:pathPattern=".*"
+                    android:scheme="https" />
+                <data
+                    android:host="invidious.ggc-project.de"
+                    android:pathPattern=".*"
+                    android:scheme="http" />
+            </intent-filter>
+
+            <!-- BIBLIOGRAM INSTANCES -->
+            <!-- bibliogram.art -->
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data
+                    android:host="bibliogram.art"
+                    android:pathPattern=".*"
+                    android:scheme="https" />
+                <data
+                    android:host="bibliogram.art"
+                    android:pathPattern=".*"
+                    android:scheme="http" />
+            </intent-filter>
+            <!-- bibliogram.snopyta.org -->
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data
+                    android:host="bibliogram.snopyta.org"
+                    android:pathPattern=".*"
+                    android:scheme="https" />
+                <data
+                    android:host="bibliogram.snopyta.org"
+                    android:pathPattern=".*"
+                    android:scheme="http" />
+            </intent-filter>
+            <!-- bibliogram.dsrev.ru -->
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data
+                    android:host="bibliogram.dsrev.ru"
+                    android:pathPattern=".*"
+                    android:scheme="https" />
+                <data
+                    android:host="bibliogram.dsrev.ru"
+                    android:pathPattern=".*"
+                    android:scheme="http" />
+            </intent-filter>
+            <!-- bibliogram.pussthecat.org -->
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data
+                    android:host="bibliogram.pussthecat.org"
+                    android:pathPattern=".*"
+                    android:scheme="https" />
+                <data
+                    android:host="bibliogram.pussthecat.org"
+                    android:pathPattern=".*"
+                    android:scheme="http" />
+            </intent-filter>
+
         </activity>
         <activity
             android:name="app.fedilab.nitterizeme.InstanceActivity"
