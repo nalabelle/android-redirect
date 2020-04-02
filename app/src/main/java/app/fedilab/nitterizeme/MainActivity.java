@@ -595,18 +595,26 @@ public class MainActivity extends AppCompatActivity {
         TextInputEditText nitter_instance = findViewById(R.id.nitter_instance);
         TextInputEditText invidious_instance = findViewById(R.id.invidious_instance);
         TextInputEditText bibliogram_instance = findViewById(R.id.bibliogram_instance);
+
+        TextView current_instance_nitter = findViewById(R.id.current_instance_nitter);
+        TextView current_instance_invidious = findViewById(R.id.current_instance_invidious);
+        TextView current_instance_bibliogram = findViewById(R.id.current_instance_bibliogram);
+
         SharedPreferences sharedpreferences = getSharedPreferences(APP_PREFS, Context.MODE_PRIVATE);
         String nitterHost = sharedpreferences.getString(SET_NITTER_HOST, null);
         String invidiousHost = sharedpreferences.getString(SET_INVIDIOUS_HOST, null);
         String bibliogramHost = sharedpreferences.getString(SET_BIBLIOGRAM_HOST, null);
         if (nitterHost != null) {
             nitter_instance.setText(nitterHost);
+            current_instance_nitter.setText(nitterHost);
         }
         if (invidiousHost != null) {
             invidious_instance.setText(invidiousHost);
+            current_instance_invidious.setText(invidiousHost);
         }
         if (bibliogramHost != null) {
             bibliogram_instance.setText(bibliogramHost);
+            current_instance_bibliogram.setText(bibliogramHost);
         }
 
     }

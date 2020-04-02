@@ -1,3 +1,7 @@
 Added:
-- Allow to redirect Invidious, Nitter and Bibliogram links from an instance to your selected one.
+- Allow to redirect Invidious, Nitter and Bibliogram links to the preferred instances
 - Unshorten support for buff.ly
+
+Fixed:
+- Refresh issue when picking up another instance
+- Last Bibliogram instances not accessible

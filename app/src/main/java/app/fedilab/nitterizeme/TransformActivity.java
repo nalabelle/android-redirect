@@ -19,7 +19,6 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.net.Uri;
 import android.os.Build;
@@ -27,7 +26,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Parcelable;
-import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
@@ -75,7 +73,6 @@ public class TransformActivity extends Activity {
         super.onCreate(savedInstanceState);
         SharedPreferences sharedpreferences = getSharedPreferences(MainActivity.APP_PREFS, Context.MODE_PRIVATE);
         Intent intent = getIntent();
-        Log.v(MainActivity.TAG,"intent: " + intent);
         if (intent != null && intent.getStringExtra("nitterizeme") != null) {
             finish();
             return;
@@ -84,11 +81,8 @@ public class TransformActivity extends Activity {
         assert intent != null;
         //Dealing with URLs
 
-        Log.v(MainActivity.TAG,"intent: " + intent);
         if (Objects.requireNonNull(intent.getAction()).equals(Intent.ACTION_VIEW)) {
-
             String url = Objects.requireNonNull(intent.getData()).toString();
-            Log.v(MainActivity.TAG,"url: " + url);
             URL url_;
             String host = null;
             try {
@@ -229,11 +223,9 @@ public class TransformActivity extends Activity {
             //Twitter URLs
             else if (Arrays.asList(twitter_domains).contains(host)) {
                 boolean nitter_enabled = sharedpreferences.getBoolean(SET_NITTER_ENABLED, true);
-                Log.v(MainActivity.TAG,"nitter_enabled: " + nitter_enabled);
                 if (nitter_enabled) {
                     Intent delegate = new Intent(Intent.ACTION_VIEW);
                     String transformedURL = transformUrl(url);
-                    Log.v(MainActivity.TAG,"urlT: " + url);
                     if (transformedURL != null) {
                         delegate.setData(Uri.parse(transformUrl(url)));
                         delegate.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -316,13 +308,8 @@ public class TransformActivity extends Activity {
                     if( host != null && host.compareTo(invidiousHost) != 0 ){
                         transformedURL = url.replace(host, invidiousHost);
                     }
-                    Intent delegate = new Intent(Intent.ACTION_VIEW);
-                    delegate.setData(Uri.parse(transformedURL));
-                    delegate.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                    if (delegate.resolveActivity(getPackageManager()) != null) {
-                        startActivity(delegate);
-                        finish();
-                    }
+                    intent.setData(Uri.parse(transformedURL));
+                    forwardToBrowser(intent);
                 } else {
                     forwardToBrowser(intent);
                 }
@@ -351,13 +338,8 @@ public class TransformActivity extends Activity {
                     if( host != null && host.compareTo(bibliogramHost) != 0 ){
                         transformedURL = url.replace(host, bibliogramHost);
                     }
-                    Intent delegate = new Intent(Intent.ACTION_VIEW);
-                    delegate.setData(Uri.parse(transformedURL));
-                    delegate.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                    if (delegate.resolveActivity(getPackageManager()) != null) {
-                        startActivity(delegate);
-                        finish();
-                    }
+                    intent.setData(Uri.parse(transformedURL));
+                    forwardToBrowser(intent);
                 } else {
                     forwardToBrowser(intent);
                 }
