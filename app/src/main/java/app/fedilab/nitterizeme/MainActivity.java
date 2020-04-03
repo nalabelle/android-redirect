@@ -454,7 +454,7 @@ public class MainActivity extends AppCompatActivity {
         for (String domain : domains) {
             AppInfo appInfo = new AppInfo();
             appInfo.setDomain(domain);
-            appInfo.setApplicationInfo(getDefaultApp("https://" + domain));
+            appInfo.setApplicationInfo(getDefaultApp("https://" + domain + "/"));
             appInfos.add(appInfo);
         }
 
@@ -586,7 +586,7 @@ public class MainActivity extends AppCompatActivity {
             for (String domain : domains) {
                 AppInfo appInfo = new AppInfo();
                 appInfo.setDomain(domain);
-                appInfo.setApplicationInfo(getDefaultApp("https://" + domain));
+                appInfo.setApplicationInfo(getDefaultApp("https://" + domain + "/"));
                 appInfos.add(appInfo);
             }
             appInfoAdapter = new AppInfoAdapter(appInfos);

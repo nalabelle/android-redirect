@@ -305,7 +305,7 @@ public class TransformActivity extends Activity {
                 if (invidious_enabled) {
                     String invidiousHost = sharedpreferences.getString(MainActivity.SET_INVIDIOUS_HOST, MainActivity.DEFAULT_INVIDIOUS_HOST).toLowerCase();
                     String transformedURL = url;
-                    if( host != null && host.compareTo(invidiousHost) != 0 ){
+                    if (host != null && host.compareTo(invidiousHost) != 0) {
                         transformedURL = url.replace(host, invidiousHost);
                     }
                     intent.setData(Uri.parse(transformedURL));
@@ -320,7 +320,7 @@ public class TransformActivity extends Activity {
                 if (nitter_enabled) {
                     String nitterHost = sharedpreferences.getString(MainActivity.SET_NITTER_HOST, MainActivity.DEFAULT_NITTER_HOST).toLowerCase();
                     String transformedURL = url;
-                    if( host != null && host.compareTo(nitterHost) != 0 ){
+                    if (host != null && host.compareTo(nitterHost) != 0) {
                         transformedURL = url.replace(host, nitterHost);
                     }
                     intent.setData(Uri.parse(transformedURL));
@@ -335,7 +335,7 @@ public class TransformActivity extends Activity {
                 if (bibliogram_enabled) {
                     String bibliogramHost = sharedpreferences.getString(MainActivity.SET_BIBLIOGRAM_HOST, MainActivity.DEFAULT_BIBLIOGRAM_HOST).toLowerCase();
                     String transformedURL = url;
-                    if( host != null && host.compareTo(bibliogramHost) != 0 ){
+                    if (host != null && host.compareTo(bibliogramHost) != 0) {
                         transformedURL = url.replace(host, bibliogramHost);
                     }
                     intent.setData(Uri.parse(transformedURL));
@@ -369,7 +369,7 @@ public class TransformActivity extends Activity {
         Intent intent = new Intent();
         intent.setAction(Intent.ACTION_VIEW);
         String type = i.getType();
-        if( type == null) {
+        if (type == null) {
             type = "text/html";
         }
         intent.setDataAndType(i.getData(), type);

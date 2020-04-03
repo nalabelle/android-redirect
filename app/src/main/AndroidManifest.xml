@@ -34,8 +34,10 @@
             <!-- t.co -->
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
+
                 <data
                     android:host="t.co"
                     android:pathPattern=".*"
@@ -55,8 +57,10 @@
             <!-- nyti.ms -->
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
+
                 <data
                     android:host="nyti.ms"
                     android:pathPattern=".*"
@@ -76,8 +80,10 @@
             <!-- bit.ly -->
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
+
                 <data
                     android:host="bit.ly"
                     android:pathPattern=".*"
@@ -332,8 +338,10 @@
             <!-- twitter.com -->
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
+
                 <data
                     android:host="twitter.com"
                     android:pathPattern=".*"
@@ -489,8 +497,10 @@
             <!-- nitter.net -->
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
+
                 <data
                     android:host="nitter.net"
                     android:pathPattern=".*"
@@ -503,8 +513,10 @@
             <!-- nitter.snopyta.org -->
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
+
                 <data
                     android:host="nitter.snopyta.org"
                     android:pathPattern=".*"
@@ -517,8 +529,10 @@
             <!-- nitter.42l.fr -->
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
+
                 <data
                     android:host="nitter.42l.fr"
                     android:pathPattern=".*"
@@ -531,8 +545,10 @@
             <!-- nitter.nixnet.services -->
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
+
                 <data
                     android:host="nitter.nixnet.services"
                     android:pathPattern=".*"
@@ -545,8 +561,10 @@
             <!-- nitter.13ad.de -->
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
+
                 <data
                     android:host="nitter.13ad.de"
                     android:pathPattern=".*"
@@ -559,8 +577,10 @@
             <!-- tw.openalgeria.org -->
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
+
                 <data
                     android:host="tw.openalgeria.org"
                     android:pathPattern=".*"
@@ -573,8 +593,10 @@
             <!-- nitter.pussthecat.org -->
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
+
                 <data
                     android:host="nitter.pussthecat.org"
                     android:pathPattern=".*"
@@ -589,8 +611,10 @@
             <!-- invidio.us -->
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
+
                 <data
                     android:host="invidio.us"
                     android:pathPattern=".*"
@@ -603,8 +627,10 @@
             <!-- invidious.snopyta.org -->
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
+
                 <data
                     android:host="invidious.snopyta.org"
                     android:pathPattern=".*"
@@ -617,8 +643,10 @@
             <!-- invidiou.sh -->
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
+
                 <data
                     android:host="invidiou.sh"
                     android:pathPattern=".*"
@@ -631,8 +659,10 @@
             <!-- invidious.toot.koeln -->
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
+
                 <data
                     android:host="invidious.toot.koeln"
                     android:pathPattern=".*"
@@ -645,8 +675,10 @@
             <!-- invidious.ggc-project.de -->
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
+
                 <data
                     android:host="invidious.ggc-project.de"
                     android:pathPattern=".*"
@@ -661,8 +693,10 @@
             <!-- bibliogram.art -->
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
+
                 <data
                     android:host="bibliogram.art"
                     android:pathPattern=".*"
@@ -675,8 +709,10 @@
             <!-- bibliogram.snopyta.org -->
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
+
                 <data
                     android:host="bibliogram.snopyta.org"
                     android:pathPattern=".*"
@@ -689,8 +725,10 @@
             <!-- bibliogram.dsrev.ru -->
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
+
                 <data
                     android:host="bibliogram.dsrev.ru"
                     android:pathPattern=".*"
@@ -703,8 +741,10 @@
             <!-- bibliogram.pussthecat.org -->
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
+
                 <data
                     android:host="bibliogram.pussthecat.org"
                     android:pathPattern=".*"
