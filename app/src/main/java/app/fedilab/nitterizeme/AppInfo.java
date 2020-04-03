@@ -19,6 +19,7 @@ class AppInfo {
 
     private String domain;
     private android.content.pm.ApplicationInfo ApplicationInfo;
+    private String title = null;
 
     String getDomain() {
         return domain;
@@ -34,5 +35,13 @@ class AppInfo {
 
     void setApplicationInfo(android.content.pm.ApplicationInfo applicationInfo) {
         ApplicationInfo = applicationInfo;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 }

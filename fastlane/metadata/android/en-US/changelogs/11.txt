@@ -2,6 +2,10 @@ Added:
 - Allow to redirect Invidious, Nitter and Bibliogram links to the preferred instances
 - Unshorten support for buff.ly
 
+Changed:
+- Improve detection of apps opening by default links
+- Add titles above links for apps
+
 Fixed:
 - Refresh issue when picking up another instance
 - Last Bibliogram instances not accessible

@@ -34,10 +34,22 @@ import java.util.List;
 
 public class AppInfoAdapter extends RecyclerView.Adapter {
 
+    private static final int LAYOUT_TITLE = 0;
+    private static final int LAYOUT_INFO = 1;
     private List<AppInfo> appInfos;
 
     AppInfoAdapter(List<AppInfo> appInfos) {
         this.appInfos = appInfos;
+    }
+
+
+    @Override
+    public int getItemViewType(int position) {
+        if (appInfos.get(position).getTitle() == null) {
+            return LAYOUT_INFO;
+        } else {
+            return LAYOUT_TITLE;
+        }
     }
 
 
@@ -46,56 +58,66 @@ public class AppInfoAdapter extends RecyclerView.Adapter {
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int position) {
         Context context = parent.getContext();
         LayoutInflater layoutInflater = LayoutInflater.from(context);
-        return new ViewHolder(layoutInflater.inflate(R.layout.drawer_app_info, parent, false));
+        if (getItemViewType(position) == LAYOUT_INFO) {
+            return new ViewHolder(layoutInflater.inflate(R.layout.drawer_app_info, parent, false));
+        } else {
+            return new ViewHolderTitle(layoutInflater.inflate(R.layout.drawer_app_title, parent, false));
+        }
     }
+
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, int i) {
-
-        ViewHolder holder = (ViewHolder) viewHolder;
-        AppInfo appInfo = appInfos.get(viewHolder.getAdapterPosition());
-        Context context = holder.itemView.getContext();
-        holder.domain.setText(appInfo.getDomain());
-        if (appInfo.getApplicationInfo() != null) {
-            Drawable icon = appInfo.getApplicationInfo().loadIcon(context.getPackageManager());
-            try {
-                holder.app_icon.setImageDrawable(icon);
-            } catch (Resources.NotFoundException e) {
-                holder.app_icon.setImageResource(R.drawable.ic_android);
-            }
-            String app_label = context.getPackageManager().getApplicationLabel(appInfo.getApplicationInfo()).toString();
-            if (appInfo.getApplicationInfo().packageName.compareTo(BuildConfig.APPLICATION_ID) == 0) {
-                holder.application_label.setText(app_label);
-                holder.package_name.setVisibility(View.GONE);
-                holder.valid.setImageResource(R.drawable.ic_check);
-                holder.valid.setContentDescription(context.getString(R.string.valid));
+        if (viewHolder.getItemViewType() == LAYOUT_INFO) {
+            AppInfo appInfo = appInfos.get(viewHolder.getAdapterPosition());
+            ViewHolder holder = (ViewHolder) viewHolder;
+            Context context = holder.itemView.getContext();
+            holder.domain.setText(appInfo.getDomain());
+            if (appInfo.getApplicationInfo() != null) {
+                Drawable icon = appInfo.getApplicationInfo().loadIcon(context.getPackageManager());
+                try {
+                    holder.app_icon.setImageDrawable(icon);
+                } catch (Resources.NotFoundException e) {
+                    holder.app_icon.setImageResource(R.drawable.ic_android);
+                }
+                String app_label = context.getPackageManager().getApplicationLabel(appInfo.getApplicationInfo()).toString();
+                if (appInfo.getApplicationInfo().packageName.compareTo(BuildConfig.APPLICATION_ID) == 0) {
+                    holder.application_label.setText(app_label);
+                    holder.package_name.setVisibility(View.GONE);
+                    holder.valid.setImageResource(R.drawable.ic_check);
+                    holder.valid.setContentDescription(context.getString(R.string.valid));
+                } else {
+                    String package_name = appInfo.getApplicationInfo().packageName;
+                    holder.application_label.setText(app_label);
+                    holder.package_name.setVisibility(View.VISIBLE);
+                    holder.package_name.setText(String.format("(%s)", package_name));
+                    holder.valid.setImageResource(R.drawable.ic_error);
+                    holder.valid.setContentDescription(context.getString(R.string.error));
+                }
+                holder.main_container.setOnClickListener(v -> {
+                    Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+                    Uri uri = Uri.fromParts("package", appInfo.getApplicationInfo().packageName, null);
+                    intent.setData(uri);
+                    context.startActivity(intent);
+                });
             } else {
-                String package_name = appInfo.getApplicationInfo().packageName;
-                holder.application_label.setText(app_label);
-                holder.package_name.setVisibility(View.VISIBLE);
-                holder.package_name.setText(String.format("(%s)", package_name));
-                holder.valid.setImageResource(R.drawable.ic_error);
-                holder.valid.setContentDescription(context.getString(R.string.error));
+                holder.application_label.setText(R.string.no_apps);
+                holder.app_icon.setImageResource(R.drawable.ic_android);
+                holder.valid.setContentDescription(context.getString(R.string.warning));
+                holder.valid.setImageResource(R.drawable.ic_warning);
+                holder.main_container.setOnClickListener(v -> {
+                    Intent intent = new Intent(Intent.ACTION_VIEW);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    intent.putExtra("nitterizeme", "test");
+                    String url = "https://" + appInfo.getDomain();
+                    intent.setData(Uri.parse(url));
+                    context.startActivity(intent);
+                });
             }
-            holder.main_container.setOnClickListener(v -> {
-                Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
-                Uri uri = Uri.fromParts("package", appInfo.getApplicationInfo().packageName, null);
-                intent.setData(uri);
-                context.startActivity(intent);
-            });
         } else {
-            holder.application_label.setText(R.string.no_apps);
-            holder.app_icon.setImageResource(R.drawable.ic_android);
-            holder.valid.setContentDescription(context.getString(R.string.warning));
-            holder.valid.setImageResource(R.drawable.ic_warning);
-            holder.main_container.setOnClickListener(v -> {
-                Intent intent = new Intent(Intent.ACTION_VIEW);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                intent.putExtra("nitterizeme", "test");
-                String url = "https://" + appInfo.getDomain();
-                intent.setData(Uri.parse(url));
-                context.startActivity(intent);
-            });
+            ViewHolderTitle holder = (ViewHolderTitle) viewHolder;
+            AppInfo appInfo = appInfos.get(viewHolder.getAdapterPosition());
+            holder.title.setText(appInfo.getTitle());
         }
     }
 
@@ -123,6 +145,15 @@ public class AppInfoAdapter extends RecyclerView.Adapter {
             package_name = itemView.findViewById(R.id.package_name);
             domain = itemView.findViewById(R.id.domain);
             main_container = itemView.findViewById(R.id.main_container);
+        }
+    }
+
+    static class ViewHolderTitle extends RecyclerView.ViewHolder {
+        TextView title;
+
+        ViewHolderTitle(@NonNull View itemView) {
+            super(itemView);
+            title = itemView.findViewById(R.id.title);
         }
     }
 

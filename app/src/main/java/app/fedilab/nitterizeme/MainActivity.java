@@ -115,7 +115,6 @@ public class MainActivity extends AppCompatActivity {
             "bibliogram.pussthecat.org"
     };
 
-    private AppInfoAdapter appInfoAdapter;
     private RecyclerView list_apps;
     private String[] domains;
 
@@ -143,11 +142,11 @@ public class MainActivity extends AppCompatActivity {
             domains[i] = host;
             i++;
         }
-        for (String host : shortener_domains) {
+        for (String host : instagram_domains) {
             domains[i] = host;
             i++;
         }
-        for (String host : instagram_domains) {
+        for (String host : shortener_domains) {
             domains[i] = host;
             i++;
         }
@@ -450,13 +449,6 @@ public class MainActivity extends AppCompatActivity {
             Intent intent = new Intent(MainActivity.this, InstanceActivity.class);
             startActivity(intent);
         });
-        ArrayList<AppInfo> appInfos = new ArrayList<>();
-        for (String domain : domains) {
-            AppInfo appInfo = new AppInfo();
-            appInfo.setDomain(domain);
-            appInfo.setApplicationInfo(getDefaultApp("https://" + domain + "/"));
-            appInfos.add(appInfo);
-        }
 
 
         enable_geo_uris.setOnCheckedChangeListener((buttonView, isChecked) -> {
@@ -522,9 +514,6 @@ public class MainActivity extends AppCompatActivity {
 
                 }
         );
-
-        appInfoAdapter = new AppInfoAdapter(appInfos);
-        list_apps.setAdapter(appInfoAdapter);
         final LinearLayoutManager mLayoutManager;
         mLayoutManager = new LinearLayoutManager(MainActivity.this);
         list_apps.setLayoutManager(mLayoutManager);
@@ -582,14 +571,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         if (list_apps != null) {
-            ArrayList<AppInfo> appInfos = new ArrayList<>();
-            for (String domain : domains) {
-                AppInfo appInfo = new AppInfo();
-                appInfo.setDomain(domain);
-                appInfo.setApplicationInfo(getDefaultApp("https://" + domain + "/"));
-                appInfos.add(appInfo);
-            }
-            appInfoAdapter = new AppInfoAdapter(appInfos);
+            ArrayList<AppInfo> appInfos = getAppInfo();
+            AppInfoAdapter appInfoAdapter = new AppInfoAdapter(appInfos);
             list_apps.setAdapter(appInfoAdapter);
         }
         TextInputEditText nitter_instance = findViewById(R.id.nitter_instance);
@@ -617,5 +600,47 @@ public class MainActivity extends AppCompatActivity {
             current_instance_bibliogram.setText(bibliogramHost);
         }
 
+    }
+
+    private ArrayList<AppInfo> getAppInfo() {
+        ArrayList<AppInfo> appInfos = new ArrayList<>();
+        int j = 0;
+        for (String domain : domains) {
+            if (j == 0) {
+                AppInfo appInfo = new AppInfo();
+                appInfo.setTitle("Twitter");
+                appInfos.add(appInfo);
+            } else if (j == twitter_domains.length) {
+                AppInfo appInfo = new AppInfo();
+                appInfo.setTitle("YouTube");
+                appInfos.add(appInfo);
+            } else if (j == twitter_domains.length + youtube_domains.length) {
+                AppInfo appInfo = new AppInfo();
+                appInfo.setTitle("Instagram");
+                appInfos.add(appInfo);
+            } else if (j == twitter_domains.length + youtube_domains.length + instagram_domains.length) {
+                AppInfo appInfo = new AppInfo();
+                appInfo.setTitle(getString(R.string.shortener_services));
+                appInfos.add(appInfo);
+            } else if (j == twitter_domains.length + youtube_domains.length + instagram_domains.length + shortener_domains.length) {
+                AppInfo appInfo = new AppInfo();
+                appInfo.setTitle(getString(R.string.invidious_instances));
+                appInfos.add(appInfo);
+            } else if (j == twitter_domains.length + youtube_domains.length + instagram_domains.length + shortener_domains.length + invidious_instances.length) {
+                AppInfo appInfo = new AppInfo();
+                appInfo.setTitle(getString(R.string.nitter_instances));
+                appInfos.add(appInfo);
+            } else if (j == twitter_domains.length + youtube_domains.length + instagram_domains.length + shortener_domains.length + invidious_instances.length + nitter_instances.length) {
+                AppInfo appInfo = new AppInfo();
+                appInfo.setTitle(getString(R.string.bibliogram_instances));
+                appInfos.add(appInfo);
+            }
+            AppInfo appInfo = new AppInfo();
+            appInfo.setDomain(domain);
+            appInfo.setApplicationInfo(getDefaultApp("https://" + domain + "/"));
+            appInfos.add(appInfo);
+            j++;
+        }
+        return appInfos;
     }
 }
