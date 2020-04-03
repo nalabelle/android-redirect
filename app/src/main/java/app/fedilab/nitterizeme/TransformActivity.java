@@ -19,6 +19,7 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.net.Uri;
 import android.os.Build;
@@ -388,7 +389,15 @@ public class TransformActivity extends Activity {
                 targetIntents.add(targetIntent);
             }
         }
-        if (targetIntents.size() > 0) {
+        if (isNewPipeInstalled() && Arrays.asList(invidious_instances).contains(Objects.requireNonNull(i.getData()).getHost())) {
+            Intent targetIntent = new Intent(Intent.ACTION_VIEW);
+            targetIntent.setDataAndType(intent.getData(), intent.getType());
+            targetIntent.setPackage(intent.getPackage());
+            targetIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            targetIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            targetIntent.setComponent(new ComponentName("org.schabi.newpipe", "org.schabi.newpipe.RouterActivity"));
+            startActivity(targetIntent);
+        } else if (targetIntents.size() > 0) {
             Intent chooserIntent = Intent.createChooser(targetIntents.remove(0), getString(R.string.open_with));
             chooserIntent.putExtra(Intent.EXTRA_INITIAL_INTENTS, targetIntents.toArray(new Parcelable[]{}));
             startActivity(chooserIntent);
@@ -715,5 +724,19 @@ public class TransformActivity extends Activity {
         sendIntent.putExtra(Intent.EXTRA_TEXT, extraText);
         sendIntent.setType("text/plain");
         startActivity(sendIntent);
+    }
+
+    /**
+     * Check if NewPipe is installed
+     *
+     * @return boolean
+     */
+    private boolean isNewPipeInstalled() {
+        try {
+            getPackageManager().getPackageInfo("org.schabi.newpipe", 0);
+            return true;
+        } catch (PackageManager.NameNotFoundException e) {
+            return false;
+        }
     }
 }
