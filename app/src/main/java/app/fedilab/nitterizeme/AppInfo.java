@@ -37,11 +37,11 @@ class AppInfo {
         ApplicationInfo = applicationInfo;
     }
 
-    public String getTitle() {
+    String getTitle() {
         return title;
     }
 
-    public void setTitle(String title) {
+    void setTitle(String title) {
         this.title = title;
     }
 }
