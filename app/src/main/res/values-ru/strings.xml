@@ -52,4 +52,5 @@
     <string name="instance_info">Информация о серверах</string>
     <string name="about_instances">Список серверов берётся из\n\n <a href="%1$s">%2$s</a>\n\nВы можете внести свой вклад добавлением новых серверов в список.</string>
     <string name="about_instances_title">О серверах</string>
+    <string name="use_built_in_player">Use the built-in player</string>
 </resources>
