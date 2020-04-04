@@ -31,8 +31,9 @@ import static app.fedilab.nitterizeme.MainActivity.shortener_domains;
 
 class Utils {
 
+    private static String urlRegex = "(?i)\\b((?:[a-z][\\w-]+:(?:/{1,3}|[a-z0-9%])|www\\d{0,3}[.]|[a-z0-9.\\-]+[.][a-z]{2,10}/)(?:[^\\s()<>]+|\\(([^\\s()<>]+|(\\([^\\s()<>]+\\)))*\\))+(?:\\(([^\\s()<>]+|(\\([^\\s()<>]+\\)))*\\)|[^\\s`!()\\[\\]{};:'\".,<>?«»“”‘’]))";
     static final Pattern urlPattern = Pattern.compile(
-            "(?i)\\b((?:[a-z][\\w-]+:(?:/{1,3}|[a-z0-9%])|www\\d{0,3}[.]|[a-z0-9.\\-]+[.][a-z]{2,10}/)(?:[^\\s()<>]+|\\(([^\\s()<>]+|(\\([^\\s()<>]+\\)))*\\))+(?:\\(([^\\s()<>]+|(\\([^\\s()<>]+\\)))*\\)|[^\\s`!()\\[\\]{};:'\".,<>?«»“”‘’]))",
+            urlRegex,
             Pattern.CASE_INSENSITIVE | Pattern.MULTILINE | Pattern.DOTALL);
     private static final String[] UTM_PARAMS = {
             "utm_\\w+",
@@ -57,7 +58,8 @@ class Utils {
             "hmb_campaign",
             "hmb_medium",
             "hmb_source",
-            "[\\?|&]ref[\\_]?"
+            "[\\?|&]ref[\\_]?",
+            "amp[#\\w]+"
 
     };
 
@@ -141,6 +143,7 @@ class Utils {
                 url = url.replaceAll("&amp;" + utm + "=[0-9a-zA-Z._-]*", "");
                 url = url.replaceAll("&" + utm + "=[0-9a-zA-Z._-]*", "");
                 url = url.replaceAll("\\?" + utm + "=[0-9a-zA-Z._-]*", "?");
+                url = url.replaceAll("/" + utm + "="+ urlRegex, "/");
             }
         }
         if (url != null && url.endsWith("?")) {
