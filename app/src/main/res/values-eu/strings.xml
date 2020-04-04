@@ -34,6 +34,7 @@
     <string name="use_geo_uri">Erabili Geo URI</string>
     <string name="how_to">Nola egin</string>
     <string name="shortened_detected">Laburtutako URL-a</string>
+    <string name="shortener_services">Shortener services</string>
     <string name="open">Ireki</string>
     <string name="dismiss">Baztertu</string>
     <string name="resolving_shortened">Laburtutako URLa ebazten, itxaron…</string>

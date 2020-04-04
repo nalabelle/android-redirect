@@ -34,6 +34,7 @@
     <string name="use_geo_uri">Use geo URI</string>
     <string name="how_to">How-to</string>
     <string name="shortened_detected">URL singkat</string>
+    <string name="shortener_services">Shortener services</string>
     <string name="open">Buka</string>
     <string name="dismiss">Dismiss</string>
     <string name="resolving_shortened">Resolving shortened URL, please wait…</string>

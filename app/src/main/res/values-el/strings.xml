@@ -34,6 +34,7 @@
     <string name="use_geo_uri">Χρήση geo URI</string>
     <string name="how_to">Πώς-να</string>
     <string name="shortened_detected">Συντομευμένη URL</string>
+    <string name="shortener_services">Shortener services</string>
     <string name="open">Άνοιγμα</string>
     <string name="dismiss">Απόρριψη</string>
     <string name="resolving_shortened">Ανάλυση συντομευμένης URL, παρακαλώ περιμένετε…</string>

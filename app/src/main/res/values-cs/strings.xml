@@ -34,6 +34,7 @@
     <string name="use_geo_uri">Použití geo URI</string>
     <string name="how_to">Jak</string>
     <string name="shortened_detected">Zkrácená URL</string>
+    <string name="shortener_services">Shortener services</string>
     <string name="open">Otevřeno</string>
     <string name="dismiss">Zamítnout</string>
     <string name="resolving_shortened">Řešení zkrácené adresy URL, čekejte prosímt…</string>

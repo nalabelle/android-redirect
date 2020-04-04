@@ -34,6 +34,7 @@
     <string name="use_geo_uri">Использовать Geo URI</string>
     <string name="how_to">Инструкция</string>
     <string name="shortened_detected">Сокращённая ссылка</string>
+    <string name="shortener_services">Shortener services</string>
     <string name="open">Открыть</string>
     <string name="dismiss">Отклонить</string>
     <string name="resolving_shortened">Раскрытие сокращенной ссылки, пожалуйста, подождите…</string>
