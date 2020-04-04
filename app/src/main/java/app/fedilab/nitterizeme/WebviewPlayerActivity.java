@@ -25,6 +25,8 @@ import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.webkit.WebView;
 import android.widget.FrameLayout;
+import android.widget.RelativeLayout;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import org.jsoup.Jsoup;
@@ -36,7 +38,9 @@ public class WebviewPlayerActivity extends AppCompatActivity {
 
     private String videoUrl;
     private WebView webView;
+    private RelativeLayout loader;
     private BroadcastReceiver receive_data;
+    private FrameLayout webview_container;
 
     @SuppressLint("SetJavaScriptEnabled")
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,7 +58,8 @@ public class WebviewPlayerActivity extends AppCompatActivity {
 
         final ViewGroup videoLayout = findViewById(R.id.videoLayout);
         webView = findViewById(R.id.webview);
-        FrameLayout webview_container = findViewById(R.id.webview_container);
+        loader = findViewById(R.id.loader);
+        webview_container = findViewById(R.id.webview_container);
         webView.getSettings().setJavaScriptEnabled(true);
 
         PlayerChromeClient playerChromeClient = new PlayerChromeClient(WebviewPlayerActivity.this, webView, webview_container, videoLayout);
@@ -85,12 +90,14 @@ public class WebviewPlayerActivity extends AppCompatActivity {
                 if (streaming_url != null ) {
                     webView.stopLoading();
                     webView.loadUrl(streaming_url);
+                    loader.setVisibility(View.GONE);
+                    webview_container.setVisibility(View.VISIBLE);
+                    videoLayout.setVisibility(View.VISIBLE);
                     WindowManager.LayoutParams attrs = getWindow().getAttributes();
-                    attrs.flags &= ~WindowManager.LayoutParams.FLAG_FULLSCREEN;
-                    attrs.flags &= ~WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON;
+                    attrs.flags |= WindowManager.LayoutParams.FLAG_FULLSCREEN;
+                    attrs.flags |= WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON;
                     getWindow().setAttributes(attrs);
-                    getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_VISIBLE);
-                    videoLayout.setVisibility(View.GONE);
+                    getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LOW_PROFILE);
                 }
             }
         };
@@ -108,9 +115,7 @@ public class WebviewPlayerActivity extends AppCompatActivity {
                     Element source = video.select("source").first();
                     if( source != null ) {
                         videoUrl = source.absUrl("src");
-                        runOnUiThread(() -> {
-                            webView.loadUrl(videoUrl);
-                        });
+                        runOnUiThread(() -> webView.loadUrl(videoUrl));
                     }
                 }
 
