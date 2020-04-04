@@ -34,6 +34,7 @@
     <string name="use_geo_uri">Usa geo URI</string>
     <string name="how_to">Come fare</string>
     <string name="shortened_detected">URL Accorciato</string>
+    <string name="shortener_services">Shortener services</string>
     <string name="open">Apri</string>
     <string name="dismiss">Abbandona</string>
     <string name="resolving_shortened">Risoluzione URL accorciato, attendere prego…</string>
