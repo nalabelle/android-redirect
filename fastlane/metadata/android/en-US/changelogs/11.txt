@@ -3,7 +3,7 @@ Added:
 - Unshorten support for buff.ly
 
 Changed:
-- Improve detection of apps opening by default links
+- Improve apps detection for opening links
 - Add titles above links for apps
 
 Fixed:

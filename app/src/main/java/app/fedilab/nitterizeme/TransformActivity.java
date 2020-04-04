@@ -389,6 +389,7 @@ public class TransformActivity extends Activity {
                 targetIntents.add(targetIntent);
             }
         }
+        //NewPipe has to be manually added
         if (isNewPipeInstalled() && Arrays.asList(invidious_instances).contains(Objects.requireNonNull(i.getData()).getHost())) {
             Intent targetIntent = new Intent(Intent.ACTION_VIEW);
             targetIntent.setDataAndType(intent.getData(), intent.getType());
@@ -396,8 +397,9 @@ public class TransformActivity extends Activity {
             targetIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             targetIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             targetIntent.setComponent(new ComponentName("org.schabi.newpipe", "org.schabi.newpipe.RouterActivity"));
-            startActivity(targetIntent);
-        } else if (targetIntents.size() > 0) {
+            targetIntents.add(targetIntent);
+        }
+        if (targetIntents.size() > 0) {
             Intent chooserIntent = Intent.createChooser(targetIntents.remove(0), getString(R.string.open_with));
             chooserIntent.putExtra(Intent.EXTRA_INITIAL_INTENTS, targetIntents.toArray(new Parcelable[]{}));
             startActivity(chooserIntent);
