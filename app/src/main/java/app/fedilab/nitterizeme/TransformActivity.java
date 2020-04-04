@@ -418,9 +418,8 @@ public class TransformActivity extends Activity {
             targetIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             targetIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             targetIntent.setComponent(new ComponentName("org.schabi.newpipe", "org.schabi.newpipe.RouterActivity"));
-            targetIntents.add(targetIntent);
-        }
-        if (targetIntents.size() > 0) {
+            startActivity(targetIntent);
+        }else if (targetIntents.size() > 0) {
             Intent chooserIntent = Intent.createChooser(targetIntents.remove(0), getString(R.string.open_with));
             chooserIntent.putExtra(Intent.EXTRA_INITIAL_INTENTS, targetIntents.toArray(new Parcelable[]{}));
             startActivity(chooserIntent);
