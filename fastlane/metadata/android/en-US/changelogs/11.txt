@@ -1,6 +1,5 @@
 Added:
 - Allow to redirect Invidious, Nitter and Bibliogram links to the preferred instances
-- NewPipe used by default for watching Invidious videos
 - Remove amp tracking after unshortening URL
 - Unshorten support for buff.ly
 
