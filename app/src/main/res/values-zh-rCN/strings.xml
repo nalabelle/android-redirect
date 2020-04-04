@@ -52,4 +52,5 @@
     <string name="instance_info">已列出实例的信息</string>
     <string name="about_instances">实例列表来自\n\n <a href="%1$s">%2$s</a>\n\n您可以通过添加或删除实例对此列表作出贡献。</string>
     <string name="about_instances_title">关于实例</string>
+    <string name="use_built_in_player">Use the built-in player</string>
 </resources>
