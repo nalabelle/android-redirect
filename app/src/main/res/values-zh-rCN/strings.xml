@@ -34,7 +34,7 @@
     <string name="use_geo_uri">使用geo URI</string>
     <string name="how_to">操作说明</string>
     <string name="shortened_detected">URL短链</string>
-    <string name="shortener_services">Shortener services</string>
+    <string name="shortener_services">网址缩短服务</string>
     <string name="open">打开</string>
     <string name="dismiss">忽略</string>
     <string name="resolving_shortened">正在解析缩短的 URL，请稍候…</string>
