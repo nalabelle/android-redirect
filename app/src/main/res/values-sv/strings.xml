@@ -34,6 +34,7 @@
     <string name="use_geo_uri">Dölj länkar som stöds</string>
     <string name="how_to">Öppna</string>
     <string name="shortened_detected">Kortad URL</string>
+    <string name="shortener_services">Shortener services</string>
     <string name="open">Öppna</string>
     <string name="dismiss">Avfärda</string>
     <string name="resolving_shortened">Löser förkortad URL, vänligen vänta…</string>

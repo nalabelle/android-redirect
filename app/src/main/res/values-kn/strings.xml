@@ -34,6 +34,7 @@
     <string name="use_geo_uri">ಭೂ ಸಂಪನ್ಮೂಲ ಗುರುತು ಬಳಸು</string>
     <string name="how_to">ಹೇಗೆ</string>
     <string name="shortened_detected">ಸಂಕ್ಷಿಪ್ತ URL</string>
+    <string name="shortener_services">Shortener services</string>
     <string name="open">ತೆರೆ</string>
     <string name="dismiss">ವಜಾಗೊಳಿಸು</string>
     <string name="resolving_shortened">ದಯವಿಟ್ಟು ನಿರೀಕ್ಷಿಸಿ, ಸಂಕ್ಷಿಪ್ತ URL ಪರಿಹರಿಸುತ್ತಾ…</string>

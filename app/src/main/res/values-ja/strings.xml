@@ -34,6 +34,7 @@
     <string name="use_geo_uri">Geo URIを利用する</string>
     <string name="how_to">使い方</string>
     <string name="shortened_detected">短縮URL</string>
+    <string name="shortener_services">Shortener services</string>
     <string name="open">開く</string>
     <string name="dismiss">無効化</string>
     <string name="resolving_shortened">短縮URLのリンク先を解決しています、しばらくお待ちください…</string>
