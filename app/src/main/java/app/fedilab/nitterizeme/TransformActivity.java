@@ -66,6 +66,8 @@ public class TransformActivity extends Activity {
     final Pattern bibliogramAccountPattern = Pattern.compile("(m\\.|www\\.)?instagram.com(((?!/p/).)+)");
     final Pattern maps = Pattern.compile("/maps/place/[^@]+@([\\d.,z]{3,}).*");
     final Pattern extractPlace = Pattern.compile("/maps/place/(((?!/data).)*)");
+    final Pattern ampExtract = Pattern.compile("amp/s/(.*)");
+
     private Thread thread;
     private ArrayList<String> notShortnedURLDialog;
 
@@ -275,6 +277,25 @@ public class TransformActivity extends Activity {
                         }
                     } else {
                         forwardToBrowser(intent);
+                    }
+                } else {
+                    forwardToBrowser(intent);
+                }
+            }
+            //AMP URLs (containing /amp/s like Google AMP links)
+            else if (url.contains("/amp/s")) {
+                Intent delegate = new Intent(Intent.ACTION_VIEW);
+                Matcher matcher = ampExtract.matcher(url);
+                String transformedURL = null;
+                while (matcher.find()) {
+                    transformedURL = "https://" + matcher.group(1);
+                }
+                if (transformedURL != null) {
+                    delegate.setData(Uri.parse(transformedURL));
+                    delegate.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    if (delegate.resolveActivity(getPackageManager()) != null) {
+                        startActivity(delegate);
+                        finish();
                     }
                 } else {
                     forwardToBrowser(intent);
