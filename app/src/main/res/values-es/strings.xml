@@ -52,4 +52,5 @@
     <string name="instance_info">Información sobre los nodos listados</string>
     <string name="about_instances">La lista de nodos viene de\n\n <a href="%1$s">%2$s</a>\n\nPuedes contribuir a este listado añadiendo y quitando nodos.</string>
     <string name="about_instances_title">Sobre los nodos</string>
+    <string name="use_built_in_player">Use the built-in player</string>
 </resources>
