@@ -258,17 +258,6 @@
                     app:layout_constraintStart_toEndOf="@id/label_instance_invidious"
                     app:layout_constraintTop_toTopOf="@id/guide_invidious" />
 
-
-                <CheckBox
-                    android:id="@+id/enable_embed_player"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
-                    android:text="@string/use_built_in_player"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/barrier_invidious" />
-
                 <androidx.constraintlayout.widget.Barrier
                     android:id="@+id/barrier_invidious"
                     android:layout_width="wrap_content"
@@ -281,7 +270,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
-                    app:layout_constraintBottom_toTopOf="@id/enable_embed_player"
+                    app:layout_constraintBottom_toTopOf="@id/barrier_invidious_2"
                     app:layout_constraintEnd_toStartOf="@id/button_save_instance_invidious"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/barrier_invidious">
@@ -305,9 +294,25 @@
                     android:background="@null"
                     android:contentDescription="@string/save"
                     android:src="@drawable/ic_save"
-                    app:layout_constraintBottom_toTopOf="@+id/enable_embed_player"
+                    app:layout_constraintBottom_toTopOf="@+id/barrier_invidious_2"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="@id/barrier_invidious" />
+
+                <androidx.constraintlayout.widget.Barrier
+                    android:id="@+id/barrier_invidious_2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:barrierDirection="bottom"
+                    app:constraint_referenced_ids="invidious_instance_container,button_save_instance_invidious" />
+
+                <CheckBox
+                    android:id="@+id/enable_embed_player"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:text="@string/use_built_in_player"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/barrier_invidious_2" />
 
                 <androidx.constraintlayout.widget.Group
                     android:id="@+id/group_current_invidious"

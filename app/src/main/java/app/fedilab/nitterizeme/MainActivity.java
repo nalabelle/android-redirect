@@ -462,6 +462,7 @@ public class MainActivity extends AppCompatActivity {
             editor.apply();
             TextView osm_indications = findViewById(R.id.osm_indications);
             if (isChecked) {
+                expand_instance_osm.setRotation(0f);
                 osm_current_group.setVisibility(View.GONE);
                 osm_custom_group.setVisibility(View.GONE);
                 osm_indications.setText(R.string.redirect_gm_to_geo_uri);
