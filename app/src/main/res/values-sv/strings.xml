@@ -52,4 +52,5 @@
     <string name="instance_info">Information om listade instanser</string>
     <string name="about_instances">Listan över instanser kommer från\n\n <a href="%1$s">%2$s</a>\n\nDu kan bidra till denna lista genom att lägga till eller ta bort instanser.</string>
     <string name="about_instances_title">Om instanser</string>
+    <string name="use_built_in_player">Use the built-in player</string>
 </resources>
