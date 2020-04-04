@@ -1,18 +1,18 @@
-NitterizeMe once set by default to open Twitter and YouTube links will transform them into Nitter and Invidious links and delegate the action to another app.
+NitterizeMe jednou ve výchozím nastavení otevře odkazy Twitter a YouTube je změní na Nitter a Invidious linky a deleguje akci na jinou aplikaci.
 
-It also supports Google Maps links to transform them into OpenStreetMap links or Geo URI.
+Podporuje také odkazy Google Maps pro jejich přeměnu na odkazy OpenStreetMap nebo Geo URI.
 
-The app will detect shortened URLs and will display the full URL before visiting the site.
+Aplikace rozpozná zkrácené URL adresy a před návštěvou stránky zobrazí celou adresu URL.
 
-When sharing a Twitter, YouTube or Google Maps link just pick up NitterizeMe to transform it before sharing it with another app.
+Pokud sdílíte odkaz na Twitter, YouTube nebo Google Maps stačí vyzvednout NitterizeMe, aby jej přeměnil před sdílením s jinou aplikací.
 
-What is Nitter:
+Co je Nitter:
 
-A free and open source alternative Twitter front-end focused on privacy.
-Github project: https://github.com/zedeus/nitter
+Volný a open source alternativní Twitter front-end se zaměřil na soukromí.
+Github projekt: https://github.com/zedeus/nitter
 
 
-What is Invidious:
+Co je Invidious:
 
-A free and open source alternative front-end to YouTube
-Github project: https://github.com/omarroth/invidious
+Bezplatné a open source alternativní front-end k YouTube
+Github projekt: https://github.com/omarroth/invidious
