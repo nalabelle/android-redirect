@@ -282,8 +282,8 @@ public class TransformActivity extends Activity {
                     forwardToBrowser(intent);
                 }
             }
-            //AMP URLs (containing /amp/s like Google AMP links)
-            else if (url.contains("/amp/s")) {
+            //AMP URLs (containing /amp/s/ like Google AMP links)
+            else if (url.contains("/amp/s/")) {
                 Intent delegate = new Intent(Intent.ACTION_VIEW);
                 Matcher matcher = ampExtract.matcher(url);
                 String transformedURL = null;
@@ -633,6 +633,11 @@ public class TransformActivity extends Activity {
                         newUrl = "https://" + osmHost + "/#map=" + zoom + "/" + data[0] + "/" + data[1];
                     }
                 }
+            }
+        } else if (url.contains("/amp/s/")) {
+            Matcher matcher = ampExtract.matcher(url);
+            while (matcher.find()) {
+                newUrl = "https://" + matcher.group(1);
             }
         } else if (Arrays.asList(youtube_domains).contains(host)) { //Youtube URL
             boolean invidious_enabled = sharedpreferences.getBoolean(SET_INVIDIOUS_ENABLED, true);
