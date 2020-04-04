@@ -59,7 +59,8 @@ class Utils {
             "hmb_medium",
             "hmb_source",
             "[\\?|&]ref[\\_]?",
-            "amp[#\\w]+"
+            "amp[_#\\w]+",
+            "[\\w]+"
 
     };
 
@@ -144,6 +145,7 @@ class Utils {
                 url = url.replaceAll("&" + utm + "=[0-9a-zA-Z._-]*", "");
                 url = url.replaceAll("\\?" + utm + "=[0-9a-zA-Z._-]*", "?");
                 url = url.replaceAll("/" + utm + "="+ urlRegex, "/");
+                url = url.replaceAll("#" + utm + "="+ urlRegex, "");
             }
         }
         if (url != null && url.endsWith("?")) {

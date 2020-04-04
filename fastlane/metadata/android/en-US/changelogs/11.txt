@@ -1,5 +1,6 @@
 Added:
 - Allow to redirect Invidious, Nitter and Bibliogram links to the preferred instances
+- Remove amp tracking after unshortening URL
 - Unshorten support for buff.ly
 
 Changed:
