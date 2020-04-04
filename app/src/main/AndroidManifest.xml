@@ -30,441 +30,103 @@
             android:theme="@style/Theme.AppCompat.Translucent">
             <!-- The app should handle these domains, more can be added here -->
 
-            <!-- SHORTENED URLs  -->
-            <!-- t.co -->
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
 
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
 
-                <data
-                    android:host="t.co"
-                    android:pathPattern=".*"
-                    android:scheme="https" />
-                <data
-                    android:host="t.co"
-                    android:pathPattern=".*"
-                    android:scheme="http" />
+                <!-- SHORTENED URLs  -->
+                <data android:host="t.co" />
+                <data android:host="nyti.ms" />
+                <data android:host="bit.ly" />
+                <data android:host="tinyurl.com" />
+                <data android:host="goo.gl" />
+                <data android:host="ow.ly" />
+                <data android:host="bl.ink" />
+                <data android:host="buff.ly" />
+
+                <!-- INSTAGRAM URLs  -->
+                <data android:host="instagram.com" />
+                <data android:host="www.instagram.com" />
+                <data android:host="m.instagram.com" />
+
+
+                <!-- TWITTER URLs  -->
+                <data android:host="mobile.twitter.com" />
+                <data android:host="www.twitter.com" />
+                <data android:host="twitter.com" />
+
+                <!-- YOUTUBE URLs  -->
+                <data android:host="www.youtube.com" />
+                <data android:host="m.youtube.com" />
+                <data android:host="youtube.com" />
+                <data android:host="youtu.be" />
+                <data android:host="youtube-nocookie.com" />
+
+
+                <!-- INVIDIOUS INSTANCES -->
+                <data android:host="invidio.us" />
+                <data android:host="invidious.snopyta.org" />
+                <data android:host="invidiou.sh" />
+                <data android:host="invidious.toot.koeln" />
+                <data android:host="invidious.ggc-project.de" />
+
+                <!-- NITTER INSTANCES -->
+                <data android:host="nitter.net" />
+                <data android:host="nitter.snopyta.org" />
+                <data android:host="nitter.42l.fr" />
+                <data android:host="nitter.nixnet.services" />
+                <data android:host="nitter.13ad.de" />
+                <data android:host="w.openalgeria.org" />
+                <data android:host="nitter.pussthecat.org" />
+
+                <!-- BIBLIOGRAM INSTANCES -->
+                <data android:host="bibliogram.art" />
+                <data android:host="bibliogram.snopyta.org" />
+                <data android:host="bibliogram.dsrev.ru" />
+                <data android:host="bibliogram.pussthecat.org" />
+
+                <data android:pathPattern=".*" />
+                <data android:scheme="https" />
+                <data android:scheme="http" />
             </intent-filter>
+
+            <!-- SHARING HANDLE -->
             <intent-filter>
                 <action android:name="android.intent.action.SEND" />
                 <category android:name="android.intent.category.DEFAULT" />
-                <data
-                    android:host="t.co"
-                    android:mimeType="text/plain" />
-            </intent-filter>
-            <!-- nyti.ms -->
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
 
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
+                <!-- SHORTENED URLs  -->
+                <data android:host="t.co" />
+                <data android:host="nyti.ms" />
+                <data android:host="bit.ly" />
+                <data android:host="tinyurl.com" />
+                <data android:host="goo.gl" />
+                <data android:host="ow.ly" />
+                <data android:host="bl.ink" />
+                <data android:host="buff.ly" />
 
-                <data
-                    android:host="nyti.ms"
-                    android:pathPattern=".*"
-                    android:scheme="https" />
-                <data
-                    android:host="nyti.ms"
-                    android:pathPattern=".*"
-                    android:scheme="http" />
-            </intent-filter>
-            <intent-filter>
-                <action android:name="android.intent.action.SEND" />
-                <category android:name="android.intent.category.DEFAULT" />
-                <data
-                    android:host="nyti.ms"
-                    android:mimeType="text/plain" />
-            </intent-filter>
-            <!-- bit.ly -->
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
+                <!-- INSTAGRAM URLs  -->
+                <data android:host="instagram.com" />
+                <data android:host="www.instagram.com" />
+                <data android:host="m.instagram.com" />
 
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
+                <!-- TWITTER URLs  -->
+                <data android:host="mobile.twitter.com" />
+                <data android:host="www.twitter.com" />
+                <data android:host="twitter.com" />
 
-                <data
-                    android:host="bit.ly"
-                    android:pathPattern=".*"
-                    android:scheme="https" />
-                <data
-                    android:host="bit.ly"
-                    android:pathPattern=".*"
-                    android:scheme="http" />
-            </intent-filter>
-            <intent-filter>
-                <action android:name="android.intent.action.SEND" />
-                <category android:name="android.intent.category.DEFAULT" />
-                <data
-                    android:host="bit.ly"
-                    android:mimeType="text/plain" />
-            </intent-filter>
-            <!-- tinyurl.com -->
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
+                <!-- YOUTUBE URLs  -->
+                <data android:host="www.youtube.com" />
+                <data android:host="m.youtube.com" />
+                <data android:host="youtube.com" />
+                <data android:host="youtu.be" />
+                <data android:host="youtube-nocookie.com" />
 
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
-
-                <data
-                    android:host="tinyurl.com"
-                    android:pathPattern=".*"
-                    android:scheme="https" />
-                <data
-                    android:host="tinyurl.com"
-                    android:pathPattern=".*"
-                    android:scheme="http" />
-            </intent-filter>
-            <intent-filter>
-                <action android:name="android.intent.action.SEND" />
-                <category android:name="android.intent.category.DEFAULT" />
-                <data
-                    android:host="tinyurl.com"
-                    android:mimeType="text/plain" />
-            </intent-filter>
-            <!-- goo.gl -->
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
-
-                <data
-                    android:host="goo.gl"
-                    android:pathPattern=".*"
-                    android:scheme="https" />
-                <data
-                    android:host="goo.gl"
-                    android:pathPattern=".*"
-                    android:scheme="http" />
-            </intent-filter>
-            <intent-filter>
-                <action android:name="android.intent.action.SEND" />
-                <category android:name="android.intent.category.DEFAULT" />
-                <data
-                    android:host="goo.gl"
-                    android:mimeType="text/plain" />
-            </intent-filter>
-            <!-- ow.ly -->
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
-
-                <data
-                    android:host="ow.ly"
-                    android:pathPattern=".*"
-                    android:scheme="https" />
-                <data
-                    android:host="ow.ly"
-                    android:pathPattern=".*"
-                    android:scheme="http" />
-            </intent-filter>
-            <intent-filter>
-                <action android:name="android.intent.action.SEND" />
-                <category android:name="android.intent.category.DEFAULT" />
-                <data
-                    android:host="ow.ly"
-                    android:mimeType="text/plain" />
-            </intent-filter>
-            <!-- bl.ink -->
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
-
-                <data
-                    android:host="bl.ink"
-                    android:pathPattern=".*"
-                    android:scheme="https" />
-                <data
-                    android:host="bl.ink"
-                    android:pathPattern=".*"
-                    android:scheme="http" />
-            </intent-filter>
-            <intent-filter>
-                <action android:name="android.intent.action.SEND" />
-                <category android:name="android.intent.category.DEFAULT" />
-                <data
-                    android:host="bl.ink"
-                    android:mimeType="text/plain" />
-            </intent-filter>
-            <!-- buff.ly -->
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
-
-                <data
-                    android:host="buff.ly"
-                    android:pathPattern=".*"
-                    android:scheme="https" />
-                <data
-                    android:host="buff.ly"
-                    android:pathPattern=".*"
-                    android:scheme="http" />
-            </intent-filter>
-            <intent-filter>
-                <action android:name="android.intent.action.SEND" />
-                <category android:name="android.intent.category.DEFAULT" />
-                <data
-                    android:host="buff.ly"
-                    android:mimeType="text/plain" />
+                <data android:mimeType="text/plain" />
             </intent-filter>
 
-            <!-- INSTAGRAM URLs  -->
-            <!-- instagram.com -->
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
-
-                <data
-                    android:host="instagram.com"
-                    android:pathPattern=".*"
-                    android:scheme="https" />
-                <data
-                    android:host="instagram.com"
-                    android:pathPattern=".*"
-                    android:scheme="http" />
-            </intent-filter>
-            <intent-filter>
-                <action android:name="android.intent.action.SEND" />
-                <category android:name="android.intent.category.DEFAULT" />
-                <data
-                    android:host="instagram.com"
-                    android:mimeType="text/plain" />
-            </intent-filter>
-            <!-- www.instagram.com -->
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
-
-                <data
-                    android:host="www.instagram.com"
-                    android:pathPattern=".*"
-                    android:scheme="https" />
-                <data
-                    android:host="www.instagram.com"
-                    android:pathPattern=".*"
-                    android:scheme="http" />
-            </intent-filter>
-            <intent-filter>
-                <action android:name="android.intent.action.SEND" />
-                <category android:name="android.intent.category.DEFAULT" />
-                <data
-                    android:host="www.instagram.com"
-                    android:mimeType="text/plain" />
-            </intent-filter>
-            <!-- m.instagram.com -->
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
-
-                <data
-                    android:host="m.instagram.com"
-                    android:pathPattern=".*"
-                    android:scheme="https" />
-                <data
-                    android:host="m.instagram.com"
-                    android:pathPattern=".*"
-                    android:scheme="http" />
-            </intent-filter>
-            <intent-filter>
-                <action android:name="android.intent.action.SEND" />
-                <category android:name="android.intent.category.DEFAULT" />
-                <data
-                    android:host="m.instagram.com"
-                    android:mimeType="text/plain" />
-            </intent-filter>
-
-
-            <!-- TWITTER URLs  -->
-            <!-- mobile.twitter.com -->
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
-
-                <data
-                    android:host="mobile.twitter.com"
-                    android:pathPattern=".*"
-                    android:scheme="https" />
-                <data
-                    android:host="mobile.twitter.com"
-                    android:pathPattern=".*"
-                    android:scheme="http" />
-            </intent-filter>
-            <intent-filter>
-                <action android:name="android.intent.action.SEND" />
-                <category android:name="android.intent.category.DEFAULT" />
-                <data
-                    android:host="mobile.twitter.com"
-                    android:mimeType="text/plain" />
-            </intent-filter>
-            <!-- www.twitter.com -->
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
-
-                <data
-                    android:host="www.twitter.com"
-                    android:pathPattern=".*"
-                    android:scheme="https" />
-                <data
-                    android:host="www.twitter.com"
-                    android:pathPattern=".*"
-                    android:scheme="http" />
-            </intent-filter>
-            <intent-filter>
-                <action android:name="android.intent.action.SEND" />
-                <category android:name="android.intent.category.DEFAULT" />
-                <data
-                    android:host="www.twitter.com"
-                    android:mimeType="text/plain" />
-            </intent-filter>
-            <!-- twitter.com -->
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
-
-                <data
-                    android:host="twitter.com"
-                    android:pathPattern=".*"
-                    android:scheme="https" />
-                <data
-                    android:host="twitter.com"
-                    android:pathPattern=".*"
-                    android:scheme="http" />
-            </intent-filter>
-            <intent-filter>
-                <action android:name="android.intent.action.SEND" />
-                <category android:name="android.intent.category.DEFAULT" />
-                <data
-                    android:host="twitter.com"
-                    android:mimeType="text/plain" />
-            </intent-filter>
-
-            <!-- YOUTUBE URLs  -->
-            <!-- www.youtube.com -->
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
-
-                <data
-                    android:host="www.youtube.com"
-                    android:scheme="https" />
-                <data
-                    android:host="www.youtube.com"
-                    android:scheme="http" />
-            </intent-filter>
-            <intent-filter>
-                <action android:name="android.intent.action.SEND" />
-                <category android:name="android.intent.category.DEFAULT" />
-                <data
-                    android:host="www.youtube.com"
-                    android:mimeType="text/plain" />
-            </intent-filter>
-            <!-- m.youtube.com -->
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
-
-                <data
-                    android:host="m.youtube.com"
-                    android:scheme="https" />
-                <data
-                    android:host="m.youtube.com"
-                    android:scheme="http" />
-            </intent-filter>
-            <intent-filter>
-                <action android:name="android.intent.action.SEND" />
-                <category android:name="android.intent.category.DEFAULT" />
-                <data
-                    android:host="m.youtube.com"
-                    android:mimeType="text/plain" />
-            </intent-filter>
-            <!-- youtube.com -->
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
-
-                <data
-                    android:host="youtube.com"
-                    android:scheme="https" />
-                <data
-                    android:host="youtube.com"
-                    android:scheme="http" />
-            </intent-filter>
-            <intent-filter>
-                <action android:name="android.intent.action.SEND" />
-                <category android:name="android.intent.category.DEFAULT" />
-                <data
-                    android:host="youtube.com"
-                    android:mimeType="text/plain" />
-            </intent-filter>
-            <!-- youtu.be -->
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
-
-                <data
-                    android:host="youtu.be"
-                    android:scheme="https" />
-                <data
-                    android:host="youtu.be"
-                    android:scheme="http" />
-            </intent-filter>
-            <intent-filter>
-                <action android:name="android.intent.action.SEND" />
-                <category android:name="android.intent.category.DEFAULT" />
-                <data
-                    android:host="youtu.be"
-                    android:mimeType="text/plain" />
-            </intent-filter>
-            <!-- youtube-nocookie.com -->
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
-
-                <data
-                    android:host="youtube-nocookie.com"
-                    android:scheme="https" />
-                <data
-                    android:host="youtube-nocookie.com"
-                    android:scheme="http" />
-            </intent-filter>
-            <intent-filter>
-                <action android:name="android.intent.action.SEND" />
-                <category android:name="android.intent.category.DEFAULT" />
-                <data
-                    android:host="youtube-nocookie.com"
-                    android:mimeType="text/plain" />
-            </intent-filter>
 
             <!-- MAPS URLs  -->
             <!-- /maps/ -->
@@ -474,14 +136,10 @@
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
 
-                <data
-                    android:host="*"
-                    android:pathPattern="/maps/place/.*"
-                    android:scheme="https" />
-                <data
-                    android:host="*"
-                    android:pathPattern="/maps/place/.*"
-                    android:scheme="http" />
+                <data android:host="*" />
+                <data android:pathPattern="/maps/place/.*" />
+                <data android:scheme="https" />
+                <data android:scheme="http" />
             </intent-filter>
             <intent-filter>
                 <action android:name="android.intent.action.SEND" />
@@ -492,267 +150,26 @@
                     android:pathPattern="/maps/place/.*" />
             </intent-filter>
 
-            <!-- INSTANCES FOR REDIRECT TO THE PREFERRED ONES -->
-            <!-- NITTER INSTANCES -->
-            <!-- nitter.net -->
+            <!-- AMP URLs  -->
+            <!-- /amp/ -->
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
 
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
 
-                <data
-                    android:host="nitter.net"
-                    android:pathPattern=".*"
-                    android:scheme="https" />
-                <data
-                    android:host="nitter.net"
-                    android:pathPattern=".*"
-                    android:scheme="http" />
+                <data android:host="*" />
+                <data android:pathPattern="/amp/s/.*" />
+                <data android:scheme="https" />
+                <data android:scheme="http" />
             </intent-filter>
-            <!-- nitter.snopyta.org -->
             <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-
+                <action android:name="android.intent.action.SEND" />
                 <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
-
                 <data
-                    android:host="nitter.snopyta.org"
-                    android:pathPattern=".*"
-                    android:scheme="https" />
-                <data
-                    android:host="nitter.snopyta.org"
-                    android:pathPattern=".*"
-                    android:scheme="http" />
-            </intent-filter>
-            <!-- nitter.42l.fr -->
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
-
-                <data
-                    android:host="nitter.42l.fr"
-                    android:pathPattern=".*"
-                    android:scheme="https" />
-                <data
-                    android:host="nitter.42l.fr"
-                    android:pathPattern=".*"
-                    android:scheme="http" />
-            </intent-filter>
-            <!-- nitter.nixnet.services -->
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
-
-                <data
-                    android:host="nitter.nixnet.services"
-                    android:pathPattern=".*"
-                    android:scheme="https" />
-                <data
-                    android:host="nitter.nixnet.services"
-                    android:pathPattern=".*"
-                    android:scheme="http" />
-            </intent-filter>
-            <!-- nitter.13ad.de -->
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
-
-                <data
-                    android:host="nitter.13ad.de"
-                    android:pathPattern=".*"
-                    android:scheme="https" />
-                <data
-                    android:host="nitter.13ad.de"
-                    android:pathPattern=".*"
-                    android:scheme="http" />
-            </intent-filter>
-            <!-- tw.openalgeria.org -->
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
-
-                <data
-                    android:host="tw.openalgeria.org"
-                    android:pathPattern=".*"
-                    android:scheme="https" />
-                <data
-                    android:host="tw.openalgeria.org"
-                    android:pathPattern=".*"
-                    android:scheme="http" />
-            </intent-filter>
-            <!-- nitter.pussthecat.org -->
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
-
-                <data
-                    android:host="nitter.pussthecat.org"
-                    android:pathPattern=".*"
-                    android:scheme="https" />
-                <data
-                    android:host="nitter.pussthecat.org"
-                    android:pathPattern=".*"
-                    android:scheme="http" />
-            </intent-filter>
-
-            <!-- INVIDIOUS INSTANCES -->
-            <!-- invidio.us -->
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
-
-                <data
-                    android:host="invidio.us"
-                    android:pathPattern=".*"
-                    android:scheme="https" />
-                <data
-                    android:host="invidio.us"
-                    android:pathPattern=".*"
-                    android:scheme="http" />
-            </intent-filter>
-            <!-- invidious.snopyta.org -->
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
-
-                <data
-                    android:host="invidious.snopyta.org"
-                    android:pathPattern=".*"
-                    android:scheme="https" />
-                <data
-                    android:host="invidious.snopyta.org"
-                    android:pathPattern=".*"
-                    android:scheme="http" />
-            </intent-filter>
-            <!-- invidiou.sh -->
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
-
-                <data
-                    android:host="invidiou.sh"
-                    android:pathPattern=".*"
-                    android:scheme="https" />
-                <data
-                    android:host="invidiou.sh"
-                    android:pathPattern=".*"
-                    android:scheme="http" />
-            </intent-filter>
-            <!-- invidious.toot.koeln -->
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
-
-                <data
-                    android:host="invidious.toot.koeln"
-                    android:pathPattern=".*"
-                    android:scheme="https" />
-                <data
-                    android:host="invidious.toot.koeln"
-                    android:pathPattern=".*"
-                    android:scheme="http" />
-            </intent-filter>
-            <!-- invidious.ggc-project.de -->
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
-
-                <data
-                    android:host="invidious.ggc-project.de"
-                    android:pathPattern=".*"
-                    android:scheme="https" />
-                <data
-                    android:host="invidious.ggc-project.de"
-                    android:pathPattern=".*"
-                    android:scheme="http" />
-            </intent-filter>
-
-            <!-- BIBLIOGRAM INSTANCES -->
-            <!-- bibliogram.art -->
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
-
-                <data
-                    android:host="bibliogram.art"
-                    android:pathPattern=".*"
-                    android:scheme="https" />
-                <data
-                    android:host="bibliogram.art"
-                    android:pathPattern=".*"
-                    android:scheme="http" />
-            </intent-filter>
-            <!-- bibliogram.snopyta.org -->
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
-
-                <data
-                    android:host="bibliogram.snopyta.org"
-                    android:pathPattern=".*"
-                    android:scheme="https" />
-                <data
-                    android:host="bibliogram.snopyta.org"
-                    android:pathPattern=".*"
-                    android:scheme="http" />
-            </intent-filter>
-            <!-- bibliogram.dsrev.ru -->
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
-
-                <data
-                    android:host="bibliogram.dsrev.ru"
-                    android:pathPattern=".*"
-                    android:scheme="https" />
-                <data
-                    android:host="bibliogram.dsrev.ru"
-                    android:pathPattern=".*"
-                    android:scheme="http" />
-            </intent-filter>
-            <!-- bibliogram.pussthecat.org -->
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
-
-                <data
-                    android:host="bibliogram.pussthecat.org"
-                    android:pathPattern=".*"
-                    android:scheme="https" />
-                <data
-                    android:host="bibliogram.pussthecat.org"
-                    android:pathPattern=".*"
-                    android:scheme="http" />
+                    android:host="*"
+                    android:mimeType="text/plain"
+                    android:pathPattern="/amp/s/.*" />
             </intent-filter>
 
         </activity>
