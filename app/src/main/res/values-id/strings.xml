@@ -52,4 +52,5 @@
     <string name="instance_info">Information about listed instances</string>
     <string name="about_instances">The list of instances comes from\n\n <a href="%1$s">%2$s</a>\n\nYou can contribute to this list by adding or removing instances.</string>
     <string name="about_instances_title">Tentang contoh</string>
+    <string name="use_built_in_player">Use the built-in player</string>
 </resources>
