@@ -13,7 +13,7 @@
     <string name="save">Uložit</string>
     <string name="close">Zavřít</string>
     <string name="instances_saved">Vlastní instance byly uloženy!</string>
-    <string name="custom_invidious">Custom Invidious instance</string>
+    <string name="custom_invidious">Vlastní Invidious instance</string>
     <string name="no_apps">Ve výchozím nastavení nejsou žádné aplikace</string>
     <string name="Donate">Darovat</string>
     <string name="warning">Varování</string>
@@ -21,34 +21,34 @@
     <string name="valid">Platný</string>
     <string name="icon_of_the_app">Ikona aplikace</string>
     <string name="open_with">Otevřít s</string>
-    <string name="redirect_gm_to_osm">Redirect Google Map to OpenStreetMap</string>
+    <string name="redirect_gm_to_osm">Přesměrovat mapu Google na OpenStreetMap</string>
     <string name="custom_osm">Vlastní název OSM hostitele</string>
-    <string name="redirect_youtube_to_invidious">Redirect YouTube to Invidious</string>
+    <string name="redirect_youtube_to_invidious">Přesměrujte YouTube na Invidious</string>
     <string name="redirect_twitter_to_nitter">Přesměrovat Twitter na Nitter</string>
     <string name="redirect_instagram_to_bibliogram">Přesměrovat Instagram na Bibliogram</string>
-    <string name="custom_bibliogram">Custom Bibliogram instance</string>
-    <string name="redirect_gm_to_geo_uri">Redirect Google Map to Geo URI</string>
+    <string name="custom_bibliogram">Vlastní Bibliogram instance</string>
+    <string name="redirect_gm_to_geo_uri">Přesměrovat Google mapu na Geo URI</string>
     <string name="configure">Konfigurovat</string>
     <string name="display_supported_links">Zobrazit podporované odkazy</string>
     <string name="hide_supported_links">Skrýt podporované odkazy</string>
     <string name="use_geo_uri">Použití geo URI</string>
     <string name="how_to">Jak</string>
-    <string name="shortened_detected">Shortened URL</string>
+    <string name="shortened_detected">Zkrácená URL</string>
     <string name="open">Otevřeno</string>
     <string name="dismiss">Zamítnout</string>
     <string name="resolving_shortened">Řešení zkrácené adresy URL, čekejte prosímt…</string>
-    <string name="try_to_redirect">%1$s \n\nwill redirect you to\n\n<b>%2$s</b></string>
+    <string name="try_to_redirect">%1$s \n\nvás přesměruje na\n\n<b>%2$s</b></string>
     <string name="try_to_redirect_again">Pak vás přesměruje na\n\n<b>%1$s</b></string>
     <string name="the_app_failed_shortened">Aplikaci se nepodařilo načíst celou adresu URL</string>
-    <string name="invidious_instances">Invidious instances</string>
+    <string name="invidious_instances">Invidious instancí</string>
     <string name="nitter_instances">Instance Nitter</string>
-    <string name="bibliogram_instances">Bibliogram instances</string>
+    <string name="bibliogram_instances">Bibliogram instancí</string>
     <string name="latency">Latence</string>
     <string name="error_message_internet">Zkontrolujte připojení k Internetu</string>
     <string name="instance_label">Instance:</string>
     <string name="expand_instance_details">Rozbalit detaily instance</string>
     <string name="cloudflare">Tato instance používá Cloudflare</string>
-    <string name="instance_info">Information about listed instances</string>
-    <string name="about_instances">The list of instances comes from\n\n <a href="%1$s">%2$s</a>\n\nYou can contribute to this list by adding or removing instances.</string>
+    <string name="instance_info">Informace o uvedených instancích</string>
+    <string name="about_instances">Seznam instancí pochází z\n\n <a href="%1$s">%2$s</a>\n\nMůžete přispět do tohoto seznamu přidáním nebo odstraněním instancí.</string>
     <string name="about_instances_title">O instancích</string>
 </resources>
