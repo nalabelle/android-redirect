@@ -35,6 +35,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AlertDialog;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -420,7 +421,20 @@ public class TransformActivity extends Activity {
             targetIntent.setComponent(new ComponentName("org.schabi.newpipe", "org.schabi.newpipe.RouterActivity"));
             targetIntents.add(targetIntent);
         }
-        if (targetIntents.size() > 0) {
+
+        if (Arrays.asList(invidious_instances).contains(Objects.requireNonNull(i.getData()).getHost())) {
+            if( !i.getData().toString().contains("videoplayback")){
+                Intent intentPlayer = new Intent(TransformActivity.this, WebviewPlayerActivity.class);
+                intentPlayer.putExtra("url", i.getData().toString());
+                startActivity(intentPlayer);
+            }else{
+                Intent intentStreamingUrl = new Intent(Utils.RECEIVE_STREAMING_URL);
+                Bundle b = new Bundle();
+                b.putString("streaming_url", i.getData().toString());
+                intentStreamingUrl.putExtras(b);
+                LocalBroadcastManager.getInstance(getApplicationContext()).sendBroadcast(intentStreamingUrl);
+            }
+        }else if (targetIntents.size() > 0) {
             Intent chooserIntent = Intent.createChooser(targetIntents.remove(0), getString(R.string.open_with));
             chooserIntent.putExtra(Intent.EXTRA_INITIAL_INTENTS, targetIntents.toArray(new Parcelable[]{}));
             startActivity(chooserIntent);

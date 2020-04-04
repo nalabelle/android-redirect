@@ -31,6 +31,8 @@ import static app.fedilab.nitterizeme.MainActivity.shortener_domains;
 
 class Utils {
 
+    public static final String RECEIVE_STREAMING_URL = "receive_streaming_url";
+
     private static final String[] UTM_PARAMS = {
             "utm_\\w+",
             "ga_source",

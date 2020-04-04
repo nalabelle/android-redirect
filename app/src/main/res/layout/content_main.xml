@@ -258,6 +258,17 @@
                     app:layout_constraintStart_toEndOf="@id/label_instance_invidious"
                     app:layout_constraintTop_toTopOf="@id/guide_invidious" />
 
+
+                <CheckBox
+                    android:id="@+id/enable_embed_player"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:text="@string/use_built_in_player"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/barrier_invidious" />
+
                 <androidx.constraintlayout.widget.Barrier
                     android:id="@+id/barrier_invidious"
                     android:layout_width="wrap_content"
