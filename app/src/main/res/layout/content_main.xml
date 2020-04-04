@@ -281,7 +281,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintBottom_toTopOf="@id/enable_embed_player"
                     app:layout_constraintEnd_toStartOf="@id/button_save_instance_invidious"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/barrier_invidious">
@@ -305,7 +305,7 @@
                     android:background="@null"
                     android:contentDescription="@string/save"
                     android:src="@drawable/ic_save"
-                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintBottom_toTopOf="@+id/enable_embed_player"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="@id/barrier_invidious" />
 

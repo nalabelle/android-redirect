@@ -63,6 +63,7 @@ public class MainActivity extends AppCompatActivity {
     public static String SET_BIBLIOGRAM_ENABLED = "set_bibliogram_enabled";
     public static String DEFAULT_BIBLIOGRAM_HOST = "bibliogram.art";
     public static String SET_GEO_URIS = "set_geo_uris";
+    public static String SET_EMBEDDED_PLAYER = "set_embedded_player";
     //Supported domains
     public static String[] twitter_domains = {
             "twitter.com",
@@ -206,6 +207,7 @@ public class MainActivity extends AppCompatActivity {
         boolean osm_enabled = sharedpreferences.getBoolean(SET_OSM_ENABLED, true);
         boolean bibliogram_enabled = sharedpreferences.getBoolean(SET_BIBLIOGRAM_ENABLED, true);
         boolean geouri_enabled = sharedpreferences.getBoolean(SET_GEO_URIS, false);
+        boolean embedded_player = sharedpreferences.getBoolean(SET_EMBEDDED_PLAYER, false);
 
         enable_nitter.setChecked(nitter_enabled);
         enable_invidious.setChecked(invidious_enabled);
@@ -218,6 +220,8 @@ public class MainActivity extends AppCompatActivity {
         ImageButton save_instance_osm = findViewById(R.id.button_save_instance_osm);
 
         CheckBox enable_geo_uris = findViewById(R.id.enable_geo_uris);
+        CheckBox enable_embed_player = findViewById(R.id.enable_embed_player);
+
         list_apps = findViewById(R.id.list_apps);
         nitterHost = sharedpreferences.getString(SET_NITTER_HOST, null);
         invidiousHost = sharedpreferences.getString(SET_INVIDIOUS_HOST, null);
@@ -375,6 +379,7 @@ public class MainActivity extends AppCompatActivity {
             osm_custom_group.setVisibility(View.GONE);
         }
 
+        enable_embed_player.setChecked(embedded_player);
         save_instance_nitter.setOnClickListener(v -> {
             SharedPreferences.Editor editor = sharedpreferences.edit();
             if (nitter_instance.getText() != null && nitter_instance.getText().toString().trim().length() > 0) {
@@ -464,6 +469,11 @@ public class MainActivity extends AppCompatActivity {
                 osm_current_group.setVisibility(View.VISIBLE);
                 osm_indications.setText(R.string.redirect_gm_to_osm);
             }
+        });
+        enable_embed_player.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            SharedPreferences.Editor editor = sharedpreferences.edit();
+            editor.putBoolean(SET_EMBEDDED_PLAYER, isChecked);
+            editor.apply();
         });
 
         sharedpreferences.registerOnSharedPreferenceChangeListener(

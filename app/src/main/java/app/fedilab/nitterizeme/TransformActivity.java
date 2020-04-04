@@ -47,6 +47,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import static app.fedilab.nitterizeme.MainActivity.SET_BIBLIOGRAM_ENABLED;
+import static app.fedilab.nitterizeme.MainActivity.SET_EMBEDDED_PLAYER;
 import static app.fedilab.nitterizeme.MainActivity.SET_INVIDIOUS_ENABLED;
 import static app.fedilab.nitterizeme.MainActivity.SET_NITTER_ENABLED;
 import static app.fedilab.nitterizeme.MainActivity.bibliogram_instances;
@@ -422,7 +423,10 @@ public class TransformActivity extends Activity {
             targetIntents.add(targetIntent);
         }
 
-        if (Arrays.asList(invidious_instances).contains(Objects.requireNonNull(i.getData()).getHost())) {
+        SharedPreferences sharedpreferences = getSharedPreferences(MainActivity.APP_PREFS, Context.MODE_PRIVATE);
+        boolean embedded_player = sharedpreferences.getBoolean(SET_EMBEDDED_PLAYER, false);
+
+        if (Arrays.asList(invidious_instances).contains(Objects.requireNonNull(i.getData()).getHost()) && embedded_player) {
             if( !i.getData().toString().contains("videoplayback")){
                 Intent intentPlayer = new Intent(TransformActivity.this, WebviewPlayerActivity.class);
                 intentPlayer.putExtra("url", i.getData().toString());
