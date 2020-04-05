@@ -53,7 +53,7 @@
     <string name="about_instances">Η λίστα με τους κόμβους προέρχεται από \n\n<a href="%1$s">%2$s</a>\n\nΜπορείτε να συνεισφέρετε στη λίστα προσθέτοντας ή αφαιρόντας κόμβους.</string>
     <string name="about_instances_title">Περί κόμβων</string>
     <string name="use_built_in_player">Χρήση του ενσωματωμένου player</string>
-    <string name="share">Share</string>
-    <string name="download">Download</string>
-    <string name="share_with">Share with</string>
+    <string name="share">Κοινοποίηση</string>
+    <string name="download">Λήψη</string>
+    <string name="share_with">Κοινοποίηση σε</string>
 </resources>
