@@ -1,6 +1,7 @@
 Added:
 - Allow to redirect Invidious, Nitter and Bibliogram links to the preferred instances
 - Built-in player that ensures videos are read locally (default disabled) with download and share buttons
+- Redirect Google AMP URLs to the original URLs
 - Remove AMP tracking after unshortening URL
 - Add support for Twitter media to convert them into Nitter links
 - Unshorten support for buff.ly
