@@ -20,6 +20,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
@@ -55,6 +56,12 @@ public class WebviewPlayerActivity extends AppCompatActivity {
             finish();
         }
         setContentView(R.layout.activity_webview_player);
+
+
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setDisplayShowHomeEnabled(true);
+        }
 
         final ViewGroup videoLayout = findViewById(R.id.videoLayout);
         webView = findViewById(R.id.webview);
@@ -92,12 +99,6 @@ public class WebviewPlayerActivity extends AppCompatActivity {
                     webView.loadUrl(streaming_url);
                     loader.setVisibility(View.GONE);
                     webview_container.setVisibility(View.VISIBLE);
-                    videoLayout.setVisibility(View.VISIBLE);
-                    WindowManager.LayoutParams attrs = getWindow().getAttributes();
-                    attrs.flags |= WindowManager.LayoutParams.FLAG_FULLSCREEN;
-                    attrs.flags |= WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON;
-                    getWindow().setAttributes(attrs);
-                    getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LOW_PROFILE);
                 }
             }
         };
@@ -125,6 +126,17 @@ public class WebviewPlayerActivity extends AppCompatActivity {
 
         });
     }
+
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            finish();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
 
     @Override
     public void onPause(){

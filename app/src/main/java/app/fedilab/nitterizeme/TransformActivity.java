@@ -429,6 +429,9 @@ public class TransformActivity extends Activity {
         if (Arrays.asList(invidious_instances).contains(Objects.requireNonNull(i.getData()).getHost()) && embedded_player) {
             if( !i.getData().toString().contains("videoplayback")){
                 Intent intentPlayer = new Intent(TransformActivity.this, WebviewPlayerActivity.class);
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    intentPlayer.addFlags(Intent.FLAG_ACTIVITY_NEW_DOCUMENT|Intent.FLAG_ACTIVITY_MULTIPLE_TASK);
+                }
                 intentPlayer.putExtra("url", i.getData().toString());
                 startActivity(intentPlayer);
             }else{
