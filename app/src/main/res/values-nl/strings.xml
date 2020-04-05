@@ -53,4 +53,7 @@
     <string name="about_instances">De lijst van instanties komt van\n\n <a href="%1$s">%2$s</a>\n\nU kunt bijdragen aan deze lijst door instanties toe te voegen of te verwijderen.</string>
     <string name="about_instances_title">Ongewenste gevallen</string>
     <string name="use_built_in_player">Use the built-in player</string>
+    <string name="share">Share</string>
+    <string name="download">Download</string>
+    <string name="share_with">Share with</string>
 </resources>
