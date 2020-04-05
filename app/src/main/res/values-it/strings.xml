@@ -52,4 +52,5 @@
     <string name="instance_info">Informazioni sulle istanze elencate</string>
     <string name="about_instances">L\'elenco delle istanze proviene da\n\n <a href="%1$s">%2$s</a>\n\nPuoi contribuire a questa lista tramite l\'aggiunta o la rimozione di istanze.</string>
     <string name="about_instances_title">Informazioni sulle istanze</string>
+    <string name="use_built_in_player">Use the built-in player</string>
 </resources>

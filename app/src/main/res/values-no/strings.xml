@@ -52,4 +52,5 @@
     <string name="instance_info">Informasjon om angitte forekomster</string>
     <string name="about_instances">Listen over eksempler kommer fra\n\n <a href="%1$s">%2$s</a>\n\nDu kan bidra til denne listen ved å legge til eller fjerne instanser.</string>
     <string name="about_instances_title">Om instanser</string>
+    <string name="use_built_in_player">Use the built-in player</string>
 </resources>
