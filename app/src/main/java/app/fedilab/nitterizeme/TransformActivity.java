@@ -37,8 +37,10 @@ import android.widget.TextView;
 import androidx.appcompat.app.AlertDialog;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
+import java.io.UnsupportedEncodingException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -471,11 +473,20 @@ public class TransformActivity extends Activity {
         if (Arrays.asList(twitter_domains).contains(host)) {
             boolean nitter_enabled = sharedpreferences.getBoolean(SET_NITTER_ENABLED, true);
             if (nitter_enabled) {
-                Matcher matcher = nitterPattern.matcher(url);
-                while (matcher.find()) {
-                    final String nitter_directory = matcher.group(2);
-                    String nitterHost = sharedpreferences.getString(MainActivity.SET_NITTER_HOST, MainActivity.DEFAULT_NITTER_HOST).toLowerCase();
-                    newUrl = "https://" + nitterHost + nitter_directory;
+                String nitterHost = sharedpreferences.getString(MainActivity.SET_NITTER_HOST, MainActivity.DEFAULT_NITTER_HOST).toLowerCase();
+                assert host != null;
+                if( host.compareTo("pbs.twimg.com") != 0 ) {
+                    Matcher matcher = nitterPattern.matcher(url);
+                    while (matcher.find()) {
+                        final String nitter_directory = matcher.group(2);
+                        newUrl = "https://" + nitterHost + nitter_directory;
+                    }
+                }else{
+                    try {
+                        newUrl = "https://" + nitterHost + "/pic/" + URLEncoder.encode(url, "utf-8");
+                    } catch (UnsupportedEncodingException e) {
+                        newUrl = "https://" + nitterHost + "/pic/" + url;
+                    }
                 }
                 return newUrl;
             } else {
@@ -607,11 +618,21 @@ public class TransformActivity extends Activity {
         if (Arrays.asList(twitter_domains).contains(host)) {
             boolean nitter_enabled = sharedpreferences.getBoolean(SET_NITTER_ENABLED, true);
             if (nitter_enabled) {
-                Matcher matcher = nitterPattern.matcher(url);
-                while (matcher.find()) {
-                    final String nitter_directory = matcher.group(2);
-                    String nitterHost = sharedpreferences.getString(MainActivity.SET_NITTER_HOST, MainActivity.DEFAULT_NITTER_HOST).toLowerCase();
-                    newUrl = "https://" + nitterHost + nitter_directory;
+
+                String nitterHost = sharedpreferences.getString(MainActivity.SET_NITTER_HOST, MainActivity.DEFAULT_NITTER_HOST).toLowerCase();
+                assert host != null;
+                if( host.compareTo("pbs.twimg.com") != 0 ) {
+                    Matcher matcher = nitterPattern.matcher(url);
+                    while (matcher.find()) {
+                        final String nitter_directory = matcher.group(2);
+                        newUrl = "https://" + nitterHost + nitter_directory;
+                    }
+                }else{
+                    try {
+                        newUrl = "https://" + nitterHost + "/pic/" + URLEncoder.encode(url, "utf-8");
+                    } catch (UnsupportedEncodingException e) {
+                        newUrl = "https://" + nitterHost + "/pic/" + url;
+                    }
                 }
             }
         } else if (Arrays.asList(instagram_domains).contains(host)) {
