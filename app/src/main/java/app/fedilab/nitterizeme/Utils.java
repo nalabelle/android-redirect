@@ -15,23 +15,32 @@ package app.fedilab.nitterizeme;
  * see <http://www.gnu.org/licenses>. */
 
 
+import android.app.DownloadManager;
+import android.content.Context;
+import android.net.Uri;
+import android.os.Environment;
+
 import java.io.IOException;
 import java.net.InetAddress;
 import java.net.URL;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import javax.net.ssl.HttpsURLConnection;
 
+import static android.content.Context.DOWNLOAD_SERVICE;
 import static app.fedilab.nitterizeme.MainActivity.shortener_domains;
 
 class Utils {
 
-    public static final String RECEIVE_STREAMING_URL = "receive_streaming_url";
+    static final String RECEIVE_STREAMING_URL = "receive_streaming_url";
 
     private static final String[] UTM_PARAMS = {
             "utm_\\w+",
@@ -153,5 +162,35 @@ class Utils {
             url = url.substring(0, url.length() - 1);
         }
         return url;
+    }
+
+
+    /**
+     * Manage downloads with URLs
+     *
+     * @param context Context
+     * @param url     String download url
+     */
+    static void manageDownloadsNoPopup(final Context context, final String url) {
+
+        final DownloadManager.Request request;
+        try {
+            request = new DownloadManager.Request(Uri.parse(url.trim()));
+        } catch (Exception e) {
+            return;
+        }
+        try {
+            SimpleDateFormat formatter = new SimpleDateFormat("yyyy_MM_dd_HH_mm_ss", Locale.ENGLISH);
+            Date now = new Date();
+            final String fileName = "NitterizeMe_" + formatter.format(now) + ".mp4";
+            request.allowScanningByMediaScanner();
+            request.setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, fileName);
+            request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
+            DownloadManager dm = (DownloadManager) context.getSystemService(DOWNLOAD_SERVICE);
+            assert dm != null;
+            dm.enqueue(request);
+        } catch (IllegalStateException e) {
+            e.printStackTrace();
+        }
     }
 }

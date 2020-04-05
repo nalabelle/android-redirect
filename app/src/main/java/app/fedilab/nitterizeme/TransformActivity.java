@@ -427,21 +427,21 @@ public class TransformActivity extends Activity {
         boolean embedded_player = sharedpreferences.getBoolean(SET_EMBEDDED_PLAYER, false);
 
         if (Arrays.asList(invidious_instances).contains(Objects.requireNonNull(i.getData()).getHost()) && embedded_player) {
-            if( !i.getData().toString().contains("videoplayback")){
+            if (!i.getData().toString().contains("videoplayback")) {
                 Intent intentPlayer = new Intent(TransformActivity.this, WebviewPlayerActivity.class);
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                    intentPlayer.addFlags(Intent.FLAG_ACTIVITY_NEW_DOCUMENT|Intent.FLAG_ACTIVITY_MULTIPLE_TASK);
+                    intentPlayer.addFlags(Intent.FLAG_ACTIVITY_NEW_DOCUMENT | Intent.FLAG_ACTIVITY_MULTIPLE_TASK);
                 }
                 intentPlayer.putExtra("url", i.getData().toString());
                 startActivity(intentPlayer);
-            }else{
+            } else {
                 Intent intentStreamingUrl = new Intent(Utils.RECEIVE_STREAMING_URL);
                 Bundle b = new Bundle();
                 b.putString("streaming_url", i.getData().toString());
                 intentStreamingUrl.putExtras(b);
                 LocalBroadcastManager.getInstance(getApplicationContext()).sendBroadcast(intentStreamingUrl);
             }
-        }else if (targetIntents.size() > 0) {
+        } else if (targetIntents.size() > 0) {
             Intent chooserIntent = Intent.createChooser(targetIntents.remove(0), getString(R.string.open_with));
             chooserIntent.putExtra(Intent.EXTRA_INITIAL_INTENTS, targetIntents.toArray(new Parcelable[]{}));
             startActivity(chooserIntent);
