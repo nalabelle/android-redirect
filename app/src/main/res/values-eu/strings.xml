@@ -53,4 +53,7 @@
     <string name="about_instances">Instantzien zerrenda \n\n <a href="%1$s">%2$s</a>\n\n gunetik dator. Zuk ere instantziak gehitu edo kendu ditzakezu.</string>
     <string name="about_instances_title">Instantziei buruz</string>
     <string name="use_built_in_player">Use the built-in player</string>
+    <string name="share">Share</string>
+    <string name="download">Download</string>
+    <string name="share_with">Share with</string>
 </resources>

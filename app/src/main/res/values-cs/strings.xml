@@ -53,4 +53,7 @@
     <string name="about_instances">Seznam instancí pochází z\n\n <a href="%1$s">%2$s</a>\n\nMůžete přispět do tohoto seznamu přidáním nebo odstraněním instancí.</string>
     <string name="about_instances_title">O instancích</string>
     <string name="use_built_in_player">Use the built-in player</string>
+    <string name="share">Share</string>
+    <string name="download">Download</string>
+    <string name="share_with">Share with</string>
 </resources>

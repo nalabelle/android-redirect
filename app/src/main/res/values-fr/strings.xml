@@ -34,7 +34,7 @@
     <string name="use_geo_uri">Utiliser geo URI</string>
     <string name="how_to">Mode d’emploi</string>
     <string name="shortened_detected">URL raccourcie</string>
-    <string name="shortener_services">Shortener services</string>
+    <string name="shortener_services">Services de réduction de liens</string>
     <string name="open">Ouvrir</string>
     <string name="dismiss">Ignorer</string>
     <string name="resolving_shortened">Résolution de l’URL raccourcie, veuillez patienter …</string>
@@ -52,5 +52,8 @@
     <string name="instance_info">Informations sur les instances listées</string>
     <string name="about_instances">La liste des instances provient de\n\n <a href="%1$s">%2$s</a>\n\nVous pouvez contribuer à cette liste en ajoutant ou en supprimant des instances.</string>
     <string name="about_instances_title">À propos des instances</string>
-    <string name="use_built_in_player">Use the built-in player</string>
+    <string name="use_built_in_player">Utiliser le lecteur intégré</string>
+    <string name="share">Partager</string>
+    <string name="download">Télécharger</string>
+    <string name="share_with">Partager avec</string>
 </resources>

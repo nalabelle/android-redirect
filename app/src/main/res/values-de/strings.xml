@@ -53,4 +53,7 @@
     <string name="about_instances">Die Liste der Instanzen kommt von\n\n <a href="%1$s">%2$s</a>\n\nDu kannst zu dieser Liste beitragen, indem Du Instanzen hinzufügst oder löschst.</string>
     <string name="about_instances_title">Über die Instanzen</string>
     <string name="use_built_in_player">Use the built-in player</string>
+    <string name="share">Share</string>
+    <string name="download">Download</string>
+    <string name="share_with">Share with</string>
 </resources>
