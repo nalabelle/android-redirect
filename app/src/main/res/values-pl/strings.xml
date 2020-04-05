@@ -53,4 +53,7 @@
     <string name="about_instances">Lista instancji pochodzi z\n\n <a href="%1$s">%2$s</a>\n\nMożesz przyłączyć się do tej listy poprzez dodanie lub usunięcie instancji.</string>
     <string name="about_instances_title">O instancjach</string>
     <string name="use_built_in_player">Use the built-in player</string>
+    <string name="share">Share</string>
+    <string name="download">Download</string>
+    <string name="share_with">Share with</string>
 </resources>
