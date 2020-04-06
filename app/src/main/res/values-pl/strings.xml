@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="action_settings">Ustawienia</string>
-    <string name="action_about">O</string>
+    <string name="action_about">O programie</string>
     <string name="developer">Twórca</string>
     <string name="donations">Darowizny</string>
     <string name="about_the_app">O aplikacji</string>
@@ -34,7 +34,7 @@
     <string name="use_geo_uri">Użyj geo URI</string>
     <string name="how_to">Jak to zrobić</string>
     <string name="shortened_detected">Skrócony URL</string>
-    <string name="shortener_services">Shortener services</string>
+    <string name="shortener_services">Usługi skracające linki</string>
     <string name="open">Otwórz</string>
     <string name="dismiss">Odrzuć</string>
     <string name="resolving_shortened">Analizowanie skróconego adresu URL, proszę czekać…</string>
@@ -52,8 +52,8 @@
     <string name="instance_info">Informacje o wyświetlanych instancjach</string>
     <string name="about_instances">Lista instancji pochodzi z\n\n <a href="%1$s">%2$s</a>\n\nMożesz przyłączyć się do tej listy poprzez dodanie lub usunięcie instancji.</string>
     <string name="about_instances_title">O instancjach</string>
-    <string name="use_built_in_player">Use the built-in player</string>
-    <string name="share">Share</string>
-    <string name="download">Download</string>
-    <string name="share_with">Share with</string>
+    <string name="use_built_in_player">Użyj wbudowanego odtwarzacza</string>
+    <string name="share">Udostępnij</string>
+    <string name="download">Pobierz</string>
+    <string name="share_with">Udostępnij dla</string>
 </resources>
