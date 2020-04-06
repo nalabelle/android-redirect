@@ -34,7 +34,7 @@
     <string name="use_geo_uri">Usa geo URI</string>
     <string name="how_to">Come fare</string>
     <string name="shortened_detected">URL Accorciato</string>
-    <string name="shortener_services">Shortener services</string>
+    <string name="shortener_services">Servizi di abbreviazione</string>
     <string name="open">Apri</string>
     <string name="dismiss">Abbandona</string>
     <string name="resolving_shortened">Risoluzione URL accorciato, attendere prego…</string>
@@ -52,8 +52,8 @@
     <string name="instance_info">Informazioni sulle istanze elencate</string>
     <string name="about_instances">L\'elenco delle istanze proviene da\n\n <a href="%1$s">%2$s</a>\n\nPuoi contribuire a questa lista tramite l\'aggiunta o la rimozione di istanze.</string>
     <string name="about_instances_title">Informazioni sulle istanze</string>
-    <string name="use_built_in_player">Use the built-in player</string>
-    <string name="share">Share</string>
-    <string name="download">Download</string>
-    <string name="share_with">Share with</string>
+    <string name="use_built_in_player">Usa il lettore integrato</string>
+    <string name="share">Condividi</string>
+    <string name="download">Scarica</string>
+    <string name="share_with">Condividi con</string>
 </resources>
