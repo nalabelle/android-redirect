@@ -1,10 +1,10 @@
-Una vez establecido por defecto UntrackMe para la apertura de enlaces de Twitter y YouTube los transformará en enlaces de Nitter e Invidious y delegará la acción a otra aplicación.
+Una vez establecido por defecto NitterizeMe para la apertura de enlaces de Twitter y YouTube los transformará en enlaces de Nitter e Invidious y delegará la acción a otra aplicación.
 
 También soporta enlaces de Google Maps para transformarlos en enlaces de OpenStreetMap o Geo URI.
 
 La aplicación detectará las URL acortadas y mostrará la URL completa antes de visitar el sitio.
 
-Si vas a compartir un enlace de Twitter, YouTube o Google Maps, simplemente utiliza UntrackMe para transformarlo antes de compartirlo con otra aplicación.
+Si vas a compartir un enlace de Twitter, YouTube o Google Maps, simplemente utiliza NitterizeMe para transformarlo antes de compartirlo con otra aplicación.
 
 Qué es Nitter:
 
