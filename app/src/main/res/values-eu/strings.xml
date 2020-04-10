@@ -34,7 +34,7 @@
     <string name="use_geo_uri">Erabili Geo URI</string>
     <string name="how_to">Nola egin</string>
     <string name="shortened_detected">Laburtutako URL-a</string>
-    <string name="shortener_services">Shortener services</string>
+    <string name="shortener_services">Laburdura zerbitzuak</string>
     <string name="open">Ireki</string>
     <string name="dismiss">Baztertu</string>
     <string name="resolving_shortened">Laburtutako URLa ebazten, itxaron…</string>
@@ -52,8 +52,8 @@
     <string name="instance_info">Zerrendatutako instantziei buruzko informazioa</string>
     <string name="about_instances">Instantzien zerrenda \n\n <a href="%1$s">%2$s</a>\n\n gunetik dator. Zuk ere instantziak gehitu edo kendu ditzakezu.</string>
     <string name="about_instances_title">Instantziei buruz</string>
-    <string name="use_built_in_player">Use the built-in player</string>
-    <string name="share">Share</string>
-    <string name="download">Download</string>
-    <string name="share_with">Share with</string>
+    <string name="use_built_in_player">Erabili aplikazio barneko erreproduzigailua</string>
+    <string name="share">Partekatu</string>
+    <string name="download">Deskargatu</string>
+    <string name="share_with">Partekatu honekin</string>
 </resources>
