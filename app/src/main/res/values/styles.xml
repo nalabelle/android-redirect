@@ -6,6 +6,8 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:windowBackground">@color/colorPrimary</item>
+        <item name="android:colorBackground">@color/colorPrimary</item>
     </style>
 
     <!-- Base application theme. -->
@@ -36,7 +38,7 @@
 
     <style name="containerCard">
         <item name="android:layout_margin">6dp</item>
-        <item name="cardBackgroundColor">#505050</item>
+        <item name="cardBackgroundColor">@color/containerCard</item>
         <item name="cardCornerRadius">5dp</item>
     </style>
 

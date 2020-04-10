@@ -7,8 +7,8 @@ android {
         applicationId "app.fedilab.nitterizeme"
         minSdkVersion 15
         targetSdkVersion 29
-        versionCode 11
-        versionName "1.7.0"
+        versionCode 12
+        versionName "1.7.1"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     lintOptions {

@@ -60,6 +60,7 @@
                 <data android:host="www.twitter.com" />
                 <data android:host="twitter.com" />
                 <data android:host="pbs.twimg.com" />
+                <data android:host="pic.twitter.com" />
 
                 <!-- YOUTUBE URLs  -->
                 <data android:host="www.youtube.com" />

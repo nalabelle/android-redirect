@@ -475,7 +475,7 @@ public class TransformActivity extends Activity {
             if (nitter_enabled) {
                 String nitterHost = sharedpreferences.getString(MainActivity.SET_NITTER_HOST, MainActivity.DEFAULT_NITTER_HOST).toLowerCase();
                 assert host != null;
-                if( host.compareTo("pbs.twimg.com") != 0 ) {
+                if( host.compareTo("pbs.twimg.com") != 0 || host.compareTo("pic.twitter.com") != 0) {
                     Matcher matcher = nitterPattern.matcher(url);
                     while (matcher.find()) {
                         final String nitter_directory = matcher.group(2);
@@ -621,7 +621,7 @@ public class TransformActivity extends Activity {
 
                 String nitterHost = sharedpreferences.getString(MainActivity.SET_NITTER_HOST, MainActivity.DEFAULT_NITTER_HOST).toLowerCase();
                 assert host != null;
-                if( host.compareTo("pbs.twimg.com") != 0 ) {
+                if( host.compareTo("pbs.twimg.com") != 0 || host.compareTo("pic.twitter.com") != 0) {
                     Matcher matcher = nitterPattern.matcher(url);
                     while (matcher.find()) {
                         final String nitter_directory = matcher.group(2);

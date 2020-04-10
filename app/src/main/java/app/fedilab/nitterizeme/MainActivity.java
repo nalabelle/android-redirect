@@ -69,7 +69,8 @@ public class MainActivity extends AppCompatActivity {
             "twitter.com",
             "mobile.twitter.com",
             "www.twitter.com",
-            "pbs.twimg.com"
+            "pbs.twimg.com",
+            "pic.twitter.com"
     };
     public static String[] instagram_domains = {
             "instagram.com",

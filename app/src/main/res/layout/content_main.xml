@@ -55,7 +55,7 @@
                     android:id="@+id/top_part_bg_nitter"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:background="#404040"
+                    android:background="@color/topBar"
                     app:layout_constraintBottom_toBottomOf="@id/guide_nitter"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -197,7 +197,7 @@
                     android:id="@+id/top_part_bg_invidious"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:background="#404040"
+                    android:background="@color/topBar"
                     app:layout_constraintBottom_toBottomOf="@id/guide_invidious"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -355,7 +355,7 @@
                     android:id="@+id/top_part_bg_bibliogram"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:background="#404040"
+                    android:background="@color/topBar"
                     app:layout_constraintBottom_toBottomOf="@id/guide_bibliogram"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -497,7 +497,7 @@
                     android:id="@+id/top_part_bg_osm"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:background="#404040"
+                    android:background="@color/topBar"
                     app:layout_constraintBottom_toBottomOf="@id/guide_osm"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -692,7 +692,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
-            android:minHeight="2000dp"
+            android:minHeight="2100dp"
             android:overScrollMode="never"
             android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"

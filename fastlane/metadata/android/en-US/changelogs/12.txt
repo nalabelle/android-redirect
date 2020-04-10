@@ -1,0 +1,6 @@
+Added:
+- Support for pic.twitter.com
+
+Changed:
+- App name
+- App icon
