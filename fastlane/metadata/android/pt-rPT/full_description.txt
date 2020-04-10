@@ -1,10 +1,10 @@
-Uma vez definida por padrão para abrir links do Twitter e YouTube, UntrackMe irá transformá-los em links Nitter e Invidious e delegar a ação em outra aplicação.
+Uma vez definida por padrão para abrir links do Twitter e YouTube, NitterizeMe irá transformá-los em links Nitter e Invidious e delegar a ação em outra aplicação.
 
 Também suporta links do Google Maps para transformá-los em links do OpenStreetMap ou Geo URI.
 
 O aplicativo detectará URLs encurtadas e exibirá o URL completo antes de visitar o site.
 
-Ao partilhar um link do Twitter, YouTube ou Google Maps, basta pegar o UntrackMe para transformá-lo antes de partilhá-lo com outro app.
+Ao partilhar um link do Twitter, YouTube ou Google Maps, basta pegar o NitterizeMe para transformá-lo antes de partilhá-lo com outro app.
 
 O que ê o Nitter :
 
