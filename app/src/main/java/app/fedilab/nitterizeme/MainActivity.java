@@ -234,6 +234,7 @@ public class MainActivity extends AppCompatActivity {
         bibliogram_current_group.setVisibility(bibliogram_enabled ? View.VISIBLE : View.GONE);
         osm_current_group.setVisibility((osm_enabled && geouri_enabled) ? View.VISIBLE : View.GONE);
         enable_geo_uris.setVisibility(osm_enabled ? View.VISIBLE : View.GONE);
+        enable_embed_player.setVisibility(invidious_enabled ? View.VISIBLE : View.GONE);
 
         enable_invidious.setOnCheckedChangeListener((buttonView, isChecked) -> {
             SharedPreferences.Editor editor = sharedpreferences.edit();
@@ -241,6 +242,7 @@ public class MainActivity extends AppCompatActivity {
             editor.apply();
             invidious_current_group.setVisibility(isChecked ? View.VISIBLE : View.GONE);
             invidious_custom_group.setVisibility(View.GONE);
+            enable_embed_player.setVisibility(isChecked ? View.VISIBLE : View.GONE);
             expand_instance_invidious.setRotation(0);
         });
         enable_nitter.setOnCheckedChangeListener((buttonView, isChecked) -> {
