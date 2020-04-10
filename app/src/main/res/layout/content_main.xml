@@ -309,9 +309,10 @@
                     android:id="@+id/enable_embed_player"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
+                    android:layout_marginTop="5dp"
                     android:text="@string/use_built_in_player"
                     app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/barrier_invidious_2" />
 
                 <androidx.constraintlayout.widget.Group
@@ -609,9 +610,10 @@
                     android:id="@+id/enable_geo_uris"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
+                    android:layout_marginTop="5dp"
                     android:text="@string/use_geo_uri"
                     app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/barrier_osm_2" />
 
                 <androidx.constraintlayout.widget.Group
