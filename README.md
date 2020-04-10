@@ -1,6 +1,6 @@
-# NitterizeMe [![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0) [![Crowdin](https://badges.crowdin.net/nitterizeme/localized.svg)](https://crowdin.com/project/nitterizeme)  [![pipeline status](https://framagit.org/tom79/nitterizeme/badges/develop/pipeline.svg)](https://framagit.org/tom79/nitterizeme/commits/develop)
+# UntrackMe [![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0) [![Crowdin](https://badges.crowdin.net/nitterizeme/localized.svg)](https://crowdin.com/project/nitterizeme)  [![pipeline status](https://framagit.org/tom79/nitterizeme/badges/develop/pipeline.svg)](https://framagit.org/tom79/nitterizeme/commits/develop)
 
-NitterizeMe once set by default to open Twitter and YouTube links will transform them into Nitter and Invidious links and delegate the action to another app.
+UntrackMe once set by default to open Twitter and YouTube links will transform them into Nitter and Invidious links and delegate the action to another app.
 
 
 ## Donate

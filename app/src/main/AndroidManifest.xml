@@ -182,18 +182,19 @@
         <activity
             android:name="app.fedilab.nitterizeme.InstanceActivity"
             android:excludeFromRecents="true"
-            android:theme="@style/AppThemeDilaog" />
+            android:theme="@style/AppThemeDialog" />
         <activity
             android:name=".AboutActivity"
             android:configChanges="orientation|screenSize"
             android:label="@string/app_name"
             android:theme="@style/AppTheme" />
 
-        <activity android:name="app.fedilab.nitterizeme.WebviewPlayerActivity"
+        <activity
+            android:name="app.fedilab.nitterizeme.WebviewPlayerActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
             android:label="@string/app_name"
             android:launchMode="singleTask"
-            android:configChanges="keyboardHidden|orientation|screenSize"
-            android:theme="@style/AppTheme"/>
+            android:theme="@style/AppTheme" />
     </application>
 
 </manifest>

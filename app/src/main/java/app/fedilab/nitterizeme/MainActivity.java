@@ -1,17 +1,17 @@
 package app.fedilab.nitterizeme;
 /* Copyright 2020 Thomas Schneider
  *
- * This file is a part of NitterizeMe
+ * This file is a part of UntrackMe
  *
  * This program is free software; you can redistribute it and/or modify it under the terms of the
  * GNU General Public License as published by the Free Software Foundation; either version 3 of the
  * License, or (at your option) any later version.
  *
- * NitterizeMe is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even
+ * UntrackMe is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even
  * the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General
  * Public License for more details.
  *
- * You should have received a copy of the GNU General Public License along with NitterizeMe; if not,
+ * You should have received a copy of the GNU General Public License along with UntrackMe; if not,
  * see <http://www.gnu.org/licenses>. */
 
 import android.content.Context;
@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
     public static final String SET_OSM_HOST = "set_osm_host";
     public static final String SET_BIBLIOGRAM_HOST = "set_bibliogram_host";
     @SuppressWarnings("unused")
-    public static String TAG = "NitterizeMe";
+    public static String TAG = "UntrackMe";
     public static String DEFAULT_NITTER_HOST = "nitter.net";
     public static String DEFAULT_INVIDIOUS_HOST = "invidio.us";
     public static String SET_INVIDIOUS_ENABLED = "set_invidious_enabled";
