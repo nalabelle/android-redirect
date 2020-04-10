@@ -481,7 +481,7 @@ public class TransformActivity extends Activity {
                     } catch (UnsupportedEncodingException e) {
                         newUrl = "https://" + nitterHost + "/pic/" + url;
                     }
-                }else if(url.contains("/search?")){
+                } else if (url.contains("/search?")) {
                     newUrl = url.replace(host, nitterHost);
                 } else {
                     Matcher matcher = nitterPattern.matcher(url);
@@ -629,7 +629,7 @@ public class TransformActivity extends Activity {
                     } catch (UnsupportedEncodingException e) {
                         newUrl = "https://" + nitterHost + "/pic/" + url;
                     }
-                }else if(url.contains("/search?")){
+                } else if (url.contains("/search?")) {
                     newUrl = url.replace(host, nitterHost);
                 } else {
                     Matcher matcher = nitterPattern.matcher(url);
