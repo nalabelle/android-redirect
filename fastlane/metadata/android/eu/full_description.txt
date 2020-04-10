@@ -1,10 +1,10 @@
-NitterizeMe, behin Twitter eta Youtube estekak irekitzeko lehenetsita ezarrita, Nitter eta n Twitter esteka bihurtuko ditu eta beste aplikazio bati pasatu.
+UntrackMe, behin Twitter eta Youtube estekak irekitzeko lehenetsita ezarrita, Nitter eta n Twitter esteka bihurtuko ditu eta beste aplikazio bati pasatu.
 
 Google Maps estekak OpenStreetMap edo Geo URI esteka bihurtu ditzake ere.
 
 Aplikazioak laburtutako URLak antzemango ditu eta bisitatu aurretik URL osoa erakutsiko dizu.
 
-Twitter, YouTube edo Google map esteka bat partekatzean, hautatu NitterizeMe beste aplikazio batekin partekatu aurretik eraldatzeko.
+Twitter, YouTube edo Google map esteka bat partekatzean, hautatu UntrackMe beste aplikazio batekin partekatu aurretik eraldatzeko.
 
 Zer da Nitter:
 
