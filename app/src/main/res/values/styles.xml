@@ -20,6 +20,16 @@
         <item name="android:windowBackground">@color/colorPrimaryDark</item>
         <item name="android:colorBackground">@color/colorPrimaryDark</item>
         <item name="android:textColor">@color/textColor</item>
+        <item name="buttonBarNegativeButtonStyle">@style/NegativeButtonStyle</item>
+        <item name="buttonBarPositiveButtonStyle">@style/PositiveButtonStyle</item>
+    </style>
+
+    <style name="NegativeButtonStyle" parent="Widget.AppCompat.Button.ButtonBar.AlertDialog">
+        <item name="android:textColor">@color/colorAccent</item>
+    </style>
+
+    <style name="PositiveButtonStyle" parent="Widget.AppCompat.Button.ButtonBar.AlertDialog">
+        <item name="android:textColor">@color/colorAccent</item>
     </style>
 
     <style name="AppTheme.NoActionBar">
