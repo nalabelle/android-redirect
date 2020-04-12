@@ -1,10 +1,10 @@
 عندما تقوم بتعيين NitterizeMe كخدمة افتراضية لفتح روابط تويتر ويوتيوب سيتم تحويلها إلى روابط Nitter و Invidious ويخوّل إجراء فتحها إلى تطبيق آخَر.
 
-It also supports Google Maps links to transform them into OpenStreetMap links or Geo URI.
+كما يدعم روابط خرائط جوجل لتحويلها إلى روابط OpenStreetMap أو Geo URI.
 
 يقوم التطبيق بالكشف عن تقصير عناوين المواقع و يعرض عنوان URL الكامل قبل زيارة الموقع.
 
-When sharing a Twitter, YouTube or Google Maps link just pick up NitterizeMe to transform it before sharing it with another app.
+عند مشاركة تويتر، يوتيوب أو خرائط جوجل فقط التقط NitterizeMe لتحويله قبل مشاركته مع تطبيق آخر.
 
 ما هو Nitter:
 
