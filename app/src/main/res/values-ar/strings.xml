@@ -34,12 +34,12 @@
     <string name="use_geo_uri">استخدم Geo URI</string>
     <string name="how_to">طريقة الإستخدام</string>
     <string name="shortened_detected">تقصير URL</string>
-    <string name="shortener_services">Shortener services</string>
+    <string name="shortener_services">خدمات الاختصار</string>
     <string name="open">افتح</string>
     <string name="dismiss">تجاهل</string>
     <string name="resolving_shortened">جارٍ تحليل الرابط القصير ، يرجى الإنتظار…</string>
-    <string name="try_to_redirect">%1$s \n\nwill redirect you to\n\n<b>%2$s</b></string>
-    <string name="try_to_redirect_again">Then it will redirect you to\n\n<b>%1$s</b></string>
+    <string name="try_to_redirect">%1$s \n\nسيقوم بإعادة توجيهك إلى\n\n<b>%2$s</b></string>
+    <string name="try_to_redirect_again">ثم سيتم إعادة توجيهك إلى\n\n<b>%1$s</b></string>
     <string name="the_app_failed_shortened">لم يتمكّن التطبيق مِن إيجاد الرابط الكامل</string>
     <string name="invidious_instances">مثيلات خوادم Invidious</string>
     <string name="nitter_instances">مثيلات خوادم Nitter</string>
@@ -50,10 +50,10 @@
     <string name="expand_instance_details">توسيع تفاصيل مثيل الخادم</string>
     <string name="cloudflare">مثيل الخادم هذا يستخدم Cloudflare</string>
     <string name="instance_info">معلومات حول مثيلات الخوادم في القائمة</string>
-    <string name="about_instances">The list of instances comes from\n\n <a href="%1$s">%2$s</a>\n\nYou can contribute to this list by adding or removing instances.</string>
+    <string name="about_instances">قائمة الأمثلة تأتي من\n\n <a href="%1$s">%2$s</a>\n\nيمكنك المساهمة في هذه القائمة بإضافة أو إزالة مثيلات.</string>
     <string name="about_instances_title">عن مثيلات الخوادم</string>
-    <string name="use_built_in_player">Use the built-in player</string>
-    <string name="share">Share</string>
-    <string name="download">Download</string>
-    <string name="share_with">Share with</string>
+    <string name="use_built_in_player">استخدام المشغل المدمج</string>
+    <string name="share">مشاركة</string>
+    <string name="download">تحميل</string>
+    <string name="share_with">مشاركة مع</string>
 </resources>
