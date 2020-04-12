@@ -4,7 +4,7 @@ También soporta enlaces de Google Maps para transformarlos en enlaces de OpenSt
 
 La aplicación detectará las URL acortadas y mostrará la URL completa antes de visitar el sitio.
 
-Si vas a compartir un enlace de Twitter, YouTube o Google Maps, simplemente utiliza NitterizeMe para transformarlo antes de compartirlo con otra aplicación.
+Si vas a compartir un enlace de Twitter, YouTube o Google Maps, simplemente utiliza UntrackMe para transformarlo antes de compartirlo con otra aplicación.
 
 Qué es Nitter:
 
