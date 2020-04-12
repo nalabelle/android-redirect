@@ -1,10 +1,10 @@
-一旦NitterizeMe被设定为打开Twitter和YouTube链接的默认应用，它会将这类链接将转换为Nitter和Invidious链接，并将操作委派给另一个应用。
+一旦UntrackMe被设定为打开Twitter和YouTube链接的默认应用，它会将这类链接将转换为Nitter和Invidious链接，并将操作委派给另一个应用。
 
 它还支持谷歌地图链接，将其转换为 OpenStreetMap 链接或 Geo URI。
 
 应用会检测短网址并在访问站点之前显示完整网址。
 
-要分享Twitter、YouTube 或 Google Maps 链接，只需在使用另一个应用分享前选中Nitterizeme来转换原链接即可
+要分享Twitter、YouTube 或 Google Maps 链接，只需在使用另一个应用分享前选中UntrackMe来转换原链接即可
 
 什么是Nitter:
 

@@ -1,10 +1,10 @@
-NitterizeMe una volta impostato come predefinito per aprire i collegamenti di Twitter e YouTube li trasformerà in collegamenti Nitter e Invidious e delegherà l'apertura ad un'altra app.
+UntrackMe una volta impostato come predefinito per aprire i collegamenti di Twitter e YouTube li trasformerà in collegamenti Nitter e Invidious e delegherà l'apertura ad un'altra app.
 
 Supporta anche i collegamenti di Google Maps per trasformarli in collegamenti OpenStreetMap o Geo URI.
 
 L'app rileverà URL abbreviati e mostrerà l'URL completo prima di visitare il sito.
 
-Quando si condivide un collegamento di Twitter, YouTube o Google Maps basta utilizzare NitterizeMe per trasformarlo prima di condividerlo con un'altra app.
+Quando si condivide un collegamento di Twitter, YouTube o Google Maps basta utilizzare UntrackMe per trasformarlo prima di condividerlo con un'altra app.
 
 Cos'è Nitter:
 

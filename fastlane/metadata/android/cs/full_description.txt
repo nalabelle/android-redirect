@@ -1,10 +1,10 @@
-NitterizeMe jednou ve výchozím nastavení otevře odkazy Twitter a YouTube je změní na Nitter a Invidious linky a deleguje akci na jinou aplikaci.
+UntrackMe jednou ve výchozím nastavení otevře odkazy Twitter a YouTube je změní na Nitter a Invidious linky a deleguje akci na jinou aplikaci.
 
 Podporuje také odkazy Google Maps pro jejich přeměnu na odkazy OpenStreetMap nebo Geo URI.
 
 Aplikace rozpozná zkrácené URL adresy a před návštěvou stránky zobrazí celou adresu URL.
 
-Pokud sdílíte odkaz na Twitter, YouTube nebo Google Maps stačí vyzvednout NitterizeMe, aby jej přeměnil před sdílením s jinou aplikací.
+Pokud sdílíte odkaz na Twitter, YouTube nebo Google Maps stačí vyzvednout UntrackMe, aby jej přeměnil před sdílením s jinou aplikací.
 
 Co je Nitter:
 

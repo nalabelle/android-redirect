@@ -1,10 +1,10 @@
-NitterizeMe setelah ditetapkan secara default untuk membuka Twitter dan tautan YouTube akan mengubahnya menjadi tautan Nitter dan Invidious dan mendelegasikan tindakan ke aplikasi lain.
+UntrackMe setelah ditetapkan secara default untuk membuka Twitter dan tautan YouTube akan mengubahnya menjadi tautan Nitter dan Invidious dan mendelegasikan tindakan ke aplikasi lain.
 
 Ini juga mendukung tautan Google Maps untuk mengubahnya menjadi tautan OpenStreetMap atau Geo URI.
 
 Aplikasi akan mendeteksi URL singkat dan akan menampilkan URL lengkap sebelum mengunjungi situs.
 
-Saat berbagi tautan Twitter, YouTube atau Google Maps, ambil NitterizeMe untuk mengubahnya sebelum membaginya dengan aplikasi lain.
+Saat berbagi tautan Twitter, YouTube atau Google Maps, ambil UntrackMe untuk mengubahnya sebelum membaginya dengan aplikasi lain.
 
 Apa itu Nitter:
 
