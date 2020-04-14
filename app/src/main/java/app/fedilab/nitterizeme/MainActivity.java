@@ -101,7 +101,9 @@ public class MainActivity extends AppCompatActivity {
             "invidious.snopyta.org",
             "invidiou.sh",
             "invidious.toot.koeln",
-            "invidious.ggc-project.de"
+            "invidious.ggc-project.de",
+            "invidious.13ad.de",
+            "yewtu.be"
     };
     public static String[] nitter_instances = {
             "nitter.net",
@@ -109,7 +111,10 @@ public class MainActivity extends AppCompatActivity {
             "nitter.42l.fr",
             "nitter.13ad.de",
             "tw.openalgeria.org",
-            "nitter.pussthecat.org"
+            "nitter.pussthecat.org",
+            "nitter.mastodont.cat",
+            "nitter.dark.fail",
+            "nitter.tedomum.net"
     };
     public static String[] bibliogram_instances = {
             "bibliogram.art",

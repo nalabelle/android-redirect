@@ -76,6 +76,8 @@
                 <data android:host="invidiou.sh" />
                 <data android:host="invidious.toot.koeln" />
                 <data android:host="invidious.ggc-project.de" />
+                <data android:host="invidious.13ad.de" />
+                <data android:host="yewtu.be" />
 
                 <!-- NITTER INSTANCES -->
                 <data android:host="nitter.net" />
@@ -85,6 +87,9 @@
                 <data android:host="nitter.13ad.de" />
                 <data android:host="tw.openalgeria.org" />
                 <data android:host="nitter.pussthecat.org" />
+                <data android:host="nitter.mastodont.cat" />
+                <data android:host="nitter.dark.fail" />
+                <data android:host="nitter.tedomum.net" />
 
                 <!-- BIBLIOGRAM INSTANCES -->
                 <data android:host="bibliogram.art" />

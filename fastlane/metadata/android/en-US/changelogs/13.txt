@@ -1,0 +1,5 @@
+Added:
+- Support to more Invidious and Nitter instances
+
+Fixed:
+- Built-in player opening channels

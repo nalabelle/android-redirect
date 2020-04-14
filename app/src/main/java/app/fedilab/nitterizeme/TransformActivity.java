@@ -429,7 +429,7 @@ public class TransformActivity extends Activity {
         boolean embedded_player = sharedpreferences.getBoolean(SET_EMBEDDED_PLAYER, false);
 
         if (Arrays.asList(invidious_instances).contains(Objects.requireNonNull(i.getData()).getHost()) && embedded_player) {
-            if (!i.getData().toString().contains("videoplayback")) {
+            if (!i.getData().toString().contains("videoplayback") && !i.getData().toString().contains("/channel/")) {
                 Intent intentPlayer = new Intent(TransformActivity.this, WebviewPlayerActivity.class);
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                     intentPlayer.addFlags(Intent.FLAG_ACTIVITY_NEW_DOCUMENT | Intent.FLAG_ACTIVITY_MULTIPLE_TASK);
