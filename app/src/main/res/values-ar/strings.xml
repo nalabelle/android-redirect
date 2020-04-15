@@ -55,6 +55,6 @@
     <string name="share">مشاركة</string>
     <string name="download">تحميل</string>
     <string name="share_with">مشاركة مع</string>
-    <string name="check_apps">Check apps</string>
-    <string name="select_instances">Select instances</string>
+    <string name="check_apps">التحقق من التطبيقات</string>
+    <string name="select_instances">حدد مثيلات الخوادم</string>
 </resources>
