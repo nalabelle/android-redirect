@@ -36,7 +36,7 @@ import java.util.regex.Pattern;
 import javax.net.ssl.HttpsURLConnection;
 
 import static android.content.Context.DOWNLOAD_SERVICE;
-import static app.fedilab.nitterizeme.activities.MainActivity.shortener_domains;
+import static app.fedilab.nitterizeme.activities.CheckAppActivity.shortener_domains;
 
 public class Utils {
 

@@ -193,7 +193,11 @@
             android:configChanges="orientation|screenSize"
             android:label="@string/app_name"
             android:theme="@style/AppTheme" />
-
+        <activity
+            android:name=".activities.CheckAppActivity"
+            android:configChanges="orientation|screenSize"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme" />
         <activity
             android:name="app.fedilab.nitterizeme.activities.WebviewPlayerActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"

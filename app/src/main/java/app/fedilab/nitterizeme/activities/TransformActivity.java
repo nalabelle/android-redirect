@@ -51,17 +51,17 @@ import java.util.regex.Pattern;
 import app.fedilab.nitterizeme.R;
 import app.fedilab.nitterizeme.helpers.Utils;
 
+import static app.fedilab.nitterizeme.activities.CheckAppActivity.bibliogram_instances;
+import static app.fedilab.nitterizeme.activities.CheckAppActivity.instagram_domains;
+import static app.fedilab.nitterizeme.activities.CheckAppActivity.invidious_instances;
+import static app.fedilab.nitterizeme.activities.CheckAppActivity.nitter_instances;
+import static app.fedilab.nitterizeme.activities.CheckAppActivity.shortener_domains;
+import static app.fedilab.nitterizeme.activities.CheckAppActivity.twitter_domains;
+import static app.fedilab.nitterizeme.activities.CheckAppActivity.youtube_domains;
 import static app.fedilab.nitterizeme.activities.MainActivity.SET_BIBLIOGRAM_ENABLED;
 import static app.fedilab.nitterizeme.activities.MainActivity.SET_EMBEDDED_PLAYER;
 import static app.fedilab.nitterizeme.activities.MainActivity.SET_INVIDIOUS_ENABLED;
 import static app.fedilab.nitterizeme.activities.MainActivity.SET_NITTER_ENABLED;
-import static app.fedilab.nitterizeme.activities.MainActivity.bibliogram_instances;
-import static app.fedilab.nitterizeme.activities.MainActivity.instagram_domains;
-import static app.fedilab.nitterizeme.activities.MainActivity.invidious_instances;
-import static app.fedilab.nitterizeme.activities.MainActivity.nitter_instances;
-import static app.fedilab.nitterizeme.activities.MainActivity.shortener_domains;
-import static app.fedilab.nitterizeme.activities.MainActivity.twitter_domains;
-import static app.fedilab.nitterizeme.activities.MainActivity.youtube_domains;
 
 
 public class TransformActivity extends Activity {
