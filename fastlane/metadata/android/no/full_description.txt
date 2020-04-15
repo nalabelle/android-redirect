@@ -1,10 +1,10 @@
-NitterizeMe en gang er satt som standard til Twitter og YouTube-lenker vil forvandle dem til Nitter og Invidious linker, og delegere handlingen til en annen app.
+UntrackMe en gang er satt som standard til Twitter og YouTube-lenker vil forvandle dem til Nitter og Invidious linker, og delegere handlingen til en annen app.
 
 Den støtter også Google Maps linker for å omdanne dem til OpenStreetMap eller Geo URI.
 
 Programmet vil oppdage forkortede URLer og vil vise full URL før du besøker siden.
 
-Når du deler en Twitter, YouTube eller Google Maps link plukkes bare opp NitterizeMe og transformerer den før du deler den med en annen app.
+Når du deler en Twitter, YouTube eller Google Maps link plukkes bare opp UntrackMe og transformerer den før du deler den med en annen app.
 
 Hva er Nitter:
 

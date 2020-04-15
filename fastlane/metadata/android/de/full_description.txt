@@ -4,7 +4,7 @@ Die Umwandlung von Google Maps Links in OpenStreetMap Links oder Geo URI wird eb
 
 Die App erkennt gekürzte URLs und zeigt die vollständige URL vor dem Besuch der Website an.
 
-Wenn du einen Twitter, YouTube oder Google Maps Link teilen möchtest, kannst du ihn mit NitterizeMe umwandeln, bevor du ihn mit einer anderen App teilst.
+Wenn du einen Twitter, YouTube oder Google Maps Link teilen möchtest, kannst du ihn mit UntrackMe umwandeln, bevor du ihn mit einer anderen App teilst.
 
 Was ist Nitter:
 
