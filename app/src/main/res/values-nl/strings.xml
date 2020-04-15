@@ -30,7 +30,6 @@
     <string name="redirect_gm_to_geo_uri">Google Map omleiden naar Geo URI</string>
     <string name="configure">Configureer</string>
     <string name="display_supported_links">Ondersteunde links op het scherm</string>
-    <string name="hide_supported_links">Verberg ondersteunde links</string>
     <string name="use_geo_uri">Gebruik geo-URI</string>
     <string name="how_to">Hoe werkt</string>
     <string name="shortened_detected">Verkorte URL</string>
@@ -56,4 +55,6 @@
     <string name="share">Delen</string>
     <string name="download">Downloaden</string>
     <string name="share_with">Delen met</string>
+    <string name="check_apps">Check apps</string>
+    <string name="select_instances">Select instances</string>
 </resources>
