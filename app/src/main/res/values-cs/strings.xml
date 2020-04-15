@@ -30,7 +30,6 @@
     <string name="redirect_gm_to_geo_uri">Přesměrovat Google mapu na Geo URI</string>
     <string name="configure">Konfigurovat</string>
     <string name="display_supported_links">Zobrazit podporované odkazy</string>
-    <string name="hide_supported_links">Skrýt podporované odkazy</string>
     <string name="use_geo_uri">Použití geo URI</string>
     <string name="how_to">Jak</string>
     <string name="shortened_detected">Zkrácená URL</string>
@@ -56,4 +55,6 @@
     <string name="share">Share</string>
     <string name="download">Download</string>
     <string name="share_with">Share with</string>
+    <string name="check_apps">Check apps</string>
+    <string name="select_instances">Select instances</string>
 </resources>
