@@ -55,6 +55,6 @@
     <string name="share">Compartir</string>
     <string name="download">Descargar</string>
     <string name="share_with">Compartir con</string>
-    <string name="check_apps">Check apps</string>
-    <string name="select_instances">Select instances</string>
+    <string name="check_apps">Comprobar apps</string>
+    <string name="select_instances">Seleccionar instancias</string>
 </resources>
