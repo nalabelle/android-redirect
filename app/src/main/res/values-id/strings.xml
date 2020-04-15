@@ -30,17 +30,17 @@
     <string name="redirect_gm_to_geo_uri">Custom Bibliogram contoh</string>
     <string name="configure">Configure</string>
     <string name="display_supported_links">Display supported links</string>
-    <string name="use_geo_uri">Use geo URI</string>
-    <string name="how_to">How-to</string>
+    <string name="use_geo_uri">Menggunakan geo URI</string>
+    <string name="how_to">Cara-untuk</string>
     <string name="shortened_detected">URL singkat</string>
-    <string name="shortener_services">Shortener services</string>
+    <string name="shortener_services">Shortener jasa</string>
     <string name="open">Buka</string>
     <string name="dismiss">Dismiss</string>
     <string name="resolving_shortened">Resolving shortened URL, please wait…</string>
     <string name="try_to_redirect">%1$s \n\nwill redirect you to\n\n<b>%2$s</b></string>
     <string name="try_to_redirect_again">Then it will redirect you to\n\n<b>%1$s</b></string>
     <string name="the_app_failed_shortened">Aplikasi tidak berhasil untuk mengambil URL lengkap</string>
-    <string name="invidious_instances">Invidious instances</string>
+    <string name="invidious_instances">Contoh menyakitkan hati</string>
     <string name="nitter_instances">Nitter instances</string>
     <string name="bibliogram_instances">Bibliogram instances</string>
     <string name="latency">Latency</string>
@@ -55,6 +55,6 @@
     <string name="share">Share</string>
     <string name="download">Download</string>
     <string name="share_with">Share with</string>
-    <string name="check_apps">Check apps</string>
-    <string name="select_instances">Select instances</string>
+    <string name="check_apps">Periksa aplikasi</string>
+    <string name="select_instances">Pilih contoh</string>
 </resources>
