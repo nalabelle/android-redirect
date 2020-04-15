@@ -1,0 +1,5 @@
+Changed:
+- Add apps checker in a different activity
+
+Fixed:
+- Clicking the warning icon didn't prompt apps
