@@ -30,7 +30,6 @@
     <string name="redirect_gm_to_geo_uri">将谷歌地图重定向到 Geo URI</string>
     <string name="configure">配置</string>
     <string name="display_supported_links">显示支持的链接</string>
-    <string name="hide_supported_links">隐藏支持链接</string>
     <string name="use_geo_uri">使用geo URI</string>
     <string name="how_to">操作说明</string>
     <string name="shortened_detected">URL短链</string>
@@ -56,4 +55,6 @@
     <string name="share">分享</string>
     <string name="download">下载</string>
     <string name="share_with">分享给</string>
+    <string name="check_apps">Check apps</string>
+    <string name="select_instances">Select instances</string>
 </resources>
