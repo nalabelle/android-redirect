@@ -55,6 +55,6 @@
     <string name="share">分享</string>
     <string name="download">下载</string>
     <string name="share_with">分享给</string>
-    <string name="check_apps">Check apps</string>
-    <string name="select_instances">Select instances</string>
+    <string name="check_apps">检查应用程序</string>
+    <string name="select_instances">搜索实例</string>
 </resources>
