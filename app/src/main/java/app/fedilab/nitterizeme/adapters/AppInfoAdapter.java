@@ -1,4 +1,4 @@
-package app.fedilab.nitterizeme;
+package app.fedilab.nitterizeme.adapters;
 /* Copyright 2020 Thomas Schneider
  *
  * This file is a part of UntrackMe
@@ -32,13 +32,17 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
+import app.fedilab.nitterizeme.BuildConfig;
+import app.fedilab.nitterizeme.R;
+import app.fedilab.nitterizeme.entities.AppInfo;
+
 public class AppInfoAdapter extends RecyclerView.Adapter {
 
     private static final int LAYOUT_TITLE = 0;
     private static final int LAYOUT_INFO = 1;
     private List<AppInfo> appInfos;
 
-    AppInfoAdapter(List<AppInfo> appInfos) {
+    public AppInfoAdapter(List<AppInfo> appInfos) {
         this.appInfos = appInfos;
     }
 

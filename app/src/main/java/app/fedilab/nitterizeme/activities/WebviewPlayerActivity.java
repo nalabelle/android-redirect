@@ -1,4 +1,4 @@
-package app.fedilab.nitterizeme;
+package app.fedilab.nitterizeme.activities;
 /* Copyright 2020 Thomas Schneider
  *
  * This file is a part of UntrackMe
@@ -45,6 +45,11 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 
 import java.io.IOException;
+
+import app.fedilab.nitterizeme.R;
+import app.fedilab.nitterizeme.helpers.PlayerChromeClient;
+import app.fedilab.nitterizeme.helpers.Utils;
+
 
 public class WebviewPlayerActivity extends AppCompatActivity {
 

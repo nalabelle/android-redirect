@@ -1,4 +1,4 @@
-package app.fedilab.nitterizeme;
+package app.fedilab.nitterizeme.activities;
 /* Copyright 2020 Thomas Schneider
  *
  * This file is a part of UntrackMe
@@ -44,6 +44,10 @@ import com.google.android.material.textfield.TextInputEditText;
 
 import java.util.ArrayList;
 import java.util.Objects;
+
+import app.fedilab.nitterizeme.R;
+import app.fedilab.nitterizeme.adapters.AppInfoAdapter;
+import app.fedilab.nitterizeme.entities.AppInfo;
 
 public class MainActivity extends AppCompatActivity {
 

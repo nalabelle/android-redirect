@@ -1,4 +1,4 @@
-package app.fedilab.nitterizeme;
+package app.fedilab.nitterizeme.helpers;
 /* Copyright 2020 Thomas Schneider
  *
  * This file is a part of UntrackMe
@@ -36,11 +36,11 @@ import java.util.regex.Pattern;
 import javax.net.ssl.HttpsURLConnection;
 
 import static android.content.Context.DOWNLOAD_SERVICE;
-import static app.fedilab.nitterizeme.MainActivity.shortener_domains;
+import static app.fedilab.nitterizeme.activities.MainActivity.shortener_domains;
 
-class Utils {
+public class Utils {
 
-    static final String RECEIVE_STREAMING_URL = "receive_streaming_url";
+    public static final String RECEIVE_STREAMING_URL = "receive_streaming_url";
 
     private static final String[] UTM_PARAMS = {
             "utm_\\w+",
@@ -71,7 +71,7 @@ class Utils {
 
     };
     private static String urlRegex = "(?i)\\b((?:[a-z][\\w-]+:(?:/{1,3}|[a-z0-9%])|www\\d{0,3}[.]|[a-z0-9.\\-]+[.][a-z]{2,10}/)(?:[^\\s()<>]+|\\(([^\\s()<>]+|(\\([^\\s()<>]+\\)))*\\))+(?:\\(([^\\s()<>]+|(\\([^\\s()<>]+\\)))*\\)|[^\\s`!()\\[\\]{};:'\".,<>?«»“”‘’]))";
-    static final Pattern urlPattern = Pattern.compile(
+    public static final Pattern urlPattern = Pattern.compile(
             urlRegex,
             Pattern.CASE_INSENSITIVE | Pattern.MULTILINE | Pattern.DOTALL);
 
@@ -80,7 +80,7 @@ class Utils {
      *
      * @param urls ArrayList<String> URL to check
      */
-    static void checkUrl(ArrayList<String> urls) {
+    public static void checkUrl(ArrayList<String> urls) {
         URL url;
         String newURL = null;
         String comingURl;
@@ -129,7 +129,7 @@ class Utils {
      * @param domain String domain name
      * @return long delay
      */
-    static long ping(String domain) {
+    public static long ping(String domain) {
         long timeDifference = -2;
         try {
             long beforeTime = System.currentTimeMillis();
@@ -171,7 +171,7 @@ class Utils {
      * @param context Context
      * @param url     String download url
      */
-    static void manageDownloadsNoPopup(final Context context, final String url) {
+    public static void manageDownloadsNoPopup(final Context context, final String url) {
 
         final DownloadManager.Request request;
         try {

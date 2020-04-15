@@ -1,4 +1,4 @@
-package app.fedilab.nitterizeme;
+package app.fedilab.nitterizeme.entities;
 /* Copyright 2020 Thomas Schneider
  *
  * This file is a part of UntrackMe
@@ -15,33 +15,33 @@ package app.fedilab.nitterizeme;
  * see <http://www.gnu.org/licenses>. */
 
 
-class AppInfo {
+public class AppInfo {
 
     private String domain;
     private android.content.pm.ApplicationInfo ApplicationInfo;
     private String title = null;
 
-    String getDomain() {
+    public String getDomain() {
         return domain;
     }
 
-    void setDomain(String domain) {
+    public void setDomain(String domain) {
         this.domain = domain;
     }
 
-    android.content.pm.ApplicationInfo getApplicationInfo() {
+    public android.content.pm.ApplicationInfo getApplicationInfo() {
         return ApplicationInfo;
     }
 
-    void setApplicationInfo(android.content.pm.ApplicationInfo applicationInfo) {
+    public void setApplicationInfo(android.content.pm.ApplicationInfo applicationInfo) {
         ApplicationInfo = applicationInfo;
     }
 
-    String getTitle() {
+    public String getTitle() {
         return title;
     }
 
-    void setTitle(String title) {
+    public void setTitle(String title) {
         this.title = title;
     }
 }

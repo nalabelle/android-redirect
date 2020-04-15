@@ -1,4 +1,4 @@
-package app.fedilab.nitterizeme;
+package app.fedilab.nitterizeme.activities;
 /* Copyright 2020 Thomas Schneider
  *
  * This file is a part of UntrackMe
@@ -28,6 +28,8 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
+
+import app.fedilab.nitterizeme.R;
 
 
 public class AboutActivity extends AppCompatActivity {

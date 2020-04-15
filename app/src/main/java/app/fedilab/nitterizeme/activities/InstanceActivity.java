@@ -1,4 +1,4 @@
-package app.fedilab.nitterizeme;
+package app.fedilab.nitterizeme.activities;
 /* Copyright 2020 Thomas Schneider
  *
  * This file is a part of UntrackMe
@@ -45,13 +45,17 @@ import java.util.List;
 
 import javax.net.ssl.HttpsURLConnection;
 
-import static app.fedilab.nitterizeme.MainActivity.APP_PREFS;
-import static app.fedilab.nitterizeme.MainActivity.DEFAULT_BIBLIOGRAM_HOST;
-import static app.fedilab.nitterizeme.MainActivity.DEFAULT_INVIDIOUS_HOST;
-import static app.fedilab.nitterizeme.MainActivity.DEFAULT_NITTER_HOST;
-import static app.fedilab.nitterizeme.MainActivity.SET_BIBLIOGRAM_HOST;
-import static app.fedilab.nitterizeme.MainActivity.SET_INVIDIOUS_HOST;
-import static app.fedilab.nitterizeme.MainActivity.SET_NITTER_HOST;
+import app.fedilab.nitterizeme.R;
+import app.fedilab.nitterizeme.adapters.InstanceAdapter;
+import app.fedilab.nitterizeme.entities.Instance;
+
+import static app.fedilab.nitterizeme.activities.MainActivity.APP_PREFS;
+import static app.fedilab.nitterizeme.activities.MainActivity.DEFAULT_BIBLIOGRAM_HOST;
+import static app.fedilab.nitterizeme.activities.MainActivity.DEFAULT_INVIDIOUS_HOST;
+import static app.fedilab.nitterizeme.activities.MainActivity.DEFAULT_NITTER_HOST;
+import static app.fedilab.nitterizeme.activities.MainActivity.SET_BIBLIOGRAM_HOST;
+import static app.fedilab.nitterizeme.activities.MainActivity.SET_INVIDIOUS_HOST;
+import static app.fedilab.nitterizeme.activities.MainActivity.SET_NITTER_HOST;
 
 
 public class InstanceActivity extends AppCompatActivity {

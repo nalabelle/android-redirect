@@ -1,4 +1,4 @@
-package app.fedilab.nitterizeme;
+package app.fedilab.nitterizeme.helpers;
 /* Copyright 2020 Thomas Schneider
  *
  * This file is a part of UntrackMe
@@ -43,7 +43,7 @@ public class PlayerChromeClient extends WebChromeClient implements MediaPlayer.O
     private Activity activity;
 
 
-    PlayerChromeClient(Activity activity, WebView webView, FrameLayout activityNonVideoView, ViewGroup activityVideoView) {
+    public PlayerChromeClient(Activity activity, WebView webView, FrameLayout activityNonVideoView, ViewGroup activityVideoView) {
         this.activity = activity;
         this.isVideoFullscreen = false;
         this.webView = webView;
@@ -56,7 +56,7 @@ public class PlayerChromeClient extends WebChromeClient implements MediaPlayer.O
      *
      * @param callback A VideoEnabledWebChromeClient.ToggledFullscreenCallback callback
      */
-    void setOnToggledFullscreen(ToggledFullscreenCallback callback) {
+    public void setOnToggledFullscreen(ToggledFullscreenCallback callback) {
         this.toggledFullscreenCallback = callback;
     }
 

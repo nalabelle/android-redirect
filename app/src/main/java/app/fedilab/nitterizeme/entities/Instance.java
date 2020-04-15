@@ -1,4 +1,4 @@
-package app.fedilab.nitterizeme;
+package app.fedilab.nitterizeme.entities;
 
 /* Copyright 2020 Thomas Schneider
  *
@@ -14,7 +14,7 @@ package app.fedilab.nitterizeme;
  *
  * You should have received a copy of the GNU General Public License along with UntrackMe; if not,
  * see <http://www.gnu.org/licenses>. */
-class Instance {
+public class Instance {
 
     private String domain;
     private long latency = -1;
@@ -23,55 +23,55 @@ class Instance {
     private boolean cloudflare = false;
     private String locale;
 
-    String getDomain() {
+    public String getDomain() {
         return domain;
     }
 
-    void setDomain(String domain) {
+    public void setDomain(String domain) {
         this.domain = domain;
     }
 
-    long getLatency() {
+    public long getLatency() {
         return latency;
     }
 
-    void setLatency(long latency) {
+    public void setLatency(long latency) {
         this.latency = latency;
     }
 
-    boolean isChecked() {
+    public boolean isChecked() {
         return checked;
     }
 
-    void setChecked(boolean checked) {
+    public void setChecked(boolean checked) {
         this.checked = checked;
     }
 
-    instanceType getType() {
+    public instanceType getType() {
         return type;
     }
 
-    void setType(instanceType type) {
+    public void setType(instanceType type) {
         this.type = type;
     }
 
-    boolean isCloudflare() {
+    public boolean isCloudflare() {
         return cloudflare;
     }
 
-    void setCloudflare(boolean cloudflare) {
+    public void setCloudflare(boolean cloudflare) {
         this.cloudflare = cloudflare;
     }
 
-    String getLocale() {
+    public String getLocale() {
         return locale;
     }
 
-    void setLocale(String locale) {
+    public void setLocale(String locale) {
         this.locale = locale;
     }
 
-    enum instanceType {
+    public enum instanceType {
         INVIDIOUS,
         NITTER,
         BIBLIOGRAM

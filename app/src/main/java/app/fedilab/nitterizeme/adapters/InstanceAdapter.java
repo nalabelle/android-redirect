@@ -1,4 +1,4 @@
-package app.fedilab.nitterizeme;
+package app.fedilab.nitterizeme.adapters;
 /* Copyright 2020 Thomas Schneider
  *
  * This file is a part of UntrackMe
@@ -33,17 +33,21 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 import java.util.Locale;
 
-import static app.fedilab.nitterizeme.MainActivity.APP_PREFS;
-import static app.fedilab.nitterizeme.MainActivity.SET_BIBLIOGRAM_HOST;
-import static app.fedilab.nitterizeme.MainActivity.SET_INVIDIOUS_HOST;
-import static app.fedilab.nitterizeme.MainActivity.SET_NITTER_HOST;
+import app.fedilab.nitterizeme.R;
+import app.fedilab.nitterizeme.entities.Instance;
+import app.fedilab.nitterizeme.helpers.Utils;
+
+import static app.fedilab.nitterizeme.activities.MainActivity.APP_PREFS;
+import static app.fedilab.nitterizeme.activities.MainActivity.SET_BIBLIOGRAM_HOST;
+import static app.fedilab.nitterizeme.activities.MainActivity.SET_INVIDIOUS_HOST;
+import static app.fedilab.nitterizeme.activities.MainActivity.SET_NITTER_HOST;
 
 public class InstanceAdapter extends RecyclerView.Adapter {
 
     private List<Instance> instances;
     private InstanceAdapter instanceAdapter;
 
-    InstanceAdapter(List<Instance> instances) {
+    public InstanceAdapter(List<Instance> instances) {
         this.instances = instances;
         this.instanceAdapter = this;
     }
@@ -140,7 +144,7 @@ public class InstanceAdapter extends RecyclerView.Adapter {
 
     }
 
-    void evalLatency() {
+    public void evalLatency() {
         for (Instance instance : instances) {
             instance.setLatency(0);
             Thread thread = new Thread() {

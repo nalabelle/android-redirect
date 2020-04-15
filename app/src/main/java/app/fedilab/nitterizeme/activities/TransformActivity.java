@@ -1,4 +1,4 @@
-package app.fedilab.nitterizeme;
+package app.fedilab.nitterizeme.activities;
 /* Copyright 2020 Thomas Schneider
  *
  * This file is a part of UntrackMe
@@ -48,17 +48,20 @@ import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import static app.fedilab.nitterizeme.MainActivity.SET_BIBLIOGRAM_ENABLED;
-import static app.fedilab.nitterizeme.MainActivity.SET_EMBEDDED_PLAYER;
-import static app.fedilab.nitterizeme.MainActivity.SET_INVIDIOUS_ENABLED;
-import static app.fedilab.nitterizeme.MainActivity.SET_NITTER_ENABLED;
-import static app.fedilab.nitterizeme.MainActivity.bibliogram_instances;
-import static app.fedilab.nitterizeme.MainActivity.instagram_domains;
-import static app.fedilab.nitterizeme.MainActivity.invidious_instances;
-import static app.fedilab.nitterizeme.MainActivity.nitter_instances;
-import static app.fedilab.nitterizeme.MainActivity.shortener_domains;
-import static app.fedilab.nitterizeme.MainActivity.twitter_domains;
-import static app.fedilab.nitterizeme.MainActivity.youtube_domains;
+import app.fedilab.nitterizeme.R;
+import app.fedilab.nitterizeme.helpers.Utils;
+
+import static app.fedilab.nitterizeme.activities.MainActivity.SET_BIBLIOGRAM_ENABLED;
+import static app.fedilab.nitterizeme.activities.MainActivity.SET_EMBEDDED_PLAYER;
+import static app.fedilab.nitterizeme.activities.MainActivity.SET_INVIDIOUS_ENABLED;
+import static app.fedilab.nitterizeme.activities.MainActivity.SET_NITTER_ENABLED;
+import static app.fedilab.nitterizeme.activities.MainActivity.bibliogram_instances;
+import static app.fedilab.nitterizeme.activities.MainActivity.instagram_domains;
+import static app.fedilab.nitterizeme.activities.MainActivity.invidious_instances;
+import static app.fedilab.nitterizeme.activities.MainActivity.nitter_instances;
+import static app.fedilab.nitterizeme.activities.MainActivity.shortener_domains;
+import static app.fedilab.nitterizeme.activities.MainActivity.twitter_domains;
+import static app.fedilab.nitterizeme.activities.MainActivity.youtube_domains;
 
 
 public class TransformActivity extends Activity {
