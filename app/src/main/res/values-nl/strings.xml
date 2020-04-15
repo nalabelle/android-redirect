@@ -6,16 +6,16 @@
     <string name="donations">Donaties</string>
     <string name="about_the_app">Over de app</string>
     <string name="source_code">Broncode</string>
-    <string name="issue_tracker">Issue Tracker</string>
+    <string name="issue_tracker">Probleemtracker</string>
     <string name="license">Licentie</string>
-    <string name="about_vesrion">Release %1$s</string>
-    <string name="custom_nitter">Alternatieve instantie voor Nitter</string>
+    <string name="about_vesrion">Versie %1$s</string>
+    <string name="custom_nitter">Aangepaste Nitter instantie</string>
     <string name="save">Opslaan</string>
     <string name="close">Sluiten</string>
-    <string name="instances_saved">Alternatieve instanties zijn opgeslagen!</string>
-    <string name="custom_invidious">Alternatieve instantie voor Invidious</string>
+    <string name="instances_saved">Aangepaste instanties zijn opgeslagen!</string>
+    <string name="custom_invidious">Aangepaste Invidious instantie</string>
     <string name="no_apps">Geen standaard applicaties</string>
-    <string name="Donate">Doneer</string>
+    <string name="Donate">Doneren</string>
     <string name="warning">Waarschuwing</string>
     <string name="error">Fout</string>
     <string name="valid">Geldig</string>
@@ -34,7 +34,7 @@
     <string name="use_geo_uri">Gebruik geo-URI</string>
     <string name="how_to">Hoe werkt</string>
     <string name="shortened_detected">Verkorte URL</string>
-    <string name="shortener_services">Shortener services</string>
+    <string name="shortener_services">Verkorter-diensten</string>
     <string name="open">Open</string>
     <string name="dismiss">Ontslag</string>
     <string name="resolving_shortened">Het oplossen van verkorte URL please wait…</string>
@@ -52,8 +52,8 @@
     <string name="instance_info">Informatie over vermelde instanties</string>
     <string name="about_instances">De lijst van instanties komt van\n\n <a href="%1$s">%2$s</a>\n\nU kunt bijdragen aan deze lijst door instanties toe te voegen of te verwijderen.</string>
     <string name="about_instances_title">Ongewenste gevallen</string>
-    <string name="use_built_in_player">Use the built-in player</string>
-    <string name="share">Share</string>
-    <string name="download">Download</string>
-    <string name="share_with">Share with</string>
+    <string name="use_built_in_player">Gebruik de ingebouwde speler</string>
+    <string name="share">Delen</string>
+    <string name="download">Downloaden</string>
+    <string name="share_with">Delen met</string>
 </resources>
