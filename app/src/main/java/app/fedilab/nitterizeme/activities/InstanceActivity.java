@@ -67,6 +67,7 @@ public class InstanceActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_popup_instance);
         new SearchInstances(this).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+        setTitle(R.string.select_instances);
     }
 
 

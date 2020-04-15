@@ -113,7 +113,7 @@ public class AppInfoAdapter extends RecyclerView.Adapter {
                     Intent intent = new Intent(Intent.ACTION_VIEW);
                     intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     intent.putExtra("nitterizeme", "test");
-                    String url = "https://" + appInfo.getDomain();
+                    String url = "https://" + appInfo.getDomain() + "/";
                     intent.setData(Uri.parse(url));
                     context.startActivity(intent);
                 });
