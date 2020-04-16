@@ -10,9 +10,9 @@
     <string name="license">Licens</string>
     <string name="about_vesrion">Release %1$s</string>
     <string name="custom_nitter">Brugerdefineret Nitter eksempel</string>
-    <string name="save">Save</string>
-    <string name="close">Close</string>
-    <string name="instances_saved">Custom instances have been saved!</string>
+    <string name="save">Spar</string>
+    <string name="close">Luk</string>
+    <string name="instances_saved">Brugerdefineret tilfælde er blevet gemt!</string>
     <string name="custom_invidious">Custom Invidious instance</string>
     <string name="no_apps">No applications by default</string>
     <string name="Donate">Donér</string>
