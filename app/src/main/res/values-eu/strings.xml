@@ -55,6 +55,6 @@
     <string name="share">Partekatu</string>
     <string name="download">Deskargatu</string>
     <string name="share_with">Partekatu honekin</string>
-    <string name="check_apps">Check apps</string>
-    <string name="select_instances">Select instances</string>
+    <string name="check_apps">Check aplikazioak</string>
+    <string name="select_instances">Hautatu instantzia</string>
 </resources>
