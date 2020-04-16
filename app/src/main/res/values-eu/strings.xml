@@ -30,7 +30,6 @@
     <string name="redirect_gm_to_geo_uri">Berbideratu Google Map Geo URI-ra</string>
     <string name="configure">Konfiguratu</string>
     <string name="display_supported_links">Erakutsi onartutako estekak</string>
-    <string name="hide_supported_links">Ezkutatu onartutako estekak</string>
     <string name="use_geo_uri">Erabili Geo URI</string>
     <string name="how_to">Nola egin</string>
     <string name="shortened_detected">Laburtutako URL-a</string>
@@ -56,4 +55,6 @@
     <string name="share">Partekatu</string>
     <string name="download">Deskargatu</string>
     <string name="share_with">Partekatu honekin</string>
+    <string name="check_apps">Check aplikazioak</string>
+    <string name="select_instances">Hautatu instantzia</string>
 </resources>

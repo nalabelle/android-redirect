@@ -30,7 +30,6 @@
     <string name="redirect_gm_to_geo_uri">Reindirizza Google Map a Geo URI</string>
     <string name="configure">Configura</string>
     <string name="display_supported_links">Mostra link supportati</string>
-    <string name="hide_supported_links">Nascondi link supportati</string>
     <string name="use_geo_uri">Usa geo URI</string>
     <string name="how_to">Come fare</string>
     <string name="shortened_detected">URL Accorciato</string>
@@ -56,4 +55,6 @@
     <string name="share">Condividi</string>
     <string name="download">Scarica</string>
     <string name="share_with">Condividi con</string>
+    <string name="check_apps">Check apps</string>
+    <string name="select_instances">Select instances</string>
 </resources>

@@ -30,7 +30,6 @@
     <string name="redirect_gm_to_geo_uri">ಗೂಗಲ್ ನಕ್ಷೆಯನ್ನು ಭೂ ಸಂಪನ್ಮೂಲ ಗುರುತಿಗೆ (Geo URI) ರವಾನಿಸು</string>
     <string name="configure">ಜೋಡಿಸು</string>
     <string name="display_supported_links">ಬೆಂಬಲಿತ ಲಿಂಕ್‌ಗಳ ಪ್ರದರ್ಶನ</string>
-    <string name="hide_supported_links">ಬೆಂಬಲಿತ ಲಿಂಕ್‌ಗಳ ಮರೆಮಾಡು</string>
     <string name="use_geo_uri">ಭೂ ಸಂಪನ್ಮೂಲ ಗುರುತು ಬಳಸು</string>
     <string name="how_to">ಹೇಗೆ</string>
     <string name="shortened_detected">ಸಂಕ್ಷಿಪ್ತ URL</string>
@@ -56,4 +55,6 @@
     <string name="share">Share</string>
     <string name="download">Download</string>
     <string name="share_with">Share with</string>
+    <string name="check_apps">Check apps</string>
+    <string name="select_instances">Select instances</string>
 </resources>

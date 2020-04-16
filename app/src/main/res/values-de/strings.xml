@@ -30,11 +30,10 @@
     <string name="redirect_gm_to_geo_uri">Google Maps zu Geo URI umleiten</string>
     <string name="configure">Konfigurieren</string>
     <string name="display_supported_links">Unterstützte Links anzeigen</string>
-    <string name="hide_supported_links">Unterstützte Links ausblenden</string>
     <string name="use_geo_uri">Geo URI benutzen</string>
     <string name="how_to">Anleitung</string>
     <string name="shortened_detected">Verkürzte URL</string>
-    <string name="shortener_services">Shortener services</string>
+    <string name="shortener_services">Kürzere Dienste</string>
     <string name="open">Öffnen</string>
     <string name="dismiss">Beenden</string>
     <string name="resolving_shortened">Verkürzte URL wird aufgelöst, bitte warten…</string>
@@ -52,8 +51,10 @@
     <string name="instance_info">Informationen über aufgelistete Instanzen</string>
     <string name="about_instances">Die Liste der Instanzen kommt von\n\n <a href="%1$s">%2$s</a>\n\nDu kannst zu dieser Liste beitragen, indem Du Instanzen hinzufügst oder löschst.</string>
     <string name="about_instances_title">Über die Instanzen</string>
-    <string name="use_built_in_player">Use the built-in player</string>
-    <string name="share">Share</string>
+    <string name="use_built_in_player">Integrierter Player verwenden</string>
+    <string name="share">Teilen</string>
     <string name="download">Download</string>
-    <string name="share_with">Share with</string>
+    <string name="share_with">Teilen mit</string>
+    <string name="check_apps">Apps prüfen</string>
+    <string name="select_instances">Instanzen auswählen</string>
 </resources>

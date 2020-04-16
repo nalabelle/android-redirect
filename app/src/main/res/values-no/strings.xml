@@ -30,7 +30,6 @@
     <string name="redirect_gm_to_geo_uri">Omdirigere Google Map til Geo URI</string>
     <string name="configure">Konfigurer</string>
     <string name="display_supported_links">Vis støttede linker</string>
-    <string name="hide_supported_links">Skjul støttede lenker</string>
     <string name="use_geo_uri">Use geo URI</string>
     <string name="how_to">How-to</string>
     <string name="shortened_detected">Forkortet URL</string>
@@ -56,4 +55,6 @@
     <string name="share">Share</string>
     <string name="download">Download</string>
     <string name="share_with">Share with</string>
+    <string name="check_apps">Check apps</string>
+    <string name="select_instances">Select instances</string>
 </resources>

@@ -6,7 +6,7 @@
     <string name="donations">Donationer</string>
     <string name="about_the_app">Om appen</string>
     <string name="source_code">Källkod</string>
-    <string name="issue_tracker">Issue tracker</string>
+    <string name="issue_tracker">Ärendespårare</string>
     <string name="license">Licens</string>
     <string name="about_vesrion">Släpp %1$s</string>
     <string name="custom_nitter">Custom Nitter instance</string>
@@ -30,20 +30,19 @@
     <string name="redirect_gm_to_geo_uri">Omdirigera Google Map till Geo URI</string>
     <string name="configure">Konfigurera</string>
     <string name="display_supported_links">Visa länkar som stöds</string>
-    <string name="hide_supported_links">Dölj länkar som stöds</string>
     <string name="use_geo_uri">Dölj länkar som stöds</string>
     <string name="how_to">Öppna</string>
     <string name="shortened_detected">Kortad URL</string>
-    <string name="shortener_services">Shortener services</string>
+    <string name="shortener_services">Förstärkare tjänster</string>
     <string name="open">Öppna</string>
     <string name="dismiss">Avfärda</string>
     <string name="resolving_shortened">Löser förkortad URL, vänligen vänta…</string>
     <string name="try_to_redirect">%1$s \n\nkommer att omdirigera dig till\n\n<b>%2$s</b></string>
     <string name="try_to_redirect_again">Då kommer den att omdirigera dig till\n\n<b>%1$s</b></string>
     <string name="the_app_failed_shortened">Appen lyckades inte hämta hela URL: n</string>
-    <string name="invidious_instances">Invidious instances</string>
+    <string name="invidious_instances">Olivliga instanser</string>
     <string name="nitter_instances">Nitter instances</string>
-    <string name="bibliogram_instances">Bibliogram instances</string>
+    <string name="bibliogram_instances">Bibliogram instanser</string>
     <string name="latency">Latens</string>
     <string name="error_message_internet">Kontrollera din internetanslutning</string>
     <string name="instance_label">Instans:</string>
@@ -52,8 +51,10 @@
     <string name="instance_info">Information om listade instanser</string>
     <string name="about_instances">Listan över instanser kommer från\n\n <a href="%1$s">%2$s</a>\n\nDu kan bidra till denna lista genom att lägga till eller ta bort instanser.</string>
     <string name="about_instances_title">Om instanser</string>
-    <string name="use_built_in_player">Use the built-in player</string>
-    <string name="share">Share</string>
-    <string name="download">Download</string>
-    <string name="share_with">Share with</string>
+    <string name="use_built_in_player">Använd den inbyggda spelaren</string>
+    <string name="share">Dela</string>
+    <string name="download">Hämta</string>
+    <string name="share_with">Dela med</string>
+    <string name="check_apps">Kontrollera appar</string>
+    <string name="select_instances">Välj instanser</string>
 </resources>

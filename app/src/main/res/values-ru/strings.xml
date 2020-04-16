@@ -30,7 +30,6 @@
     <string name="redirect_gm_to_geo_uri">Перенаправлять Google Карты на Geo URI</string>
     <string name="configure">Настроить</string>
     <string name="display_supported_links">Показать поддерживаемые ссылки</string>
-    <string name="hide_supported_links">Скрыть поддерживаемые ссылки</string>
     <string name="use_geo_uri">Использовать Geo URI</string>
     <string name="how_to">Инструкция</string>
     <string name="shortened_detected">Сокращённая ссылка</string>
@@ -56,4 +55,6 @@
     <string name="share">Поделиться</string>
     <string name="download">Скачать</string>
     <string name="share_with">Поделиться через</string>
+    <string name="check_apps">Check apps</string>
+    <string name="select_instances">Select instances</string>
 </resources>

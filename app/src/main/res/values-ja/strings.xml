@@ -30,7 +30,6 @@
     <string name="redirect_gm_to_geo_uri">Google マップをGeo URIにリダイレクトする</string>
     <string name="configure">設定</string>
     <string name="display_supported_links">サポートされているリンクを表示する</string>
-    <string name="hide_supported_links">サポートされているリンクを非表示にする</string>
     <string name="use_geo_uri">Geo URIを利用する</string>
     <string name="how_to">使い方</string>
     <string name="shortened_detected">短縮URL</string>
@@ -56,4 +55,6 @@
     <string name="share">Share</string>
     <string name="download">Download</string>
     <string name="share_with">Share with</string>
+    <string name="check_apps">Check apps</string>
+    <string name="select_instances">Select instances</string>
 </resources>
