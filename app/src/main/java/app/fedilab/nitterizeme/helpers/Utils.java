@@ -17,12 +17,16 @@ package app.fedilab.nitterizeme.helpers;
 
 import android.app.DownloadManager;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Environment;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.net.InetAddress;
+import java.net.MalformedURLException;
 import java.net.URL;
+import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -30,18 +34,33 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import javax.net.ssl.HttpsURLConnection;
 
+import app.fedilab.nitterizeme.activities.MainActivity;
+
 import static android.content.Context.DOWNLOAD_SERVICE;
+import static app.fedilab.nitterizeme.activities.CheckAppActivity.instagram_domains;
 import static app.fedilab.nitterizeme.activities.CheckAppActivity.shortener_domains;
+import static app.fedilab.nitterizeme.activities.CheckAppActivity.twitter_domains;
+import static app.fedilab.nitterizeme.activities.CheckAppActivity.youtube_domains;
+import static app.fedilab.nitterizeme.activities.MainActivity.SET_BIBLIOGRAM_ENABLED;
+import static app.fedilab.nitterizeme.activities.MainActivity.SET_INVIDIOUS_ENABLED;
+import static app.fedilab.nitterizeme.activities.MainActivity.SET_NITTER_ENABLED;
 
 public class Utils {
 
+    public static final Pattern youtubePattern = Pattern.compile("(www\\.|m\\.)?(youtube\\.com|youtu\\.be|youtube-nocookie\\.com)/(((?!([\"'<])).)*)");
+    public static final Pattern nitterPattern = Pattern.compile("(mobile\\.|www\\.)?twitter.com([\\w-/]+)");
+    public static final Pattern bibliogramPostPattern = Pattern.compile("(m\\.|www\\.)?instagram.com(/p/[\\w-/]+)");
+    public static final Pattern bibliogramAccountPattern = Pattern.compile("(m\\.|www\\.)?instagram.com(((?!/p/).)+)");
+    public static final Pattern maps = Pattern.compile("/maps/place/[^@]+@([\\d.,z]{3,}).*");
+    public static final Pattern ampExtract = Pattern.compile("amp/s/(.*)");
     public static final String RECEIVE_STREAMING_URL = "receive_streaming_url";
-
+    private static final Pattern extractPlace = Pattern.compile("/maps/place/(((?!/data).)*)");
     private static final String[] UTM_PARAMS = {
             "utm_\\w+",
             "ga_source",
@@ -80,7 +99,7 @@ public class Utils {
      *
      * @param urls ArrayList<String> URL to check
      */
-    public static void checkUrl(ArrayList<String> urls) {
+    public static void checkUrl(Context context, ArrayList<String> urls) {
         URL url;
         String newURL = null;
         String comingURl;
@@ -102,7 +121,7 @@ public class Utils {
                         Matcher matcher = urlPattern.matcher(entry.toString());
                         if (matcher.find()) {
                             newURL = remove_tracking_param(matcher.group(1));
-                            urls.add(newURL);
+                            urls.add(transformUrl(context, newURL));
                         }
                     }
                 }
@@ -114,13 +133,136 @@ public class Utils {
                 String protocol = redirectURL.getProtocol();
                 if (protocol != null && host != null) {
                     if (Arrays.asList(shortener_domains).contains(host)) {
-                        checkUrl(urls);
+                        checkUrl(context, urls);
                     }
                 }
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+
+    /**
+     * Transform the URL to a Nitter, Invidious or OSM ones
+     *
+     * @param url String original URL
+     * @return String transformed URL
+     */
+    public static String transformUrl(Context context, String url) {
+        SharedPreferences sharedpreferences = context.getSharedPreferences(MainActivity.APP_PREFS, Context.MODE_PRIVATE);
+        String newUrl = null;
+        URL url_;
+        String host = null;
+        try {
+            url_ = new URL(url);
+            host = url_.getHost();
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+        if (Arrays.asList(twitter_domains).contains(host)) {
+            boolean nitter_enabled = sharedpreferences.getBoolean(SET_NITTER_ENABLED, true);
+            if (nitter_enabled) {
+                String nitterHost = sharedpreferences.getString(MainActivity.SET_NITTER_HOST, MainActivity.DEFAULT_NITTER_HOST).toLowerCase();
+                assert host != null;
+                if (host.compareTo("pbs.twimg.com") == 0 || host.compareTo("pic.twitter.com") == 0) {
+                    try {
+                        newUrl = "https://" + nitterHost + "/pic/" + URLEncoder.encode(url, "utf-8");
+                    } catch (UnsupportedEncodingException e) {
+                        newUrl = "https://" + nitterHost + "/pic/" + url;
+                    }
+                } else if (url.contains("/search?")) {
+                    newUrl = url.replace(host, nitterHost);
+                } else {
+                    Matcher matcher = nitterPattern.matcher(url);
+                    while (matcher.find()) {
+                        final String nitter_directory = matcher.group(2);
+                        newUrl = "https://" + nitterHost + nitter_directory;
+                    }
+                }
+                return newUrl;
+            } else {
+                return url;
+            }
+        } else if (Arrays.asList(instagram_domains).contains(host)) {
+            boolean bibliogram_enabled = sharedpreferences.getBoolean(SET_BIBLIOGRAM_ENABLED, true);
+            if (bibliogram_enabled) {
+                Matcher matcher = bibliogramPostPattern.matcher(url);
+                while (matcher.find()) {
+                    final String bibliogram_directory = matcher.group(2);
+                    String bibliogramHost = sharedpreferences.getString(MainActivity.SET_BIBLIOGRAM_HOST, MainActivity.DEFAULT_BIBLIOGRAM_HOST).toLowerCase();
+                    newUrl = "https://" + bibliogramHost + bibliogram_directory;
+                }
+                matcher = bibliogramAccountPattern.matcher(url);
+                while (matcher.find()) {
+                    final String bibliogram_directory = matcher.group(2);
+                    String bibliogramHost = sharedpreferences.getString(MainActivity.SET_BIBLIOGRAM_HOST, MainActivity.DEFAULT_BIBLIOGRAM_HOST).toLowerCase();
+                    if (bibliogram_directory != null && bibliogram_directory.compareTo("privacy") != 0) {
+                        newUrl = "https://" + bibliogramHost + "/u" + bibliogram_directory;
+                    } else {
+                        newUrl = "https://" + bibliogramHost + bibliogram_directory;
+                    }
+                }
+                return newUrl;
+            } else {
+                return url;
+            }
+        } else if (url.contains("/maps/place")) {
+            boolean osm_enabled = sharedpreferences.getBoolean(MainActivity.SET_OSM_ENABLED, true);
+            if (osm_enabled) {
+                Matcher matcher = maps.matcher(url);
+                while (matcher.find()) {
+                    final String localization = matcher.group(1);
+                    assert localization != null;
+                    String[] data = localization.split(",");
+                    if (data.length > 2) {
+                        String zoom;
+                        String[] details = data[2].split("\\.");
+                        if (details.length > 0) {
+                            zoom = details[0];
+                        } else {
+                            zoom = data[2];
+                        }
+
+                        String osmHost = sharedpreferences.getString(MainActivity.SET_OSM_HOST, MainActivity.DEFAULT_OSM_HOST).toLowerCase();
+                        boolean geo_uri_enabled = sharedpreferences.getBoolean(MainActivity.SET_GEO_URIS, false);
+                        if (!geo_uri_enabled) {
+                            newUrl = "https://" + osmHost + "/#map=" + zoom + "/" + data[0] + "/" + data[1];
+                        } else {
+                            newUrl = "geo:0,0?q=" + data[0] + "," + data[1] + ",z=" + zoom;
+                        }
+                    }
+                }
+                if (newUrl == null && url.contains("/data=")) {
+                    matcher = extractPlace.matcher(url);
+                    while (matcher.find()) {
+                        final String search = matcher.group(1);
+                        newUrl = "geo:0,0?q=" + search;
+                    }
+                }
+                return newUrl;
+            } else {
+                return url;
+            }
+        } else if (Arrays.asList(youtube_domains).contains(host)) { //Youtube URL
+            boolean invidious_enabled = sharedpreferences.getBoolean(SET_INVIDIOUS_ENABLED, true);
+            if (invidious_enabled) {
+                Matcher matcher = youtubePattern.matcher(url);
+                while (matcher.find()) {
+                    final String youtubeId = matcher.group(3);
+                    String invidiousHost = sharedpreferences.getString(MainActivity.SET_INVIDIOUS_HOST, MainActivity.DEFAULT_INVIDIOUS_HOST).toLowerCase();
+                    if (Objects.requireNonNull(matcher.group(2)).compareTo("youtu.be") == 0) {
+                        newUrl = "https://" + invidiousHost + "/watch?v=" + youtubeId + "&local=true";
+                    } else {
+                        newUrl = "https://" + invidiousHost + "/" + youtubeId + "&local=true";
+                    }
+                }
+                return newUrl;
+            } else {
+                return url;
+            }
+        }
+        return url;
     }
 
     /**

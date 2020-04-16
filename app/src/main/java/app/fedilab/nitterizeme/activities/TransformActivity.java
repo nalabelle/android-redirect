@@ -62,18 +62,17 @@ import static app.fedilab.nitterizeme.activities.MainActivity.SET_BIBLIOGRAM_ENA
 import static app.fedilab.nitterizeme.activities.MainActivity.SET_EMBEDDED_PLAYER;
 import static app.fedilab.nitterizeme.activities.MainActivity.SET_INVIDIOUS_ENABLED;
 import static app.fedilab.nitterizeme.activities.MainActivity.SET_NITTER_ENABLED;
+import static app.fedilab.nitterizeme.helpers.Utils.ampExtract;
+import static app.fedilab.nitterizeme.helpers.Utils.bibliogramAccountPattern;
+import static app.fedilab.nitterizeme.helpers.Utils.bibliogramPostPattern;
+import static app.fedilab.nitterizeme.helpers.Utils.maps;
+import static app.fedilab.nitterizeme.helpers.Utils.nitterPattern;
+import static app.fedilab.nitterizeme.helpers.Utils.transformUrl;
+import static app.fedilab.nitterizeme.helpers.Utils.youtubePattern;
 
 
 public class TransformActivity extends Activity {
 
-
-    final Pattern youtubePattern = Pattern.compile("(www\\.|m\\.)?(youtube\\.com|youtu\\.be|youtube-nocookie\\.com)/(((?!([\"'<])).)*)");
-    final Pattern nitterPattern = Pattern.compile("(mobile\\.|www\\.)?twitter.com([\\w-/]+)");
-    final Pattern bibliogramPostPattern = Pattern.compile("(m\\.|www\\.)?instagram.com(/p/[\\w-/]+)");
-    final Pattern bibliogramAccountPattern = Pattern.compile("(m\\.|www\\.)?instagram.com(((?!/p/).)+)");
-    final Pattern maps = Pattern.compile("/maps/place/[^@]+@([\\d.,z]{3,}).*");
-    final Pattern extractPlace = Pattern.compile("/maps/place/(((?!/data).)*)");
-    final Pattern ampExtract = Pattern.compile("amp/s/(.*)");
 
     private Thread thread;
     private ArrayList<String> notShortnedURLDialog;
@@ -112,80 +111,11 @@ public class TransformActivity extends Activity {
                 unshortenAlertBuilder.setIcon(R.mipmap.ic_launcher);
                 unshortenAlertBuilder.setPositiveButton(R.string.open, (dialog, id) -> {
                     if (notShortnedURLDialog.size() > 0) {
-                        URL url_1;
-                        String realHost = null;
-                        try {
-                            url_1 = new URL(notShortnedURLDialog.get(notShortnedURLDialog.size() - 1));
-                            realHost = url_1.getHost();
-                        } catch (MalformedURLException e) {
-                            e.printStackTrace();
-                        }
-                        if (Arrays.asList(twitter_domains).contains(realHost)) {
-                            boolean nitter_enabled = sharedpreferences.getBoolean(SET_NITTER_ENABLED, true);
-                            if (nitter_enabled) {
-                                Intent delegate = new Intent(Intent.ACTION_VIEW);
-                                String transformedURL = transformUrl(url);
-                                if (transformedURL != null) {
-                                    delegate.setData(Uri.parse(transformUrl(url)));
-                                    delegate.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                                    if (delegate.resolveActivity(getPackageManager()) != null) {
-                                        startActivity(delegate);
-                                        finish();
-                                    }
-                                } else {
-                                    forwardToBrowser(intent);
-                                }
-                            } else {
-                                forwardToBrowser(intent);
-                            }
-                        }
-                        //Maps URLs (containing /maps/place like Google Maps links)
-                        else if (url.contains("/maps/place")) {
-                            boolean osm_enabled = sharedpreferences.getBoolean(MainActivity.SET_OSM_ENABLED, true);
-                            if (osm_enabled) {
-                                Intent delegate = new Intent(Intent.ACTION_VIEW);
-                                String transformedURL = transformUrl(url);
-                                if (transformedURL != null) {
-                                    delegate.setData(Uri.parse(transformUrl(url)));
-                                    delegate.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                                    if (delegate.resolveActivity(getPackageManager()) != null) {
-                                        startActivity(delegate);
-                                        finish();
-                                    }
-                                } else {
-                                    forwardToBrowser(intent);
-                                }
-                            } else {
-                                forwardToBrowser(intent);
-                            }
-                        }
-                        //YouTube URLs
-                        else if (Arrays.asList(youtube_domains).contains(realHost)) { //Youtube URL
-                            boolean invidious_enabled = sharedpreferences.getBoolean(SET_INVIDIOUS_ENABLED, true);
-                            if (invidious_enabled) {
-                                Intent delegate = new Intent(Intent.ACTION_VIEW);
-                                String transformedURL = transformUrl(url);
-                                if (transformedURL != null) {
-                                    delegate.setData(Uri.parse(transformUrl(url)));
-                                    delegate.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                                    if (delegate.resolveActivity(getPackageManager()) != null) {
-                                        startActivity(delegate);
-                                        finish();
-                                    }
-                                } else {
-                                    forwardToBrowser(intent);
-                                }
-                            } else {
-                                forwardToBrowser(intent);
-                            }
-                        } else {
-                            Intent delegate = new Intent(Intent.ACTION_VIEW);
-                            delegate.setData(Uri.parse(notShortnedURLDialog.get(notShortnedURLDialog.size() - 1)));
-                            delegate.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                            if (delegate.resolveActivity(getPackageManager()) != null) {
-                                startActivity(delegate);
-                                finish();
-                            }
+                        Intent delegate = new Intent(Intent.ACTION_VIEW);
+                        delegate.setData(Uri.parse(notShortnedURLDialog.get(notShortnedURLDialog.size() - 1)));
+                        delegate.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        if (delegate.resolveActivity(getPackageManager()) != null) {
+                            startActivity(delegate);
                         }
                     }
                     dialog.dismiss();
@@ -204,7 +134,7 @@ public class TransformActivity extends Activity {
                     public void run() {
                         notShortnedURLDialog = new ArrayList<>();
                         notShortnedURLDialog.add(url);
-                        Utils.checkUrl(notShortnedURLDialog);
+                        Utils.checkUrl(TransformActivity.this, notShortnedURLDialog);
                         Handler mainHandler = new Handler(Looper.getMainLooper());
                         Runnable myRunnable = () -> {
                             positiveButton.setEnabled(true);
@@ -235,9 +165,9 @@ public class TransformActivity extends Activity {
                 boolean nitter_enabled = sharedpreferences.getBoolean(SET_NITTER_ENABLED, true);
                 if (nitter_enabled) {
                     Intent delegate = new Intent(Intent.ACTION_VIEW);
-                    String transformedURL = transformUrl(url);
+                    String transformedURL = transformUrl(TransformActivity.this, url);
                     if (transformedURL != null) {
-                        delegate.setData(Uri.parse(transformUrl(url)));
+                        delegate.setData(Uri.parse(transformUrl(TransformActivity.this, url)));
                         delegate.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                         if (delegate.resolveActivity(getPackageManager()) != null) {
                             startActivity(delegate);
@@ -254,9 +184,9 @@ public class TransformActivity extends Activity {
                 boolean bibliogram_enabled = sharedpreferences.getBoolean(SET_BIBLIOGRAM_ENABLED, true);
                 if (bibliogram_enabled) {
                     Intent delegate = new Intent(Intent.ACTION_VIEW);
-                    String transformedURL = transformUrl(url);
+                    String transformedURL = transformUrl(TransformActivity.this, url);
                     if (transformedURL != null) {
-                        delegate.setData(Uri.parse(transformUrl(url)));
+                        delegate.setData(Uri.parse(transformUrl(TransformActivity.this, url)));
                         delegate.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                         if (delegate.resolveActivity(getPackageManager()) != null) {
                             startActivity(delegate);
@@ -274,9 +204,9 @@ public class TransformActivity extends Activity {
                 boolean osm_enabled = sharedpreferences.getBoolean(MainActivity.SET_OSM_ENABLED, true);
                 if (osm_enabled) {
                     Intent delegate = new Intent(Intent.ACTION_VIEW);
-                    String transformedURL = transformUrl(url);
+                    String transformedURL = transformUrl(TransformActivity.this, url);
                     if (transformedURL != null) {
-                        delegate.setData(Uri.parse(transformUrl(url)));
+                        delegate.setData(Uri.parse(transformUrl(TransformActivity.this, url)));
                         delegate.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                         if (delegate.resolveActivity(getPackageManager()) != null) {
                             startActivity(delegate);
@@ -313,9 +243,9 @@ public class TransformActivity extends Activity {
                 boolean invidious_enabled = sharedpreferences.getBoolean(SET_INVIDIOUS_ENABLED, true);
                 if (invidious_enabled) {
                     Intent delegate = new Intent(Intent.ACTION_VIEW);
-                    String transformedURL = transformUrl(url);
+                    String transformedURL = transformUrl(TransformActivity.this, url);
                     if (transformedURL != null) {
-                        delegate.setData(Uri.parse(transformUrl(url)));
+                        delegate.setData(Uri.parse(transformUrl(TransformActivity.this, url)));
                         delegate.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                         if (delegate.resolveActivity(getPackageManager()) != null) {
                             startActivity(delegate);
@@ -456,130 +386,6 @@ public class TransformActivity extends Activity {
 
 
     /**
-     * Transform the URL to a Nitter, Invidious or OSM ones
-     *
-     * @param url String original URL
-     * @return String transformed URL
-     */
-    private String transformUrl(String url) {
-        SharedPreferences sharedpreferences = getSharedPreferences(MainActivity.APP_PREFS, Context.MODE_PRIVATE);
-        String newUrl = null;
-
-        URL url_;
-        String host = null;
-        try {
-            url_ = new URL(url);
-            host = url_.getHost();
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        }
-        if (Arrays.asList(twitter_domains).contains(host)) {
-            boolean nitter_enabled = sharedpreferences.getBoolean(SET_NITTER_ENABLED, true);
-            if (nitter_enabled) {
-                String nitterHost = sharedpreferences.getString(MainActivity.SET_NITTER_HOST, MainActivity.DEFAULT_NITTER_HOST).toLowerCase();
-                assert host != null;
-                if (host.compareTo("pbs.twimg.com") == 0 || host.compareTo("pic.twitter.com") == 0) {
-                    try {
-                        newUrl = "https://" + nitterHost + "/pic/" + URLEncoder.encode(url, "utf-8");
-                    } catch (UnsupportedEncodingException e) {
-                        newUrl = "https://" + nitterHost + "/pic/" + url;
-                    }
-                } else if (url.contains("/search?")) {
-                    newUrl = url.replace(host, nitterHost);
-                } else {
-                    Matcher matcher = nitterPattern.matcher(url);
-                    while (matcher.find()) {
-                        final String nitter_directory = matcher.group(2);
-                        newUrl = "https://" + nitterHost + nitter_directory;
-                    }
-                }
-                return newUrl;
-            } else {
-                return url;
-            }
-        } else if (Arrays.asList(instagram_domains).contains(host)) {
-            boolean bibliogram_enabled = sharedpreferences.getBoolean(SET_BIBLIOGRAM_ENABLED, true);
-            if (bibliogram_enabled) {
-                Matcher matcher = bibliogramPostPattern.matcher(url);
-                while (matcher.find()) {
-                    final String bibliogram_directory = matcher.group(2);
-                    String bibliogramHost = sharedpreferences.getString(MainActivity.SET_BIBLIOGRAM_HOST, MainActivity.DEFAULT_BIBLIOGRAM_HOST).toLowerCase();
-                    newUrl = "https://" + bibliogramHost + bibliogram_directory;
-                }
-                matcher = bibliogramAccountPattern.matcher(url);
-                while (matcher.find()) {
-                    final String bibliogram_directory = matcher.group(2);
-                    String bibliogramHost = sharedpreferences.getString(MainActivity.SET_BIBLIOGRAM_HOST, MainActivity.DEFAULT_BIBLIOGRAM_HOST).toLowerCase();
-                    if (bibliogram_directory != null && bibliogram_directory.compareTo("privacy") != 0) {
-                        newUrl = "https://" + bibliogramHost + "/u" + bibliogram_directory;
-                    } else {
-                        newUrl = "https://" + bibliogramHost + bibliogram_directory;
-                    }
-                }
-                return newUrl;
-            } else {
-                return url;
-            }
-        } else if (url.contains("/maps/place")) {
-            boolean osm_enabled = sharedpreferences.getBoolean(MainActivity.SET_OSM_ENABLED, true);
-            if (osm_enabled) {
-                Matcher matcher = maps.matcher(url);
-                while (matcher.find()) {
-                    final String localization = matcher.group(1);
-                    assert localization != null;
-                    String[] data = localization.split(",");
-                    if (data.length > 2) {
-                        String zoom;
-                        String[] details = data[2].split("\\.");
-                        if (details.length > 0) {
-                            zoom = details[0];
-                        } else {
-                            zoom = data[2];
-                        }
-
-                        String osmHost = sharedpreferences.getString(MainActivity.SET_OSM_HOST, MainActivity.DEFAULT_OSM_HOST).toLowerCase();
-                        boolean geo_uri_enabled = sharedpreferences.getBoolean(MainActivity.SET_GEO_URIS, false);
-                        if (!geo_uri_enabled) {
-                            newUrl = "https://" + osmHost + "/#map=" + zoom + "/" + data[0] + "/" + data[1];
-                        } else {
-                            newUrl = "geo:0,0?q=" + data[0] + "," + data[1] + ",z=" + zoom;
-                        }
-                    }
-                }
-                if (newUrl == null && url.contains("/data=")) {
-                    matcher = extractPlace.matcher(url);
-                    while (matcher.find()) {
-                        final String search = matcher.group(1);
-                        newUrl = "geo:0,0?q=" + search;
-                    }
-                }
-                return newUrl;
-            } else {
-                return url;
-            }
-        } else if (Arrays.asList(youtube_domains).contains(host)) { //Youtube URL
-            boolean invidious_enabled = sharedpreferences.getBoolean(SET_INVIDIOUS_ENABLED, true);
-            if (invidious_enabled) {
-                Matcher matcher = youtubePattern.matcher(url);
-                while (matcher.find()) {
-                    final String youtubeId = matcher.group(3);
-                    String invidiousHost = sharedpreferences.getString(MainActivity.SET_INVIDIOUS_HOST, MainActivity.DEFAULT_INVIDIOUS_HOST).toLowerCase();
-                    if (Objects.requireNonNull(matcher.group(2)).compareTo("youtu.be") == 0) {
-                        newUrl = "https://" + invidiousHost + "/watch?v=" + youtubeId + "&local=true";
-                    } else {
-                        newUrl = "https://" + invidiousHost + "/" + youtubeId + "&local=true";
-                    }
-                }
-                return newUrl;
-            } else {
-                return url;
-            }
-        }
-        return null;
-    }
-
-
-    /**
      * Transform URL inside the shared content without modifying the whole content
      *
      * @param extraText String the new extra text
@@ -709,7 +515,7 @@ public class TransformActivity extends Activity {
                 @Override
                 public void run() {
                     notShortnedURLDialog.add(finalUrl);
-                    Utils.checkUrl(notShortnedURLDialog);
+                    Utils.checkUrl(TransformActivity.this, notShortnedURLDialog);
 
                     URL url_;
                     String host = null;
