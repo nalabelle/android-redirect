@@ -33,7 +33,7 @@
     <string name="use_geo_uri">Použití geo URI</string>
     <string name="how_to">Jak</string>
     <string name="shortened_detected">Zkrácená URL</string>
-    <string name="shortener_services">Shortener services</string>
+    <string name="shortener_services">Krátkodobé služby</string>
     <string name="open">Otevřeno</string>
     <string name="dismiss">Zamítnout</string>
     <string name="resolving_shortened">Řešení zkrácené adresy URL, čekejte prosímt…</string>
@@ -51,10 +51,10 @@
     <string name="instance_info">Informace o uvedených instancích</string>
     <string name="about_instances">Seznam instancí pochází z\n\n <a href="%1$s">%2$s</a>\n\nMůžete přispět do tohoto seznamu přidáním nebo odstraněním instancí.</string>
     <string name="about_instances_title">O instancích</string>
-    <string name="use_built_in_player">Use the built-in player</string>
-    <string name="share">Share</string>
-    <string name="download">Download</string>
-    <string name="share_with">Share with</string>
-    <string name="check_apps">Check apps</string>
-    <string name="select_instances">Select instances</string>
+    <string name="use_built_in_player">Použít vestavěný přehrávač</string>
+    <string name="share">Sdílet</string>
+    <string name="download">Stáhnout</string>
+    <string name="share_with">Sdílet s</string>
+    <string name="check_apps">Kontrola aplikací</string>
+    <string name="select_instances">Vybrat instance</string>
 </resources>
