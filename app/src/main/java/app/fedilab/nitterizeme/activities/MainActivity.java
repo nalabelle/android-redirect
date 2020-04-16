@@ -14,8 +14,10 @@ package app.fedilab.nitterizeme.activities;
  * You should have received a copy of the GNU General Public License along with UntrackMe; if not,
  * see <http://www.gnu.org/licenses>. */
 
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
@@ -40,6 +42,8 @@ import java.util.Objects;
 
 import app.fedilab.nitterizeme.R;
 
+import static app.fedilab.nitterizeme.helpers.Utils.KILL_ACTIVITY;
+
 public class MainActivity extends AppCompatActivity {
 
     public static final String APP_PREFS = "app_prefs";
@@ -59,8 +63,17 @@ public class MainActivity extends AppCompatActivity {
     public static String DEFAULT_BIBLIOGRAM_HOST = "bibliogram.art";
     public static String SET_GEO_URIS = "set_geo_uris";
     public static String SET_EMBEDDED_PLAYER = "set_embedded_player";
+    BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
 
-
+        @Override
+        public void onReceive(Context arg0, Intent intent) {
+            String action = intent.getAction();
+            assert action != null;
+            if (action.compareTo(KILL_ACTIVITY) == 0) {
+                finish();
+            }
+        }
+    };
     private String nitterHost;
     private String invidiousHost;
     private String bibliogramHost;
@@ -432,7 +445,7 @@ public class MainActivity extends AppCompatActivity {
 
                 }
         );
-
+        registerReceiver(broadcastReceiver, new IntentFilter(KILL_ACTIVITY));
     }
 
 
@@ -454,6 +467,14 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (broadcastReceiver != null) {
+            unregisterReceiver(broadcastReceiver);
+        }
     }
 
     @Override

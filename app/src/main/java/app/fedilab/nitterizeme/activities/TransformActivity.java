@@ -62,6 +62,7 @@ import static app.fedilab.nitterizeme.activities.MainActivity.SET_BIBLIOGRAM_ENA
 import static app.fedilab.nitterizeme.activities.MainActivity.SET_EMBEDDED_PLAYER;
 import static app.fedilab.nitterizeme.activities.MainActivity.SET_INVIDIOUS_ENABLED;
 import static app.fedilab.nitterizeme.activities.MainActivity.SET_NITTER_ENABLED;
+import static app.fedilab.nitterizeme.helpers.Utils.KILL_ACTIVITY;
 import static app.fedilab.nitterizeme.helpers.Utils.ampExtract;
 import static app.fedilab.nitterizeme.helpers.Utils.bibliogramAccountPattern;
 import static app.fedilab.nitterizeme.helpers.Utils.bibliogramPostPattern;
@@ -86,10 +87,11 @@ public class TransformActivity extends Activity {
             finish();
             return;
         }
+        Intent stopMainActivity = new Intent(KILL_ACTIVITY);
+        sendBroadcast(stopMainActivity);
         notShortnedURLDialog = new ArrayList<>();
         assert intent != null;
         //Dealing with URLs
-
         if (Objects.requireNonNull(intent.getAction()).equals(Intent.ACTION_VIEW)) {
             String url = Objects.requireNonNull(intent.getData()).toString();
             URL url_;
