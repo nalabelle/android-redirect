@@ -3,3 +3,4 @@ Changed:
 
 Fixed:
 - Clicking the warning icon didn't prompt apps
+- Fix loop when unshortening
