@@ -55,6 +55,6 @@
     <string name="share">Delen</string>
     <string name="download">Downloaden</string>
     <string name="share_with">Delen met</string>
-    <string name="check_apps">Check apps</string>
-    <string name="select_instances">Select instances</string>
+    <string name="check_apps">Apps controleren</string>
+    <string name="select_instances">Selecteer exemplaren</string>
 </resources>
