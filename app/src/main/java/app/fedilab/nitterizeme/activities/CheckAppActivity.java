@@ -29,6 +29,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 import app.fedilab.nitterizeme.R;
 import app.fedilab.nitterizeme.adapters.AppInfoAdapter;
@@ -153,9 +154,12 @@ public class CheckAppActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         if (list_apps != null) {
+            int position = ((LinearLayoutManager) Objects.requireNonNull(list_apps.getLayoutManager()))
+                    .findFirstVisibleItemPosition();
             ArrayList<AppInfo> appInfos = getAppInfo();
             AppInfoAdapter appInfoAdapter = new AppInfoAdapter(appInfos);
             list_apps.setAdapter(appInfoAdapter);
+            list_apps.scrollToPosition(position);
         }
     }
 
