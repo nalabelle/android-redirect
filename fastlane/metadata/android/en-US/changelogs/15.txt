@@ -1,0 +1,3 @@
+Fixed:
+- Suggest NewPipe in apps
+- Fix jumps in activity listing apps
