@@ -1,0 +1,6 @@
+Changed:
+- Catch all URLs to remove tracking params
+
+Fixed:
+- NewPipe not suggested
+- Scroll to top each time an app was selected.
