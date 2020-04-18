@@ -68,6 +68,7 @@ import static app.fedilab.nitterizeme.helpers.Utils.bibliogramAccountPattern;
 import static app.fedilab.nitterizeme.helpers.Utils.bibliogramPostPattern;
 import static app.fedilab.nitterizeme.helpers.Utils.maps;
 import static app.fedilab.nitterizeme.helpers.Utils.nitterPattern;
+import static app.fedilab.nitterizeme.helpers.Utils.remove_tracking_param;
 import static app.fedilab.nitterizeme.helpers.Utils.transformUrl;
 import static app.fedilab.nitterizeme.helpers.Utils.youtubePattern;
 
@@ -304,6 +305,10 @@ public class TransformActivity extends Activity {
                 } else {
                     forwardToBrowser(intent);
                 }
+            } else {
+                String newUrl = remove_tracking_param(url);
+                intent.setData(Uri.parse(newUrl));
+                forwardToBrowser(intent);
             }
 
         }

@@ -291,7 +291,7 @@ public class Utils {
      * @param url String URL
      * @return cleaned URL String
      */
-    private static String remove_tracking_param(String url) {
+    public static String remove_tracking_param(String url) {
         if (url != null) {
             for (String utm : UTM_PARAMS) {
                 url = url.replaceAll("&amp;" + utm + "=[0-9a-zA-Z._-]*", "");
