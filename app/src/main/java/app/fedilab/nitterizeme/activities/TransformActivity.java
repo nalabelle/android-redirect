@@ -607,6 +607,8 @@ public class TransformActivity extends Activity {
             };
             thread.start();
             return;
+        }else {
+            newUrl = remove_tracking_param(url);
         }
         if (newUrl != null) {
             extraText = extraText.replaceAll(Pattern.quote(url), Matcher.quoteReplacement(newUrl));
