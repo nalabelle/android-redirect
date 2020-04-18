@@ -336,10 +336,12 @@ public class TransformActivity extends Activity {
         intent.setDataAndType(i.getData(), type);
         List<ResolveInfo> activities = getPackageManager().queryIntentActivities(intent, 0);
         ArrayList<Intent> targetIntents = new ArrayList<>();
+
         String thisPackageName = getApplicationContext().getPackageName();
+        ArrayList<String> packages = new ArrayList<>();
         for (ResolveInfo currentInfo : activities) {
             String packageName = currentInfo.activityInfo.packageName;
-            if (!thisPackageName.equals(packageName)) {
+            if (!thisPackageName.equals(packageName) && !packages.contains(packageName)) {
                 Intent targetIntent = new Intent(Intent.ACTION_VIEW);
                 targetIntent.setDataAndType(intent.getData(), intent.getType());
                 targetIntent.setPackage(intent.getPackage());
@@ -347,19 +349,19 @@ public class TransformActivity extends Activity {
                 targetIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 targetIntent.setComponent(new ComponentName(packageName, currentInfo.activityInfo.name));
                 targetIntents.add(targetIntent);
+                packages.add(packageName);
             }
         }
         //NewPipe has to be manually added
-        if (isNewPipeInstalled() && Arrays.asList(invidious_instances).contains(Objects.requireNonNull(i.getData()).getHost())) {
+        if (isNewPipeInstalled() && Arrays.asList(invidious_instances).contains(Objects.requireNonNull(i.getData()).getHost()) && !packages.contains("org.schabi.newpipe")) {
             Intent targetIntent = new Intent(Intent.ACTION_VIEW);
             targetIntent.setDataAndType(intent.getData(), intent.getType());
             targetIntent.setPackage(intent.getPackage());
             targetIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             targetIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             targetIntent.setComponent(new ComponentName("org.schabi.newpipe", "org.schabi.newpipe.RouterActivity"));
-            targetIntents.add(targetIntent);
+            targetIntents.add(0, targetIntent);
         }
-
         SharedPreferences sharedpreferences = getSharedPreferences(MainActivity.APP_PREFS, Context.MODE_PRIVATE);
         boolean embedded_player = sharedpreferences.getBoolean(SET_EMBEDDED_PLAYER, false);
 
@@ -379,7 +381,7 @@ public class TransformActivity extends Activity {
                 LocalBroadcastManager.getInstance(getApplicationContext()).sendBroadcast(intentStreamingUrl);
             }
         } else if (targetIntents.size() > 0) {
-            Intent chooserIntent = Intent.createChooser(targetIntents.remove(0), getString(R.string.open_with));
+            Intent chooserIntent = Intent.createChooser(targetIntents.get(0), getString(R.string.open_with));
             chooserIntent.putExtra(Intent.EXTRA_INITIAL_INTENTS, targetIntents.toArray(new Parcelable[]{}));
             startActivity(chooserIntent);
         }
