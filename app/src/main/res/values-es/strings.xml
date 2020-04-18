@@ -56,5 +56,5 @@
     <string name="download">Descargar</string>
     <string name="share_with">Compartir con</string>
     <string name="check_apps">Comprobar apps</string>
-    <string name="select_instances">Seleccionar instancias</string>
+    <string name="select_instances">Seleccionar nodos</string>
 </resources>
