@@ -18,7 +18,6 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -334,66 +333,6 @@ public class TransformActivity extends Activity {
         app_picker.putExtras(b);
         startActivity(app_picker);
         finish();
-
-       /* Intent intent = new Intent();
-        intent.setAction(Intent.ACTION_VIEW);
-        String type = i.getType();
-        if (type == null) {
-            type = "text/html";
-        }
-        intent.setDataAndType(i.getData(), type);
-        List<ResolveInfo> activities = getPackageManager().queryIntentActivities(intent, 0);
-        ArrayList<Intent> targetIntents = new ArrayList<>();
-
-        String thisPackageName = getApplicationContext().getPackageName();
-        ArrayList<String> packages = new ArrayList<>();
-        for (ResolveInfo currentInfo : activities) {
-            String packageName = currentInfo.activityInfo.packageName;
-            if (!thisPackageName.equals(packageName) && !packages.contains(packageName)) {
-                Intent targetIntent = new Intent(Intent.ACTION_VIEW);
-                targetIntent.setDataAndType(intent.getData(), intent.getType());
-                targetIntent.setPackage(intent.getPackage());
-                targetIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                targetIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                targetIntent.setComponent(new ComponentName(packageName, currentInfo.activityInfo.name));
-                targetIntents.add(targetIntent);
-                packages.add(packageName);
-            }
-        }
-        //NewPipe has to be manually added
-        if (isNewPipeInstalled() && Arrays.asList(invidious_instances).contains(Objects.requireNonNull(i.getData()).getHost()) && !packages.contains("org.schabi.newpipe")) {
-            Intent targetIntent = new Intent(Intent.ACTION_VIEW);
-            targetIntent.setDataAndType(intent.getData(), intent.getType());
-            targetIntent.setPackage(intent.getPackage());
-            targetIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            targetIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            targetIntent.setComponent(new ComponentName("org.schabi.newpipe", "org.schabi.newpipe.RouterActivity"));
-            targetIntents.add(0, targetIntent);
-        }
-        SharedPreferences sharedpreferences = getSharedPreferences(MainActivity.APP_PREFS, Context.MODE_PRIVATE);
-        boolean embedded_player = sharedpreferences.getBoolean(SET_EMBEDDED_PLAYER, false);
-
-        if (Arrays.asList(invidious_instances).contains(Objects.requireNonNull(i.getData()).getHost()) && embedded_player) {
-            if (!i.getData().toString().contains("videoplayback") && !i.getData().toString().contains("/channel/")) {
-                Intent intentPlayer = new Intent(TransformActivity.this, WebviewPlayerActivity.class);
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                    intentPlayer.addFlags(Intent.FLAG_ACTIVITY_NEW_DOCUMENT | Intent.FLAG_ACTIVITY_MULTIPLE_TASK);
-                }
-                intentPlayer.putExtra("url", i.getData().toString());
-                startActivity(intentPlayer);
-            } else {
-                Intent intentStreamingUrl = new Intent(Utils.RECEIVE_STREAMING_URL);
-                Bundle b = new Bundle();
-                b.putString("streaming_url", i.getData().toString());
-                intentStreamingUrl.putExtras(b);
-                LocalBroadcastManager.getInstance(getApplicationContext()).sendBroadcast(intentStreamingUrl);
-            }
-        } else if (targetIntents.size() > 0) {
-            Intent chooserIntent = Intent.createChooser(targetIntents.get(0), getString(R.string.open_with));
-            chooserIntent.putExtra(Intent.EXTRA_INITIAL_INTENTS, targetIntents.toArray(new Parcelable[]{}));
-            startActivity(chooserIntent);
-        }
-        finish();*/
     }
 
 
@@ -623,17 +562,5 @@ public class TransformActivity extends Activity {
         startActivity(sendIntent);
     }
 
-    /**
-     * Check if NewPipe is installed
-     *
-     * @return boolean
-     */
-    private boolean isNewPipeInstalled() {
-        try {
-            getPackageManager().getPackageInfo("org.schabi.newpipe", 0);
-            return true;
-        } catch (PackageManager.NameNotFoundException e) {
-            return false;
-        }
-    }
+
 }

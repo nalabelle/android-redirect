@@ -21,7 +21,7 @@ public class AppPicker {
     private Drawable icon;
     private String name;
     private String packageName;
-    private boolean selected;
+    private boolean selected = false;
 
     public Drawable getIcon() {
         return icon;

@@ -18,6 +18,8 @@ package app.fedilab.nitterizeme.helpers;
 import android.app.DownloadManager;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Environment;
 
@@ -336,5 +338,34 @@ public class Utils {
         } catch (IllegalStateException e) {
             e.printStackTrace();
         }
+    }
+
+
+    /**
+     * Check if an app is installed
+     *
+     * @return boolean
+     */
+    public static boolean isAppInstalled(Context context, String packageName) {
+        try {
+            context.getPackageManager().getPackageInfo(packageName, 0);
+            return true;
+        } catch (PackageManager.NameNotFoundException e) {
+            return false;
+        }
+    }
+
+    /**
+     * Get PackageInfo for an app
+     *
+     * @return PackageInfo
+     */
+    public static PackageInfo getPackageInfo(Context context, String packageName) {
+        PackageInfo packageInfo = null;
+        try {
+            packageInfo = context.getPackageManager().getPackageInfo(packageName, 0);
+        } catch (Exception ignored) {
+        }
+        return packageInfo;
     }
 }

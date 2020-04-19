@@ -79,9 +79,9 @@ public class AppPickerAdapter extends BaseAdapter {
         holder.app_name.setText(appPicker.getName());
 
 
-        if( appPicker.isSelected()) {
+        if (appPicker.isSelected()) {
             holder.app_container.setBackgroundResource(R.drawable.rounded_selector);
-        }else{
+        } else {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
                 holder.app_container.setBackground(null);
             }
