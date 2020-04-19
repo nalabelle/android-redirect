@@ -33,10 +33,12 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -368,4 +370,56 @@ public class Utils {
         }
         return packageInfo;
     }
+
+
+    /**
+     * Convert an ArrayList to a string using coma
+     *
+     * @param arrayList ArrayList<String>
+     * @return String
+     */
+    public static String arrayToString(ArrayList<String> arrayList) {
+        if (arrayList == null || arrayList.size() == 0) {
+            return null;
+        }
+        StringBuilder result = new StringBuilder();
+        for (String item : arrayList) {
+            result.append("\"").append(item).append("\"").append(",");
+        }
+        return result.substring(0, result.length() - 1);
+    }
+
+    /**
+     * Convert String items to Array
+     *
+     * @param items String
+     * @return ArrayList<String>
+     */
+    public static ArrayList<String> stringToArray(String items) {
+        if (items == null) {
+            return null;
+        }
+        String[] result = items.split(",");
+        return new ArrayList<>(Arrays.asList(result));
+    }
+
+
+    public static <T> ArrayList<T> union(ArrayList<T> list1, ArrayList<T> list2) {
+        Set<T> set = new HashSet<T>();
+        set.addAll(list1);
+        set.addAll(list2);
+        return new ArrayList<T>(set);
+    }
+
+
+    public static <T> ArrayList<T> intersection(ArrayList<T> list1, ArrayList<T> list2) {
+        ArrayList<T> list = new ArrayList<T>();
+        for (T t : list1) {
+            if (list2.contains(t)) {
+                list.add(t);
+            }
+        }
+        return list;
+    }
+
 }

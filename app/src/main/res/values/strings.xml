@@ -57,7 +57,8 @@
     <string name="share_with">Share with</string>
     <string name="check_apps">Check apps</string>
     <string name="select_instances">Select instances</string>
-    <string name="continue_with">Continue with...</string>
+    <string name="continue_with">Continue with…</string>
     <string name="just_once">Just once</string>
     <string name="always">Always</string>
+    <string name="default_app_indication">%1$s has been set by default.\nYou can remove this behavior from the app settings.</string>
 </resources>

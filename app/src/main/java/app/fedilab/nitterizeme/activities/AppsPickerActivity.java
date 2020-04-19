@@ -15,17 +15,20 @@ package app.fedilab.nitterizeme.activities;
  * see <http://www.gnu.org/licenses>. */
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
+import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.GridView;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
+
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -35,6 +38,9 @@ import java.util.Objects;
 import app.fedilab.nitterizeme.R;
 import app.fedilab.nitterizeme.adapters.AppPickerAdapter;
 import app.fedilab.nitterizeme.entities.AppPicker;
+import app.fedilab.nitterizeme.helpers.Utils;
+import app.fedilab.nitterizeme.sqlite.DefaultAppDAO;
+import app.fedilab.nitterizeme.sqlite.Sqlite;
 
 import static app.fedilab.nitterizeme.activities.CheckAppActivity.invidious_instances;
 import static app.fedilab.nitterizeme.helpers.Utils.KILL_ACTIVITY;
@@ -48,12 +54,12 @@ public class AppsPickerActivity extends Activity {
 
     private String url;
     private String appToUse;
+    private String appName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pickup_app);
-        SharedPreferences sharedpreferences = getSharedPreferences(MainActivity.APP_PREFS, Context.MODE_PRIVATE);
         if (getIntent() == null) {
             finish();
         }
@@ -75,15 +81,13 @@ public class AppsPickerActivity extends Activity {
         delegate.setDataAndType(Uri.parse(url), "text/html");
         delegate.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
-
         List<ResolveInfo> activities;
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
             activities = getPackageManager().queryIntentActivities(delegate, PackageManager.MATCH_ALL);
         } else {
             activities = getPackageManager().queryIntentActivities(delegate, 0);
         }
-
-
+        SQLiteDatabase db = Sqlite.getInstance(getApplicationContext(), Sqlite.DB_NAME, null, Sqlite.DB_VERSION).open();
         RelativeLayout blank = findViewById(R.id.blank);
         blank.setOnClickListener(v -> finish());
 
@@ -101,13 +105,16 @@ public class AppsPickerActivity extends Activity {
                 if (i == 0) {
                     appPicker.setSelected(true);
                     appToUse = packageName;
+                    appName = String.valueOf(currentInfo.loadLabel(getPackageManager()));
                 }
                 appPickers.add(appPicker);
                 packages.add(packageName);
             }
             i++;
         }
-        if (isAppInstalled(AppsPickerActivity.this, "org.schabi.newpipe") && Arrays.asList(invidious_instances).contains(Objects.requireNonNull(Uri.parse(url)).getHost()) && !packages.contains("org.schabi.newpipe")) {
+        if (isAppInstalled(AppsPickerActivity.this, "org.schabi.newpipe")
+                && Arrays.asList(invidious_instances).contains(Objects.requireNonNull(Uri.parse(url)).getHost())
+                && !packages.contains("org.schabi.newpipe")) {
             PackageInfo packageInfo = getPackageInfo(AppsPickerActivity.this, "org.schabi.newpipe");
             if (packageInfo != null) {
                 AppPicker appPicker = new AppPicker();
@@ -115,43 +122,69 @@ public class AppsPickerActivity extends Activity {
                 appPicker.setName(String.valueOf(packageInfo.applicationInfo.loadLabel(getPackageManager())));
                 appPicker.setPackageName(packageInfo.applicationInfo.packageName);
                 appPickers.add(appPicker);
+                packages.add("org.schabi.newpipe");
             }
         }
-        GridView gridView = findViewById(R.id.app_list);
-        AppPickerAdapter appPickerAdapter = new AppPickerAdapter(appPickers);
-        gridView.setAdapter(appPickerAdapter);
-        gridView.setNumColumns(3);
-        gridView.setOnItemClickListener((parent, view1, position, id) -> {
-            for (AppPicker ap : appPickers) {
-                ap.setSelected(false);
-            }
-            appPickers.get(position).setSelected(true);
-            appToUse = appPickers.get(position).getPackageName();
-            appPickerAdapter.notifyDataSetChanged();
-        });
+        String defaultApp = new DefaultAppDAO(AppsPickerActivity.this, db).getDefault(packages);
 
-
-        Button always = findViewById(R.id.always);
-        Button once = findViewById(R.id.once);
-
-        always.setOnClickListener(v -> {
+        if (defaultApp != null) {
             Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
-            intent.setPackage(appToUse);
+            intent.setPackage(defaultApp);
             startActivity(intent);
             finish();
-        });
+        } else {
+            ConstraintLayout app_container = findViewById(R.id.app_container);
+            app_container.setVisibility(View.VISIBLE);
+            GridView gridView = findViewById(R.id.app_list);
+            AppPickerAdapter appPickerAdapter = new AppPickerAdapter(appPickers);
+            gridView.setAdapter(appPickerAdapter);
+            gridView.setNumColumns(3);
+            gridView.setOnItemClickListener((parent, view1, position, id) -> {
+                for (AppPicker ap : appPickers) {
+                    ap.setSelected(false);
+                }
+                appPickers.get(position).setSelected(true);
+                appToUse = appPickers.get(position).getPackageName();
+                appName = appPickers.get(position).getName();
+                appPickerAdapter.notifyDataSetChanged();
+            });
 
-        once.setOnClickListener(v -> {
-            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
-            intent.setPackage(appToUse);
-            startActivity(intent);
-            finish();
-        });
+
+            Button always = findViewById(R.id.always);
+            Button once = findViewById(R.id.once);
+
+            always.setOnClickListener(v -> {
+
+                boolean isPresent = new DefaultAppDAO(AppsPickerActivity.this, db).isPresent(appToUse);
+                long val = -1;
+                if (isPresent) {
+                    ArrayList<String> oldConcurrent = new DefaultAppDAO(AppsPickerActivity.this, db).getConcurrent(appToUse);
+                    ArrayList<String> newConcurrent = Utils.union(oldConcurrent, packages);
+                    new DefaultAppDAO(AppsPickerActivity.this, db).update(appToUse, newConcurrent);
+                } else {
+                    val = new DefaultAppDAO(AppsPickerActivity.this, db).insert(appToUse, packages);
+                }
+                if (val > 0) {
+                    Toast.makeText(AppsPickerActivity.this, getString(R.string.default_app_indication, appName), Toast.LENGTH_LONG).show();
+                }
+                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+                intent.setPackage(appToUse);
+                startActivity(intent);
+                finish();
+            });
+
+            once.setOnClickListener(v -> {
+                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+                intent.setPackage(appToUse);
+                startActivity(intent);
+                finish();
+            });
+        }
+
     }
 
     @Override
     protected void onDestroy() {
-
         super.onDestroy();
     }
 
