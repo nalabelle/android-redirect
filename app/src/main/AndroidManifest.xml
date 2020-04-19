@@ -54,11 +54,13 @@
 
                 <data android:mimeType="text/plain" />
             </intent-filter>
-
-
         </activity>
         <activity
-            android:name="app.fedilab.nitterizeme.activities.InstanceActivity"
+            android:name=".activities.AppsPickerActivity"
+            android:noHistory="true"
+            android:theme="@style/Theme.AppCompat.Translucent"/>
+        <activity
+            android:name=".activities.InstanceActivity"
             android:excludeFromRecents="true"
             android:theme="@style/AppThemeDialog" />
         <activity
@@ -72,7 +74,7 @@
             android:label="@string/app_name"
             android:theme="@style/AppTheme" />
         <activity
-            android:name="app.fedilab.nitterizeme.activities.WebviewPlayerActivity"
+            android:name=".activities.WebviewPlayerActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:label="@string/app_name"
             android:launchMode="singleTask"

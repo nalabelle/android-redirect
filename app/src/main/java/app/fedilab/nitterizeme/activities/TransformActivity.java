@@ -15,18 +15,15 @@ package app.fedilab.nitterizeme.activities;
  * see <http://www.gnu.org/licenses>. */
 
 import android.app.Activity;
-import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
-import android.content.pm.ResolveInfo;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
-import android.os.Parcelable;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
@@ -35,7 +32,6 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AlertDialog;
-import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 import java.io.UnsupportedEncodingException;
 import java.net.MalformedURLException;
@@ -43,7 +39,6 @@ import java.net.URL;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -59,10 +54,10 @@ import static app.fedilab.nitterizeme.activities.CheckAppActivity.shortener_doma
 import static app.fedilab.nitterizeme.activities.CheckAppActivity.twitter_domains;
 import static app.fedilab.nitterizeme.activities.CheckAppActivity.youtube_domains;
 import static app.fedilab.nitterizeme.activities.MainActivity.SET_BIBLIOGRAM_ENABLED;
-import static app.fedilab.nitterizeme.activities.MainActivity.SET_EMBEDDED_PLAYER;
 import static app.fedilab.nitterizeme.activities.MainActivity.SET_INVIDIOUS_ENABLED;
 import static app.fedilab.nitterizeme.activities.MainActivity.SET_NITTER_ENABLED;
 import static app.fedilab.nitterizeme.helpers.Utils.KILL_ACTIVITY;
+import static app.fedilab.nitterizeme.helpers.Utils.URL_APP_PICKER;
 import static app.fedilab.nitterizeme.helpers.Utils.ampExtract;
 import static app.fedilab.nitterizeme.helpers.Utils.bibliogramAccountPattern;
 import static app.fedilab.nitterizeme.helpers.Utils.bibliogramPostPattern;
@@ -332,7 +327,15 @@ public class TransformActivity extends Activity {
      * @param i original intent
      */
     private void forwardToBrowser(Intent i) {
-        Intent intent = new Intent();
+
+        Intent app_picker = new Intent(TransformActivity.this, AppsPickerActivity.class);
+        Bundle b = new Bundle();
+        b.putString(URL_APP_PICKER, i.getDataString());
+        app_picker.putExtras(b);
+        startActivity(app_picker);
+        finish();
+
+       /* Intent intent = new Intent();
         intent.setAction(Intent.ACTION_VIEW);
         String type = i.getType();
         if (type == null) {
@@ -390,7 +393,7 @@ public class TransformActivity extends Activity {
             chooserIntent.putExtra(Intent.EXTRA_INITIAL_INTENTS, targetIntents.toArray(new Parcelable[]{}));
             startActivity(chooserIntent);
         }
-        finish();
+        finish();*/
     }
 
 
@@ -607,7 +610,7 @@ public class TransformActivity extends Activity {
             };
             thread.start();
             return;
-        }else {
+        } else {
             newUrl = remove_tracking_param(url);
         }
         if (newUrl != null) {
