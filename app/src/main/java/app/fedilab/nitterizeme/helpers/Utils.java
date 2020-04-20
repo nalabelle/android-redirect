@@ -18,11 +18,14 @@ package app.fedilab.nitterizeme.helpers;
 import android.app.DownloadManager;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Environment;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.net.HttpURLConnection;
 import java.net.InetAddress;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -31,10 +34,12 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -54,6 +59,7 @@ import static app.fedilab.nitterizeme.activities.MainActivity.SET_NITTER_ENABLED
 public class Utils {
 
     public static final String KILL_ACTIVITY = "kill_activity";
+    public static final String URL_APP_PICKER = "url_app_picker";
     public static final Pattern youtubePattern = Pattern.compile("(www\\.|m\\.)?(youtube\\.com|youtu\\.be|youtube-nocookie\\.com)/(((?!([\"'<])).)*)");
     public static final Pattern nitterPattern = Pattern.compile("(mobile\\.|www\\.)?twitter.com([\\w-/]+)");
     public static final Pattern bibliogramPostPattern = Pattern.compile("(m\\.|www\\.)?instagram.com(/p/[\\w-/]+)");
@@ -107,27 +113,44 @@ public class Utils {
         try {
             comingURl = urls.get(urls.size() - 1);
 
-            if (comingURl.startsWith("http://")) {
-                comingURl = comingURl.replace("http://", "https://");
-            }
             url = new URL(comingURl);
-            HttpsURLConnection httpsURLConnection = (HttpsURLConnection) url.openConnection();
-            httpsURLConnection.setRequestProperty("http.keepAlive", "false");
-            httpsURLConnection.setInstanceFollowRedirects(false);
-            httpsURLConnection.setRequestMethod("HEAD");
-            if (httpsURLConnection.getResponseCode() == 301) {
-                Map<String, List<String>> map = httpsURLConnection.getHeaderFields();
-                for (Map.Entry<String, List<String>> entry : map.entrySet()) {
-                    if (entry.toString().toLowerCase().startsWith("location")) {
-                        Matcher matcher = urlPattern.matcher(entry.toString());
-                        if (matcher.find()) {
-                            newURL = remove_tracking_param(matcher.group(1));
-                            urls.add(transformUrl(context, newURL));
+            if (comingURl.startsWith("https")) {
+                HttpsURLConnection httpsURLConnection = (HttpsURLConnection) url.openConnection();
+                httpsURLConnection.setRequestProperty("http.keepAlive", "false");
+                httpsURLConnection.setInstanceFollowRedirects(false);
+                httpsURLConnection.setRequestMethod("HEAD");
+                if (httpsURLConnection.getResponseCode() == 301) {
+                    Map<String, List<String>> map = httpsURLConnection.getHeaderFields();
+                    for (Map.Entry<String, List<String>> entry : map.entrySet()) {
+                        if (entry.toString().toLowerCase().startsWith("location")) {
+                            Matcher matcher = urlPattern.matcher(entry.toString());
+                            if (matcher.find()) {
+                                newURL = remove_tracking_param(matcher.group(1));
+                                urls.add(transformUrl(context, newURL));
+                            }
                         }
                     }
                 }
+                httpsURLConnection.getInputStream().close();
+            } else {
+                HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
+                httpURLConnection.setRequestProperty("http.keepAlive", "false");
+                httpURLConnection.setInstanceFollowRedirects(false);
+                httpURLConnection.setRequestMethod("HEAD");
+                if (httpURLConnection.getResponseCode() == 301) {
+                    Map<String, List<String>> map = httpURLConnection.getHeaderFields();
+                    for (Map.Entry<String, List<String>> entry : map.entrySet()) {
+                        if (entry.toString().toLowerCase().startsWith("location")) {
+                            Matcher matcher = urlPattern.matcher(entry.toString());
+                            if (matcher.find()) {
+                                newURL = remove_tracking_param(matcher.group(1));
+                                urls.add(transformUrl(context, newURL));
+                            }
+                        }
+                    }
+                }
+                httpURLConnection.getInputStream().close();
             }
-            httpsURLConnection.getInputStream().close();
             if (newURL != null && newURL.compareTo(comingURl) != 0) {
                 URL redirectURL = new URL(newURL);
                 String host = redirectURL.getHost();
@@ -161,6 +184,14 @@ public class Utils {
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
+        Uri url_r = Uri.parse(url);
+        String scheme = url_r.getScheme();
+        if (scheme == null) {
+            scheme = "https://";
+        } else {
+            scheme += "://";
+        }
+
         if (Arrays.asList(twitter_domains).contains(host)) {
             boolean nitter_enabled = sharedpreferences.getBoolean(SET_NITTER_ENABLED, true);
             if (nitter_enabled) {
@@ -168,9 +199,9 @@ public class Utils {
                 assert host != null;
                 if (host.compareTo("pbs.twimg.com") == 0 || host.compareTo("pic.twitter.com") == 0) {
                     try {
-                        newUrl = "https://" + nitterHost + "/pic/" + URLEncoder.encode(url, "utf-8");
+                        newUrl = scheme + nitterHost + "/pic/" + URLEncoder.encode(url, "utf-8");
                     } catch (UnsupportedEncodingException e) {
-                        newUrl = "https://" + nitterHost + "/pic/" + url;
+                        newUrl = scheme + nitterHost + "/pic/" + url;
                     }
                 } else if (url.contains("/search?")) {
                     newUrl = url.replace(host, nitterHost);
@@ -178,7 +209,7 @@ public class Utils {
                     Matcher matcher = nitterPattern.matcher(url);
                     while (matcher.find()) {
                         final String nitter_directory = matcher.group(2);
-                        newUrl = "https://" + nitterHost + nitter_directory;
+                        newUrl = scheme + nitterHost + nitter_directory;
                     }
                 }
                 return newUrl;
@@ -192,16 +223,16 @@ public class Utils {
                 while (matcher.find()) {
                     final String bibliogram_directory = matcher.group(2);
                     String bibliogramHost = sharedpreferences.getString(MainActivity.SET_BIBLIOGRAM_HOST, MainActivity.DEFAULT_BIBLIOGRAM_HOST).toLowerCase();
-                    newUrl = "https://" + bibliogramHost + bibliogram_directory;
+                    newUrl = scheme + bibliogramHost + bibliogram_directory;
                 }
                 matcher = bibliogramAccountPattern.matcher(url);
                 while (matcher.find()) {
                     final String bibliogram_directory = matcher.group(2);
                     String bibliogramHost = sharedpreferences.getString(MainActivity.SET_BIBLIOGRAM_HOST, MainActivity.DEFAULT_BIBLIOGRAM_HOST).toLowerCase();
                     if (bibliogram_directory != null && bibliogram_directory.compareTo("privacy") != 0) {
-                        newUrl = "https://" + bibliogramHost + "/u" + bibliogram_directory;
+                        newUrl = scheme + bibliogramHost + "/u" + bibliogram_directory;
                     } else {
-                        newUrl = "https://" + bibliogramHost + bibliogram_directory;
+                        newUrl = scheme + bibliogramHost + bibliogram_directory;
                     }
                 }
                 return newUrl;
@@ -228,7 +259,7 @@ public class Utils {
                         String osmHost = sharedpreferences.getString(MainActivity.SET_OSM_HOST, MainActivity.DEFAULT_OSM_HOST).toLowerCase();
                         boolean geo_uri_enabled = sharedpreferences.getBoolean(MainActivity.SET_GEO_URIS, false);
                         if (!geo_uri_enabled) {
-                            newUrl = "https://" + osmHost + "/#map=" + zoom + "/" + data[0] + "/" + data[1];
+                            newUrl = scheme + osmHost + "/#map=" + zoom + "/" + data[0] + "/" + data[1];
                         } else {
                             newUrl = "geo:0,0?q=" + data[0] + "," + data[1] + ",z=" + zoom;
                         }
@@ -253,9 +284,9 @@ public class Utils {
                     final String youtubeId = matcher.group(3);
                     String invidiousHost = sharedpreferences.getString(MainActivity.SET_INVIDIOUS_HOST, MainActivity.DEFAULT_INVIDIOUS_HOST).toLowerCase();
                     if (Objects.requireNonNull(matcher.group(2)).compareTo("youtu.be") == 0) {
-                        newUrl = "https://" + invidiousHost + "/watch?v=" + youtubeId + "&local=true";
+                        newUrl = scheme + invidiousHost + "/watch?v=" + youtubeId + "&local=true";
                     } else {
-                        newUrl = "https://" + invidiousHost + "/" + youtubeId + "&local=true";
+                        newUrl = scheme + invidiousHost + "/" + youtubeId + "&local=true";
                     }
                 }
                 return newUrl;
@@ -291,7 +322,7 @@ public class Utils {
      * @param url String URL
      * @return cleaned URL String
      */
-    private static String remove_tracking_param(String url) {
+    public static String remove_tracking_param(String url) {
         if (url != null) {
             for (String utm : UTM_PARAMS) {
                 url = url.replaceAll("&amp;" + utm + "=[0-9a-zA-Z._-]*", "");
@@ -336,4 +367,93 @@ public class Utils {
             e.printStackTrace();
         }
     }
+
+
+    /**
+     * Check if an app is installed
+     *
+     * @return boolean
+     */
+    @SuppressWarnings("unused")
+    public static boolean isAppInstalled(Context context, String packageName) {
+        try {
+            context.getPackageManager().getPackageInfo(packageName, 0);
+            return true;
+        } catch (PackageManager.NameNotFoundException e) {
+            return false;
+        }
+    }
+
+    /**
+     * Get PackageInfo for an app
+     *
+     * @return PackageInfo
+     */
+    @SuppressWarnings("unused")
+    public static PackageInfo getPackageInfo(Context context, String packageName) {
+        PackageInfo packageInfo = null;
+        try {
+            packageInfo = context.getPackageManager().getPackageInfo(packageName, 0);
+        } catch (Exception ignored) {
+        }
+        return packageInfo;
+    }
+
+
+    /**
+     * Convert an ArrayList to a string using coma
+     *
+     * @param arrayList ArrayList<String>
+     * @return String
+     */
+    public static String arrayToString(ArrayList<String> arrayList) {
+        if (arrayList == null || arrayList.size() == 0) {
+            return null;
+        }
+        StringBuilder result = new StringBuilder();
+        for (String item : arrayList) {
+            result.append(item).append(",");
+        }
+        return result.substring(0, result.length() - 1);
+    }
+
+    /**
+     * Convert an ArrayList to a string using coma
+     *
+     * @param arrayList ArrayList<String>
+     * @return String
+     */
+    public static String arrayToStringQuery(ArrayList<String> arrayList) {
+        if (arrayList == null || arrayList.size() == 0) {
+            return null;
+        }
+        StringBuilder result = new StringBuilder();
+        for (String item : arrayList) {
+            result.append("'").append(item).append("'").append(",");
+        }
+        return result.substring(0, result.length() - 1);
+    }
+
+    /**
+     * Convert String items to Array
+     *
+     * @param items String
+     * @return ArrayList<String>
+     */
+    public static ArrayList<String> stringToArray(String items) {
+        if (items == null) {
+            return null;
+        }
+        String[] result = items.split(",");
+        return new ArrayList<>(Arrays.asList(result));
+    }
+
+
+    public static <T> ArrayList<T> union(ArrayList<T> list1, ArrayList<T> list2) {
+        Set<T> set = new HashSet<>();
+        set.addAll(list1);
+        set.addAll(list2);
+        return new ArrayList<>(set);
+    }
+
 }

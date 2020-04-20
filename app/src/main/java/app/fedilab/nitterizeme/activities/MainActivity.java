@@ -19,6 +19,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.Settings;
@@ -33,11 +35,13 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SwitchCompat;
 import androidx.appcompat.widget.Toolbar;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.constraintlayout.widget.Group;
 
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputEditText;
 
+import java.util.List;
 import java.util.Objects;
 
 import app.fedilab.nitterizeme.R;
@@ -88,7 +92,6 @@ public class MainActivity extends AppCompatActivity {
         Objects.requireNonNull(getSupportActionBar()).setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-
         SharedPreferences sharedpreferences = getSharedPreferences(APP_PREFS, Context.MODE_PRIVATE);
 
         TextView current_instance_nitter = findViewById(R.id.current_instance_nitter);
@@ -138,7 +141,6 @@ public class MainActivity extends AppCompatActivity {
         enable_invidious.setChecked(invidious_enabled);
         enable_bibliogram.setChecked(bibliogram_enabled);
         enable_osm.setChecked(osm_enabled);
-
         ImageButton save_instance_nitter = findViewById(R.id.button_save_instance_nitter);
         ImageButton save_instance_invidious = findViewById(R.id.button_save_instance_invidious);
         ImageButton save_instance_bibliogram = findViewById(R.id.button_save_instance_bibliogram);
@@ -462,6 +464,10 @@ public class MainActivity extends AppCompatActivity {
             Intent intent = new Intent(MainActivity.this, AboutActivity.class);
             startActivity(intent);
             return true;
+        } else if (id == R.id.action_settings) {
+            Intent intent = new Intent(MainActivity.this, DefaultAppActivity.class);
+            startActivity(intent);
+            return true;
         } else if (id == android.R.id.home) {
             finish();
         }
@@ -503,6 +509,15 @@ public class MainActivity extends AppCompatActivity {
         if (bibliogramHost != null) {
             bibliogram_instance.setText(bibliogramHost);
             current_instance_bibliogram.setText(bibliogramHost);
+        }
+
+        List<ResolveInfo> resolveInfos = getPackageManager().queryIntentActivities(new Intent(Intent.ACTION_VIEW, Uri.parse("https://fedilab.app")), PackageManager.MATCH_DEFAULT_ONLY);
+        String thisPackageName = getApplicationContext().getPackageName();
+        ConstraintLayout display_indications = findViewById(R.id.display_indications);
+        if (resolveInfos.size() == 1 && resolveInfos.get(0).activityInfo.packageName.compareTo(thisPackageName) == 0) {
+            display_indications.setVisibility(View.VISIBLE);
+        } else {
+            display_indications.setVisibility(View.GONE);
         }
     }
 }

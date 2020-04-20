@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+/* Copyright 2020 Thomas Schneider
+ *
+ * This file is a part of UntrackMe
+ *
+ * This program is free software; you can redistribute it and/or modify it under the terms of the
+ * GNU General Public License as published by the Free Software Foundation; either version 3 of the
+ * License, or (at your option) any later version.
+ *
+ * UntrackMe is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even
+ * the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General
+ * Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License along with UntrackMe; if not,
+ * see <http://www.gnu.org/licenses>. */
+ -->
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activities.AppsPickerActivity">
+
+    <RelativeLayout
+        android:id="@+id/blank"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/app_container"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/app_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+        <TextView
+            android:padding="2dp"
+            android:id="@+id/url"
+            android:textSize="12sp"
+            android:singleLine="true"
+            android:textColor="@color/colorAccent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            android:ellipsize="end"
+            app:layout_constraintTop_toTopOf="parent"/>
+        <TextView
+            android:id="@+id/indication"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginLeft="10dp"
+            android:drawableStart="@drawable/ic_app_logo"
+            android:drawableLeft="@drawable/ic_app_logo"
+            android:drawablePadding="5dp"
+            android:gravity="center_vertical"
+            android:paddingTop="5dp"
+            android:text="@string/continue_with"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/url" />
+
+        <GridView
+            android:id="@+id/app_list"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:gravity="center"
+            android:paddingTop="10dp"
+            android:stretchMode="columnWidth"
+            app:layout_constraintBottom_toTopOf="@+id/once"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/indication" />
+
+        <Button
+            android:id="@+id/once"
+            style="@style/Widget.AppCompat.Button.Borderless.Colored"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/just_once"
+            android:textColor="@color/colorAccent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/always"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <Button
+            android:id="@+id/always"
+            style="@style/Widget.AppCompat.Button.Borderless.Colored"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/always"
+            android:textColor="@color/colorAccent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/once"
+            app:layout_constraintTop_toBottomOf="@+id/app_list" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
