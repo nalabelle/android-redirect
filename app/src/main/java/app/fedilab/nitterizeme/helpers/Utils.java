@@ -25,6 +25,7 @@ import android.os.Environment;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.net.HttpURLConnection;
 import java.net.InetAddress;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -112,27 +113,44 @@ public class Utils {
         try {
             comingURl = urls.get(urls.size() - 1);
 
-            if (comingURl.startsWith("http://")) {
-                comingURl = comingURl.replace("http://", "https://");
-            }
             url = new URL(comingURl);
-            HttpsURLConnection httpsURLConnection = (HttpsURLConnection) url.openConnection();
-            httpsURLConnection.setRequestProperty("http.keepAlive", "false");
-            httpsURLConnection.setInstanceFollowRedirects(false);
-            httpsURLConnection.setRequestMethod("HEAD");
-            if (httpsURLConnection.getResponseCode() == 301) {
-                Map<String, List<String>> map = httpsURLConnection.getHeaderFields();
-                for (Map.Entry<String, List<String>> entry : map.entrySet()) {
-                    if (entry.toString().toLowerCase().startsWith("location")) {
-                        Matcher matcher = urlPattern.matcher(entry.toString());
-                        if (matcher.find()) {
-                            newURL = remove_tracking_param(matcher.group(1));
-                            urls.add(transformUrl(context, newURL));
+            if (comingURl.startsWith("https")) {
+                HttpsURLConnection httpsURLConnection = (HttpsURLConnection) url.openConnection();
+                httpsURLConnection.setRequestProperty("http.keepAlive", "false");
+                httpsURLConnection.setInstanceFollowRedirects(false);
+                httpsURLConnection.setRequestMethod("HEAD");
+                if (httpsURLConnection.getResponseCode() == 301) {
+                    Map<String, List<String>> map = httpsURLConnection.getHeaderFields();
+                    for (Map.Entry<String, List<String>> entry : map.entrySet()) {
+                        if (entry.toString().toLowerCase().startsWith("location")) {
+                            Matcher matcher = urlPattern.matcher(entry.toString());
+                            if (matcher.find()) {
+                                newURL = remove_tracking_param(matcher.group(1));
+                                urls.add(transformUrl(context, newURL));
+                            }
                         }
                     }
                 }
+                httpsURLConnection.getInputStream().close();
+            } else {
+                HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
+                httpURLConnection.setRequestProperty("http.keepAlive", "false");
+                httpURLConnection.setInstanceFollowRedirects(false);
+                httpURLConnection.setRequestMethod("HEAD");
+                if (httpURLConnection.getResponseCode() == 301) {
+                    Map<String, List<String>> map = httpURLConnection.getHeaderFields();
+                    for (Map.Entry<String, List<String>> entry : map.entrySet()) {
+                        if (entry.toString().toLowerCase().startsWith("location")) {
+                            Matcher matcher = urlPattern.matcher(entry.toString());
+                            if (matcher.find()) {
+                                newURL = remove_tracking_param(matcher.group(1));
+                                urls.add(transformUrl(context, newURL));
+                            }
+                        }
+                    }
+                }
+                httpURLConnection.getInputStream().close();
             }
-            httpsURLConnection.getInputStream().close();
             if (newURL != null && newURL.compareTo(comingURl) != 0) {
                 URL redirectURL = new URL(newURL);
                 String host = redirectURL.getHost();
@@ -166,6 +184,14 @@ public class Utils {
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
+        Uri url_r = Uri.parse(url);
+        String scheme = url_r.getScheme();
+        if (scheme == null) {
+            scheme = "https://";
+        } else {
+            scheme += "://";
+        }
+
         if (Arrays.asList(twitter_domains).contains(host)) {
             boolean nitter_enabled = sharedpreferences.getBoolean(SET_NITTER_ENABLED, true);
             if (nitter_enabled) {
@@ -173,9 +199,9 @@ public class Utils {
                 assert host != null;
                 if (host.compareTo("pbs.twimg.com") == 0 || host.compareTo("pic.twitter.com") == 0) {
                     try {
-                        newUrl = "https://" + nitterHost + "/pic/" + URLEncoder.encode(url, "utf-8");
+                        newUrl = scheme + nitterHost + "/pic/" + URLEncoder.encode(url, "utf-8");
                     } catch (UnsupportedEncodingException e) {
-                        newUrl = "https://" + nitterHost + "/pic/" + url;
+                        newUrl = scheme + nitterHost + "/pic/" + url;
                     }
                 } else if (url.contains("/search?")) {
                     newUrl = url.replace(host, nitterHost);
@@ -183,7 +209,7 @@ public class Utils {
                     Matcher matcher = nitterPattern.matcher(url);
                     while (matcher.find()) {
                         final String nitter_directory = matcher.group(2);
-                        newUrl = "https://" + nitterHost + nitter_directory;
+                        newUrl = scheme + nitterHost + nitter_directory;
                     }
                 }
                 return newUrl;
@@ -197,16 +223,16 @@ public class Utils {
                 while (matcher.find()) {
                     final String bibliogram_directory = matcher.group(2);
                     String bibliogramHost = sharedpreferences.getString(MainActivity.SET_BIBLIOGRAM_HOST, MainActivity.DEFAULT_BIBLIOGRAM_HOST).toLowerCase();
-                    newUrl = "https://" + bibliogramHost + bibliogram_directory;
+                    newUrl = scheme + bibliogramHost + bibliogram_directory;
                 }
                 matcher = bibliogramAccountPattern.matcher(url);
                 while (matcher.find()) {
                     final String bibliogram_directory = matcher.group(2);
                     String bibliogramHost = sharedpreferences.getString(MainActivity.SET_BIBLIOGRAM_HOST, MainActivity.DEFAULT_BIBLIOGRAM_HOST).toLowerCase();
                     if (bibliogram_directory != null && bibliogram_directory.compareTo("privacy") != 0) {
-                        newUrl = "https://" + bibliogramHost + "/u" + bibliogram_directory;
+                        newUrl = scheme + bibliogramHost + "/u" + bibliogram_directory;
                     } else {
-                        newUrl = "https://" + bibliogramHost + bibliogram_directory;
+                        newUrl = scheme + bibliogramHost + bibliogram_directory;
                     }
                 }
                 return newUrl;
@@ -233,7 +259,7 @@ public class Utils {
                         String osmHost = sharedpreferences.getString(MainActivity.SET_OSM_HOST, MainActivity.DEFAULT_OSM_HOST).toLowerCase();
                         boolean geo_uri_enabled = sharedpreferences.getBoolean(MainActivity.SET_GEO_URIS, false);
                         if (!geo_uri_enabled) {
-                            newUrl = "https://" + osmHost + "/#map=" + zoom + "/" + data[0] + "/" + data[1];
+                            newUrl = scheme + osmHost + "/#map=" + zoom + "/" + data[0] + "/" + data[1];
                         } else {
                             newUrl = "geo:0,0?q=" + data[0] + "," + data[1] + ",z=" + zoom;
                         }
@@ -258,9 +284,9 @@ public class Utils {
                     final String youtubeId = matcher.group(3);
                     String invidiousHost = sharedpreferences.getString(MainActivity.SET_INVIDIOUS_HOST, MainActivity.DEFAULT_INVIDIOUS_HOST).toLowerCase();
                     if (Objects.requireNonNull(matcher.group(2)).compareTo("youtu.be") == 0) {
-                        newUrl = "https://" + invidiousHost + "/watch?v=" + youtubeId + "&local=true";
+                        newUrl = scheme + invidiousHost + "/watch?v=" + youtubeId + "&local=true";
                     } else {
-                        newUrl = "https://" + invidiousHost + "/" + youtubeId + "&local=true";
+                        newUrl = scheme + invidiousHost + "/" + youtubeId + "&local=true";
                     }
                 }
                 return newUrl;

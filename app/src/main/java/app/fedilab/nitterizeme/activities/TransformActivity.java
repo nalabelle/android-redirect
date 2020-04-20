@@ -359,6 +359,13 @@ public class TransformActivity extends Activity {
             startActivity(sendIntent);
             return;
         }
+        Uri url_r = Uri.parse(url);
+        String scheme = url_r.getScheme();
+        if (scheme == null) {
+            scheme = "https://";
+        } else {
+            scheme += "://";
+        }
 
         if (Arrays.asList(twitter_domains).contains(host)) {
             boolean nitter_enabled = sharedpreferences.getBoolean(SET_NITTER_ENABLED, true);
@@ -368,9 +375,9 @@ public class TransformActivity extends Activity {
                 assert host != null;
                 if (host.compareTo("pbs.twimg.com") == 0 || host.compareTo("pic.twitter.com") == 0) {
                     try {
-                        newUrl = "https://" + nitterHost + "/pic/" + URLEncoder.encode(url, "utf-8");
+                        newUrl = scheme + nitterHost + "/pic/" + URLEncoder.encode(url, "utf-8");
                     } catch (UnsupportedEncodingException e) {
-                        newUrl = "https://" + nitterHost + "/pic/" + url;
+                        newUrl = scheme + nitterHost + "/pic/" + url;
                     }
                 } else if (url.contains("/search?")) {
                     newUrl = url.replace(host, nitterHost);
@@ -378,7 +385,7 @@ public class TransformActivity extends Activity {
                     Matcher matcher = nitterPattern.matcher(url);
                     while (matcher.find()) {
                         final String nitter_directory = matcher.group(2);
-                        newUrl = "https://" + nitterHost + nitter_directory;
+                        newUrl = scheme + nitterHost + nitter_directory;
                     }
                 }
             }
@@ -389,16 +396,16 @@ public class TransformActivity extends Activity {
                 while (matcher.find()) {
                     final String bibliogram_directory = matcher.group(2);
                     String bibliogramHost = sharedpreferences.getString(MainActivity.SET_BIBLIOGRAM_HOST, MainActivity.DEFAULT_BIBLIOGRAM_HOST).toLowerCase();
-                    newUrl = "https://" + bibliogramHost + bibliogram_directory;
+                    newUrl = scheme + bibliogramHost + bibliogram_directory;
                 }
                 matcher = bibliogramAccountPattern.matcher(url);
                 while (matcher.find()) {
                     final String bibliogram_directory = matcher.group(2);
                     String bibliogramHost = sharedpreferences.getString(MainActivity.SET_BIBLIOGRAM_HOST, MainActivity.DEFAULT_BIBLIOGRAM_HOST).toLowerCase();
                     if (bibliogram_directory != null && bibliogram_directory.compareTo("privacy") != 0) {
-                        newUrl = "https://" + bibliogramHost + "/u" + bibliogram_directory;
+                        newUrl = scheme + bibliogramHost + "/u" + bibliogram_directory;
                     } else {
-                        newUrl = "https://" + bibliogramHost + bibliogram_directory;
+                        newUrl = scheme + bibliogramHost + bibliogram_directory;
                     }
                 }
             }
@@ -419,14 +426,14 @@ public class TransformActivity extends Activity {
                             zoom = data[2];
                         }
                         String osmHost = sharedpreferences.getString(MainActivity.SET_OSM_HOST, MainActivity.DEFAULT_OSM_HOST).toLowerCase();
-                        newUrl = "https://" + osmHost + "/#map=" + zoom + "/" + data[0] + "/" + data[1];
+                        newUrl = scheme + osmHost + "/#map=" + zoom + "/" + data[0] + "/" + data[1];
                     }
                 }
             }
         } else if (url.contains("/amp/s/")) {
             Matcher matcher = ampExtract.matcher(url);
             while (matcher.find()) {
-                newUrl = "https://" + matcher.group(1);
+                newUrl = scheme + matcher.group(1);
             }
         } else if (Arrays.asList(youtube_domains).contains(host)) { //Youtube URL
             boolean invidious_enabled = sharedpreferences.getBoolean(SET_INVIDIOUS_ENABLED, true);
@@ -436,15 +443,16 @@ public class TransformActivity extends Activity {
                     final String youtubeId = matcher.group(3);
                     String invidiousHost = sharedpreferences.getString(MainActivity.SET_INVIDIOUS_HOST, MainActivity.DEFAULT_INVIDIOUS_HOST).toLowerCase();
                     if (Objects.requireNonNull(matcher.group(2)).compareTo("youtu.be") == 0) {
-                        newUrl = "https://" + invidiousHost + "/watch?v=" + youtubeId + "&local=true";
+                        newUrl = scheme + invidiousHost + "/watch?v=" + youtubeId + "&local=true";
                     } else {
-                        newUrl = "https://" + invidiousHost + "/" + youtubeId + "&local=true";
+                        newUrl = scheme + invidiousHost + "/" + youtubeId + "&local=true";
                     }
                 }
             }
         } else if (Arrays.asList(shortener_domains).contains(host)) {
             String finalUrl = url;
             String finalExtraText = extraText;
+            String finalScheme = scheme;
             Thread thread = new Thread() {
                 @Override
                 public void run() {
@@ -469,7 +477,7 @@ public class TransformActivity extends Activity {
                         while (matcher.find()) {
                             final String nitter_directory = matcher.group(2);
                             String nitterHost = sharedpreferences.getString(MainActivity.SET_NITTER_HOST, MainActivity.DEFAULT_NITTER_HOST).toLowerCase();
-                            newUrlFinal = "https://" + nitterHost + nitter_directory;
+                            newUrlFinal = finalScheme + nitterHost + nitter_directory;
                         }
                         String newExtraText = finalExtraText.replaceAll(Pattern.quote(finalUrl), Matcher.quoteReplacement(newUrlFinal));
                         Intent sendIntent = new Intent();
@@ -484,9 +492,9 @@ public class TransformActivity extends Activity {
                             final String youtubeId = matcher.group(3);
                             String invidiousHost = sharedpreferences.getString(MainActivity.SET_INVIDIOUS_HOST, MainActivity.DEFAULT_INVIDIOUS_HOST).toLowerCase();
                             if (Objects.requireNonNull(matcher.group(2)).compareTo("youtu.be") == 0) {
-                                newUrlFinal = "https://" + invidiousHost + "/watch?v=" + youtubeId + "&local=true";
+                                newUrlFinal = finalScheme + invidiousHost + "/watch?v=" + youtubeId + "&local=true";
                             } else {
-                                newUrlFinal = "https://" + invidiousHost + "/" + youtubeId + "&local=true";
+                                newUrlFinal = finalScheme + invidiousHost + "/" + youtubeId + "&local=true";
                             }
                         }
                         String newExtraText = finalExtraText.replaceAll(Pattern.quote(finalUrl), Matcher.quoteReplacement(newUrlFinal));
@@ -511,7 +519,7 @@ public class TransformActivity extends Activity {
                                     zoom = data[2];
                                 }
                                 String osmHost = sharedpreferences.getString(MainActivity.SET_OSM_HOST, MainActivity.DEFAULT_OSM_HOST).toLowerCase();
-                                newUrlFinal = "https://" + osmHost + "/#map=" + zoom + "/" + data[0] + "/" + data[1];
+                                newUrlFinal = finalScheme + osmHost + "/#map=" + zoom + "/" + data[0] + "/" + data[1];
                             }
                         }
                         String newExtraText = finalExtraText.replaceAll(Pattern.quote(finalUrl), Matcher.quoteReplacement(newUrlFinal));
