@@ -40,7 +40,17 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
-
+        <TextView
+            android:padding="2dp"
+            android:id="@+id/url"
+            android:textSize="12sp"
+            android:singleLine="true"
+            android:textColor="@color/colorAccent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            android:ellipsize="end"
+            app:layout_constraintTop_toTopOf="parent"/>
         <TextView
             android:id="@+id/indication"
             android:layout_width="match_parent"
@@ -51,11 +61,11 @@
             android:drawableLeft="@drawable/ic_app_logo"
             android:drawablePadding="5dp"
             android:gravity="center_vertical"
-            android:paddingTop="10dp"
+            android:paddingTop="5dp"
             android:text="@string/continue_with"
             android:textSize="16sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/url" />
 
         <GridView
             android:id="@+id/app_list"

@@ -25,6 +25,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.GridView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -97,11 +98,14 @@ public class AppsPickerActivity extends Activity {
                 }
                 appPickers.add(appPicker);
                 packages.add(packageName);
+                i++;
             }
-            i++;
+
         }
         String defaultApp = new DefaultAppDAO(AppsPickerActivity.this, db).getDefault(packages);
 
+        TextView urlText = findViewById(R.id.url);
+        urlText.setText(url);
 
         if (defaultApp != null) {
             Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
