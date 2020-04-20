@@ -40,6 +40,7 @@ import app.fedilab.nitterizeme.helpers.Utils;
 import app.fedilab.nitterizeme.sqlite.DefaultAppDAO;
 import app.fedilab.nitterizeme.sqlite.Sqlite;
 
+import static app.fedilab.nitterizeme.helpers.Utils.INTENT_ACTION;
 import static app.fedilab.nitterizeme.helpers.Utils.KILL_ACTIVITY;
 import static app.fedilab.nitterizeme.helpers.Utils.URL_APP_PICKER;
 
@@ -48,6 +49,7 @@ public class AppsPickerActivity extends Activity {
 
 
     private String url;
+    private String action;
     private String appToUse;
     private String appName;
 
@@ -64,19 +66,27 @@ public class AppsPickerActivity extends Activity {
         }
         if (b != null) {
             url = b.getString(URL_APP_PICKER, null);
+            action = b.getString(INTENT_ACTION, null);
         }
-        if (url == null) {
+
+        if (url == null || action == null) {
             finish();
         }
         //At this point we are sure that url is not null
         Intent stopMainActivity = new Intent(KILL_ACTIVITY);
         sendBroadcast(stopMainActivity);
 
-        Intent delegate = new Intent(Intent.ACTION_VIEW);
+        Intent delegate = new Intent(action);
         delegate.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        delegate.setData(Uri.parse(url));
-
+        if (action.compareTo(Intent.ACTION_VIEW) == 0) {
+            delegate.setData(Uri.parse(url));
+        } else {
+            delegate.putExtra(Intent.EXTRA_TEXT, url);
+            delegate.setType("text/plain");
+        }
         List<ResolveInfo> activities = getPackageManager().queryIntentActivities(delegate, PackageManager.MATCH_DEFAULT_ONLY);
+
+
         SQLiteDatabase db = Sqlite.getInstance(getApplicationContext(), Sqlite.DB_NAME, null, Sqlite.DB_VERSION).open();
         RelativeLayout blank = findViewById(R.id.blank);
         blank.setOnClickListener(v -> finish());
@@ -108,7 +118,7 @@ public class AppsPickerActivity extends Activity {
         urlText.setText(url);
 
         if (defaultApp != null) {
-            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+            Intent intent = new Intent(action, Uri.parse(url));
             intent.setPackage(defaultApp);
             startActivity(intent);
             finish();
@@ -147,16 +157,32 @@ public class AppsPickerActivity extends Activity {
                 if (val > 0) {
                     Toast.makeText(AppsPickerActivity.this, getString(R.string.default_app_indication, appName), Toast.LENGTH_LONG).show();
                 }
-                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
-                intent.setPackage(appToUse);
-                startActivity(intent);
+                if (action.compareTo(Intent.ACTION_VIEW) == 0) {
+                    Intent intent = new Intent(action, Uri.parse(url));
+                    intent.setPackage(appToUse);
+                    startActivity(intent);
+                } else {
+                    Intent intent = new Intent(action);
+                    intent.putExtra(Intent.EXTRA_TEXT, url);
+                    intent.setType("text/plain");
+                    intent.setPackage(appToUse);
+                    startActivity(intent);
+                }
                 finish();
             });
 
             once.setOnClickListener(v -> {
-                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
-                intent.setPackage(appToUse);
-                startActivity(intent);
+                if (action.compareTo(Intent.ACTION_VIEW) == 0) {
+                    Intent intent = new Intent(action, Uri.parse(url));
+                    intent.setPackage(appToUse);
+                    startActivity(intent);
+                } else {
+                    Intent intent = new Intent(action);
+                    intent.putExtra(Intent.EXTRA_TEXT, url);
+                    intent.setType("text/plain");
+                    intent.setPackage(appToUse);
+                    startActivity(intent);
+                }
                 finish();
             });
         }

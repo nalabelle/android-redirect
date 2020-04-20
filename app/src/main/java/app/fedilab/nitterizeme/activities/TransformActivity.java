@@ -55,6 +55,7 @@ import static app.fedilab.nitterizeme.activities.CheckAppActivity.youtube_domain
 import static app.fedilab.nitterizeme.activities.MainActivity.SET_BIBLIOGRAM_ENABLED;
 import static app.fedilab.nitterizeme.activities.MainActivity.SET_INVIDIOUS_ENABLED;
 import static app.fedilab.nitterizeme.activities.MainActivity.SET_NITTER_ENABLED;
+import static app.fedilab.nitterizeme.helpers.Utils.INTENT_ACTION;
 import static app.fedilab.nitterizeme.helpers.Utils.KILL_ACTIVITY;
 import static app.fedilab.nitterizeme.helpers.Utils.URL_APP_PICKER;
 import static app.fedilab.nitterizeme.helpers.Utils.ampExtract;
@@ -312,7 +313,12 @@ public class TransformActivity extends Activity {
 
         Intent app_picker = new Intent(TransformActivity.this, AppsPickerActivity.class);
         Bundle b = new Bundle();
-        b.putString(URL_APP_PICKER, i.getDataString());
+        if (Objects.requireNonNull(i.getAction()).compareTo(Intent.ACTION_VIEW) == 0) {
+            b.putString(URL_APP_PICKER, i.getDataString());
+        } else {
+            b.putString(URL_APP_PICKER, i.getStringExtra(Intent.EXTRA_TEXT));
+        }
+        b.putString(INTENT_ACTION, i.getAction());
         app_picker.putExtras(b);
         startActivity(app_picker);
         finish();
@@ -356,7 +362,7 @@ public class TransformActivity extends Activity {
             sendIntent.setAction(Intent.ACTION_SEND);
             sendIntent.putExtra(Intent.EXTRA_TEXT, extraText);
             sendIntent.setType("text/plain");
-            startActivity(sendIntent);
+            forwardToBrowser(sendIntent);
             return;
         }
         Uri url_r = Uri.parse(url);
@@ -484,7 +490,7 @@ public class TransformActivity extends Activity {
                         sendIntent.setAction(Intent.ACTION_SEND);
                         sendIntent.putExtra(Intent.EXTRA_TEXT, newExtraText);
                         sendIntent.setType("text/plain");
-                        startActivity(sendIntent);
+                        forwardToBrowser(sendIntent);
                     } else if (invidious_enabled && Arrays.asList(youtube_domains).contains(host)) {
                         Matcher matcher = youtubePattern.matcher(notShortnedURLDialog.get(notShortnedURLDialog.size() - 1));
                         String newUrlFinal = notShortnedURLDialog.get(notShortnedURLDialog.size() - 1);
@@ -502,7 +508,7 @@ public class TransformActivity extends Activity {
                         sendIntent.setAction(Intent.ACTION_SEND);
                         sendIntent.putExtra(Intent.EXTRA_TEXT, newExtraText);
                         sendIntent.setType("text/plain");
-                        startActivity(sendIntent);
+                        forwardToBrowser(sendIntent);
                     } else if (osm_enabled && notShortnedURLDialog.get(notShortnedURLDialog.size() - 1).contains("/maps/place/")) {
                         String newUrlFinal = notShortnedURLDialog.get(notShortnedURLDialog.size() - 1);
                         Matcher matcher = maps.matcher(notShortnedURLDialog.get(notShortnedURLDialog.size() - 1));
@@ -527,14 +533,14 @@ public class TransformActivity extends Activity {
                         sendIntent.setAction(Intent.ACTION_SEND);
                         sendIntent.putExtra(Intent.EXTRA_TEXT, newExtraText);
                         sendIntent.setType("text/plain");
-                        startActivity(sendIntent);
+                        forwardToBrowser(sendIntent);
                     } else {
                         String newExtraText = finalExtraText.replaceAll(Pattern.quote(finalUrl), Matcher.quoteReplacement(notShortnedURLDialog.get(notShortnedURLDialog.size() - 1)));
                         Intent sendIntent = new Intent();
                         sendIntent.setAction(Intent.ACTION_SEND);
                         sendIntent.putExtra(Intent.EXTRA_TEXT, newExtraText);
                         sendIntent.setType("text/plain");
-                        startActivity(sendIntent);
+                        forwardToBrowser(sendIntent);
                     }
                 }
             };
@@ -550,7 +556,7 @@ public class TransformActivity extends Activity {
         sendIntent.setAction(Intent.ACTION_SEND);
         sendIntent.putExtra(Intent.EXTRA_TEXT, extraText);
         sendIntent.setType("text/plain");
-        startActivity(sendIntent);
+        forwardToBrowser(sendIntent);
     }
 
 
