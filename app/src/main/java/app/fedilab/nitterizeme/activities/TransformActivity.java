@@ -111,9 +111,7 @@ public class TransformActivity extends Activity {
                         Intent delegate = new Intent(Intent.ACTION_VIEW);
                         delegate.setData(Uri.parse(notShortnedURLDialog.get(notShortnedURLDialog.size() - 1)));
                         delegate.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                        if (delegate.resolveActivity(getPackageManager()) != null) {
-                            startActivity(delegate);
-                        }
+                        forwardToBrowser(delegate);
                     }
                     dialog.dismiss();
                     finish();
@@ -166,10 +164,7 @@ public class TransformActivity extends Activity {
                     if (transformedURL != null) {
                         delegate.setData(Uri.parse(transformUrl(TransformActivity.this, url)));
                         delegate.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                        if (delegate.resolveActivity(getPackageManager()) != null) {
-                            startActivity(delegate);
-                            finish();
-                        }
+                        forwardToBrowser(delegate);
                     } else {
                         forwardToBrowser(intent);
                     }
@@ -185,10 +180,7 @@ public class TransformActivity extends Activity {
                     if (transformedURL != null) {
                         delegate.setData(Uri.parse(transformUrl(TransformActivity.this, url)));
                         delegate.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                        if (delegate.resolveActivity(getPackageManager()) != null) {
-                            startActivity(delegate);
-                            finish();
-                        }
+                        forwardToBrowser(delegate);
                     } else {
                         forwardToBrowser(intent);
                     }
@@ -205,10 +197,7 @@ public class TransformActivity extends Activity {
                     if (transformedURL != null) {
                         delegate.setData(Uri.parse(transformUrl(TransformActivity.this, url)));
                         delegate.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                        if (delegate.resolveActivity(getPackageManager()) != null) {
-                            startActivity(delegate);
-                            finish();
-                        }
+                        forwardToBrowser(delegate);
                     } else {
                         forwardToBrowser(intent);
                     }
@@ -227,10 +216,7 @@ public class TransformActivity extends Activity {
                 if (transformedURL != null) {
                     delegate.setData(Uri.parse(transformedURL));
                     delegate.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                    if (delegate.resolveActivity(getPackageManager()) != null) {
-                        startActivity(delegate);
-                        finish();
-                    }
+                    forwardToBrowser(delegate);
                 } else {
                     forwardToBrowser(intent);
                 }
@@ -244,10 +230,7 @@ public class TransformActivity extends Activity {
                     if (transformedURL != null) {
                         delegate.setData(Uri.parse(transformUrl(TransformActivity.this, url)));
                         delegate.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                        if (delegate.resolveActivity(getPackageManager()) != null) {
-                            startActivity(delegate);
-                            finish();
-                        }
+                        forwardToBrowser(delegate);
                     } else {
                         forwardToBrowser(intent);
                     }

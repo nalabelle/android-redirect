@@ -16,7 +16,6 @@ package app.fedilab.nitterizeme.activities;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.database.sqlite.SQLiteDatabase;
@@ -31,9 +30,7 @@ import android.widget.Toast;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.Objects;
 
 import app.fedilab.nitterizeme.R;
 import app.fedilab.nitterizeme.adapters.AppPickerAdapter;
@@ -42,11 +39,8 @@ import app.fedilab.nitterizeme.helpers.Utils;
 import app.fedilab.nitterizeme.sqlite.DefaultAppDAO;
 import app.fedilab.nitterizeme.sqlite.Sqlite;
 
-import static app.fedilab.nitterizeme.activities.CheckAppActivity.invidious_instances;
 import static app.fedilab.nitterizeme.helpers.Utils.KILL_ACTIVITY;
 import static app.fedilab.nitterizeme.helpers.Utils.URL_APP_PICKER;
-import static app.fedilab.nitterizeme.helpers.Utils.getPackageInfo;
-import static app.fedilab.nitterizeme.helpers.Utils.isAppInstalled;
 
 
 public class AppsPickerActivity extends Activity {
@@ -78,19 +72,13 @@ public class AppsPickerActivity extends Activity {
         sendBroadcast(stopMainActivity);
 
         Intent delegate = new Intent(Intent.ACTION_VIEW);
-        delegate.setDataAndType(Uri.parse(url), "text/html");
         delegate.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        delegate.setData(Uri.parse(url));
 
-        List<ResolveInfo> activities;
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
-            activities = getPackageManager().queryIntentActivities(delegate, PackageManager.MATCH_ALL);
-        } else {
-            activities = getPackageManager().queryIntentActivities(delegate, 0);
-        }
+        List<ResolveInfo> activities = getPackageManager().queryIntentActivities(delegate, PackageManager.MATCH_DEFAULT_ONLY);
         SQLiteDatabase db = Sqlite.getInstance(getApplicationContext(), Sqlite.DB_NAME, null, Sqlite.DB_VERSION).open();
         RelativeLayout blank = findViewById(R.id.blank);
         blank.setOnClickListener(v -> finish());
-
         String thisPackageName = getApplicationContext().getPackageName();
         ArrayList<String> packages = new ArrayList<>();
         List<AppPicker> appPickers = new ArrayList<>();
@@ -112,20 +100,8 @@ public class AppsPickerActivity extends Activity {
             }
             i++;
         }
-        if (isAppInstalled(AppsPickerActivity.this, "org.schabi.newpipe")
-                && Arrays.asList(invidious_instances).contains(Objects.requireNonNull(Uri.parse(url)).getHost())
-                && !packages.contains("org.schabi.newpipe")) {
-            PackageInfo packageInfo = getPackageInfo(AppsPickerActivity.this, "org.schabi.newpipe");
-            if (packageInfo != null) {
-                AppPicker appPicker = new AppPicker();
-                appPicker.setIcon(packageInfo.applicationInfo.loadIcon(getPackageManager()));
-                appPicker.setName(String.valueOf(packageInfo.applicationInfo.loadLabel(getPackageManager())));
-                appPicker.setPackageName(packageInfo.applicationInfo.packageName);
-                appPickers.add(appPicker);
-                packages.add("org.schabi.newpipe");
-            }
-        }
         String defaultApp = new DefaultAppDAO(AppsPickerActivity.this, db).getDefault(packages);
+
 
         if (defaultApp != null) {
             Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));

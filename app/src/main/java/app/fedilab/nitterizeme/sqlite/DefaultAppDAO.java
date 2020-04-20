@@ -37,6 +37,7 @@ public class DefaultAppDAO {
     public long insert(String packageName, ArrayList<String> concurrentPackages) {
         ContentValues values = new ContentValues();
         values.put(Sqlite.COL_DEFAULT_PACKAGE, packageName.trim());
+        concurrentPackages.remove(packageName);
         values.put(Sqlite.COL_CONCURRENT_PACKAGES, Utils.arrayToString(concurrentPackages));
         try {
             return db.insert(Sqlite.TABLE_DEFAULT_APPS, null, values);
@@ -82,7 +83,7 @@ public class DefaultAppDAO {
 
     public String getDefault(ArrayList<String> packageNames) {
         try {
-            Cursor c = db.query(Sqlite.TABLE_DEFAULT_APPS, null, Sqlite.COL_DEFAULT_PACKAGE + " IN ( " + Utils.arrayToString(packageNames) + ")", null, null, null, null, null);
+            Cursor c = db.query(Sqlite.TABLE_DEFAULT_APPS, null, Sqlite.COL_DEFAULT_PACKAGE + " IN ( " + Utils.arrayToStringQuery(packageNames) + ")", null, null, null, null, null);
             return getBestMatchIfExists(c, packageNames);
         } catch (Exception e) {
             e.printStackTrace();
@@ -136,15 +137,17 @@ public class DefaultAppDAO {
         }
         ArrayList<String> concurrent = new ArrayList<>();
         while (c.moveToNext()) {
-            String packageName = c.getString(c.getColumnIndex(Sqlite.COL_DEFAULT_PACKAGE));
+            String packageName = c.getString(c.getColumnIndex(Sqlite.COL_CONCURRENT_PACKAGES));
             concurrent.addAll(Utils.stringToArray(packageName));
+        }
+        for (String conc : concurrent) {
+            allPackages.remove(conc);
         }
         c.close();
         //Items will only returns concurrent for default apps.
-        ArrayList<String> best = Utils.intersection(allPackages, concurrent);
         //The winner will be the one not in concurrent
-        if (best.size() == 1) {
-            return best.get(0);
+        if (allPackages.size() == 1) {
+            return allPackages.get(0);
         } else return null;
     }
 

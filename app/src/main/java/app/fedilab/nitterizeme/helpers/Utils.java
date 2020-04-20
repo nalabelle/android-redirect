@@ -348,6 +348,7 @@ public class Utils {
      *
      * @return boolean
      */
+    @SuppressWarnings("unused")
     public static boolean isAppInstalled(Context context, String packageName) {
         try {
             context.getPackageManager().getPackageInfo(packageName, 0);
@@ -362,6 +363,7 @@ public class Utils {
      *
      * @return PackageInfo
      */
+    @SuppressWarnings("unused")
     public static PackageInfo getPackageInfo(Context context, String packageName) {
         PackageInfo packageInfo = null;
         try {
@@ -384,7 +386,24 @@ public class Utils {
         }
         StringBuilder result = new StringBuilder();
         for (String item : arrayList) {
-            result.append("\"").append(item).append("\"").append(",");
+            result.append(item).append(",");
+        }
+        return result.substring(0, result.length() - 1);
+    }
+
+    /**
+     * Convert an ArrayList to a string using coma
+     *
+     * @param arrayList ArrayList<String>
+     * @return String
+     */
+    public static String arrayToStringQuery(ArrayList<String> arrayList) {
+        if (arrayList == null || arrayList.size() == 0) {
+            return null;
+        }
+        StringBuilder result = new StringBuilder();
+        for (String item : arrayList) {
+            result.append("'").append(item).append("'").append(",");
         }
         return result.substring(0, result.length() - 1);
     }
@@ -405,21 +424,10 @@ public class Utils {
 
 
     public static <T> ArrayList<T> union(ArrayList<T> list1, ArrayList<T> list2) {
-        Set<T> set = new HashSet<T>();
+        Set<T> set = new HashSet<>();
         set.addAll(list1);
         set.addAll(list2);
-        return new ArrayList<T>(set);
-    }
-
-
-    public static <T> ArrayList<T> intersection(ArrayList<T> list1, ArrayList<T> list2) {
-        ArrayList<T> list = new ArrayList<T>();
-        for (T t : list1) {
-            if (list2.contains(t)) {
-                list.add(t);
-            }
-        }
-        return list;
+        return new ArrayList<>(set);
     }
 
 }
