@@ -57,4 +57,21 @@
     <string name="share_with">Compartir amb</string>
     <string name="check_apps">Fes aplicacions</string>
     <string name="select_instances">Seleccioneu instàncies</string>
+    <string name="continue_with">Continue with…</string>
+    <string name="just_once">Just once</string>
+    <string name="always">Always</string>
+    <string name="default_app_indication">%1$s has been set as a default app.\nYou can remove this behavior from the app settings.</string>
+    <string name="indication_error_title">There is something wrong with the configuration of the app. Please, follow these indications to fix that issue.</string>
+    <string name="open_configure">1 - Tap on the \"CONFIGURE\" button above.</string>
+    <string name="supported_url_indication_1">2 - You are now in app settings from your device. Tap on \"Set as default\".</string>
+    <string name="display_indications_1_description">Screenshot showing app settings for the app. You have to Tap on \"Set as default\"</string>
+    <string name="supported_url_indication_2">2 - Then tap on \"Go to supported URLs\".</string>
+    <string name="display_indications_2_description">Screenshot showing app settings for the app. You have to Tap on \"Go to supported URLs\"</string>
+    <string name="supported_url_indication_3">3 - In suggestions make sure to pickup \"Always ask\"</string>
+    <string name="display_indications_3_description">Screenshot showing app settings to define the behavior for opening URLs</string>
+    <string name="default_apps">Default apps</string>
+    <string name="remove_from_default_app">Remove from default apps</string>
+    <string name="delete">Delete</string>
+    <string name="cancel">Cancel</string>
+    <string name="delete_app_from_default">Delete %1$s from default apps?</string>
 </resources>
