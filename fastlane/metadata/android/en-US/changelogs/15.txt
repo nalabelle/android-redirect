@@ -1,3 +1,6 @@
+Added:
+- Handle all URLs
+- Manage default app to open inside the app
+
 Fixed:
-- Suggest NewPipe in apps
 - Fix jumps in activity listing apps
