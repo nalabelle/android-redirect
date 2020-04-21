@@ -57,9 +57,9 @@
     <string name="share_with">Κοινοποίηση σε</string>
     <string name="check_apps">Έλεγχος εφαρμογών</string>
     <string name="select_instances">Επιλογή κόμβων</string>
-    <string name="continue_with">Continue with…</string>
-    <string name="just_once">Just once</string>
-    <string name="always">Always</string>
+    <string name="continue_with">Συνέχεια με…</string>
+    <string name="just_once">Μόνο μία φορά</string>
+    <string name="always">Πάντα</string>
     <string name="default_app_indication">%1$s has been set as a default app.\nYou can remove this behavior from the app settings.</string>
     <string name="indication_error_title">There is something wrong with the configuration of the app. Please, follow these indications to fix that issue.</string>
     <string name="open_configure">1 - Tap on the \"CONFIGURE\" button above.</string>
@@ -69,9 +69,9 @@
     <string name="display_indications_2_description">Screenshot showing app settings for the app. You have to Tap on \"Go to supported URLs\"</string>
     <string name="supported_url_indication_3">3 - In suggestions make sure to pickup \"Always ask\"</string>
     <string name="display_indications_3_description">Screenshot showing app settings to define the behavior for opening URLs</string>
-    <string name="default_apps">Default apps</string>
+    <string name="default_apps">Προεπιλεγμένες εφαρμογές</string>
     <string name="remove_from_default_app">Remove from default apps</string>
-    <string name="delete">Delete</string>
-    <string name="cancel">Cancel</string>
+    <string name="delete">Διαγραφή</string>
+    <string name="cancel">Ακύρωση</string>
     <string name="delete_app_from_default">Delete %1$s from default apps?</string>
 </resources>
