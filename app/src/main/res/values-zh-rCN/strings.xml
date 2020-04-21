@@ -40,7 +40,7 @@
     <string name="try_to_redirect">%1$s \n\n将把您重定向到\n\n<b>%2$s</b></string>
     <string name="try_to_redirect_again">然后它会将您重定向到\n\n<b>%1$s</b></string>
     <string name="the_app_failed_shortened">应用未能获取完整的URL</string>
-    <string name="invidious_instances">Invidious实际</string>
+    <string name="invidious_instances">Invidious实例</string>
     <string name="nitter_instances">Nitter实例</string>
     <string name="bibliogram_instances">Bibliogram实例</string>
     <string name="latency">网络延迟</string>
