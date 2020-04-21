@@ -70,8 +70,8 @@
     <string name="supported_url_indication_3">3 - En sugerencias asegúrate de seleccionar \"Siempre preguntar\"</string>
     <string name="display_indications_3_description">Captura de pantalla mostrando la configuración de la aplicación para definir el comportamiento de apertura de URLs</string>
     <string name="default_apps">Aplicaciones predeterminadas</string>
-    <string name="remove_from_default_app">Remove from default apps</string>
-    <string name="delete">Delete</string>
-    <string name="cancel">Cancel</string>
-    <string name="delete_app_from_default">Delete %1$s from default apps?</string>
+    <string name="remove_from_default_app">Eliminar de las aplicaciones predeterminadas</string>
+    <string name="delete">Eliminar</string>
+    <string name="cancel">Cancelar</string>
+    <string name="delete_app_from_default">¿Eliminar %1$s de las aplicaciones predeterminadas?</string>
 </resources>
