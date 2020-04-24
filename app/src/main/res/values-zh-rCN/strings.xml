@@ -23,11 +23,11 @@
     <string name="open_with">打开方式</string>
     <string name="redirect_gm_to_osm">重定向谷歌地图到 OpenStreetMap</string>
     <string name="custom_osm">自定义 OSM 主机名</string>
-    <string name="redirect_youtube_to_invidious">重定向YouTube至Invidious</string>
-    <string name="redirect_twitter_to_nitter">重定向 Twitter 到 Nitter</string>
+    <string name="redirect_youtube_to_invidious">重定向YouTube到Invidious</string>
+    <string name="redirect_twitter_to_nitter">重定向Twitter到Nitter</string>
     <string name="redirect_instagram_to_bibliogram">重定向Instagram到Bibliogram</string>
     <string name="custom_bibliogram">自定义Bibliogram实例</string>
-    <string name="redirect_gm_to_geo_uri">将谷歌地图重定向到 Geo URI</string>
+    <string name="redirect_gm_to_geo_uri">重定向谷歌地图到 Geo URI</string>
     <string name="configure">配置</string>
     <string name="display_supported_links">显示支持的链接</string>
     <string name="use_geo_uri">使用geo URI</string>
@@ -40,10 +40,10 @@
     <string name="try_to_redirect">%1$s \n\n将把您重定向到\n\n<b>%2$s</b></string>
     <string name="try_to_redirect_again">然后它会将您重定向到\n\n<b>%1$s</b></string>
     <string name="the_app_failed_shortened">应用未能获取完整的URL</string>
-    <string name="invidious_instances">Invidious实际</string>
+    <string name="invidious_instances">Invidious实例</string>
     <string name="nitter_instances">Nitter实例</string>
     <string name="bibliogram_instances">Bibliogram实例</string>
-    <string name="latency">延迟</string>
+    <string name="latency">网络延迟</string>
     <string name="error_message_internet">检查您的互联网连接</string>
     <string name="instance_label">实例:</string>
     <string name="expand_instance_details">展开实例详细信息</string>
