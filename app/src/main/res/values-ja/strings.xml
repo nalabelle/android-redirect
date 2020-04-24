@@ -33,7 +33,7 @@
     <string name="use_geo_uri">Geo URIを利用する</string>
     <string name="how_to">使い方</string>
     <string name="shortened_detected">短縮URL</string>
-    <string name="shortener_services">Shortener services</string>
+    <string name="shortener_services">URL短縮サービス</string>
     <string name="open">開く</string>
     <string name="dismiss">無効化</string>
     <string name="resolving_shortened">短縮URLのリンク先を解決しています、しばらくお待ちください…</string>
@@ -49,14 +49,14 @@
     <string name="expand_instance_details">インスタンスの詳細を表示</string>
     <string name="cloudflare">このインスタンスはCloudflareを使用しています</string>
     <string name="instance_info">リスト上のインスタンスについての情報</string>
-    <string name="about_instances">The list of instances comes from\n\n <a href="%1$s">%2$s</a>\n\nYou can contribute to this list by adding or removing instances.</string>
-    <string name="about_instances_title">About instances</string>
-    <string name="use_built_in_player">Use the built-in player</string>
-    <string name="share">Share</string>
-    <string name="download">Download</string>
-    <string name="share_with">Share with</string>
-    <string name="check_apps">Check apps</string>
-    <string name="select_instances">Select instances</string>
+    <string name="about_instances">インスタンスのリストの提供元\n\n<a href="%1$s">%2$s</a>\n\nこのリストへインスタンスの追加や削除の貢献ができます。</string>
+    <string name="about_instances_title">インスタンスについて</string>
+    <string name="use_built_in_player">内部プレイヤーを使用</string>
+    <string name="share">共有</string>
+    <string name="download">ダウンロード</string>
+    <string name="share_with">共有相手</string>
+    <string name="check_apps">アプリを検出</string>
+    <string name="select_instances">インスタンスを選択</string>
     <string name="continue_with">Continue with…</string>
     <string name="just_once">Just once</string>
     <string name="always">Always</string>
