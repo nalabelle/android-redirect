@@ -79,10 +79,12 @@ public class DefaultAppActivity extends AppCompatActivity {
         ArrayList<DefaultApp> appInfos = new ArrayList<>();
         SQLiteDatabase db = Sqlite.getInstance(getApplicationContext(), Sqlite.DB_NAME, null, Sqlite.DB_VERSION).open();
         ArrayList<String> packageName = new DefaultAppDAO(DefaultAppActivity.this, db).getDefault();
-        for (String p : packageName) {
-            DefaultApp defaultApp = new DefaultApp();
-            defaultApp.setApplicationInfo(Utils.getPackageInfo(DefaultAppActivity.this, p).applicationInfo);
-            appInfos.add(defaultApp);
+        if (packageName != null) {
+            for (String p : packageName) {
+                DefaultApp defaultApp = new DefaultApp();
+                defaultApp.setApplicationInfo(Utils.getPackageInfo(DefaultAppActivity.this, p).applicationInfo);
+                appInfos.add(defaultApp);
+            }
         }
         return appInfos;
     }
