@@ -138,7 +138,10 @@ public class DefaultAppDAO {
         ArrayList<String> concurrent = new ArrayList<>();
         while (c.moveToNext()) {
             String packageName = c.getString(c.getColumnIndex(Sqlite.COL_CONCURRENT_PACKAGES));
-            concurrent.addAll(Utils.stringToArray(packageName));
+            ArrayList<String> packageNamesArray = Utils.stringToArray(packageName);
+            if( packageNamesArray != null) {
+                concurrent.addAll(packageNamesArray);
+            }
         }
         for (String conc : concurrent) {
             allPackages.remove(conc);
