@@ -2,3 +2,4 @@ Fixed:
 - YouTube timestamps aren't handled
 - Crash when clicking on settings
 - Some URLs are truncated
+- Youtube Channels error
