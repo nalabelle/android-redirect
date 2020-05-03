@@ -69,6 +69,13 @@ public class Utils {
     public static final Pattern ampExtract = Pattern.compile("amp/s/(.*)");
     public static final String RECEIVE_STREAMING_URL = "receive_streaming_url";
     private static final Pattern extractPlace = Pattern.compile("/maps/place/(((?!/data).)*)");
+
+    private static final String[] G_TRACKING = {
+            "sourceid",
+            "aqs",
+            "client"
+    };
+
     private static final String[] UTM_PARAMS = {
             "utm_\\w+",
             "ga_source",
@@ -94,9 +101,10 @@ public class Utils {
             "hmb_source",
             "[\\?|&]ref[\\_]?",
             "amp[_#\\w]+",
-            "[\\w]+"
-
+            "click"
     };
+
+
     private static String urlRegex = "(?i)\\b((?:[a-z][\\w-]+:(?:/{1,3}|[a-z0-9%])|www\\d{0,3}[.]|[a-z0-9.\\-]+[.][a-z]{2,10}/)(?:[^\\s()<>]+|\\(([^\\s()<>]+|(\\([^\\s()<>]+\\)))*\\))+(?:\\(([^\\s()<>]+|(\\([^\\s()<>]+\\)))*\\)|[^\\s`!()\\[\\]{};:'\".,<>?«»“”‘’]))";
     public static final Pattern urlPattern = Pattern.compile(
             urlRegex,
@@ -327,6 +335,7 @@ public class Utils {
      * @return cleaned URL String
      */
     public static String remove_tracking_param(String url) {
+
         if (url != null) {
             for (String utm : UTM_PARAMS) {
                 url = url.replaceAll("&amp;" + utm + "=[0-9a-zA-Z._-]*", "");
@@ -335,7 +344,22 @@ public class Utils {
                 url = url.replaceAll("/" + utm + "=" + urlRegex, "/");
                 url = url.replaceAll("#" + utm + "=" + urlRegex, "");
             }
+            try {
+                URL redirectURL = new URL(url);
+                String host = redirectURL.getHost();
+                if (host != null && host.contains("google")) {
+                    for (String utm : G_TRACKING) {
+                        url = url.replaceAll("&amp;" + utm + "=[0-9a-zA-Z._-]*", "");
+                        url = url.replaceAll("&" + utm + "=[0-9a-zA-Z._-]*", "");
+                        url = url.replaceAll("\\?" + utm + "=[0-9a-zA-Z._-]*", "?");
+                        url = url.replaceAll("/" + utm + "=" + urlRegex, "/");
+                    }
+                }
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            }
         }
+
         if (url != null && url.endsWith("?")) {
             url = url.substring(0, url.length() - 1);
         }
