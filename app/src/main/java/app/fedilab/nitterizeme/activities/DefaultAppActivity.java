@@ -15,6 +15,7 @@ package app.fedilab.nitterizeme.activities;
  * see <http://www.gnu.org/licenses>. */
 
 
+import android.content.pm.PackageInfo;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -82,8 +83,11 @@ public class DefaultAppActivity extends AppCompatActivity {
         if (packageName != null) {
             for (String p : packageName) {
                 DefaultApp defaultApp = new DefaultApp();
-                defaultApp.setApplicationInfo(Utils.getPackageInfo(DefaultAppActivity.this, p).applicationInfo);
-                appInfos.add(defaultApp);
+                PackageInfo packageInfo = Utils.getPackageInfo(this, p);
+                if (packageInfo != null) {
+                    defaultApp.setApplicationInfo(packageInfo.applicationInfo);
+                    appInfos.add(defaultApp);
+                }
             }
         }
         return appInfos;
