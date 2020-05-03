@@ -298,7 +298,11 @@ public class Utils {
                         }
                         newUrl = scheme + invidiousHost + "/watch?v=" + youtubeId + "&local=true";
                     } else {
-                        newUrl = scheme + invidiousHost + "/" + youtubeId + "&local=true";
+                        if( !url.contains("/channel/") ) {
+                            newUrl = scheme + invidiousHost + "/" + youtubeId + "&local=true";
+                        }else{
+                            newUrl = scheme + invidiousHost + "/" + youtubeId;
+                        }
                     }
                 }
                 return newUrl;
