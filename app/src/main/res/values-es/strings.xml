@@ -58,7 +58,7 @@
     <string name="check_apps">Comprobar apps</string>
     <string name="select_instances">Seleccionar nodos</string>
     <string name="continue_with">Continuar con…</string>
-    <string name="just_once">Sólo una vez</string>
+    <string name="just_once">Solo una vez</string>
     <string name="always">Siempre</string>
     <string name="default_app_indication">%1$s se ha establecido como una aplicación por defecto.\nPuedes revertir esta decisión desde la configuración de la aplicación.</string>
     <string name="indication_error_title">Hay algo mal con la configuración de la aplicación. Por favor, siga estas indicaciones para arreglar ese problema.</string>
