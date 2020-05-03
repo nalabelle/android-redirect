@@ -55,8 +55,8 @@
     <string name="share">Condividi</string>
     <string name="download">Scarica</string>
     <string name="share_with">Condividi con</string>
-    <string name="check_apps">Check apps</string>
-    <string name="select_instances">Select instances</string>
+    <string name="check_apps">Controlla le applicazioni</string>
+    <string name="select_instances">Seleziona istanze</string>
     <string name="continue_with">Continue with…</string>
     <string name="just_once">Just once</string>
     <string name="always">Always</string>
