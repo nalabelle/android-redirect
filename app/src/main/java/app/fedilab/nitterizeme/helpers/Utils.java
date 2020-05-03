@@ -282,9 +282,12 @@ public class Utils {
             if (invidious_enabled) {
                 Matcher matcher = youtubePattern.matcher(url);
                 while (matcher.find()) {
-                    final String youtubeId = matcher.group(3);
+                    String youtubeId = matcher.group(3);
                     String invidiousHost = sharedpreferences.getString(MainActivity.SET_INVIDIOUS_HOST, MainActivity.DEFAULT_INVIDIOUS_HOST).toLowerCase();
                     if (Objects.requireNonNull(matcher.group(2)).compareTo("youtu.be") == 0) {
+                        if (youtubeId != null && youtubeId.contains("?t=")) {
+                            youtubeId = youtubeId.replace("?t=", "&t=");
+                        }
                         newUrl = scheme + invidiousHost + "/watch?v=" + youtubeId + "&local=true";
                     } else {
                         newUrl = scheme + invidiousHost + "/" + youtubeId + "&local=true";
