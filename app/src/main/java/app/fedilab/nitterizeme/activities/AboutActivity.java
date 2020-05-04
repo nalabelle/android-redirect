@@ -29,6 +29,7 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
+import app.fedilab.nitterizeme.BuildConfig;
 import app.fedilab.nitterizeme.R;
 
 
@@ -62,6 +63,14 @@ public class AboutActivity extends AppCompatActivity {
             Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://toot.fedilab.app/@fedilab"));
             startActivity(browserIntent);
         });
+
+        //App Name:
+        TextView app_name = findViewById(R.id.app_name);
+        if (BuildConfig.fullLinks) {
+            app_name.setText(R.string.app_name);
+        } else {
+            app_name.setText(R.string.app_name_lite);
+        }
 
         //Developer Github
         TextView github = findViewById(R.id.github);

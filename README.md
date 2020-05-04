@@ -2,6 +2,8 @@
 
 UntrackMe once set by default to open Twitter and YouTube links will transform them into Nitter and Invidious links and delegate the action to another app.
 
+There are two version of UntrackMe - Once handling all URLs for removing tracking parameters - Another one called "UntrackMe Lite" that will only handle Twitter, Youtube, Instagram, Google Maps and shortened URLs.
+
 
 ## Donate
 
@@ -9,7 +11,9 @@ UntrackMe once set by default to open Twitter and YouTube links will transform t
 
 ## Download
 
-[<img alt='Get it on F-Droid' src='./images/get-it-on-fdroid.png' height="80"/>](https://f-droid.org/app/app.fedilab.nitterizeme)
+Full version: [<img alt='Get it on F-Droid' src='./images/get-it-on-fdroid.png' height="80"/>](https://f-droid.org/app/app.fedilab.nitterizeme)
+
+Lite version: [<img alt='Get it on F-Droid' src='./images/get-it-on-fdroid.png' height="80"/>](https://f-droid.org/app/app.fedilab.nitterizemelite)
 
 
 ### What is Nitter:
@@ -23,6 +27,10 @@ Github project: [/zedeus/nitter](https://github.com/zedeus/nitter)
 A free and open source alternative front-end to YouTube
 Github project: [/omarroth/invidious](https://github.com/omarroth/invidious)
 
+### What is Bibliogram:
+
+A free and open source alternative front-end to Instagram
+Github project: [/cloudrac3r/bibliogram](https://github.com/cloudrac3r/bibliogram)
 
 ### Screenshots:
 

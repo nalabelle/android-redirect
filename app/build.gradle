@@ -15,25 +15,24 @@ android {
         checkReleaseBuilds false
         abortOnError false
     }
-    flavorDimensions "default"
     productFlavors {
-        full {
+        fullLinks {
             applicationId "app.fedilab.nitterizeme"
-            buildConfigField "boolean", "full", "true"
-            sourceSets {
-                main {
-                    manifest.srcFile "src/full/AndroidManifest.xml"
-                }
-            }
+            buildConfigField "boolean", "fullLinks", "true"
+            flavorDimensions "default"
         }
         lite {
             applicationId "app.fedilab.nitterizemelite"
-            buildConfigField "boolean", "full", "false"
-            sourceSets {
-                main {
-                    manifest.srcFile "src/lite/AndroidManifest.xml"
-                }
-            }
+            buildConfigField "boolean", "fullLinks", "false"
+            flavorDimensions "default"
+        }
+    }
+    sourceSets {
+        lite {
+            manifest.srcFile "src/main/AndroidManifest.xml"
+        }
+        fullLinks {
+            manifest.srcFile "src/fullLinks/AndroidManifest.xml"
         }
     }
     buildTypes {

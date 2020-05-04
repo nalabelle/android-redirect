@@ -512,7 +512,7 @@ public class MainActivity extends AppCompatActivity {
             current_instance_bibliogram.setText(bibliogramHost);
         }
         ConstraintLayout display_indications = findViewById(R.id.display_indications);
-        if (BuildConfig.full) {
+        if (BuildConfig.fullLinks) {
             List<ResolveInfo> resolveInfos = getPackageManager().queryIntentActivities(new Intent(Intent.ACTION_VIEW, Uri.parse("https://fedilab.app")), PackageManager.MATCH_DEFAULT_ONLY);
             String thisPackageName = getApplicationContext().getPackageName();
             if (resolveInfos.size() == 1 && resolveInfos.get(0).activityInfo.packageName.compareTo(thisPackageName) == 0) {

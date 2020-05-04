@@ -40,17 +40,19 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
+
         <TextView
-            android:padding="2dp"
             android:id="@+id/url"
-            android:textSize="12sp"
-            android:singleLine="true"
-            android:textColor="@color/colorAccent"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="parent"
             android:ellipsize="end"
-            app:layout_constraintTop_toTopOf="parent"/>
+            android:padding="2dp"
+            android:singleLine="true"
+            android:textColor="@color/colorAccent"
+            android:textSize="12sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <TextView
             android:id="@+id/indication"
             android:layout_width="match_parent"

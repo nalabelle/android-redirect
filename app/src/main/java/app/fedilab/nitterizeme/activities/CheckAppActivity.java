@@ -111,7 +111,7 @@ public class CheckAppActivity extends AppCompatActivity {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setDisplayShowHomeEnabled(true);
         }
-        if (BuildConfig.full) {
+        if (BuildConfig.fullLinks) {
             domains = new String[twitter_domains.length + youtube_domains.length + shortener_domains.length + instagram_domains.length + invidious_instances.length + nitter_instances.length + bibliogram_instances.length];
         } else {
             domains = new String[twitter_domains.length + youtube_domains.length + shortener_domains.length + instagram_domains.length];
@@ -133,7 +133,7 @@ public class CheckAppActivity extends AppCompatActivity {
             domains[i] = host;
             i++;
         }
-        if (BuildConfig.full) {
+        if (BuildConfig.fullLinks) {
             for (String host : invidious_instances) {
                 domains[i] = host;
                 i++;

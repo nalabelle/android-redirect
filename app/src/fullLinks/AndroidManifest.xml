@@ -15,9 +15,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
-        tools:ignore="GoogleAppIndexingWarning,UnusedAttribute">
+        tools:ignore="GoogleAppIndexingWarning,UnusedAttribute"
+        tools:replace="android:label">
 
         <activity
+            tools:replace="android:label"
             android:name=".activities.MainActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
@@ -27,10 +29,11 @@
             </intent-filter>
         </activity>
 
-        <activity
+        <activity-alias
             android:name=".activities.TransformActivity"
             android:noHistory="true"
-            android:theme="@style/Theme.AppCompat.Translucent">
+            android:theme="@style/Theme.AppCompat.Translucent"
+            android:targetActivity=".activities.TransformActivity">
             <!-- The app should handle these domains, more can be added here -->
 
             <intent-filter>
@@ -187,36 +190,42 @@
                     android:pathPattern="/amp/s/.*" />
             </intent-filter>
 
-        </activity>
-        <activity
+        </activity-alias>
+        <activity-alias
             android:name=".activities.AppsPickerActivity"
             android:noHistory="true"
-            android:theme="@style/Theme.AppCompat.Translucent"/>
-        <activity
+            android:theme="@style/Theme.AppCompat.Translucent"
+            android:targetActivity=".activities.AppsPickerActivity" />
+        <activity-alias
             android:name=".activities.InstanceActivity"
             android:excludeFromRecents="true"
-            android:theme="@style/AppThemeDialog" />
-        <activity
+            android:theme="@style/AppThemeDialog"
+            android:targetActivity=".activities.InstanceActivity" />
+        <activity-alias
             android:name=".activities.AboutActivity"
             android:configChanges="orientation|screenSize"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme" />
-        <activity
+            android:theme="@style/AppTheme"
+            android:targetActivity=".activities.AboutActivity" />
+        <activity-alias
             android:name=".activities.CheckAppActivity"
             android:configChanges="orientation|screenSize"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme" />
-        <activity
+            android:theme="@style/AppTheme"
+            android:targetActivity=".activities.CheckAppActivity" />
+        <activity-alias
             android:name=".activities.DefaultAppActivity"
             android:configChanges="orientation|screenSize"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme" />
-        <activity
+            android:theme="@style/AppTheme"
+            android:targetActivity=".activities.DefaultAppActivity" />
+        <activity-alias
             android:name=".activities.WebviewPlayerActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:label="@string/app_name"
             android:launchMode="singleTask"
-            android:theme="@style/AppTheme" />
+            android:theme="@style/AppTheme"
+            android:targetActivity=".activities.WebviewPlayerActivity" />
     </application>
 
 </manifest>
