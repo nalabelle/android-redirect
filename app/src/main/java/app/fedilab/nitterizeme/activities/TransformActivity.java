@@ -15,14 +15,17 @@ package app.fedilab.nitterizeme.activities;
  * see <http://www.gnu.org/licenses>. */
 
 import android.app.Activity;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.ResolveInfo;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+import android.os.Parcelable;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
@@ -31,6 +34,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AlertDialog;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 import java.io.UnsupportedEncodingException;
 import java.net.MalformedURLException;
@@ -38,10 +42,12 @@ import java.net.URL;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import app.fedilab.nitterizeme.BuildConfig;
 import app.fedilab.nitterizeme.R;
 import app.fedilab.nitterizeme.helpers.Utils;
 
@@ -53,6 +59,7 @@ import static app.fedilab.nitterizeme.activities.CheckAppActivity.shortener_doma
 import static app.fedilab.nitterizeme.activities.CheckAppActivity.twitter_domains;
 import static app.fedilab.nitterizeme.activities.CheckAppActivity.youtube_domains;
 import static app.fedilab.nitterizeme.activities.MainActivity.SET_BIBLIOGRAM_ENABLED;
+import static app.fedilab.nitterizeme.activities.MainActivity.SET_EMBEDDED_PLAYER;
 import static app.fedilab.nitterizeme.activities.MainActivity.SET_INVIDIOUS_ENABLED;
 import static app.fedilab.nitterizeme.activities.MainActivity.SET_NITTER_ENABLED;
 import static app.fedilab.nitterizeme.helpers.Utils.INTENT_ACTION;
@@ -165,7 +172,14 @@ public class TransformActivity extends Activity {
                     if (transformedURL != null) {
                         delegate.setData(Uri.parse(transformUrl(TransformActivity.this, url)));
                         delegate.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                        forwardToBrowser(delegate);
+                        if (BuildConfig.fullLinks) {
+                            forwardToBrowser(delegate);
+                        } else {
+                            if (delegate.resolveActivity(getPackageManager()) != null) {
+                                startActivity(delegate);
+                                finish();
+                            }
+                        }
                     } else {
                         forwardToBrowser(intent);
                     }
@@ -181,7 +195,14 @@ public class TransformActivity extends Activity {
                     if (transformedURL != null) {
                         delegate.setData(Uri.parse(transformUrl(TransformActivity.this, url)));
                         delegate.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                        forwardToBrowser(delegate);
+                        if (BuildConfig.fullLinks) {
+                            forwardToBrowser(delegate);
+                        } else {
+                            if (delegate.resolveActivity(getPackageManager()) != null) {
+                                startActivity(delegate);
+                                finish();
+                            }
+                        }
                     } else {
                         forwardToBrowser(intent);
                     }
@@ -198,7 +219,14 @@ public class TransformActivity extends Activity {
                     if (transformedURL != null) {
                         delegate.setData(Uri.parse(transformUrl(TransformActivity.this, url)));
                         delegate.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                        forwardToBrowser(delegate);
+                        if (BuildConfig.fullLinks) {
+                            forwardToBrowser(delegate);
+                        } else {
+                            if (delegate.resolveActivity(getPackageManager()) != null) {
+                                startActivity(delegate);
+                                finish();
+                            }
+                        }
                     } else {
                         forwardToBrowser(intent);
                     }
@@ -217,7 +245,14 @@ public class TransformActivity extends Activity {
                 if (transformedURL != null) {
                     delegate.setData(Uri.parse(transformedURL));
                     delegate.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                    forwardToBrowser(delegate);
+                    if (BuildConfig.fullLinks) {
+                        forwardToBrowser(delegate);
+                    } else {
+                        if (delegate.resolveActivity(getPackageManager()) != null) {
+                            startActivity(delegate);
+                            finish();
+                        }
+                    }
                 } else {
                     forwardToBrowser(intent);
                 }
@@ -231,7 +266,14 @@ public class TransformActivity extends Activity {
                     if (transformedURL != null) {
                         delegate.setData(Uri.parse(transformUrl(TransformActivity.this, url)));
                         delegate.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                        forwardToBrowser(delegate);
+                        if (BuildConfig.fullLinks) {
+                            forwardToBrowser(delegate);
+                        } else {
+                            if (delegate.resolveActivity(getPackageManager()) != null) {
+                                startActivity(delegate);
+                                finish();
+                            }
+                        }
                     } else {
                         forwardToBrowser(intent);
                     }
@@ -311,17 +353,78 @@ public class TransformActivity extends Activity {
      */
     private void forwardToBrowser(Intent i) {
 
-        Intent app_picker = new Intent(TransformActivity.this, AppsPickerActivity.class);
-        Bundle b = new Bundle();
-        if (Objects.requireNonNull(i.getAction()).compareTo(Intent.ACTION_VIEW) == 0) {
-            b.putString(URL_APP_PICKER, i.getDataString());
+        if (!BuildConfig.fullLinks) {
+            Intent intent = new Intent();
+            intent.setAction(Intent.ACTION_VIEW);
+            String type = i.getType();
+            if (type == null) {
+                type = "text/html";
+            }
+            intent.setDataAndType(i.getData(), type);
+            List<ResolveInfo> activities = getPackageManager().queryIntentActivities(intent, 0);
+            ArrayList<Intent> targetIntents = new ArrayList<>();
+            String thisPackageName = getApplicationContext().getPackageName();
+            for (ResolveInfo currentInfo : activities) {
+                String packageName = currentInfo.activityInfo.packageName;
+                if (!thisPackageName.equals(packageName)) {
+                    Intent targetIntent = new Intent(Intent.ACTION_VIEW);
+                    targetIntent.setDataAndType(intent.getData(), intent.getType());
+                    targetIntent.setPackage(intent.getPackage());
+                    targetIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    targetIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    targetIntent.setComponent(new ComponentName(packageName, currentInfo.activityInfo.name));
+                    targetIntents.add(targetIntent);
+                }
+            }
+            //NewPipe has to be manually added
+            if (Utils.isAppInstalled(TransformActivity.this, "org.schabi.newpipe") && Arrays.asList(invidious_instances).contains(Objects.requireNonNull(i.getData()).getHost())) {
+                Intent targetIntent = new Intent(Intent.ACTION_VIEW);
+                targetIntent.setDataAndType(intent.getData(), intent.getType());
+                targetIntent.setPackage(intent.getPackage());
+                targetIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                targetIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                targetIntent.setComponent(new ComponentName("org.schabi.newpipe", "org.schabi.newpipe.RouterActivity"));
+                targetIntents.add(targetIntent);
+            }
+
+            SharedPreferences sharedpreferences = getSharedPreferences(MainActivity.APP_PREFS, Context.MODE_PRIVATE);
+            boolean embedded_player = sharedpreferences.getBoolean(SET_EMBEDDED_PLAYER, false);
+
+            if (Arrays.asList(invidious_instances).contains(Objects.requireNonNull(i.getData()).getHost()) && embedded_player) {
+                if (!i.getData().toString().contains("videoplayback")) {
+                    Intent intentPlayer = new Intent(TransformActivity.this, WebviewPlayerActivity.class);
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                        intentPlayer.addFlags(Intent.FLAG_ACTIVITY_NEW_DOCUMENT | Intent.FLAG_ACTIVITY_MULTIPLE_TASK);
+                    }
+                    intentPlayer.putExtra("url", i.getData().toString());
+                    startActivity(intentPlayer);
+                } else {
+                    Intent intentStreamingUrl = new Intent(Utils.RECEIVE_STREAMING_URL);
+                    Bundle b = new Bundle();
+                    b.putString("streaming_url", i.getData().toString());
+                    intentStreamingUrl.putExtras(b);
+                    LocalBroadcastManager.getInstance(getApplicationContext()).sendBroadcast(intentStreamingUrl);
+                }
+            } else if (targetIntents.size() > 0) {
+                Intent chooserIntent = Intent.createChooser(targetIntents.remove(0), getString(R.string.open_with));
+                chooserIntent.putExtra(Intent.EXTRA_INITIAL_INTENTS, targetIntents.toArray(new Parcelable[]{}));
+                startActivity(chooserIntent);
+            }
+            finish();
+
         } else {
-            b.putString(URL_APP_PICKER, i.getStringExtra(Intent.EXTRA_TEXT));
+            Intent app_picker = new Intent(TransformActivity.this, AppsPickerActivity.class);
+            Bundle b = new Bundle();
+            if (Objects.requireNonNull(i.getAction()).compareTo(Intent.ACTION_VIEW) == 0) {
+                b.putString(URL_APP_PICKER, i.getDataString());
+            } else {
+                b.putString(URL_APP_PICKER, i.getStringExtra(Intent.EXTRA_TEXT));
+            }
+            b.putString(INTENT_ACTION, i.getAction());
+            app_picker.putExtras(b);
+            startActivity(app_picker);
+            finish();
         }
-        b.putString(INTENT_ACTION, i.getAction());
-        app_picker.putExtras(b);
-        startActivity(app_picker);
-        finish();
     }
 
 

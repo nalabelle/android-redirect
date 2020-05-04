@@ -455,6 +455,9 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_main, menu);
+        if (!BuildConfig.fullLinks) {
+            menu.findItem(R.id.action_settings).setVisible(false);
+        }
         return true;
     }
 
