@@ -16,7 +16,7 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:ignore="GoogleAppIndexingWarning,UnusedAttribute"
-        tools:replace="android:label">
+        tools:replace="android:label,android:icon,android:roundIcon">
 
         <activity
             tools:replace="android:label"
