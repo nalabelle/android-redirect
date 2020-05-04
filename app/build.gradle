@@ -4,7 +4,6 @@ android {
     compileSdkVersion 29
     buildToolsVersion "29.0.3"
     defaultConfig {
-        applicationId "app.fedilab.nitterizeme"
         minSdkVersion 15
         targetSdkVersion 29
         versionCode 16
@@ -13,6 +12,29 @@ android {
     }
     lintOptions {
         disable 'MissingTranslation'
+        checkReleaseBuilds false
+        abortOnError false
+    }
+    flavorDimensions "default"
+    productFlavors {
+        full {
+            applicationId "app.fedilab.nitterizeme"
+            buildConfigField "boolean", "full", "true"
+            sourceSets {
+                main {
+                    manifest.srcFile "src/full/AndroidManifest.xml"
+                }
+            }
+        }
+        lite {
+            applicationId "app.fedilab.nitterizemelite"
+            buildConfigField "boolean", "full", "false"
+            sourceSets {
+                main {
+                    manifest.srcFile "src/lite/AndroidManifest.xml"
+                }
+            }
+        }
     }
     buildTypes {
         release {

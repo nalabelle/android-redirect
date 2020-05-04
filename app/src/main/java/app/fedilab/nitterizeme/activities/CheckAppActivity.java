@@ -31,6 +31,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.Objects;
 
+import app.fedilab.nitterizeme.BuildConfig;
 import app.fedilab.nitterizeme.R;
 import app.fedilab.nitterizeme.adapters.AppInfoAdapter;
 import app.fedilab.nitterizeme.entities.AppInfo;
@@ -110,8 +111,11 @@ public class CheckAppActivity extends AppCompatActivity {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setDisplayShowHomeEnabled(true);
         }
-
-        domains = new String[twitter_domains.length + youtube_domains.length + shortener_domains.length + instagram_domains.length + invidious_instances.length + nitter_instances.length + bibliogram_instances.length];
+        if (BuildConfig.full) {
+            domains = new String[twitter_domains.length + youtube_domains.length + shortener_domains.length + instagram_domains.length + invidious_instances.length + nitter_instances.length + bibliogram_instances.length];
+        } else {
+            domains = new String[twitter_domains.length + youtube_domains.length + shortener_domains.length + instagram_domains.length];
+        }
         int i = 0;
         for (String host : twitter_domains) {
             domains[i] = host;
@@ -129,17 +133,19 @@ public class CheckAppActivity extends AppCompatActivity {
             domains[i] = host;
             i++;
         }
-        for (String host : invidious_instances) {
-            domains[i] = host;
-            i++;
-        }
-        for (String host : nitter_instances) {
-            domains[i] = host;
-            i++;
-        }
-        for (String host : bibliogram_instances) {
-            domains[i] = host;
-            i++;
+        if (BuildConfig.full) {
+            for (String host : invidious_instances) {
+                domains[i] = host;
+                i++;
+            }
+            for (String host : nitter_instances) {
+                domains[i] = host;
+                i++;
+            }
+            for (String host : bibliogram_instances) {
+                domains[i] = host;
+                i++;
+            }
         }
         list_apps = findViewById(R.id.list_apps);
 

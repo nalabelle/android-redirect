@@ -298,9 +298,9 @@ public class Utils {
                         }
                         newUrl = scheme + invidiousHost + "/watch?v=" + youtubeId + "&local=true";
                     } else {
-                        if( !url.contains("/channel/") ) {
+                        if (!url.contains("/channel/")) {
                             newUrl = scheme + invidiousHost + "/" + youtubeId + "&local=true";
-                        }else{
+                        } else {
                             newUrl = scheme + invidiousHost + "/" + youtubeId;
                         }
                     }

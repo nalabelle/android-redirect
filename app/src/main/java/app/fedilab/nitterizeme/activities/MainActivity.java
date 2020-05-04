@@ -44,6 +44,7 @@ import com.google.android.material.textfield.TextInputEditText;
 import java.util.List;
 import java.util.Objects;
 
+import app.fedilab.nitterizeme.BuildConfig;
 import app.fedilab.nitterizeme.R;
 
 import static app.fedilab.nitterizeme.helpers.Utils.KILL_ACTIVITY;
@@ -510,12 +511,15 @@ public class MainActivity extends AppCompatActivity {
             bibliogram_instance.setText(bibliogramHost);
             current_instance_bibliogram.setText(bibliogramHost);
         }
-
-        List<ResolveInfo> resolveInfos = getPackageManager().queryIntentActivities(new Intent(Intent.ACTION_VIEW, Uri.parse("https://fedilab.app")), PackageManager.MATCH_DEFAULT_ONLY);
-        String thisPackageName = getApplicationContext().getPackageName();
         ConstraintLayout display_indications = findViewById(R.id.display_indications);
-        if (resolveInfos.size() == 1 && resolveInfos.get(0).activityInfo.packageName.compareTo(thisPackageName) == 0) {
-            display_indications.setVisibility(View.VISIBLE);
+        if (BuildConfig.full) {
+            List<ResolveInfo> resolveInfos = getPackageManager().queryIntentActivities(new Intent(Intent.ACTION_VIEW, Uri.parse("https://fedilab.app")), PackageManager.MATCH_DEFAULT_ONLY);
+            String thisPackageName = getApplicationContext().getPackageName();
+            if (resolveInfos.size() == 1 && resolveInfos.get(0).activityInfo.packageName.compareTo(thisPackageName) == 0) {
+                display_indications.setVisibility(View.VISIBLE);
+            } else {
+                display_indications.setVisibility(View.GONE);
+            }
         } else {
             display_indications.setVisibility(View.GONE);
         }
