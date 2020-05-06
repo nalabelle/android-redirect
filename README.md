@@ -2,7 +2,7 @@
 
 UntrackMe once set by default to open Twitter and YouTube links will transform them into Nitter and Invidious links and delegate the action to another app.
 
-There are two version of UntrackMe - Once handling all URLs for removing tracking parameters - Another one called "UntrackMe Lite" that will only handle Twitter, Youtube, Instagram, Google Maps and shortened URLs.
+There are two versions of UntrackMe - Once handling all URLs for removing tracking parameters - Another one called "UntrackMe Lite" that will only handle Twitter, Youtube, Instagram, Google Maps and shortened URLs.
 
 
 ## Donate
