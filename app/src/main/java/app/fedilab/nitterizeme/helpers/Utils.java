@@ -15,13 +15,30 @@ package app.fedilab.nitterizeme.helpers;
  * see <http://www.gnu.org/licenses>. */
 
 
+import android.app.Activity;
 import android.app.DownloadManager;
+import android.content.ComponentName;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
 import android.net.Uri;
+import android.os.Build;
+import android.os.Bundle;
 import android.os.Environment;
+import android.os.Handler;
+import android.os.Looper;
+import android.os.Parcelable;
+import android.view.View;
+import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
+
+import androidx.appcompat.app.AlertDialog;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
@@ -45,14 +62,20 @@ import java.util.regex.Pattern;
 
 import javax.net.ssl.HttpsURLConnection;
 
+import app.fedilab.nitterizeme.BuildConfig;
+import app.fedilab.nitterizeme.R;
+import app.fedilab.nitterizeme.activities.AppsPickerActivity;
 import app.fedilab.nitterizeme.activities.MainActivity;
+import app.fedilab.nitterizeme.activities.WebviewPlayerActivity;
 
 import static android.content.Context.DOWNLOAD_SERVICE;
 import static app.fedilab.nitterizeme.activities.CheckAppActivity.instagram_domains;
+import static app.fedilab.nitterizeme.activities.CheckAppActivity.invidious_instances;
 import static app.fedilab.nitterizeme.activities.CheckAppActivity.shortener_domains;
 import static app.fedilab.nitterizeme.activities.CheckAppActivity.twitter_domains;
 import static app.fedilab.nitterizeme.activities.CheckAppActivity.youtube_domains;
 import static app.fedilab.nitterizeme.activities.MainActivity.SET_BIBLIOGRAM_ENABLED;
+import static app.fedilab.nitterizeme.activities.MainActivity.SET_EMBEDDED_PLAYER;
 import static app.fedilab.nitterizeme.activities.MainActivity.SET_INVIDIOUS_ENABLED;
 import static app.fedilab.nitterizeme.activities.MainActivity.SET_NITTER_ENABLED;
 
@@ -69,6 +92,7 @@ public class Utils {
     public static final Pattern ampExtract = Pattern.compile("amp/s/(.*)");
     public static final String RECEIVE_STREAMING_URL = "receive_streaming_url";
     private static final Pattern extractPlace = Pattern.compile("/maps/place/(((?!/data).)*)");
+    private static final Pattern googleRedirect = Pattern.compile("https?://(www\\.)?google(\\.\\w{2,})?(\\.\\w{2,})/url\\?q=(.*)");
 
     private static final String[] G_TRACKING = {
             "sourceid",
@@ -115,7 +139,7 @@ public class Utils {
      *
      * @param urls ArrayList<String> URL to check
      */
-    public static void checkUrl(Context context, ArrayList<String> urls) {
+    private static void checkUrl(Context context, ArrayList<String> urls) {
         URL url;
         String newURL = null;
         String comingURl;
@@ -349,10 +373,15 @@ public class Utils {
                 url = url.replaceAll("#" + utm + "=" + urlRegex, "");
             }
             try {
+                Matcher matcher = googleRedirect.matcher(url);
+                if (matcher.find()) {
+                    url = matcher.group(4);
+                }
                 URL redirectURL = new URL(url);
                 String host = redirectURL.getHost();
                 if (host != null && host.contains("google")) {
                     for (String utm : G_TRACKING) {
+                        assert url != null;
                         url = url.replaceAll("&amp;" + utm + "=[0-9a-zA-Z._-]*", "");
                         url = url.replaceAll("&" + utm + "=[0-9a-zA-Z._-]*", "");
                         url = url.replaceAll("\\?" + utm + "=[0-9a-zA-Z._-]*", "?");
@@ -406,8 +435,8 @@ public class Utils {
      *
      * @return boolean
      */
-    @SuppressWarnings("unused")
-    public static boolean isAppInstalled(Context context, String packageName) {
+    @SuppressWarnings({"unused", "SameParameterValue"})
+    private static boolean isAppInstalled(Context context, String packageName) {
         try {
             context.getPackageManager().getPackageInfo(packageName, 0);
             return true;
@@ -487,5 +516,249 @@ public class Utils {
         set.addAll(list2);
         return new ArrayList<>(set);
     }
+
+
+    /**
+     * Manage URLs when visiting a shortened URL
+     *
+     * @param context Context
+     * @param url     String the shortened URL
+     */
+    public static void manageShortened(Context context, String url) {
+        final ArrayList<String> notShortnedURLDialog = new ArrayList<>();
+        AlertDialog.Builder unshortenAlertBuilder = new AlertDialog.Builder(context, R.style.AppThemeDialog);
+        unshortenAlertBuilder.setTitle(R.string.shortened_detected);
+        unshortenAlertBuilder.setOnDismissListener(dialog -> ((Activity) context).finish());
+        View view = ((Activity) context).getLayoutInflater().inflate(R.layout.popup_unshorten, new LinearLayout(context), false);
+        unshortenAlertBuilder.setView(view);
+        unshortenAlertBuilder.setIcon(R.mipmap.ic_launcher);
+        unshortenAlertBuilder.setPositiveButton(R.string.open, (dialog, id) -> {
+            if (notShortnedURLDialog.size() > 0) {
+                Intent delegate = new Intent(Intent.ACTION_VIEW);
+                delegate.setData(Uri.parse(notShortnedURLDialog.get(notShortnedURLDialog.size() - 1)));
+                delegate.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                forwardToBrowser(context, delegate);
+            }
+            dialog.dismiss();
+            ((Activity) context).finish();
+        });
+        unshortenAlertBuilder.setNegativeButton(R.string.dismiss, (dialog, id) -> {
+            dialog.dismiss();
+            ((Activity) context).finish();
+        });
+        AlertDialog alertDialog = unshortenAlertBuilder.create();
+        alertDialog.show();
+        Button positiveButton = (alertDialog).getButton(AlertDialog.BUTTON_POSITIVE);
+        positiveButton.setEnabled(false);
+        Thread thread = new Thread() {
+            @Override
+            public void run() {
+                notShortnedURLDialog.add(url);
+                Utils.checkUrl(context, notShortnedURLDialog);
+                Handler mainHandler = new Handler(Looper.getMainLooper());
+                Runnable myRunnable = () -> {
+                    positiveButton.setEnabled(true);
+                    StringBuilder message;
+                    if (notShortnedURLDialog.size() <= 1) {
+                        message = new StringBuilder(context.getString(R.string.the_app_failed_shortened));
+                    } else {
+                        message = new StringBuilder(context.getString(R.string.try_to_redirect, notShortnedURLDialog.get(0), notShortnedURLDialog.get(1)));
+                        if (notShortnedURLDialog.size() > 2) {
+                            for (int i = 2; i < notShortnedURLDialog.size(); i++) {
+                                message.append("\n\n").append(context.getString(R.string.try_to_redirect_again, notShortnedURLDialog.get(i)));
+                            }
+                        }
+                    }
+                    TextView indications = view.findViewById(R.id.indications);
+                    RelativeLayout progress = view.findViewById(R.id.progress);
+                    indications.setText(message.toString());
+                    indications.setVisibility(View.VISIBLE);
+                    progress.setVisibility(View.GONE);
+                };
+                mainHandler.post(myRunnable);
+            }
+        };
+        thread.start();
+    }
+
+    /**
+     * Manage URLs when trying to share a shortened URL
+     *
+     * @param context   Context
+     * @param url       String coming URL
+     * @param extraText String text when sharing content
+     * @param scheme    String scheme of the URL
+     */
+    public static void manageShortenedShare(Context context, String url, String extraText, String scheme) {
+        ArrayList<String> notShortnedURLDialog = new ArrayList<>();
+        Thread thread = new Thread() {
+            @Override
+            public void run() {
+                notShortnedURLDialog.add(url);
+                Utils.checkUrl(context, notShortnedURLDialog);
+
+                URL url_;
+                String host = null;
+                try {
+                    url_ = new URL(notShortnedURLDialog.get(notShortnedURLDialog.size() - 1));
+                    host = url_.getHost();
+                } catch (MalformedURLException e) {
+                    e.printStackTrace();
+                }
+                SharedPreferences sharedpreferences = context.getSharedPreferences(MainActivity.APP_PREFS, Context.MODE_PRIVATE);
+                boolean nitter_enabled = sharedpreferences.getBoolean(SET_NITTER_ENABLED, true);
+                boolean invidious_enabled = sharedpreferences.getBoolean(SET_INVIDIOUS_ENABLED, true);
+                boolean osm_enabled = sharedpreferences.getBoolean(MainActivity.SET_OSM_ENABLED, true);
+                if (nitter_enabled && Arrays.asList(twitter_domains).contains(host)) {
+                    Matcher matcher = nitterPattern.matcher(notShortnedURLDialog.get(notShortnedURLDialog.size() - 1));
+                    String newUrlFinal = notShortnedURLDialog.get(notShortnedURLDialog.size() - 1);
+                    while (matcher.find()) {
+                        final String nitter_directory = matcher.group(2);
+                        String nitterHost = sharedpreferences.getString(MainActivity.SET_NITTER_HOST, MainActivity.DEFAULT_NITTER_HOST).toLowerCase();
+                        newUrlFinal = scheme + nitterHost + nitter_directory;
+                    }
+                    String newExtraText = extraText.replaceAll(Pattern.quote(url), Matcher.quoteReplacement(newUrlFinal));
+                    Intent sendIntent = new Intent();
+                    sendIntent.setAction(Intent.ACTION_SEND);
+                    sendIntent.putExtra(Intent.EXTRA_TEXT, newExtraText);
+                    sendIntent.setType("text/plain");
+                    forwardToBrowser(context, sendIntent);
+                } else if (invidious_enabled && Arrays.asList(youtube_domains).contains(host)) {
+                    Matcher matcher = youtubePattern.matcher(notShortnedURLDialog.get(notShortnedURLDialog.size() - 1));
+                    String newUrlFinal = notShortnedURLDialog.get(notShortnedURLDialog.size() - 1);
+                    while (matcher.find()) {
+                        final String youtubeId = matcher.group(3);
+                        String invidiousHost = sharedpreferences.getString(MainActivity.SET_INVIDIOUS_HOST, MainActivity.DEFAULT_INVIDIOUS_HOST).toLowerCase();
+                        if (Objects.requireNonNull(matcher.group(2)).compareTo("youtu.be") == 0) {
+                            newUrlFinal = scheme + invidiousHost + "/watch?v=" + youtubeId + "&local=true";
+                        } else {
+                            newUrlFinal = scheme + invidiousHost + "/" + youtubeId + "&local=true";
+                        }
+                    }
+                    String newExtraText = extraText.replaceAll(Pattern.quote(url), Matcher.quoteReplacement(newUrlFinal));
+                    Intent sendIntent = new Intent();
+                    sendIntent.setAction(Intent.ACTION_SEND);
+                    sendIntent.putExtra(Intent.EXTRA_TEXT, newExtraText);
+                    sendIntent.setType("text/plain");
+                    forwardToBrowser(context, sendIntent);
+                } else if (osm_enabled && notShortnedURLDialog.get(notShortnedURLDialog.size() - 1).contains("/maps/place/")) {
+                    String newUrlFinal = notShortnedURLDialog.get(notShortnedURLDialog.size() - 1);
+                    Matcher matcher = maps.matcher(notShortnedURLDialog.get(notShortnedURLDialog.size() - 1));
+                    while (matcher.find()) {
+                        final String localization = matcher.group(1);
+                        assert localization != null;
+                        String[] data = localization.split(",");
+                        if (data.length > 2) {
+                            String zoom;
+                            String[] details = data[2].split("\\.");
+                            if (details.length > 0) {
+                                zoom = details[0];
+                            } else {
+                                zoom = data[2];
+                            }
+                            String osmHost = sharedpreferences.getString(MainActivity.SET_OSM_HOST, MainActivity.DEFAULT_OSM_HOST).toLowerCase();
+                            newUrlFinal = scheme + osmHost + "/#map=" + zoom + "/" + data[0] + "/" + data[1];
+                        }
+                    }
+                    String newExtraText = extraText.replaceAll(Pattern.quote(url), Matcher.quoteReplacement(newUrlFinal));
+                    Intent sendIntent = new Intent();
+                    sendIntent.setAction(Intent.ACTION_SEND);
+                    sendIntent.putExtra(Intent.EXTRA_TEXT, newExtraText);
+                    sendIntent.setType("text/plain");
+                    forwardToBrowser(context, sendIntent);
+                } else {
+                    String newExtraText = extraText.replaceAll(Pattern.quote(url), Matcher.quoteReplacement(notShortnedURLDialog.get(notShortnedURLDialog.size() - 1)));
+                    Intent sendIntent = new Intent();
+                    sendIntent.setAction(Intent.ACTION_SEND);
+                    sendIntent.putExtra(Intent.EXTRA_TEXT, newExtraText);
+                    sendIntent.setType("text/plain");
+                    forwardToBrowser(context, sendIntent);
+                }
+            }
+        };
+        thread.start();
+    }
+
+    /**
+     * Forward the intent to a browser
+     *
+     * @param i original intent
+     */
+    public static void forwardToBrowser(Context context, Intent i) {
+
+        if (!BuildConfig.fullLinks) {
+            Intent intent = new Intent();
+            intent.setAction(Intent.ACTION_VIEW);
+            String type = i.getType();
+            if (type == null) {
+                type = "text/html";
+            }
+            intent.setDataAndType(i.getData(), type);
+            List<ResolveInfo> activities = context.getPackageManager().queryIntentActivities(intent, 0);
+            ArrayList<Intent> targetIntents = new ArrayList<>();
+            String thisPackageName = context.getApplicationContext().getPackageName();
+            for (ResolveInfo currentInfo : activities) {
+                String packageName = currentInfo.activityInfo.packageName;
+                if (!thisPackageName.equals(packageName)) {
+                    Intent targetIntent = new Intent(Intent.ACTION_VIEW);
+                    targetIntent.setDataAndType(intent.getData(), intent.getType());
+                    targetIntent.setPackage(intent.getPackage());
+                    targetIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    targetIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    targetIntent.setComponent(new ComponentName(packageName, currentInfo.activityInfo.name));
+                    targetIntents.add(targetIntent);
+                }
+            }
+            //NewPipe has to be manually added
+            if (Utils.isAppInstalled(context, "org.schabi.newpipe") && Arrays.asList(invidious_instances).contains(Objects.requireNonNull(i.getData()).getHost())) {
+                Intent targetIntent = new Intent(Intent.ACTION_VIEW);
+                targetIntent.setDataAndType(intent.getData(), intent.getType());
+                targetIntent.setPackage(intent.getPackage());
+                targetIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                targetIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                targetIntent.setComponent(new ComponentName("org.schabi.newpipe", "org.schabi.newpipe.RouterActivity"));
+                targetIntents.add(targetIntent);
+            }
+
+            SharedPreferences sharedpreferences = context.getSharedPreferences(MainActivity.APP_PREFS, Context.MODE_PRIVATE);
+            boolean embedded_player = sharedpreferences.getBoolean(SET_EMBEDDED_PLAYER, false);
+
+            if (Arrays.asList(invidious_instances).contains(Objects.requireNonNull(i.getData()).getHost()) && embedded_player) {
+                if (!i.getData().toString().contains("videoplayback")) {
+                    Intent intentPlayer = new Intent(context, WebviewPlayerActivity.class);
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                        intentPlayer.addFlags(Intent.FLAG_ACTIVITY_NEW_DOCUMENT | Intent.FLAG_ACTIVITY_MULTIPLE_TASK);
+                    }
+                    intentPlayer.putExtra("url", i.getData().toString());
+                    context.startActivity(intentPlayer);
+                } else {
+                    Intent intentStreamingUrl = new Intent(Utils.RECEIVE_STREAMING_URL);
+                    Bundle b = new Bundle();
+                    b.putString("streaming_url", i.getData().toString());
+                    intentStreamingUrl.putExtras(b);
+                    LocalBroadcastManager.getInstance(context).sendBroadcast(intentStreamingUrl);
+                }
+            } else if (targetIntents.size() > 0) {
+                Intent chooserIntent = Intent.createChooser(targetIntents.remove(0), context.getString(R.string.open_with));
+                chooserIntent.putExtra(Intent.EXTRA_INITIAL_INTENTS, targetIntents.toArray(new Parcelable[]{}));
+                context.startActivity(chooserIntent);
+            }
+            ((Activity) context).finish();
+
+        } else {
+            Intent app_picker = new Intent(context, AppsPickerActivity.class);
+            Bundle b = new Bundle();
+            if (Objects.requireNonNull(i.getAction()).compareTo(Intent.ACTION_VIEW) == 0) {
+                b.putString(URL_APP_PICKER, i.getDataString());
+            } else {
+                b.putString(URL_APP_PICKER, i.getStringExtra(Intent.EXTRA_TEXT));
+            }
+            b.putString(INTENT_ACTION, i.getAction());
+            app_picker.putExtras(b);
+            context.startActivity(app_picker);
+            ((Activity) context).finish();
+        }
+    }
+
 
 }

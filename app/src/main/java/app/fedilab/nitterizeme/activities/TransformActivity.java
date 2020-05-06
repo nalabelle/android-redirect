@@ -15,40 +15,24 @@ package app.fedilab.nitterizeme.activities;
  * see <http://www.gnu.org/licenses>. */
 
 import android.app.Activity;
-import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.pm.ResolveInfo;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Looper;
-import android.os.Parcelable;
 import android.util.Patterns;
-import android.view.View;
-import android.widget.Button;
-import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
-
-import androidx.appcompat.app.AlertDialog;
-import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 import java.io.UnsupportedEncodingException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLEncoder;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import app.fedilab.nitterizeme.BuildConfig;
-import app.fedilab.nitterizeme.R;
 import app.fedilab.nitterizeme.helpers.Utils;
 
 import static app.fedilab.nitterizeme.activities.CheckAppActivity.bibliogram_instances;
@@ -59,15 +43,15 @@ import static app.fedilab.nitterizeme.activities.CheckAppActivity.shortener_doma
 import static app.fedilab.nitterizeme.activities.CheckAppActivity.twitter_domains;
 import static app.fedilab.nitterizeme.activities.CheckAppActivity.youtube_domains;
 import static app.fedilab.nitterizeme.activities.MainActivity.SET_BIBLIOGRAM_ENABLED;
-import static app.fedilab.nitterizeme.activities.MainActivity.SET_EMBEDDED_PLAYER;
 import static app.fedilab.nitterizeme.activities.MainActivity.SET_INVIDIOUS_ENABLED;
 import static app.fedilab.nitterizeme.activities.MainActivity.SET_NITTER_ENABLED;
-import static app.fedilab.nitterizeme.helpers.Utils.INTENT_ACTION;
 import static app.fedilab.nitterizeme.helpers.Utils.KILL_ACTIVITY;
-import static app.fedilab.nitterizeme.helpers.Utils.URL_APP_PICKER;
 import static app.fedilab.nitterizeme.helpers.Utils.ampExtract;
 import static app.fedilab.nitterizeme.helpers.Utils.bibliogramAccountPattern;
 import static app.fedilab.nitterizeme.helpers.Utils.bibliogramPostPattern;
+import static app.fedilab.nitterizeme.helpers.Utils.forwardToBrowser;
+import static app.fedilab.nitterizeme.helpers.Utils.manageShortened;
+import static app.fedilab.nitterizeme.helpers.Utils.manageShortenedShare;
 import static app.fedilab.nitterizeme.helpers.Utils.maps;
 import static app.fedilab.nitterizeme.helpers.Utils.nitterPattern;
 import static app.fedilab.nitterizeme.helpers.Utils.remove_tracking_param;
@@ -77,9 +61,6 @@ import static app.fedilab.nitterizeme.helpers.Utils.youtubePattern;
 
 public class TransformActivity extends Activity {
 
-
-    private Thread thread;
-    private ArrayList<String> notShortnedURLDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -92,7 +73,6 @@ public class TransformActivity extends Activity {
         }
         Intent stopMainActivity = new Intent(KILL_ACTIVITY);
         sendBroadcast(stopMainActivity);
-        notShortnedURLDialog = new ArrayList<>();
         assert intent != null;
         //Dealing with URLs
         if (Objects.requireNonNull(intent.getAction()).equals(Intent.ACTION_VIEW)) {
@@ -107,61 +87,7 @@ public class TransformActivity extends Activity {
             }
             //Shortened URLs
             if (Arrays.asList(shortener_domains).contains(host)) {
-
-                AlertDialog.Builder unshortenAlertBuilder = new AlertDialog.Builder(TransformActivity.this, R.style.AppThemeDialog);
-                unshortenAlertBuilder.setTitle(R.string.shortened_detected);
-                unshortenAlertBuilder.setOnDismissListener(dialog -> finish());
-                View view = getLayoutInflater().inflate(R.layout.popup_unshorten, new LinearLayout(getApplicationContext()), false);
-                unshortenAlertBuilder.setView(view);
-                unshortenAlertBuilder.setIcon(R.mipmap.ic_launcher);
-                unshortenAlertBuilder.setPositiveButton(R.string.open, (dialog, id) -> {
-                    if (notShortnedURLDialog.size() > 0) {
-                        Intent delegate = new Intent(Intent.ACTION_VIEW);
-                        delegate.setData(Uri.parse(notShortnedURLDialog.get(notShortnedURLDialog.size() - 1)));
-                        delegate.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                        forwardToBrowser(delegate);
-                    }
-                    dialog.dismiss();
-                    finish();
-                });
-                unshortenAlertBuilder.setNegativeButton(R.string.dismiss, (dialog, id) -> {
-                    dialog.dismiss();
-                    finish();
-                });
-                AlertDialog alertDialog = unshortenAlertBuilder.create();
-                alertDialog.show();
-                Button positiveButton = (alertDialog).getButton(AlertDialog.BUTTON_POSITIVE);
-                positiveButton.setEnabled(false);
-                thread = new Thread() {
-                    @Override
-                    public void run() {
-                        notShortnedURLDialog = new ArrayList<>();
-                        notShortnedURLDialog.add(url);
-                        Utils.checkUrl(TransformActivity.this, notShortnedURLDialog);
-                        Handler mainHandler = new Handler(Looper.getMainLooper());
-                        Runnable myRunnable = () -> {
-                            positiveButton.setEnabled(true);
-                            StringBuilder message;
-                            if (notShortnedURLDialog.size() <= 1) {
-                                message = new StringBuilder(getString(R.string.the_app_failed_shortened));
-                            } else {
-                                message = new StringBuilder(getString(R.string.try_to_redirect, notShortnedURLDialog.get(0), notShortnedURLDialog.get(1)));
-                                if (notShortnedURLDialog.size() > 2) {
-                                    for (int i = 2; i < notShortnedURLDialog.size(); i++) {
-                                        message.append("\n\n").append(getString(R.string.try_to_redirect_again, notShortnedURLDialog.get(i)));
-                                    }
-                                }
-                            }
-                            TextView indications = view.findViewById(R.id.indications);
-                            RelativeLayout progress = view.findViewById(R.id.progress);
-                            indications.setText(message.toString());
-                            indications.setVisibility(View.VISIBLE);
-                            progress.setVisibility(View.GONE);
-                        };
-                        mainHandler.post(myRunnable);
-                    }
-                };
-                thread.start();
+                manageShortened(TransformActivity.this, url);
             }
             //Twitter URLs
             else if (Arrays.asList(twitter_domains).contains(host)) {
@@ -173,7 +99,7 @@ public class TransformActivity extends Activity {
                         delegate.setData(Uri.parse(transformUrl(TransformActivity.this, url)));
                         delegate.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                         if (BuildConfig.fullLinks) {
-                            forwardToBrowser(delegate);
+                            forwardToBrowser(TransformActivity.this, delegate);
                         } else {
                             if (delegate.resolveActivity(getPackageManager()) != null) {
                                 startActivity(delegate);
@@ -181,10 +107,10 @@ public class TransformActivity extends Activity {
                             }
                         }
                     } else {
-                        forwardToBrowser(intent);
+                        forwardToBrowser(TransformActivity.this, intent);
                     }
                 } else {
-                    forwardToBrowser(intent);
+                    forwardToBrowser(TransformActivity.this, intent);
                 }
             } //Instagram URLs
             else if (Arrays.asList(instagram_domains).contains(host)) {
@@ -196,7 +122,7 @@ public class TransformActivity extends Activity {
                         delegate.setData(Uri.parse(transformUrl(TransformActivity.this, url)));
                         delegate.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                         if (BuildConfig.fullLinks) {
-                            forwardToBrowser(delegate);
+                            forwardToBrowser(TransformActivity.this, delegate);
                         } else {
                             if (delegate.resolveActivity(getPackageManager()) != null) {
                                 startActivity(delegate);
@@ -204,10 +130,10 @@ public class TransformActivity extends Activity {
                             }
                         }
                     } else {
-                        forwardToBrowser(intent);
+                        forwardToBrowser(TransformActivity.this, intent);
                     }
                 } else {
-                    forwardToBrowser(intent);
+                    forwardToBrowser(TransformActivity.this, intent);
                 }
             }
             //Maps URLs (containing /maps/place like Google Maps links)
@@ -220,7 +146,7 @@ public class TransformActivity extends Activity {
                         delegate.setData(Uri.parse(transformUrl(TransformActivity.this, url)));
                         delegate.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                         if (BuildConfig.fullLinks) {
-                            forwardToBrowser(delegate);
+                            forwardToBrowser(TransformActivity.this, delegate);
                         } else {
                             if (delegate.resolveActivity(getPackageManager()) != null) {
                                 startActivity(delegate);
@@ -228,10 +154,10 @@ public class TransformActivity extends Activity {
                             }
                         }
                     } else {
-                        forwardToBrowser(intent);
+                        forwardToBrowser(TransformActivity.this, intent);
                     }
                 } else {
-                    forwardToBrowser(intent);
+                    forwardToBrowser(TransformActivity.this, intent);
                 }
             }
             //AMP URLs (containing /amp/s/ like Google AMP links)
@@ -246,7 +172,7 @@ public class TransformActivity extends Activity {
                     delegate.setData(Uri.parse(transformedURL));
                     delegate.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     if (BuildConfig.fullLinks) {
-                        forwardToBrowser(delegate);
+                        forwardToBrowser(TransformActivity.this, delegate);
                     } else {
                         if (delegate.resolveActivity(getPackageManager()) != null) {
                             startActivity(delegate);
@@ -254,7 +180,7 @@ public class TransformActivity extends Activity {
                         }
                     }
                 } else {
-                    forwardToBrowser(intent);
+                    forwardToBrowser(TransformActivity.this, intent);
                 }
             }
             //YouTube URLs
@@ -267,7 +193,7 @@ public class TransformActivity extends Activity {
                         delegate.setData(Uri.parse(transformUrl(TransformActivity.this, url)));
                         delegate.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                         if (BuildConfig.fullLinks) {
-                            forwardToBrowser(delegate);
+                            forwardToBrowser(TransformActivity.this, delegate);
                         } else {
                             if (delegate.resolveActivity(getPackageManager()) != null) {
                                 startActivity(delegate);
@@ -275,10 +201,10 @@ public class TransformActivity extends Activity {
                             }
                         }
                     } else {
-                        forwardToBrowser(intent);
+                        forwardToBrowser(TransformActivity.this, intent);
                     }
                 } else {
-                    forwardToBrowser(intent);
+                    forwardToBrowser(TransformActivity.this, intent);
                 }
             }
             //Transform an Invidious URL from an instance to another one selected by the end user.
@@ -294,9 +220,9 @@ public class TransformActivity extends Activity {
                         transformedURL += "&local=true";
                     }
                     intent.setData(Uri.parse(transformedURL));
-                    forwardToBrowser(intent);
+                    forwardToBrowser(TransformActivity.this, intent);
                 } else {
-                    forwardToBrowser(intent);
+                    forwardToBrowser(TransformActivity.this, intent);
                 }
             }
             //Transform a Nitter URL from an instance to another one selected by the end user.
@@ -309,9 +235,9 @@ public class TransformActivity extends Activity {
                         transformedURL = url.replace(host, nitterHost);
                     }
                     intent.setData(Uri.parse(transformedURL));
-                    forwardToBrowser(intent);
+                    forwardToBrowser(TransformActivity.this, intent);
                 } else {
-                    forwardToBrowser(intent);
+                    forwardToBrowser(TransformActivity.this, intent);
                 }
             }
             //Transform a Bibliogram URL from an instance to another one selected by the end user.
@@ -324,14 +250,25 @@ public class TransformActivity extends Activity {
                         transformedURL = url.replace(host, bibliogramHost);
                     }
                     intent.setData(Uri.parse(transformedURL));
-                    forwardToBrowser(intent);
+                    forwardToBrowser(TransformActivity.this, intent);
                 } else {
-                    forwardToBrowser(intent);
+                    forwardToBrowser(TransformActivity.this, intent);
                 }
             } else {
                 String newUrl = remove_tracking_param(url);
-                intent.setData(Uri.parse(newUrl));
-                forwardToBrowser(intent);
+                try {
+                    url_ = new URL(newUrl);
+                    host = url_.getHost();
+                } catch (MalformedURLException e) {
+                    e.printStackTrace();
+                }
+                //Shortened URLs
+                if (Arrays.asList(shortener_domains).contains(host)) {
+                    manageShortened(TransformActivity.this, newUrl);
+                } else {
+                    intent.setData(Uri.parse(newUrl));
+                    forwardToBrowser(TransformActivity.this, intent);
+                }
             }
 
         }
@@ -343,91 +280,7 @@ public class TransformActivity extends Activity {
 
     @Override
     protected void onDestroy() {
-        if (thread != null && thread.isAlive()) {
-            thread.interrupt();
-        }
         super.onDestroy();
-    }
-
-    /**
-     * Forward the intent to a browser
-     *
-     * @param i original intent
-     */
-    private void forwardToBrowser(Intent i) {
-
-        if (!BuildConfig.fullLinks) {
-            Intent intent = new Intent();
-            intent.setAction(Intent.ACTION_VIEW);
-            String type = i.getType();
-            if (type == null) {
-                type = "text/html";
-            }
-            intent.setDataAndType(i.getData(), type);
-            List<ResolveInfo> activities = getPackageManager().queryIntentActivities(intent, 0);
-            ArrayList<Intent> targetIntents = new ArrayList<>();
-            String thisPackageName = getApplicationContext().getPackageName();
-            for (ResolveInfo currentInfo : activities) {
-                String packageName = currentInfo.activityInfo.packageName;
-                if (!thisPackageName.equals(packageName)) {
-                    Intent targetIntent = new Intent(Intent.ACTION_VIEW);
-                    targetIntent.setDataAndType(intent.getData(), intent.getType());
-                    targetIntent.setPackage(intent.getPackage());
-                    targetIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                    targetIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                    targetIntent.setComponent(new ComponentName(packageName, currentInfo.activityInfo.name));
-                    targetIntents.add(targetIntent);
-                }
-            }
-            //NewPipe has to be manually added
-            if (Utils.isAppInstalled(TransformActivity.this, "org.schabi.newpipe") && Arrays.asList(invidious_instances).contains(Objects.requireNonNull(i.getData()).getHost())) {
-                Intent targetIntent = new Intent(Intent.ACTION_VIEW);
-                targetIntent.setDataAndType(intent.getData(), intent.getType());
-                targetIntent.setPackage(intent.getPackage());
-                targetIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                targetIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                targetIntent.setComponent(new ComponentName("org.schabi.newpipe", "org.schabi.newpipe.RouterActivity"));
-                targetIntents.add(targetIntent);
-            }
-
-            SharedPreferences sharedpreferences = getSharedPreferences(MainActivity.APP_PREFS, Context.MODE_PRIVATE);
-            boolean embedded_player = sharedpreferences.getBoolean(SET_EMBEDDED_PLAYER, false);
-
-            if (Arrays.asList(invidious_instances).contains(Objects.requireNonNull(i.getData()).getHost()) && embedded_player) {
-                if (!i.getData().toString().contains("videoplayback")) {
-                    Intent intentPlayer = new Intent(TransformActivity.this, WebviewPlayerActivity.class);
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                        intentPlayer.addFlags(Intent.FLAG_ACTIVITY_NEW_DOCUMENT | Intent.FLAG_ACTIVITY_MULTIPLE_TASK);
-                    }
-                    intentPlayer.putExtra("url", i.getData().toString());
-                    startActivity(intentPlayer);
-                } else {
-                    Intent intentStreamingUrl = new Intent(Utils.RECEIVE_STREAMING_URL);
-                    Bundle b = new Bundle();
-                    b.putString("streaming_url", i.getData().toString());
-                    intentStreamingUrl.putExtras(b);
-                    LocalBroadcastManager.getInstance(getApplicationContext()).sendBroadcast(intentStreamingUrl);
-                }
-            } else if (targetIntents.size() > 0) {
-                Intent chooserIntent = Intent.createChooser(targetIntents.remove(0), getString(R.string.open_with));
-                chooserIntent.putExtra(Intent.EXTRA_INITIAL_INTENTS, targetIntents.toArray(new Parcelable[]{}));
-                startActivity(chooserIntent);
-            }
-            finish();
-
-        } else {
-            Intent app_picker = new Intent(TransformActivity.this, AppsPickerActivity.class);
-            Bundle b = new Bundle();
-            if (Objects.requireNonNull(i.getAction()).compareTo(Intent.ACTION_VIEW) == 0) {
-                b.putString(URL_APP_PICKER, i.getDataString());
-            } else {
-                b.putString(URL_APP_PICKER, i.getStringExtra(Intent.EXTRA_TEXT));
-            }
-            b.putString(INTENT_ACTION, i.getAction());
-            app_picker.putExtras(b);
-            startActivity(app_picker);
-            finish();
-        }
     }
 
 
@@ -468,7 +321,7 @@ public class TransformActivity extends Activity {
             sendIntent.setAction(Intent.ACTION_SEND);
             sendIntent.putExtra(Intent.EXTRA_TEXT, extraText);
             sendIntent.setType("text/plain");
-            forwardToBrowser(sendIntent);
+            forwardToBrowser(TransformActivity.this, sendIntent);
             return;
         }
         Uri url_r = Uri.parse(url);
@@ -562,95 +415,7 @@ public class TransformActivity extends Activity {
                 }
             }
         } else if (Arrays.asList(shortener_domains).contains(host)) {
-            String finalUrl = url;
-            String finalExtraText = extraText;
-            String finalScheme = scheme;
-            Thread thread = new Thread() {
-                @Override
-                public void run() {
-                    notShortnedURLDialog.add(finalUrl);
-                    Utils.checkUrl(TransformActivity.this, notShortnedURLDialog);
-
-                    URL url_;
-                    String host = null;
-                    try {
-                        url_ = new URL(notShortnedURLDialog.get(notShortnedURLDialog.size() - 1));
-                        host = url_.getHost();
-                    } catch (MalformedURLException e) {
-                        e.printStackTrace();
-                    }
-
-                    boolean nitter_enabled = sharedpreferences.getBoolean(SET_NITTER_ENABLED, true);
-                    boolean invidious_enabled = sharedpreferences.getBoolean(SET_INVIDIOUS_ENABLED, true);
-                    boolean osm_enabled = sharedpreferences.getBoolean(MainActivity.SET_OSM_ENABLED, true);
-                    if (nitter_enabled && Arrays.asList(twitter_domains).contains(host)) {
-                        Matcher matcher = nitterPattern.matcher(notShortnedURLDialog.get(notShortnedURLDialog.size() - 1));
-                        String newUrlFinal = notShortnedURLDialog.get(notShortnedURLDialog.size() - 1);
-                        while (matcher.find()) {
-                            final String nitter_directory = matcher.group(2);
-                            String nitterHost = sharedpreferences.getString(MainActivity.SET_NITTER_HOST, MainActivity.DEFAULT_NITTER_HOST).toLowerCase();
-                            newUrlFinal = finalScheme + nitterHost + nitter_directory;
-                        }
-                        String newExtraText = finalExtraText.replaceAll(Pattern.quote(finalUrl), Matcher.quoteReplacement(newUrlFinal));
-                        Intent sendIntent = new Intent();
-                        sendIntent.setAction(Intent.ACTION_SEND);
-                        sendIntent.putExtra(Intent.EXTRA_TEXT, newExtraText);
-                        sendIntent.setType("text/plain");
-                        forwardToBrowser(sendIntent);
-                    } else if (invidious_enabled && Arrays.asList(youtube_domains).contains(host)) {
-                        Matcher matcher = youtubePattern.matcher(notShortnedURLDialog.get(notShortnedURLDialog.size() - 1));
-                        String newUrlFinal = notShortnedURLDialog.get(notShortnedURLDialog.size() - 1);
-                        while (matcher.find()) {
-                            final String youtubeId = matcher.group(3);
-                            String invidiousHost = sharedpreferences.getString(MainActivity.SET_INVIDIOUS_HOST, MainActivity.DEFAULT_INVIDIOUS_HOST).toLowerCase();
-                            if (Objects.requireNonNull(matcher.group(2)).compareTo("youtu.be") == 0) {
-                                newUrlFinal = finalScheme + invidiousHost + "/watch?v=" + youtubeId + "&local=true";
-                            } else {
-                                newUrlFinal = finalScheme + invidiousHost + "/" + youtubeId + "&local=true";
-                            }
-                        }
-                        String newExtraText = finalExtraText.replaceAll(Pattern.quote(finalUrl), Matcher.quoteReplacement(newUrlFinal));
-                        Intent sendIntent = new Intent();
-                        sendIntent.setAction(Intent.ACTION_SEND);
-                        sendIntent.putExtra(Intent.EXTRA_TEXT, newExtraText);
-                        sendIntent.setType("text/plain");
-                        forwardToBrowser(sendIntent);
-                    } else if (osm_enabled && notShortnedURLDialog.get(notShortnedURLDialog.size() - 1).contains("/maps/place/")) {
-                        String newUrlFinal = notShortnedURLDialog.get(notShortnedURLDialog.size() - 1);
-                        Matcher matcher = maps.matcher(notShortnedURLDialog.get(notShortnedURLDialog.size() - 1));
-                        while (matcher.find()) {
-                            final String localization = matcher.group(1);
-                            assert localization != null;
-                            String[] data = localization.split(",");
-                            if (data.length > 2) {
-                                String zoom;
-                                String[] details = data[2].split("\\.");
-                                if (details.length > 0) {
-                                    zoom = details[0];
-                                } else {
-                                    zoom = data[2];
-                                }
-                                String osmHost = sharedpreferences.getString(MainActivity.SET_OSM_HOST, MainActivity.DEFAULT_OSM_HOST).toLowerCase();
-                                newUrlFinal = finalScheme + osmHost + "/#map=" + zoom + "/" + data[0] + "/" + data[1];
-                            }
-                        }
-                        String newExtraText = finalExtraText.replaceAll(Pattern.quote(finalUrl), Matcher.quoteReplacement(newUrlFinal));
-                        Intent sendIntent = new Intent();
-                        sendIntent.setAction(Intent.ACTION_SEND);
-                        sendIntent.putExtra(Intent.EXTRA_TEXT, newExtraText);
-                        sendIntent.setType("text/plain");
-                        forwardToBrowser(sendIntent);
-                    } else {
-                        String newExtraText = finalExtraText.replaceAll(Pattern.quote(finalUrl), Matcher.quoteReplacement(notShortnedURLDialog.get(notShortnedURLDialog.size() - 1)));
-                        Intent sendIntent = new Intent();
-                        sendIntent.setAction(Intent.ACTION_SEND);
-                        sendIntent.putExtra(Intent.EXTRA_TEXT, newExtraText);
-                        sendIntent.setType("text/plain");
-                        forwardToBrowser(sendIntent);
-                    }
-                }
-            };
-            thread.start();
+            manageShortenedShare(TransformActivity.this, url, extraText, scheme);
             return;
         } else {
             newUrl = remove_tracking_param(url);
@@ -662,7 +427,7 @@ public class TransformActivity extends Activity {
         sendIntent.setAction(Intent.ACTION_SEND);
         sendIntent.putExtra(Intent.EXTRA_TEXT, extraText);
         sendIntent.setType("text/plain");
-        forwardToBrowser(sendIntent);
+        forwardToBrowser(TransformActivity.this, sendIntent);
     }
 
 

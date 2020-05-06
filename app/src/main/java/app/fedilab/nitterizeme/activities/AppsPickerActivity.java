@@ -84,7 +84,14 @@ public class AppsPickerActivity extends Activity {
             delegate.putExtra(Intent.EXTRA_TEXT, url);
             delegate.setType("text/plain");
         }
-        List<ResolveInfo> activities = getPackageManager().queryIntentActivities(delegate, PackageManager.MATCH_DEFAULT_ONLY);
+        List<ResolveInfo> activities;
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
+            activities = getPackageManager().queryIntentActivities(
+                    delegate, PackageManager.MATCH_ALL);
+        } else {
+            activities = getPackageManager().queryIntentActivities(
+                    delegate, 0);
+        }
 
 
         SQLiteDatabase db = Sqlite.getInstance(getApplicationContext(), Sqlite.DB_NAME, null, Sqlite.DB_VERSION).open();
@@ -130,13 +137,29 @@ public class AppsPickerActivity extends Activity {
             gridView.setAdapter(appPickerAdapter);
             gridView.setNumColumns(3);
             gridView.setOnItemClickListener((parent, view1, position, id) -> {
-                for (AppPicker ap : appPickers) {
-                    ap.setSelected(false);
+                if (!appPickers.get(position).isSelected()) {
+                    for (AppPicker ap : appPickers) {
+                        ap.setSelected(false);
+                    }
+                    appPickers.get(position).setSelected(true);
+                    appToUse = appPickers.get(position).getPackageName();
+                    appName = appPickers.get(position).getName();
+                    appPickerAdapter.notifyDataSetChanged();
+                } else {
+                    if (action.compareTo(Intent.ACTION_VIEW) == 0) {
+                        Intent intent = new Intent(action, Uri.parse(url));
+                        intent.setPackage(appToUse);
+                        startActivity(intent);
+                    } else {
+                        Intent intent = new Intent(action);
+                        intent.putExtra(Intent.EXTRA_TEXT, url);
+                        intent.setType("text/plain");
+                        intent.setPackage(appToUse);
+                        startActivity(intent);
+                    }
+                    finish();
                 }
-                appPickers.get(position).setSelected(true);
-                appToUse = appPickers.get(position).getPackageName();
-                appName = appPickers.get(position).getName();
-                appPickerAdapter.notifyDataSetChanged();
+
             });
 
 
