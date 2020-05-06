@@ -216,7 +216,7 @@ public class TransformActivity extends Activity {
                     if (host != null && host.compareTo(invidiousHost) != 0) {
                         transformedURL = url.replace(host, invidiousHost);
                     }
-                    if (!transformedURL.contains("lolal=true")) {
+                    if (!transformedURL.contains("local=true")) {
                         transformedURL += "&local=true";
                     }
                     intent.setData(Uri.parse(transformedURL));
