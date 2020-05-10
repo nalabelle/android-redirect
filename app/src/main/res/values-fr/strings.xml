@@ -63,9 +63,9 @@
     <string name="default_app_indication">%1$s a été défini comme application par défaut.\nVous pouvez supprimer ce comportement des paramètres de l\'application.</string>
     <string name="indication_error_title">Il y a quelque chose qui ne va pas dans la configuration de l\'application. Veuillez suivre ces indications pour résoudre ce problème.</string>
     <string name="open_configure">1 - Appuyez sur le bouton \"CONFIGURATION\" ci-dessus.</string>
-    <string name="supported_url_indication_1">2 - You are now in app settings from your device. Tap on \"Set as default\".</string>
-    <string name="display_indications_1_description">Screenshot showing app settings for the app. You have to Tap on \"Set as default\"</string>
-    <string name="supported_url_indication_2">2 - Then tap on \"Go to supported URLs\".</string>
+    <string name="supported_url_indication_1">2 - Vous êtes maintenant dans les paramètres de l\'application à partir de votre appareil. Appuyez sur « Définir par défaut ».</string>
+    <string name="display_indications_1_description">Capture d\'écran montrant les paramètres de l\'application pour l\'application. Vous devez appuyer sur « Définir par défaut »</string>
+    <string name="supported_url_indication_2">2 - Ensuite, appuyez sur « Aller aux URL prises en charges ».</string>
     <string name="display_indications_2_description">Screenshot showing app settings for the app. You have to Tap on \"Go to supported URLs\"</string>
     <string name="supported_url_indication_3">3 - Dans les suggestions assurez-vous de sélectionner \"Toujours demander\"</string>
     <string name="display_indications_3_description">Screenshot showing app settings to define the behavior for opening URLs</string>
