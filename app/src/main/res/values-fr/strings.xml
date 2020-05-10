@@ -28,7 +28,7 @@
     <string name="redirect_instagram_to_bibliogram">Rediriger Instagram vers Bibliogram</string>
     <string name="custom_bibliogram">Instance Bibliogram personnalisée</string>
     <string name="redirect_gm_to_geo_uri">Rediriger Google Map vers Geo URI</string>
-    <string name="configure">Configuration</string>
+    <string name="configure">Configurer</string>
     <string name="display_supported_links">Afficher les liens pris en charge</string>
     <string name="use_geo_uri">Utiliser geo URI</string>
     <string name="how_to">Mode d’emploi</string>
@@ -66,9 +66,9 @@
     <string name="supported_url_indication_1">2 - Vous êtes maintenant dans les paramètres de l\'application à partir de votre appareil. Appuyez sur « Définir par défaut ».</string>
     <string name="display_indications_1_description">Capture d\'écran montrant les paramètres de l\'application pour l\'application. Vous devez appuyer sur « Définir par défaut »</string>
     <string name="supported_url_indication_2">2 - Ensuite, appuyez sur « Aller aux URL prises en charges ».</string>
-    <string name="display_indications_2_description">Screenshot showing app settings for the app. You have to Tap on \"Go to supported URLs\"</string>
+    <string name="display_indications_2_description">Capture d\'écran montrant les paramètres de l\'application pour l\'application. Vous devez appuyer sur « Aller aux URL prises en charge »</string>
     <string name="supported_url_indication_3">3 - Dans les suggestions assurez-vous de sélectionner \"Toujours demander\"</string>
-    <string name="display_indications_3_description">Screenshot showing app settings to define the behavior for opening URLs</string>
+    <string name="display_indications_3_description">Capture d\'écran montrant les paramètres de l\'application pour définir le comportement pour l\'ouverture des URL</string>
     <string name="default_apps">Applications par défaut</string>
     <string name="remove_from_default_app">Retirer des applications par défaut</string>
     <string name="delete">Supprimer</string>
