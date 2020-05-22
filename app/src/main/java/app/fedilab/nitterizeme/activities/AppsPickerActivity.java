@@ -15,6 +15,9 @@ package app.fedilab.nitterizeme.activities;
  * see <http://www.gnu.org/licenses>. */
 
 import android.app.Activity;
+import android.content.ClipData;
+import android.content.ClipboardManager;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
@@ -27,6 +30,7 @@ import android.widget.GridView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.ImageView;
 
 import androidx.constraintlayout.widget.ConstraintLayout;
 
@@ -210,6 +214,13 @@ public class AppsPickerActivity extends Activity {
             });
         }
 
+        ImageView copyLink = findViewById(R.id.copy_link);
+        copyLink.setOnClickListener(v -> {
+            ClipboardManager clipboard = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
+            ClipData clipData = ClipData.newPlainText("", url);
+            clipboard.setPrimaryClip(clipData);
+            Toast.makeText(this, getString(R.string.copy_done), Toast.LENGTH_SHORT).show();
+        });
     }
 
     @Override
