@@ -27,10 +27,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.GridView;
-import android.widget.RelativeLayout;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.ImageView;
 
 import androidx.constraintlayout.widget.ConstraintLayout;
 
@@ -99,7 +98,7 @@ public class AppsPickerActivity extends Activity {
 
 
         SQLiteDatabase db = Sqlite.getInstance(getApplicationContext(), Sqlite.DB_NAME, null, Sqlite.DB_VERSION).open();
-        RelativeLayout blank = findViewById(R.id.blank);
+        View blank = findViewById(R.id.blank);
         blank.setOnClickListener(v -> finish());
         String thisPackageName = getApplicationContext().getPackageName();
         ArrayList<String> packages = new ArrayList<>();
