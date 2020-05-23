@@ -97,7 +97,10 @@ public class Utils {
     private static final String[] G_TRACKING = {
             "sourceid",
             "aqs",
-            "client"
+            "client",
+            "source",
+            "ust",
+            "usg"
     };
 
     private static final String[] UTM_PARAMS = {
@@ -245,9 +248,8 @@ public class Utils {
                     }
                 }
                 if (newUrl != null && (newUrl.endsWith("tweets") || newUrl.endsWith("tweets/"))) {
-                    newUrl = newUrl.replace("/tweets/", "").replace("/tweets", "");
+                    newUrl = newUrl.replaceAll("/tweets/?", "");
                 }
-
                 return newUrl;
             } else {
                 return url;
@@ -369,7 +371,6 @@ public class Utils {
      * @return cleaned URL String
      */
     public static String remove_tracking_param(String url) {
-
         if (url != null) {
             for (String utm : UTM_PARAMS) {
                 url = url.replaceAll("&amp;" + utm + "=[0-9a-zA-Z._-]*", "");
@@ -385,7 +386,7 @@ public class Utils {
                 }
                 URL redirectURL = new URL(url);
                 String host = redirectURL.getHost();
-                if (host != null && host.contains("google")) {
+                if (host != null) {
                     for (String utm : G_TRACKING) {
                         assert url != null;
                         url = url.replaceAll("&amp;" + utm + "=[0-9a-zA-Z._-]*", "");
