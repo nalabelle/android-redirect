@@ -74,5 +74,5 @@
     <string name="delete">Ezabatu</string>
     <string name="cancel">Utzi</string>
     <string name="delete_app_from_default">Ezabatu %1$s aplikazio lehenetsietatik?</string>
-    <string name="copy_done">Copied</string>
+    <string name="copy_done">Kopiatuta</string>
 </resources>
