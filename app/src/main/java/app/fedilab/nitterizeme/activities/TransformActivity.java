@@ -427,8 +427,12 @@ public class TransformActivity extends Activity {
         sendIntent.setAction(Intent.ACTION_SEND);
         sendIntent.putExtra(Intent.EXTRA_TEXT, extraText);
         sendIntent.setType("text/plain");
-        forwardToBrowser(TransformActivity.this, sendIntent);
+        if( BuildConfig.fullLinks) {
+            forwardToBrowser(TransformActivity.this, sendIntent);
+        }else{
+            startActivity(sendIntent);
+            finish();
+        }
     }
-
 
 }
