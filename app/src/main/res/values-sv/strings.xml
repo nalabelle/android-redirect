@@ -74,4 +74,5 @@
     <string name="delete">Delete</string>
     <string name="cancel">Cancel</string>
     <string name="delete_app_from_default">Delete %1$s from default apps?</string>
+    <string name="copy_done">Copied</string>
 </resources>
