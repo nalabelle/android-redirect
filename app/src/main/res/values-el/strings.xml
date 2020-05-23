@@ -74,4 +74,5 @@
     <string name="delete">Διαγραφή</string>
     <string name="cancel">Ακύρωση</string>
     <string name="delete_app_from_default">Διαγραφή %1$s από τις προεπιλεγμένες εφαρμογές;</string>
+    <string name="copy_done">Copied</string>
 </resources>
