@@ -15,6 +15,9 @@ package app.fedilab.nitterizeme.activities;
  * see <http://www.gnu.org/licenses>. */
 
 import android.app.Activity;
+import android.content.ClipData;
+import android.content.ClipboardManager;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
@@ -24,7 +27,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.GridView;
-import android.widget.RelativeLayout;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -95,7 +98,7 @@ public class AppsPickerActivity extends Activity {
 
 
         SQLiteDatabase db = Sqlite.getInstance(getApplicationContext(), Sqlite.DB_NAME, null, Sqlite.DB_VERSION).open();
-        RelativeLayout blank = findViewById(R.id.blank);
+        View blank = findViewById(R.id.blank);
         blank.setOnClickListener(v -> finish());
         String thisPackageName = getApplicationContext().getPackageName();
         ArrayList<String> packages = new ArrayList<>();
@@ -210,6 +213,13 @@ public class AppsPickerActivity extends Activity {
             });
         }
 
+        ImageView copyLink = findViewById(R.id.copy_link);
+        copyLink.setOnClickListener(v -> {
+            ClipboardManager clipboard = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
+            ClipData clipData = ClipData.newPlainText("", url);
+            clipboard.setPrimaryClip(clipData);
+            Toast.makeText(this, getString(R.string.copy_done), Toast.LENGTH_SHORT).show();
+        });
     }
 
     @Override
