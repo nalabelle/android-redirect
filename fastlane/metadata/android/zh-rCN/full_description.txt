@@ -1,16 +1,16 @@
-UntrackMe once set by default to open Twitter, YouTube and Instagram links will transform them into Nitter, Invidious and Bibliogram links and delegate the action to another app.
+一旦被设置为打开Twitter、YouTube和Instagram链接的默认应用，UntrackMe便会将这类链接转换为Nitter、Invidious和Bibliogram链接并将动作委托给另一个应用。
 
 它还支持谷歌地图链接，将其转换为 OpenStreetMap 链接或 Geo URI。
 
 应用会检测短网址并在访问站点之前显示完整网址。
 
-**Lite version:
+**精简版本：
 
-- When sharing a Twitter, YouTube or Google Maps link just pick up UntrackMe to transform it before sharing it with another app.
+-共享Twitter，YouTube或Google Maps链接时，先选择UntrackMe对此类链接进行转换，再与其他应用共享。
 
-**Full version:
+**完整版本：
 
-- Contains all features of the lite version and it also handle all links to remove tracking parameters. It uses its own app picker that display URLs before visiting them.
+-包含精简版的所有功能，还处理所有链接以删除跟踪参数 它使用自己的应用程序选择器，在访问它们前先显示 URL
 
 
 什么是Nitter:
@@ -19,13 +19,13 @@ Niter是自由和开放源码的替代 Twitter 的前端，注重保护隐私。
 Github 项目：https://github.com/zedeus/nitter
 
 
-Invidious是什么：
+什么是Invidious：
 
 YouTube的一个自由和开源的替代前端
 Github 项目：https://github.com/omarroth/invidious
 
 
-What is Bibliogram:
+什么是Bibliogram:
 
-A free and open source alternative front-end to Instagram
-Github project: https://github.com/cloudrac3r/bibliogram
+Instagram的自由开源替代前端
+Github 项目：https://github.com/cloudrac3r/bibliogram

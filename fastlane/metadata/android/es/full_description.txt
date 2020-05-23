@@ -1,16 +1,16 @@
-UntrackMe once set by default to open Twitter, YouTube and Instagram links will transform them into Nitter, Invidious and Bibliogram links and delegate the action to another app.
+Una vez establecido por defecto NitterizeMe para la apertura de enlaces de Twitter y YouTube e Instagram, los transformará en enlaces de Nitter, Invidious y Bibliogram, y delegará la acción a otra aplicación.
 
 También soporta enlaces de Google Maps para transformarlos en enlaces de OpenStreetMap o Geo URI.
 
 La aplicación detectará las URL acortadas y mostrará la URL completa antes de visitar el sitio.
 
-**Lite version:
+**Versión Ligera:
 
-- When sharing a Twitter, YouTube or Google Maps link just pick up UntrackMe to transform it before sharing it with another app.
+- A la hora de compartir un enlace de Twitter, YouTube o Google Maps, simplemente selecciona UntrackMe para transformarlo antes de compartirlo con otra aplicación.
 
-**Full version:
+**Versión completa:
 
-- Contains all features of the lite version and it also handle all links to remove tracking parameters. It uses its own app picker that display URLs before visiting them.
+- Contiene todas las características de la versión ligera y además maneja los enlaces para quitarles los parámetros de seguimiento. Utiliza su propio selector de aplicaciones que muestra URLs antes de visitarlas.
 
 
 Qué es Nitter:
@@ -25,7 +25,7 @@ Una interfaz de YouTube alternativa, libre y de código abierto
 Proyecto Github: https://github.com/omarroth/invidious
 
 
-What is Bibliogram:
+Qué es Bibliogram:
 
-A free and open source alternative front-end to Instagram
-Github project: https://github.com/cloudrac3r/bibliogram
+Una interfaz alternativa de Instagram, libre y de código abierto
+Proyecto en Github: https://github.com/cloudrac3r/bibliogram
