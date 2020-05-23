@@ -379,7 +379,7 @@ public class TransformActivity extends Activity {
             if (osm_enabled) {
                 Matcher matcher = maps.matcher(url);
                 while (matcher.find()) {
-                    final String localization = matcher.group(1);
+                    final String localization = matcher.group(2);
                     assert localization != null;
                     String[] data = localization.split(",");
                     if (data.length > 2) {
@@ -427,9 +427,9 @@ public class TransformActivity extends Activity {
         sendIntent.setAction(Intent.ACTION_SEND);
         sendIntent.putExtra(Intent.EXTRA_TEXT, extraText);
         sendIntent.setType("text/plain");
-        if( BuildConfig.fullLinks) {
+        if (BuildConfig.fullLinks) {
             forwardToBrowser(TransformActivity.this, sendIntent);
-        }else{
+        } else {
             startActivity(sendIntent);
             finish();
         }

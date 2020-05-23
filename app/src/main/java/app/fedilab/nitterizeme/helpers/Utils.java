@@ -88,7 +88,7 @@ public class Utils {
     public static final Pattern nitterPattern = Pattern.compile("(mobile\\.|www\\.)?twitter.com([\\w-/]+)");
     public static final Pattern bibliogramPostPattern = Pattern.compile("(m\\.|www\\.)?instagram.com(/p/[\\w-/]+)");
     public static final Pattern bibliogramAccountPattern = Pattern.compile("(m\\.|www\\.)?instagram.com(((?!/p/).)+)");
-    public static final Pattern maps = Pattern.compile("/maps/place/[^@]+@([\\d.,z]{3,}).*");
+    public static final Pattern maps = Pattern.compile("/maps/place/([^@]+@)?([\\d.,z]+).*");
     public static final Pattern ampExtract = Pattern.compile("amp/s/(.*)");
     public static final String RECEIVE_STREAMING_URL = "receive_streaming_url";
     private static final Pattern extractPlace = Pattern.compile("/maps/place/(((?!/data).)*)");
@@ -152,7 +152,7 @@ public class Utils {
                 httpsURLConnection.setRequestProperty("http.keepAlive", "false");
                 httpsURLConnection.setInstanceFollowRedirects(false);
                 httpsURLConnection.setRequestMethod("HEAD");
-                if (httpsURLConnection.getResponseCode() == 301) {
+                if (httpsURLConnection.getResponseCode() == 301 || httpsURLConnection.getResponseCode() == 302) {
                     Map<String, List<String>> map = httpsURLConnection.getHeaderFields();
                     for (Map.Entry<String, List<String>> entry : map.entrySet()) {
                         if (entry.toString().toLowerCase().startsWith("location")) {
@@ -224,7 +224,6 @@ public class Utils {
         } else {
             scheme += "://";
         }
-
         if (Arrays.asList(twitter_domains).contains(host)) {
             boolean nitter_enabled = sharedpreferences.getBoolean(SET_NITTER_ENABLED, true);
             if (nitter_enabled) {
@@ -277,18 +276,21 @@ public class Utils {
             if (osm_enabled) {
                 Matcher matcher = maps.matcher(url);
                 while (matcher.find()) {
-                    final String localization = matcher.group(1);
+                    final String localization = matcher.group(2);
                     assert localization != null;
                     String[] data = localization.split(",");
-                    if (data.length > 2) {
+                    if (data.length >= 2) {
                         String zoom;
-                        String[] details = data[2].split("\\.");
-                        if (details.length > 0) {
-                            zoom = details[0];
+                        if (data.length > 2) {
+                            String[] details = data[2].split("\\.");
+                            if (details.length > 0) {
+                                zoom = details[0];
+                            } else {
+                                zoom = data[2];
+                            }
                         } else {
-                            zoom = data[2];
+                            zoom = "16";
                         }
-
                         String osmHost = sharedpreferences.getString(MainActivity.SET_OSM_HOST, MainActivity.DEFAULT_OSM_HOST).toLowerCase();
                         boolean geo_uri_enabled = sharedpreferences.getBoolean(MainActivity.SET_GEO_URIS, false);
                         if (!geo_uri_enabled) {
@@ -537,7 +539,14 @@ public class Utils {
                 Intent delegate = new Intent(Intent.ACTION_VIEW);
                 delegate.setData(Uri.parse(notShortnedURLDialog.get(notShortnedURLDialog.size() - 1)));
                 delegate.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                forwardToBrowser(context, delegate);
+                if (BuildConfig.fullLinks) {
+                    forwardToBrowser(context, delegate);
+                } else {
+                    if (delegate.resolveActivity(context.getPackageManager()) != null) {
+                        context.startActivity(delegate);
+                        ((Activity) context).finish();
+                    }
+                }
             }
             dialog.dismiss();
             ((Activity) context).finish();
@@ -645,7 +654,7 @@ public class Utils {
                     String newUrlFinal = notShortnedURLDialog.get(notShortnedURLDialog.size() - 1);
                     Matcher matcher = maps.matcher(notShortnedURLDialog.get(notShortnedURLDialog.size() - 1));
                     while (matcher.find()) {
-                        final String localization = matcher.group(1);
+                        final String localization = matcher.group(2);
                         assert localization != null;
                         String[] data = localization.split(",");
                         if (data.length > 2) {

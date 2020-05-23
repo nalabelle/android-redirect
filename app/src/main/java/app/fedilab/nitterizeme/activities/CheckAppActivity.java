@@ -68,7 +68,8 @@ public class CheckAppActivity extends AppCompatActivity {
             "goo.gl",
             "ow.ly",
             "bl.ink",
-            "buff.ly"
+            "buff.ly",
+            "maps.app.goo.gl"
     };
     //Supported instances to redirect one instance to another faster for the user
     public static String[] invidious_instances = {

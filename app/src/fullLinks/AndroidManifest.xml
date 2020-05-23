@@ -51,6 +51,7 @@
                 <data android:host="ow.ly" />
                 <data android:host="bl.ink" />
                 <data android:host="buff.ly" />
+                <data android:host="maps.app.goo.gl" />
 
                 <!-- INSTAGRAM URLs  -->
                 <data android:host="instagram.com" />
@@ -120,6 +121,7 @@
                 <data android:host="ow.ly" />
                 <data android:host="bl.ink" />
                 <data android:host="buff.ly" />
+                <data android:host="maps.app.goo.gl" />
 
                 <!-- INSTAGRAM URLs  -->
                 <data android:host="instagram.com" />
