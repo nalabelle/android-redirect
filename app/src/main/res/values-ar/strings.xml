@@ -49,7 +49,7 @@
     <string name="expand_instance_details">توسيع تفاصيل مثيل الخادم</string>
     <string name="cloudflare">مثيل الخادم هذا يستخدم Cloudflare</string>
     <string name="instance_info">معلومات حول مثيلات الخوادم في القائمة</string>
-    <string name="about_instances">قائمة الأمثلة تأتي من\n\n <a href="%1$s">%2$s</a>\n\nيمكنك المساهمة في هذه القائمة بإضافة أو إزالة مثيلات.</string>
+    <string name="about_instances">مصدر قائمة مثيلات الخوادم تأتي من\n\n <a href="%1$s">%2$s</a>\n\nيمكنك المساهمة في هذه القائمة بإضافة أو إزالة مثيلات خوادم.</string>
     <string name="about_instances_title">عن مثيلات الخوادم</string>
     <string name="use_built_in_player">استخدام المشغل المدمج</string>
     <string name="share">مشاركة</string>
@@ -62,13 +62,13 @@
     <string name="always">دائما</string>
     <string name="default_app_indication">%1$s تم تعيينه كتطبيق افتراضي.\nيمكنك إزالة هذا السلوك من إعدادات التطبيق.</string>
     <string name="indication_error_title">هناك خطأ ما في اعدادات التطبيق. يرجى اتباع هذه الخطوات لإصلاح هذه المشكلة.</string>
-    <string name="open_configure">1 - اضغط على زر \"التخصيص\" أعلاه.</string>
+    <string name="open_configure">1 - اضغط على زر \"الإعداد\" أعلاه.</string>
     <string name="supported_url_indication_1">2 - أنت الآن في إعدادات التطبيق لجهازك. اضغط على \"تعيين كافتراضي\".</string>
     <string name="display_indications_1_description">لقطة شاشة تُظهِر إعدادات التطبيق. يجب عليك الضغط على \"تعيين كافتراضي\"</string>
     <string name="supported_url_indication_2">2 - ثم اضغط على \"اذهب إلى عناوين URL المدعومة\".</string>
     <string name="display_indications_2_description">لقطة شاشة تعرض إعدادات التطبيق. عليك أن اضغط على \"الذهاب إلى عناوين URL المدعومة\"</string>
     <string name="supported_url_indication_3">3 - في الاقتراحات تأكد من الضغط على \"السؤال دائماً\"</string>
-    <string name="display_indications_3_description">لقطة الشاشة تعرض إعدادات التطبيق و لتحديد السلوك لفتح عناوين URL</string>
+    <string name="display_indications_3_description">لقطة شاشة تعرض إعدادات التطبيق لتحديد سلوك فتح عناوين URL</string>
     <string name="default_apps">التطبيقات الافتراضية</string>
     <string name="remove_from_default_app">إزالة من التطبيقات الافتراضية</string>
     <string name="delete">حذف</string>
