@@ -244,6 +244,10 @@ public class Utils {
                         newUrl = scheme + nitterHost + nitter_directory;
                     }
                 }
+                if (newUrl != null && (newUrl.endsWith("tweets") || newUrl.endsWith("tweets/"))) {
+                    newUrl = newUrl.replace("/tweets/", "").replace("/tweets", "");
+                }
+
                 return newUrl;
             } else {
                 return url;
