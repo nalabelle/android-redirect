@@ -1,10 +1,17 @@
-UntrackMe når de er indstillet som standard til at åbne Twitter og YouTube links vil omdanne dem til Nitter og Uheldige, links og uddelegere handling til en anden app.
+UntrackMe once set by default to open Twitter, YouTube and Instagram links will transform them into Nitter, Invidious and Bibliogram links and delegate the action to another app.
 
 Det understøtter også Google Maps links til at omdanne dem til OpenStreetMap links eller Geo-URI.
 
 App 'en vil opdage kortere url' er og vil vise den fulde URL-adresse, før du besøger hjemmesiden.
 
-Når du deler en Twitter, YouTube eller Google Maps link, du blot vælge op UntrackMe til at ændre det, før du deler det med en anden app.
+**Lite version:
+
+- When sharing a Twitter, YouTube or Google Maps link just pick up UntrackMe to transform it before sharing it with another app.
+
+**Full version:
+
+- Contains all features of the lite version and it also handle all links to remove tracking parameters. It uses its own app picker that display URLs before visiting them.
+
 
 Hvad er Nitter:
 
@@ -16,3 +23,9 @@ Hvad er Uheldige:
 
 En gratis og open source alternativ Twitter front-end fokus på privatlivets fred
 Github projektet: https://github.com/omarroth/invidious
+
+
+What is Bibliogram:
+
+A free and open source alternative front-end to Instagram
+Github project: https://github.com/cloudrac3r/bibliogram
