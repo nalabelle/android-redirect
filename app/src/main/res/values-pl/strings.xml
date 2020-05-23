@@ -74,4 +74,5 @@
     <string name="delete">Usuń</string>
     <string name="cancel">Anuluj</string>
     <string name="delete_app_from_default">Usunąć %1$s z domyślnych aplikacji?</string>
+    <string name="copy_done">Copied</string>
 </resources>
