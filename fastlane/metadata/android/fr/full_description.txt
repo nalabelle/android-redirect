@@ -4,11 +4,11 @@ Il supporte également les liens Google Maps pour les transformer en liens OpenS
 
 L’application détectera les URL raccourcies et affichera l’URL complète avant de visiter le site.
 
-**Lite version:
+**Version allégée :
 
 - When sharing a Twitter, YouTube or Google Maps link just pick up UntrackMe to transform it before sharing it with another app.
 
-**Full version:
+**Version complète :
 
 - Contains all features of the lite version and it also handle all links to remove tracking parameters. It uses its own app picker that display URLs before visiting them.
 
@@ -25,7 +25,7 @@ Une alternative libre et open source à YouTube
 Projet Github : https://github.com/omarroth/invidious
 
 
-What is Bibliogram:
+Qu'est-ce que Bibliogram :
 
 A free and open source alternative front-end to Instagram
 Github project: https://github.com/cloudrac3r/bibliogram
