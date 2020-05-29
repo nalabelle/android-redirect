@@ -14,6 +14,7 @@ package app.fedilab.nitterizeme.adapters;
  * You should have received a copy of the GNU General Public License along with UntrackMe; if not,
  * see <http://www.gnu.org/licenses>. */
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.res.Resources;
 import android.database.sqlite.SQLiteDatabase;
@@ -79,6 +80,12 @@ public class DefaultAppAdapter extends RecyclerView.Adapter {
                     new DefaultAppDAO(context, db).removeApp(app_package);
                     defaultApps.remove(defaultApp);
                     notifyItemRemoved(i);
+                    if (defaultApps.size() == 0) {
+                        TextView no_apps = ((Activity) context).findViewById(R.id.no_apps);
+                        if (no_apps != null) {
+                            no_apps.setVisibility(View.VISIBLE);
+                        }
+                    }
                     dialog.dismiss();
                 });
                 confirmDialog.setNegativeButton(R.string.cancel, (dialog, id) -> dialog.dismiss());

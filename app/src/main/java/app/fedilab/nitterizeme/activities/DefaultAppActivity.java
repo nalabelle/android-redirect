@@ -19,6 +19,8 @@ import android.content.pm.PackageInfo;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -58,6 +60,10 @@ public class DefaultAppActivity extends AppCompatActivity {
         ArrayList<DefaultApp> appInfos = getAppInfo();
         DefaultAppAdapter defaultAppAdapter = new DefaultAppAdapter(appInfos);
         list_apps.setAdapter(defaultAppAdapter);
+        if (appInfos.size() == 0) {
+            TextView no_apps = findViewById(R.id.no_apps);
+            no_apps.setVisibility(View.VISIBLE);
+        }
     }
 
 
