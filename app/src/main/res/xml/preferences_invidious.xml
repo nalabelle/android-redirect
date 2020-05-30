@@ -16,12 +16,12 @@
 
         <ListPreference
             app:iconSpaceReserved="false"
-            app:key="@string/invidious_tint_mode"
+            app:key="@string/invidious_thin_mode"
             app:summary="@string/invidious_thin_mode_indication"
             app:title="@string/invidious_thin_mode_title"
             android:defaultValue="0"
             android:entries="@array/invidious_enable"
-            android:entryValues="@array/invidious_tint_values" />
+            android:entryValues="@array/invidious_thin_values" />
 
         <ListPreference
             android:defaultValue="0"

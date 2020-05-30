@@ -39,6 +39,7 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
+import androidx.preference.PreferenceManager;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
@@ -353,30 +354,41 @@ public class Utils {
      */
     public static String replaceInvidiousParams(Context context, String url) {
         String newUrl = url;
-        SharedPreferences sharedpreferences = context.getSharedPreferences(MainActivity.APP_PREFS, Context.MODE_PRIVATE);
-
+        SharedPreferences sharedpreferences = PreferenceManager.getDefaultSharedPreferences(context);
         //Theme
         String theme = sharedpreferences.getString(context.getString(R.string.invidious_dark_mode), "0");
         if (theme.compareTo("-1") == 0) { //Remove value
-            newUrl = url.replaceAll("&?dark_mode=(true|false)", "");
+            newUrl = newUrl.replaceAll("&?dark_mode=(true|false)", "");
         } else if (theme.compareTo("0") != 0) { //Change value
-            newUrl = url.replaceAll("dark_mode=(true|false)", theme);
+            if (newUrl.contains("dark_mode=")) {
+                newUrl = newUrl.replaceAll("dark_mode=(true|false)", theme);
+            } else {
+                newUrl += "&" + theme;
+            }
         }
 
-        //Tint mode
-        String tint = sharedpreferences.getString(context.getString(R.string.invidious_tint_mode), "0");
-        if (tint.compareTo("-1") == 0) { //Remove value
-            newUrl = url.replaceAll("&?thin_mode=(true|false)", "");
-        } else if (tint.compareTo("0") != 0) { //Change value
-            newUrl = url.replaceAll("thin_mode=(true|false)", theme);
+        //Thin mode
+        String thin = sharedpreferences.getString(context.getString(R.string.invidious_thin_mode), "0");
+        if (thin.compareTo("-1") == 0) { //Remove value
+            newUrl = newUrl.replaceAll("&?thin_mode=(true|false)", "");
+        } else if (thin.compareTo("0") != 0) { //Change value
+            if (newUrl.contains("thin_mode=")) {
+                newUrl = newUrl.replaceAll("thin_mode=(true|false)", thin);
+            } else {
+                newUrl += "&" + thin;
+            }
         }
 
         //Language
         String language = sharedpreferences.getString(context.getString(R.string.invidious_language_mode), "0");
         if (language.compareTo("-1") == 0) { //Remove value
-            newUrl = url.replaceAll("&?hl=\\w{2}(-\\w{2})?", "");
+            newUrl = newUrl.replaceAll("&?hl=\\w{2}(-\\w{2})?", "");
         } else if (language.compareTo("0") != 0) { //Change value
-            newUrl = url.replaceAll("hl=\\w{2}(-\\w{2})?", language);
+            if (newUrl.contains("hl=")) {
+                newUrl = newUrl.replaceAll("hl=\\w{2}(-\\w{2})?", language);
+            } else {
+                newUrl += "&" + language;
+            }
         }
 
         return newUrl;

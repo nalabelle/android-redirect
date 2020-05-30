@@ -152,7 +152,7 @@
 
     <!-- Some local values -->
     <string name="invidious_dark_mode" translatable="false">invidious_dark_mode</string>
-    <string name="invidious_tint_mode" translatable="false">invidious_tint_mode</string>
+    <string name="invidious_thin_mode" translatable="false">invidious_thin_mode</string>
     <string name="invidious_language_mode" translatable="false">invidious_language_mode</string>
     <string name="invidious_annotations_mode" translatable="false">invidious_annotations_mode</string>
     <string name="invidious_autoplay_mode" translatable="false">invidious_autoplay_mode</string>
