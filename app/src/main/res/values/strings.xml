@@ -149,6 +149,11 @@
         <item>English</item>
     </string-array>
 
+    <string-array name="invidious_quality">
+        <item>DASH</item>
+        <item>720p</item>
+        <item>480p</item>
+    </string-array>
 
     <!-- Some local values -->
     <string name="invidious_dark_mode" translatable="false">invidious_dark_mode</string>
@@ -161,5 +166,9 @@
     <string name="invidious_local_mode" translatable="false">invidious_local_mode</string>
     <string name="invidious_subtitles_mode" translatable="false">invidious_subtitles_mode</string>
     <string name="invidious_quality_mode" translatable="false">invidious_quality_mode</string>
+    <string name="invidious_subtitles_mode_title">Subtitles</string>
+    <string name="invidious_subtitles_mode_indication">List of ISO 639-1 language codes</string>
+    <string name="invidious_quality_mode_title">Quality</string>
+    <string name="invidious_quality_mode_indication">Default player quality</string>
 
 </resources>
