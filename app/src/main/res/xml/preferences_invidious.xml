@@ -2,27 +2,49 @@
 <PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <ListPreference
-        app:iconSpaceReserved="false"
-        app:key="invidious_dark_mode"
-        app:summary="@string/invidious_dark_theme_indication"
-        app:title="@string/invidious_dark_theme"
-        android:entries="@array/invidious_theme"
-        android:entryValues="@array/invidious_theme_values" />
+    <PreferenceCategory
+        android:title="@string/pref_invidious_head1"
+        app:iconSpaceReserved="false">
+        <ListPreference
+            app:iconSpaceReserved="false"
+            app:key="invidious_dark_mode"
+            app:summary="@string/invidious_dark_theme_indication"
+            app:title="@string/invidious_dark_theme"
+            android:defaultValue="0"
+            android:entries="@array/invidious_theme"
+            android:entryValues="@array/invidious_theme_values" />
 
-    <ListPreference
-        app:iconSpaceReserved="false"
-        app:key="invidious_tint_mode"
-        app:summary="@string/invidious_thin_mode_indication"
-        app:title="@string/invidious_thin_mode"
-        android:entries="@array/invidious_tint"
-        android:entryValues="@array/invidious_tint_values" />
+        <ListPreference
+            app:iconSpaceReserved="false"
+            app:key="invidious_tint_mode"
+            app:summary="@string/invidious_thin_mode_indication"
+            app:title="@string/invidious_thin_mode"
+            android:defaultValue="0"
+            android:entries="@array/invidious_tint"
+            android:entryValues="@array/invidious_tint_values" />
 
-    <ListPreference
-        app:iconSpaceReserved="false"
-        app:key="invidious_language_mode"
-        app:summary="@string/invidious_language_mode_indication"
-        app:title="@string/invidious_language_mode"
-        android:entries="@array/invidious_language"
-        android:entryValues="@array/invidious_language_values" />
+        <ListPreference
+            android:defaultValue="0"
+            app:iconSpaceReserved="false"
+            app:key="invidious_language_mode"
+            app:summary="@string/invidious_language_mode_indication"
+            app:title="@string/invidious_language_mode"
+            android:entries="@array/invidious_language"
+            android:entryValues="@array/invidious_language_values" />
+    </PreferenceCategory>
+
+
+    <PreferenceCategory
+        android:title="@string/pref_invidious_head2"
+        app:iconSpaceReserved="false">
+        <ListPreference
+            app:iconSpaceReserved="false"
+            app:key="invidious_annotations_mode"
+            app:summary="@string/invidious_annotations_mode_indication"
+            app:title="@string/invidious_annotations_mode"
+            android:defaultValue="0"
+            android:entries="@array/invidious_annotations"
+            android:entryValues="@array/invidious_annotations_values" />
+
+    </PreferenceCategory>
 </PreferenceScreen>

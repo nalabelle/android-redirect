@@ -2,34 +2,41 @@
 <resources>
     <string-array name="invidious_theme_values">
         <item>0</item>
-        <item>true</item>
-        <item>false</item>
+        <item>dark_mode=true</item>
+        <item>dark_mode=false</item>
     </string-array>
 
     <string-array name="invidious_tint_values">
         <item>0</item>
-        <item>true</item>
-        <item>false</item>
+        <item>thin_mode=true</item>
+        <item>thin_mode=false</item>
     </string-array>
 
     <string-array name="invidious_language_values">
         <item>0</item>
-        <item>ar</item>
-        <item>de</item>
-        <item>el</item>
-        <item>en-US</item>
-        <item>eo</item>
-        <item>es</item>
-        <item>eu</item>
-        <item>fr</item>
-        <item>is</item>
-        <item>it</item>
-        <item>nb_NO</item>
-        <item>nl</item>
-        <item>pl</item>
-        <item>ru</item>
-        <item>uk</item>
-        <item>zh-CN</item>
+        <item>hl=ar</item>
+        <item>hl=de</item>
+        <item>hl=el</item>
+        <item>hl=en-US</item>
+        <item>hl=eo</item>
+        <item>hl=es</item>
+        <item>hl=eu</item>
+        <item>hl=fr</item>
+        <item>hl=is</item>
+        <item>hl=it</item>
+        <item>hl=nb_NO</item>
+        <item>hl=nl</item>
+        <item>hl=pl</item>
+        <item>hl=ru</item>
+        <item>hl=uk</item>
+        <item>hl=zh-CN</item>
+    </string-array>
+
+
+    <string-array name="invidious_annotations_values">
+        <item>0</item>
+        <item>iv_load_policy=1</item>
+        <item>iv_load_policy=3</item>
     </string-array>
 
 </resources>
