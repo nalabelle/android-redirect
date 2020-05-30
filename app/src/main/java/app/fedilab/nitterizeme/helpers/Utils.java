@@ -385,9 +385,9 @@ public class Utils {
             newUrl = newUrl.replaceAll("&?hl=\\w{2}(-\\w{2})?", "");
         } else if (language.compareTo("0") != 0) { //Change value
             if (newUrl.contains("hl=")) {
-                newUrl = newUrl.replaceAll("hl=\\w{2}(-\\w{2})?", language);
+                newUrl = newUrl.replaceAll("hl=\\w{2}(-\\w{2})?", "hl=" + language);
             } else {
-                newUrl += "&" + language;
+                newUrl += "&hl=" + language;
             }
         }
 
@@ -439,7 +439,7 @@ public class Utils {
             }
         }
 
-        //Listen
+        //Local
         String local = sharedpreferences.getString(context.getString(R.string.invidious_local_mode), "0");
         if (local.compareTo("-1") == 0) { //Remove value
             newUrl = newUrl.replaceAll("&?local=(true|false)", "");
@@ -457,9 +457,9 @@ public class Utils {
             newUrl = newUrl.replaceAll("&?subtitles=\\w+", "");
         } else if (subtitles.compareTo("0") != 0) { //Change value
             if (newUrl.contains("subtitles=")) {
-                newUrl = newUrl.replaceAll("subtitles=\\w+", subtitles);
+                newUrl = newUrl.replaceAll("subtitles=\\w+", "subtitles=" + subtitles);
             } else {
-                newUrl += "&" + subtitles;
+                newUrl += "&subtitles=" + subtitles;
             }
         }
 

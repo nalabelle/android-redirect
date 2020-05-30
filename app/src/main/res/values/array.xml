@@ -17,22 +17,22 @@
     <string-array name="invidious_language_values">
         <item>0</item>
         <item>-1</item>
-        <item>hl=ar</item>
-        <item>hl=de</item>
-        <item>hl=el</item>
-        <item>hl=en-US</item>
-        <item>hl=eo</item>
-        <item>hl=es</item>
-        <item>hl=eu</item>
-        <item>hl=fr</item>
-        <item>hl=is</item>
-        <item>hl=it</item>
-        <item>hl=nb_NO</item>
-        <item>hl=nl</item>
-        <item>hl=pl</item>
-        <item>hl=ru</item>
-        <item>hl=uk</item>
-        <item>hl=zh-CN</item>
+        <item>ar</item>
+        <item>de</item>
+        <item>el</item>
+        <item>en-US</item>
+        <item>eo</item>
+        <item>es</item>
+        <item>eu</item>
+        <item>fr</item>
+        <item>is</item>
+        <item>it</item>
+        <item>nb_NO</item>
+        <item>nl</item>
+        <item>pl</item>
+        <item>ru</item>
+        <item>uk</item>
+        <item>zh-CN</item>
     </string-array>
 
 
@@ -73,12 +73,6 @@
         <item>local=false</item>
     </string-array>
 
-
-    <string-array name="invidious_subtitles_values">
-        <item>0</item>
-        <item>-1</item>
-        <item>subtitles=en</item>
-    </string-array>
 
     <string-array name="invidious_quality_values">
         <item>0</item>

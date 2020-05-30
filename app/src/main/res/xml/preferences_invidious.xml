@@ -87,8 +87,8 @@
 
         <ListPreference
             android:defaultValue="0"
-            android:entries="@array/invidious_subtitles"
-            android:entryValues="@array/invidious_subtitles_values"
+            android:entries="@array/invidious_language"
+            android:entryValues="@array/invidious_language_values"
             app:iconSpaceReserved="false"
             app:key="@string/invidious_subtitles_mode"
             app:summary="@string/invidious_subtitles_mode_indication"

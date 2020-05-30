@@ -173,12 +173,6 @@
     </string-array>
 
 
-    <string-array name="invidious_subtitles">
-        <item>Ignore</item>
-        <item>Remove</item>
-        <item>English</item>
-    </string-array>
-
     <string-array name="invidious_quality">
         <item>Ignore</item>
         <item>Remove</item>
