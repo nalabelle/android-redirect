@@ -79,33 +79,43 @@
     <string name="no_apps_set_as_default">No apps set as default!</string>
     <string name="custom_settings_for_invidious">Custom settings for Invidious</string>
     <string name="invidious_settings">Invidious settings</string>
-    <string name="invidious_dark_theme">Theme</string>
-    <string name="invidious_dark_theme_indication">Configure default theme without setting cookies</string>
-    <string name="invidious_thin_mode">Thin mode</string>
+    <string name="invidious_dark_mode_title">Theme</string>
+    <string name="invidious_dark_mode_indication">Configure default theme without setting cookies</string>
+    <string name="invidious_thin_mode_title">Thin mode</string>
     <string name="invidious_thin_mode_indication">Load HTML, CSS, JS and video elements (disables images)</string>
     <string name="invidious_language_mode_indication">Available locales</string>
-    <string name="invidious_language_mode">UI Language</string>
+    <string name="invidious_language_mode_title">UI Language</string>
     <string name="pref_invidious_head1">Site-wide parameters</string>
     <string name="pref_invidious_head2">Player parameters</string>
-    <string name="invidious_annotations_mode">Annotations</string>
+    <string name="invidious_annotations_mode_title">Annotations</string>
     <string name="invidious_annotations_mode_indication">Show legacy annotations, provided by the Internet Archive</string>
-
+    <string name="invidious_autoplay_mode_indication">Automatically play video on load</string>
+    <string name="invidious_autoplay_mode_title">Autoplay</string>
+    <string name="invidious_continue_mode_title">Continue</string>
+    <string name="invidious_continue_mode_indication">When video is done, automatically go to the next related video (similar to YouTube’s Autoplay feature)</string>
+    <string name="invidious_listen_mode_title">Listen</string>
+    <string name="invidious_listen_mode_indication">Play only audio portion of video</string>
+    <string name="invidious_local_mode_title">Local</string>
+    <string name="invidious_local_mode_indication">Proxy video streams</string>
 
     <string-array name="invidious_theme">
-        <item>Default</item>
+        <item>Ignore</item>
+        <item>Remove</item>
         <item>Dark theme</item>
         <item>Light theme</item>
     </string-array>
 
 
-    <string-array name="invidious_tint">
-        <item>Default</item>
+    <string-array name="invidious_enable">
+        <item>Ignore</item>
+        <item>Remove</item>
         <item>Enabled</item>
         <item>Disabled</item>
     </string-array>
 
     <string-array name="invidious_language">
-        <item>Default</item>
+        <item>Ignore</item>
+        <item>Remove</item>
         <item>Arabic</item>
         <item>German</item>
         <item>Greek</item>
@@ -126,9 +136,30 @@
 
 
     <string-array name="invidious_annotations">
-        <item>Default</item>
+        <item>Ignore</item>
+        <item>Remove</item>
         <item>Show annotations</item>
         <item>Hide annotations</item>
     </string-array>
+
+
+    <string-array name="invidious_subtitles">
+        <item>Ignore</item>
+        <item>Remove</item>
+        <item>English</item>
+    </string-array>
+
+
+    <!-- Some local values -->
+    <string name="invidious_dark_mode" translatable="false">invidious_dark_mode</string>
+    <string name="invidious_tint_mode" translatable="false">invidious_tint_mode</string>
+    <string name="invidious_language_mode" translatable="false">invidious_language_mode</string>
+    <string name="invidious_annotations_mode" translatable="false">invidious_annotations_mode</string>
+    <string name="invidious_autoplay_mode" translatable="false">invidious_autoplay_mode</string>
+    <string name="invidious_continue_mode" translatable="false">invidious_continue_mode</string>
+    <string name="invidious_listen_mode" translatable="false">invidious_listen_mode</string>
+    <string name="invidious_local_mode" translatable="false">invidious_local_mode</string>
+    <string name="invidious_subtitles_mode" translatable="false">invidious_subtitles_mode</string>
+    <string name="invidious_quality_mode" translatable="false">invidious_quality_mode</string>
 
 </resources>

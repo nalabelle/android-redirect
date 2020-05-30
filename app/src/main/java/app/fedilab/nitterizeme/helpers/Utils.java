@@ -91,7 +91,6 @@ public class Utils {
     public static final Pattern maps = Pattern.compile("/maps/place/([^@]+@)?([\\d.,z]+).*");
     public static final Pattern ampExtract = Pattern.compile("amp/s/(.*)");
     public static final String RECEIVE_STREAMING_URL = "receive_streaming_url";
-    public static final String INVIDIOUS_DARK_MODE = "invidious_dark_mode";
     private static final Pattern extractPlace = Pattern.compile("/maps/place/(((?!/data).)*)");
     private static final Pattern googleRedirect = Pattern.compile("https?://(www\\.)?google(\\.\\w{2,})?(\\.\\w{2,})/url\\?q=(.*)");
     private static final String[] G_TRACKING = {
@@ -328,12 +327,12 @@ public class Utils {
                         if (youtubeId != null && youtubeId.contains("?t=")) {
                             youtubeId = youtubeId.replace("?t=", "&t=");
                         }
-                        newUrl = scheme + invidiousHost + "/watch?v=" + youtubeId + "&local=true";
+                        newUrl = scheme + invidiousHost + "/watch?v=" + youtubeId;
+                        newUrl = replaceInvidiousParams(context, newUrl);
                     } else {
+                        newUrl = scheme + invidiousHost + "/" + youtubeId;
                         if (!url.contains("/channel/")) {
-                            newUrl = scheme + invidiousHost + "/" + youtubeId + "&local=true";
-                        } else {
-                            newUrl = scheme + invidiousHost + "/" + youtubeId;
+                            newUrl = replaceInvidiousParams(context, newUrl);
                         }
                     }
                 }
@@ -343,6 +342,44 @@ public class Utils {
             }
         }
         return url;
+    }
+
+    /**
+     * Replace params with those defined in Invidious settings from the app
+     *
+     * @param context Context
+     * @param url     String incoming URL
+     * @return String transformed URL
+     */
+    public static String replaceInvidiousParams(Context context, String url) {
+        String newUrl = url;
+        SharedPreferences sharedpreferences = context.getSharedPreferences(MainActivity.APP_PREFS, Context.MODE_PRIVATE);
+
+        //Theme
+        String theme = sharedpreferences.getString(context.getString(R.string.invidious_dark_mode), "0");
+        if (theme.compareTo("-1") == 0) { //Remove value
+            newUrl = url.replaceAll("&?dark_mode=(true|false)", "");
+        } else if (theme.compareTo("0") != 0) { //Change value
+            newUrl = url.replaceAll("dark_mode=(true|false)", theme);
+        }
+
+        //Tint mode
+        String tint = sharedpreferences.getString(context.getString(R.string.invidious_tint_mode), "0");
+        if (tint.compareTo("-1") == 0) { //Remove value
+            newUrl = url.replaceAll("&?thin_mode=(true|false)", "");
+        } else if (tint.compareTo("0") != 0) { //Change value
+            newUrl = url.replaceAll("thin_mode=(true|false)", theme);
+        }
+
+        //Language
+        String language = sharedpreferences.getString(context.getString(R.string.invidious_language_mode), "0");
+        if (language.compareTo("-1") == 0) { //Remove value
+            newUrl = url.replaceAll("&?hl=\\w{2}(-\\w{2})?", "");
+        } else if (language.compareTo("0") != 0) { //Change value
+            newUrl = url.replaceAll("hl=\\w{2}(-\\w{2})?", language);
+        }
+
+        return newUrl;
     }
 
     /**
@@ -644,10 +681,11 @@ public class Utils {
                         final String youtubeId = matcher.group(3);
                         String invidiousHost = sharedpreferences.getString(MainActivity.SET_INVIDIOUS_HOST, MainActivity.DEFAULT_INVIDIOUS_HOST).toLowerCase();
                         if (Objects.requireNonNull(matcher.group(2)).compareTo("youtu.be") == 0) {
-                            newUrlFinal = scheme + invidiousHost + "/watch?v=" + youtubeId + "&local=true";
+                            newUrlFinal = scheme + invidiousHost + "/watch?v=" + youtubeId;
                         } else {
-                            newUrlFinal = scheme + invidiousHost + "/" + youtubeId + "&local=true";
+                            newUrlFinal = scheme + invidiousHost + "/" + youtubeId;
                         }
+                        newUrlFinal = replaceInvidiousParams(context, newUrlFinal);
                     }
                     String newExtraText = extraText.replaceAll(Pattern.quote(url), Matcher.quoteReplacement(newUrlFinal));
                     Intent sendIntent = new Intent();

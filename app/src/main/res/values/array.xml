@@ -2,18 +2,21 @@
 <resources>
     <string-array name="invidious_theme_values">
         <item>0</item>
+        <item>-1</item>
         <item>dark_mode=true</item>
         <item>dark_mode=false</item>
     </string-array>
 
     <string-array name="invidious_tint_values">
         <item>0</item>
+        <item>-1</item>
         <item>thin_mode=true</item>
         <item>thin_mode=false</item>
     </string-array>
 
     <string-array name="invidious_language_values">
         <item>0</item>
+        <item>-1</item>
         <item>hl=ar</item>
         <item>hl=de</item>
         <item>hl=el</item>
@@ -35,8 +38,54 @@
 
     <string-array name="invidious_annotations_values">
         <item>0</item>
+        <item>-1</item>
         <item>iv_load_policy=1</item>
         <item>iv_load_policy=3</item>
+    </string-array>
+
+
+    <string-array name="invidious_autoplay_values">
+        <item>0</item>
+        <item>-1</item>
+        <item>autoplay=1</item>
+        <item>autoplay=0</item>
+    </string-array>
+
+
+    <string-array name="invidious_continue_values">
+        <item>0</item>
+        <item>-1</item>
+        <item>continue=1</item>
+        <item>continue=0</item>
+    </string-array>
+
+    <string-array name="invidious_listen_values">
+        <item>0</item>
+        <item>-1</item>
+        <item>listen=true</item>
+        <item>listen=false</item>
+    </string-array>
+
+    <string-array name="invidious_local_values">
+        <item>0</item>
+        <item>-1</item>
+        <item>local=true</item>
+        <item>local=false</item>
+    </string-array>
+
+
+    <string-array name="invidious_subtitles_values">
+        <item>0</item>
+        <item>-1</item>
+        <item>subtitles=en</item>
+    </string-array>
+
+    <string-array name="invidious_quality_values">
+        <item>0</item>
+        <item>-1</item>
+        <item>quality=dash</item>
+        <item>quality=hd720</item>
+        <item>quality=medium</item>
     </string-array>
 
 </resources>

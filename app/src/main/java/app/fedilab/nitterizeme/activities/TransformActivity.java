@@ -216,9 +216,7 @@ public class TransformActivity extends Activity {
                     if (host != null && host.compareTo(invidiousHost) != 0) {
                         transformedURL = url.replace(host, invidiousHost);
                     }
-                    if (!transformedURL.contains("local=true")) {
-                        transformedURL += "&local=true";
-                    }
+                    transformedURL = Utils.replaceInvidiousParams(TransformActivity.this, transformedURL);
                     intent.setData(Uri.parse(transformedURL));
                     forwardToBrowser(TransformActivity.this, intent);
                 } else {
@@ -408,9 +406,9 @@ public class TransformActivity extends Activity {
                     final String youtubeId = matcher.group(3);
                     String invidiousHost = sharedpreferences.getString(MainActivity.SET_INVIDIOUS_HOST, MainActivity.DEFAULT_INVIDIOUS_HOST).toLowerCase();
                     if (Objects.requireNonNull(matcher.group(2)).compareTo("youtu.be") == 0) {
-                        newUrl = scheme + invidiousHost + "/watch?v=" + youtubeId + "&local=true";
+                        newUrl = scheme + invidiousHost + "/watch?v=" + youtubeId;
                     } else {
-                        newUrl = scheme + invidiousHost + "/" + youtubeId + "&local=true";
+                        newUrl = scheme + invidiousHost + "/" + youtubeId;
                     }
                 }
             }
