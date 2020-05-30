@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- Some local values -->
     <string name="action_settings">Ρυθμίσεις</string>
     <string name="action_about">Σχετικά με την εφαρμογή</string>
     <string name="developer">Προγραμματιστής</string>
@@ -75,4 +76,99 @@
     <string name="cancel">Ακύρωση</string>
     <string name="delete_app_from_default">Διαγραφή %1$s από τις προεπιλεγμένες εφαρμογές;</string>
     <string name="copy_done">Αντιγράφηκε</string>
+    <string name="no_apps_set_as_default">Δεν έχει ρυθμιστεί καμία εφαρμογή ως προεπιλεγμένη!</string>
+    <string name="custom_settings_for_invidious">Custom settings for Invidious</string>
+    <string name="invidious_settings">Ρυθμίσεις Invidious</string>
+    <string name="invidious_dark_mode_title">Θέμα</string>
+    <string name="invidious_dark_mode_indication">Configure default theme without setting cookies</string>
+    <string name="invidious_thin_mode_title">Thin mode</string>
+    <string name="invidious_thin_mode_indication">Load HTML, CSS, JS and video elements (disables images)</string>
+    <string name="invidious_language_mode_indication">Διαθέσιμες γλώσσες</string>
+    <string name="invidious_language_mode_title">Γλώσσα Διεπαφής</string>
+    <string name="pref_invidious_head1">Site-wide parameters</string>
+    <string name="pref_invidious_head2">Player parameters</string>
+    <string name="invidious_annotations_mode_title">Annotations</string>
+    <string name="invidious_annotations_mode_indication">Show legacy annotations, provided by the Internet Archive</string>
+    <string name="invidious_autoplay_mode_indication">Automatically play video on load</string>
+    <string name="invidious_autoplay_mode_title">Autoplay</string>
+    <string name="invidious_continue_mode_title">Συνέχεια</string>
+    <string name="invidious_continue_mode_indication">When video is done, automatically go to the next related video (similar to YouTube’s Autoplay feature)</string>
+    <string name="invidious_listen_mode_title">Listen</string>
+    <string name="invidious_listen_mode_indication">Play only audio portion of video</string>
+    <string name="invidious_local_mode_title">Local</string>
+    <string name="invidious_local_mode_indication">Proxy video streams</string>
+    <string name="invidious_subtitles_mode_title">Υπότιτλοι</string>
+    <string name="invidious_subtitles_mode_indication">Λίστα ISO 639-1 κωδικών γλώσσας</string>
+    <string name="invidious_quality_mode_title">Ποιότητα</string>
+    <string name="invidious_quality_mode_indication">Προεπιλεγμένη ποιότητα εικόνας</string>
+    <string name="invidious_loop_mode_title">Επανάληψη</string>
+    <string name="invidious_volume_mode_title">Ένταση ήχου</string>
+    <string name="invidious_volume_mode_indication">Default player volume, can be any whole number between 0 and 100</string>
+    <string name="invidious_loop_mode_indication">Loop player by default</string>
+    <string name="invidious_volume_mode_value">Volume value</string>
+    <string name="invidious_volume_mode_value_indication">Override the volume with this value</string>
+    <string name="pref_invidious_head3">Τύπος Αναπαραγωγέα</string>
+    <string name="invidious_player_style_mode_title">Εμφάνιση</string>
+    <string name="invidious_player_style_mode_indication">Invidious, the default one. YouTube, using a centered play button and always visible video control bar</string>
+    <string-array name="invidious_theme">
+        <item>Παράβλεψη</item>
+        <item>Αφαίρεση</item>
+        <item>Σκούρο θέμα</item>
+        <item>Φωτεινό θέμα</item>
+    </string-array>
+    <string-array name="invidious_enable">
+        <item>Παράβλεψη</item>
+        <item>Αφαίρεση</item>
+        <item>Ενεργοποιημένο</item>
+        <item>Απενεργοποιημένο</item>
+    </string-array>
+    <string-array name="invidious_language">
+        <item>Παράβλεψη</item>
+        <item>Αφαίρεση</item>
+        <item>Αραβικά</item>
+        <item>Γερμανικά</item>
+        <item>Ελληνικά</item>
+        <item>Αγγλικά</item>
+        <item>Εσπεράντο</item>
+        <item>Ισπανικά</item>
+        <item>Βασκικά</item>
+        <item>Γαλλικά</item>
+        <item>Ισλανδικά</item>
+        <item>Ιταλικά</item>
+        <item>Νορβηγικά Μποκμάλ</item>
+        <item>Ολλανδικά</item>
+        <item>Πολωνικά</item>
+        <item>Ρωσσικά</item>
+        <item>Ουκρανικά</item>
+        <item>Κινεζικά</item>
+    </string-array>
+    <string-array name="invidious_annotations">
+        <item>Παράβλεψη</item>
+        <item>Αφαίρεση</item>
+        <item>Show annotations</item>
+        <item>Hide annotations</item>
+    </string-array>
+    <string-array name="invidious_subtitles">
+        <item>Παράβλεψη</item>
+        <item>Αφαίρεση</item>
+        <item>Αγγλικά</item>
+    </string-array>
+    <string-array name="invidious_quality">
+        <item>Παράβλεψη</item>
+        <item>Αφαίρεση</item>
+        <item>DASH</item>
+        <item>720p</item>
+        <item>480p</item>
+    </string-array>
+    <string-array name="invidious_volume">
+        <item>Παράβλεψη</item>
+        <item>Αφαίρεση</item>
+        <item>Προσαρμοσμένη</item>
+    </string-array>
+    <string-array name="invidious_player_style">
+        <item>Παράβλεψη</item>
+        <item>Αφαίρεση</item>
+        <item>Invidious</item>
+        <item>YouTube</item>
+    </string-array>
 </resources>

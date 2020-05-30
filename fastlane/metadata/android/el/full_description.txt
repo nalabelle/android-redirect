@@ -1,4 +1,4 @@
-UntrackMe once set by default to open Twitter, YouTube and Instagram links will transform them into Nitter, Invidious and Bibliogram links and delegate the action to another app.
+Το UntrackMe μόλις ρυθμιστεί να ανοίγει, από προεπιλογή, τους συνδέσμους Twitter, YouTube και Instagram θα τους μετατρέψει σε συνδέσμους Nitter, Invidious και Bibliogram και θα αναθέσει τη δράση σε μια άλλη εφαρμογή.
 
 Υποστηρίζει επίσης συνδέσμους Google Maps και τους μετατρέπει σε συνδέσμους OpenStreetMap ή Geo URI.
 
@@ -27,5 +27,5 @@ UntrackMe once set by default to open Twitter, YouTube and Instagram links will 
 
 Τι είναι το Bibliogram:
 
-A free and open source alternative front-end to Instagram
+Μία δωρεάν και ανοιχτού κώδικα εναλλακτική διεπαφή για το Instagram
 Έργο Github: https://github.com/cloudrac3r/bibliogram
