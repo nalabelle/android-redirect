@@ -217,6 +217,7 @@ public class AppsPickerActivity extends Activity {
         copyLink.setOnClickListener(v -> {
             ClipboardManager clipboard = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
             ClipData clipData = ClipData.newPlainText("", url);
+            assert clipboard != null;
             clipboard.setPrimaryClip(clipData);
             Toast.makeText(this, getString(R.string.copy_done), Toast.LENGTH_SHORT).show();
         });
