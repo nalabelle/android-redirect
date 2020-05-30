@@ -78,4 +78,46 @@
     <string name="copy_done">Copied</string>
     <string name="no_apps_set_as_default">No apps set as default!</string>
     <string name="custom_settings_for_invidious">Custom settings for Invidious</string>
+    <string name="invidious_settings">Invidious settings</string>
+    <string name="invidious_dark_theme">Theme</string>
+    <string name="invidious_dark_theme_indication">Configure default theme without setting cookies</string>
+    <string name="invidious_thin_mode">Thin mode</string>
+    <string name="invidious_thin_mode_indication">Load HTML, CSS, JS and video elements (disables images)</string>
+    <string name="invidious_language_mode_indication">Available locales</string>
+    <string name="invidious_language_mode">UI Language</string>
+
+    
+    <string-array name="invidious_theme">
+        <item>Default</item>
+        <item>Dark theme</item>
+        <item>Light theme</item>
+    </string-array>
+
+
+    <string-array name="invidious_tint">
+        <item>Default</item>
+        <item>Enabled</item>
+        <item>Disabled</item>
+    </string-array>
+
+    <string-array name="invidious_language">
+        <item>Default</item>
+        <item>Arabic</item>
+        <item>German</item>
+        <item>Greek</item>
+        <item>English</item>
+        <item>Esperanto</item>
+        <item>Spanish</item>
+        <item>Basque</item>
+        <item>French</item>
+        <item>Icelandic</item>
+        <item>Italian</item>
+        <item>Norwegian Bokmål</item>
+        <item>Dutch</item>
+        <item>Polish</item>
+        <item>Russian</item>
+        <item>Ukrainian</item>
+        <item>Chinese</item>
+    </string-array>
+
 </resources>

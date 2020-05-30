@@ -222,6 +222,12 @@
             android:theme="@style/AppTheme"
             android:targetActivity=".activities.DefaultAppActivity" />
         <activity-alias
+            android:name=".activities.InvidiousSettingsActivity"
+            android:configChanges="orientation|screenSize"
+            android:label="@string/invidious_settings"
+            android:theme="@style/AppTheme"
+            android:targetActivity=".activities.InvidiousSettingsActivity" />
+        <activity-alias
             android:name=".activities.WebviewPlayerActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:label="@string/app_name"

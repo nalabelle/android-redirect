@@ -91,9 +91,9 @@ public class Utils {
     public static final Pattern maps = Pattern.compile("/maps/place/([^@]+@)?([\\d.,z]+).*");
     public static final Pattern ampExtract = Pattern.compile("amp/s/(.*)");
     public static final String RECEIVE_STREAMING_URL = "receive_streaming_url";
+    public static final String INVIDIOUS_DARK_MODE = "invidious_dark_mode";
     private static final Pattern extractPlace = Pattern.compile("/maps/place/(((?!/data).)*)");
     private static final Pattern googleRedirect = Pattern.compile("https?://(www\\.)?google(\\.\\w{2,})?(\\.\\w{2,})/url\\?q=(.*)");
-
     private static final String[] G_TRACKING = {
             "sourceid",
             "aqs",

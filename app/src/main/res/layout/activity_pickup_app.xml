@@ -43,20 +43,20 @@
             android:id="@+id/scroll_url"
             android:layout_width="0dp"
             android:layout_height="40dp"
-            android:padding="2dp"
-            android:scrollbars="horizontal"
-            android:scrollbarThumbHorizontal="@color/colorAccent"
             android:layout_marginHorizontal="10dp"
-            app:layout_constraintStart_toStartOf="parent"
+            android:padding="2dp"
+            android:scrollbarThumbHorizontal="@color/colorAccent"
+            android:scrollbars="horizontal"
             app:layout_constraintEnd_toStartOf="@id/copy_link"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
             <TextView
                 android:id="@+id/url"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:singleLine="true"
                 android:gravity="center_vertical"
+                android:singleLine="true"
                 android:textColor="@color/colorAccent" />
         </HorizontalScrollView>
 
@@ -64,12 +64,11 @@
             android:id="@+id/copy_link"
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:padding="2dp"
             android:layout_margin="5dp"
+            android:padding="2dp"
             android:src="@drawable/ic_copy"
-            app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/indication"

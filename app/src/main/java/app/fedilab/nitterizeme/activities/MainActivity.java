@@ -448,6 +448,14 @@ public class MainActivity extends AppCompatActivity {
 
                 }
         );
+
+        //Invidious custom settings
+        ImageButton invidious_settings = findViewById(R.id.invidious_settings);
+        invidious_settings.setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, InvidiousSettingsActivity.class);
+            startActivity(intent);
+        });
+
         registerReceiver(broadcastReceiver, new IntentFilter(KILL_ACTIVITY));
     }
 
