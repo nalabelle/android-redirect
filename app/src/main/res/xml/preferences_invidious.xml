@@ -36,6 +36,7 @@
 
     <PreferenceCategory
         android:title="@string/pref_invidious_head2"
+        android:key="@string/invidious_category_player_parameters"
         app:iconSpaceReserved="false">
         <ListPreference
             android:defaultValue="0"
@@ -103,5 +104,45 @@
             app:summary="@string/invidious_quality_mode_indication"
             app:title="@string/invidious_quality_mode_title" />
 
+
+        <ListPreference
+            android:defaultValue="0"
+            android:entries="@array/invidious_enable"
+            android:entryValues="@array/invidious_loop_values"
+            app:iconSpaceReserved="false"
+            app:key="@string/invidious_loop_mode"
+            app:summary="@string/invidious_loop_mode_indication"
+            app:title="@string/invidious_loop_mode_title" />
+
+        <ListPreference
+            android:defaultValue="0"
+            android:entries="@array/invidious_volume"
+            android:entryValues="@array/invidious_volume_values"
+            app:iconSpaceReserved="false"
+            app:key="@string/invidious_volume_mode"
+            app:summary="@string/invidious_volume_mode_indication"
+            app:title="@string/invidious_volume_mode_title" />
+
+        <SeekBarPreference
+            android:defaultValue="60"
+            app:showSeekBarValue="true"
+            app:iconSpaceReserved="false"
+            android:key="@string/invidious_volume_value"
+            android:title="@string/invidious_volume_mode_value"
+            app:summary="@string/invidious_volume_mode_value_indication"
+            android:max="100" />
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="@string/pref_invidious_head3"
+        app:iconSpaceReserved="false">
+        <ListPreference
+            android:defaultValue="0"
+            android:entries="@array/invidious_player_style"
+            android:entryValues="@array/invidious_player_style_values"
+            app:iconSpaceReserved="false"
+            app:key="@string/invidious_player_style_mode"
+            app:summary="@string/invidious_player_style_mode_indication"
+            app:title="@string/invidious_player_style_mode_title" />
     </PreferenceCategory>
 </PreferenceScreen>

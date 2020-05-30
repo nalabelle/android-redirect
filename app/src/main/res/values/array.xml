@@ -88,4 +88,24 @@
         <item>quality=medium</item>
     </string-array>
 
+    <string-array name="invidious_loop_values">
+        <item>0</item>
+        <item>-1</item>
+        <item>loop=1</item>
+        <item>loop=0</item>
+    </string-array>
+
+    <string-array name="invidious_volume_values">
+        <item>0</item>
+        <item>-1</item>
+        <item>1</item>
+    </string-array>
+
+    <string-array name="invidious_player_style_values">
+        <item>0</item>
+        <item>-1</item>
+        <item>player_style=invidious</item>
+        <item>player_style=youtube</item>
+    </string-array>
+
 </resources>

@@ -475,6 +475,44 @@ public class Utils {
             }
         }
 
+        //Loop
+        String loop = sharedpreferences.getString(context.getString(R.string.invidious_loop_mode), "0");
+        if (loop.compareTo("-1") == 0) { //Remove value
+            newUrl = newUrl.replaceAll("&?loop=\\d", "");
+        } else if (loop.compareTo("0") != 0) { //Change value
+            if (newUrl.contains("loop=")) {
+                newUrl = newUrl.replaceAll("loop=\\d", loop);
+            } else {
+                newUrl += "&" + loop;
+            }
+        }
+
+
+        //Volume
+        String volume = sharedpreferences.getString(context.getString(R.string.invidious_volume_mode), "0");
+        if (volume.compareTo("-1") == 0) { //Remove value
+            newUrl = newUrl.replaceAll("&?volume=\\d{1,3}", "");
+        } else if (volume.compareTo("0") != 0) { //Change value
+            int volume_value = sharedpreferences.getInt(context.getString(R.string.invidious_volume_value), 60);
+            if (newUrl.contains("volume=")) {
+                newUrl = newUrl.replaceAll("volume=\\d{1,3}", "volume=" + volume_value);
+            } else {
+                newUrl += "&volume=" + volume_value;
+            }
+        }
+
+        //Player style
+        String player_style = sharedpreferences.getString(context.getString(R.string.invidious_player_style_mode), "0");
+        if (player_style.compareTo("-1") == 0) { //Remove value
+            newUrl = newUrl.replaceAll("&?player_style=\\w+", "");
+        } else if (player_style.compareTo("0") != 0) { //Change value
+            if (newUrl.contains("player_style=")) {
+                newUrl = newUrl.replaceAll("player_style=\\w+", player_style);
+            } else {
+                newUrl += "&" + player_style;
+            }
+        }
+
 
         return newUrl;
     }
