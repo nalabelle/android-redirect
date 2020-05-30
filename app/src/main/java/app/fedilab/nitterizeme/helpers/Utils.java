@@ -391,6 +391,91 @@ public class Utils {
             }
         }
 
+        //Annotations
+        String annotations = sharedpreferences.getString(context.getString(R.string.invidious_annotations_mode), "0");
+        if (annotations.compareTo("-1") == 0) { //Remove value
+            newUrl = newUrl.replaceAll("&?iv_load_policy=\\d", "");
+        } else if (annotations.compareTo("0") != 0) { //Change value
+            if (newUrl.contains("iv_load_policy=")) {
+                newUrl = newUrl.replaceAll("iv_load_policy=\\d", annotations);
+            } else {
+                newUrl += "&" + annotations;
+            }
+        }
+
+        //Autoplay
+        String autoplay = sharedpreferences.getString(context.getString(R.string.invidious_autoplay_mode), "0");
+        if (autoplay.compareTo("-1") == 0) { //Remove value
+            newUrl = newUrl.replaceAll("&?autoplay=\\d", "");
+        } else if (autoplay.compareTo("0") != 0) { //Change value
+            if (newUrl.contains("autoplay=")) {
+                newUrl = newUrl.replaceAll("autoplay=\\d", autoplay);
+            } else {
+                newUrl += "&" + autoplay;
+            }
+        }
+
+        //Continue
+        String continueMode = sharedpreferences.getString(context.getString(R.string.invidious_continue_mode), "0");
+        if (continueMode.compareTo("-1") == 0) { //Remove value
+            newUrl = newUrl.replaceAll("&?continue=\\d", "");
+        } else if (continueMode.compareTo("0") != 0) { //Change value
+            if (newUrl.contains("continue=")) {
+                newUrl = newUrl.replaceAll("continue=\\d", continueMode);
+            } else {
+                newUrl += "&" + continueMode;
+            }
+        }
+
+        //Listen
+        String listen = sharedpreferences.getString(context.getString(R.string.invidious_listen_mode), "0");
+        if (listen.compareTo("-1") == 0) { //Remove value
+            newUrl = newUrl.replaceAll("&?listen=(true|false)", "");
+        } else if (listen.compareTo("0") != 0) { //Change value
+            if (newUrl.contains("listen=")) {
+                newUrl = newUrl.replaceAll("listen=(true|false)", listen);
+            } else {
+                newUrl += "&" + listen;
+            }
+        }
+
+        //Listen
+        String local = sharedpreferences.getString(context.getString(R.string.invidious_local_mode), "0");
+        if (local.compareTo("-1") == 0) { //Remove value
+            newUrl = newUrl.replaceAll("&?local=(true|false)", "");
+        } else if (local.compareTo("0") != 0) { //Change value
+            if (newUrl.contains("listen=")) {
+                newUrl = newUrl.replaceAll("local=(true|false)", local);
+            } else {
+                newUrl += "&" + local;
+            }
+        }
+
+        //Subtitles
+        String subtitles = sharedpreferences.getString(context.getString(R.string.invidious_subtitles_mode), "0");
+        if (subtitles.compareTo("-1") == 0) { //Remove value
+            newUrl = newUrl.replaceAll("&?subtitles=\\w+", "");
+        } else if (subtitles.compareTo("0") != 0) { //Change value
+            if (newUrl.contains("subtitles=")) {
+                newUrl = newUrl.replaceAll("subtitles=\\w+", subtitles);
+            } else {
+                newUrl += "&" + subtitles;
+            }
+        }
+
+        //Quality
+        String quality = sharedpreferences.getString(context.getString(R.string.invidious_quality_mode), "0");
+        if (quality.compareTo("-1") == 0) { //Remove value
+            newUrl = newUrl.replaceAll("&?quality=\\w+", "");
+        } else if (quality.compareTo("0") != 0) { //Change value
+            if (newUrl.contains("listen=")) {
+                newUrl = newUrl.replaceAll("quality=\\w+", quality);
+            } else {
+                newUrl += "&" + quality;
+            }
+        }
+
+
         return newUrl;
     }
 
