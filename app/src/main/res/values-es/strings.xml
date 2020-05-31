@@ -110,6 +110,12 @@
     <string name="pref_invidious_head3">Estilo del Reproductor</string>
     <string name="invidious_player_style_mode_title">Apariencia</string>
     <string name="invidious_player_style_mode_indication">Invidious, el predeterminado. YouTube, usando un botón de reproducción centrado y la barra de control del vídeo siempre visible</string>
+    <string name="help">Ayuda</string>
+    <string name="invidious_help_title">Opciones de configuracion</string>
+    <string name="invidious_help_ignore"><b>Ignorar:</b> Esta es la acción por defecto para todos¹ los parámetros. Esto significa que UntrackMe no hará nada con respecto al parámetro</string>
+    <string name="invidious_help_remove"><b>Eliminar:</b> UntrackMe eliminará el parámetro de la URL, si existe</string>
+    <string name="invidious_help_other">Si seleccionas otros valores para un parámetro, se añadirán a la URL. Si el parámetro ya existe, su valor será cambiado al que hayas elegido</string>
+    <string name="invidious_help_explanations">El parámetro \'local\' [1] está establecido como \'true\' por defecto para una mejor privacidad</string>
     <string-array name="invidious_theme">
         <item>Ignorar</item>
         <item>Eliminar</item>

@@ -77,12 +77,12 @@
     <string name="delete_app_from_default">Διαγραφή %1$s από τις προεπιλεγμένες εφαρμογές;</string>
     <string name="copy_done">Αντιγράφηκε</string>
     <string name="no_apps_set_as_default">Δεν έχει ρυθμιστεί καμία εφαρμογή ως προεπιλεγμένη!</string>
-    <string name="custom_settings_for_invidious">Custom settings for Invidious</string>
+    <string name="custom_settings_for_invidious">Προσαρμοσμένες ρυθμίσεις για Invidious</string>
     <string name="invidious_settings">Ρυθμίσεις Invidious</string>
     <string name="invidious_dark_mode_title">Θέμα</string>
     <string name="invidious_dark_mode_indication">Configure default theme without setting cookies</string>
     <string name="invidious_thin_mode_title">Thin mode</string>
-    <string name="invidious_thin_mode_indication">Load HTML, CSS, JS and video elements (disables images)</string>
+    <string name="invidious_thin_mode_indication">Φόρτωση στοιχείων HTML, CSS, JS και video (απενεργοποιεί τις εικόνες)</string>
     <string name="invidious_language_mode_indication">Διαθέσιμες γλώσσες</string>
     <string name="invidious_language_mode_title">Γλώσσα Διεπαφής</string>
     <string name="pref_invidious_head1">Site-wide parameters</string>
@@ -105,11 +105,17 @@
     <string name="invidious_volume_mode_title">Ένταση ήχου</string>
     <string name="invidious_volume_mode_indication">Default player volume, can be any whole number between 0 and 100</string>
     <string name="invidious_loop_mode_indication">Loop player by default</string>
-    <string name="invidious_volume_mode_value">Volume value</string>
+    <string name="invidious_volume_mode_value">Τιμή έντασης ήχου</string>
     <string name="invidious_volume_mode_value_indication">Override the volume with this value</string>
     <string name="pref_invidious_head3">Τύπος Αναπαραγωγέα</string>
     <string name="invidious_player_style_mode_title">Εμφάνιση</string>
     <string name="invidious_player_style_mode_indication">Invidious, the default one. YouTube, using a centered play button and always visible video control bar</string>
+    <string name="help">Βοήθεια</string>
+    <string name="invidious_help_title">Επιλογές ρυθμίσεων</string>
+    <string name="invidious_help_ignore"><b>Ignore:</b> This is the default action for all¹ parameters. This means UntrackMe will not do anything about the parameter</string>
+    <string name="invidious_help_remove"><b>Remove:</b> UntrackMe will remove the parameter from URL, if it exists</string>
+    <string name="invidious_help_other">If you select other values for a parameter, they will be added to the URL. If the parameter already exists, its value will be changed to your choice</string>
+    <string name="invidious_help_explanations">[1] \'local\' parameter is set to \'true\' by default for better privacy</string>
     <string-array name="invidious_theme">
         <item>Παράβλεψη</item>
         <item>Αφαίρεση</item>
