@@ -77,98 +77,93 @@
     <string name="delete_app_from_default">¿Eliminar %1$s de las aplicaciones predeterminadas?</string>
     <string name="copy_done">Copiado</string>
     <string name="no_apps_set_as_default">¡No hay aplicaciones por defecto!</string>
-    <string name="custom_settings_for_invidious">Custom settings for Invidious</string>
-    <string name="invidious_settings">Invidious settings</string>
-    <string name="invidious_dark_mode_title">Theme</string>
-    <string name="invidious_dark_mode_indication">Configure default theme without setting cookies</string>
-    <string name="invidious_thin_mode_title">Thin mode</string>
-    <string name="invidious_thin_mode_indication">Load HTML, CSS, JS and video elements (disables images)</string>
-    <string name="invidious_language_mode_indication">Available locales</string>
-    <string name="invidious_language_mode_title">UI Language</string>
-    <string name="pref_invidious_head1">Site-wide parameters</string>
-    <string name="pref_invidious_head2">Player parameters</string>
-    <string name="invidious_annotations_mode_title">Annotations</string>
-    <string name="invidious_annotations_mode_indication">Show legacy annotations, provided by the Internet Archive</string>
-    <string name="invidious_autoplay_mode_indication">Automatically play video on load</string>
-    <string name="invidious_autoplay_mode_title">Autoplay</string>
-    <string name="invidious_continue_mode_title">Continue</string>
-    <string name="invidious_continue_mode_indication">When video is done, automatically go to the next related video (similar to YouTube’s Autoplay feature)</string>
-    <string name="invidious_listen_mode_title">Listen</string>
-    <string name="invidious_listen_mode_indication">Play only audio portion of video</string>
+    <string name="custom_settings_for_invidious">Ajustes personalizados para Invidious</string>
+    <string name="invidious_settings">Ajustes de Invidious</string>
+    <string name="invidious_dark_mode_title">Tema</string>
+    <string name="invidious_dark_mode_indication">Configurar tema por defecto sin usar cookies</string>
+    <string name="invidious_thin_mode_title">Modo liviano</string>
+    <string name="invidious_thin_mode_indication">Cargar elementos HTML, CSS, JS y vídeo (desactiva las imágenes)</string>
+    <string name="invidious_language_mode_indication">Traducciones disponibles</string>
+    <string name="invidious_language_mode_title">Idioma de la interfaz de usuario</string>
+    <string name="pref_invidious_head1">Parámetros para todo el sitio</string>
+    <string name="pref_invidious_head2">Parámetros del reproductor</string>
+    <string name="invidious_annotations_mode_title">Anotaciones</string>
+    <string name="invidious_annotations_mode_indication">Mostrar anotaciones antiguas, proporcionadas por el Internet Archive</string>
+    <string name="invidious_autoplay_mode_indication">Reproducir vídeo automáticamente al cargar</string>
+    <string name="invidious_autoplay_mode_title">Reproducción automática</string>
+    <string name="invidious_continue_mode_title">Continuar</string>
+    <string name="invidious_continue_mode_indication">Cuando el vídeo haya terminado, ir automáticamente al siguiente vídeo relacionado (similar a la función de reproducción automática de YouTube)</string>
+    <string name="invidious_listen_mode_title">Escuchar</string>
+    <string name="invidious_listen_mode_indication">Reproducir sólo la parte de audio del vídeo</string>
     <string name="invidious_local_mode_title">Local</string>
-    <string name="invidious_local_mode_indication">Proxy video streams</string>
-    <string name="invidious_subtitles_mode_title">Subtitles</string>
-    <string name="invidious_subtitles_mode_indication">List of ISO 639–1 language codes</string>
-    <string name="invidious_quality_mode_title">Quality</string>
-    <string name="invidious_quality_mode_indication">Default player quality</string>
-    <string name="invidious_loop_mode_title">Loop</string>
-    <string name="invidious_volume_mode_title">Volume</string>
-    <string name="invidious_volume_mode_indication">Default player volume, can be any whole number between 0 and 100</string>
-    <string name="invidious_loop_mode_indication">Loop player by default</string>
-    <string name="invidious_volume_mode_value">Volume value</string>
-    <string name="invidious_volume_mode_value_indication">Override the volume with this value</string>
-    <string name="pref_invidious_head3">Player Style</string>
-    <string name="invidious_player_style_mode_title">Appearance</string>
-    <string name="invidious_player_style_mode_indication">Invidious, the default one. YouTube, using a centered play button and always visible video control bar</string>
+    <string name="invidious_local_mode_indication">Emisiones de vídeo en proxy</string>
+    <string name="invidious_subtitles_mode_title">Subtítulos</string>
+    <string name="invidious_subtitles_mode_indication">Lista de códigos de idioma ISO 639–1</string>
+    <string name="invidious_quality_mode_title">Calidad</string>
+    <string name="invidious_quality_mode_indication">Calidad por defecto del reproductor</string>
+    <string name="invidious_loop_mode_title">Bucle</string>
+    <string name="invidious_volume_mode_title">Volumen</string>
+    <string name="invidious_volume_mode_indication">Volumen por defecto del reproductor, puede ser cualquier número entero entre 0 y 100</string>
+    <string name="invidious_loop_mode_indication">Reproducción en bucle por defecto</string>
+    <string name="invidious_volume_mode_value">Valor del volumen</string>
+    <string name="invidious_volume_mode_value_indication">Sobrescribir el volumen con este valor</string>
+    <string name="pref_invidious_head3">Estilo del Reproductor</string>
+    <string name="invidious_player_style_mode_title">Apariencia</string>
+    <string name="invidious_player_style_mode_indication">Invidious, el predeterminado. YouTube, usando un botón de reproducción centrado y la barra de control del vídeo siempre visible</string>
     <string-array name="invidious_theme">
-        <item>Ignore</item>
-        <item>Remove</item>
-        <item>Dark theme</item>
-        <item>Light theme</item>
+        <item>Ignorar</item>
+        <item>Eliminar</item>
+        <item>Tema oscuro</item>
+        <item>Tema claro</item>
     </string-array>
     <string-array name="invidious_enable">
-        <item>Ignore</item>
-        <item>Remove</item>
-        <item>Enabled</item>
-        <item>Disabled</item>
+        <item>Ignorar</item>
+        <item>Eliminar</item>
+        <item>Habilitado</item>
+        <item>Deshabilitado</item>
     </string-array>
     <string-array name="invidious_language">
-        <item>Ignore</item>
-        <item>Remove</item>
-        <item>Arabic</item>
-        <item>German</item>
-        <item>Greek</item>
-        <item>English</item>
+        <item>Ignorar</item>
+        <item>Eliminar</item>
+        <item>Árabe</item>
+        <item>Alemán</item>
+        <item>Griego</item>
+        <item>Inglés</item>
         <item>Esperanto</item>
-        <item>Spanish</item>
-        <item>Basque</item>
-        <item>French</item>
-        <item>Icelandic</item>
-        <item>Italian</item>
-        <item>Norwegian Bokmål</item>
-        <item>Dutch</item>
-        <item>Polish</item>
-        <item>Russian</item>
-        <item>Ukrainian</item>
-        <item>Chinese</item>
+        <item>Español</item>
+        <item>Euskera</item>
+        <item>Francés</item>
+        <item>Islandés</item>
+        <item>Italiano</item>
+        <item>Noruego Bokmål</item>
+        <item>Holandés</item>
+        <item>Polaco</item>
+        <item>Ruso</item>
+        <item>Ucraniano</item>
+        <item>Chino</item>
     </string-array>
     <string-array name="invidious_annotations">
-        <item>Ignore</item>
-        <item>Remove</item>
-        <item>Show annotations</item>
-        <item>Hide annotations</item>
-    </string-array>
-    <string-array name="invidious_subtitles">
-        <item>Ignore</item>
-        <item>Remove</item>
-        <item>English</item>
+        <item>Ignorar</item>
+        <item>Eliminar</item>
+        <item>Mostrar anotaciones</item>
+        <item>Ocultar anotaciones</item>
     </string-array>
     <string-array name="invidious_quality">
-        <item>Ignore</item>
-        <item>Remove</item>
+        <item>Ignorar</item>
+        <item>Eliminar</item>
         <item>DASH</item>
         <item>720p</item>
         <item>480p</item>
     </string-array>
     <string-array name="invidious_volume">
-        <item>Ignore</item>
-        <item>Remove</item>
-        <item>Custom</item>
+        <item>Ignorar</item>
+        <item>Eliminar</item>
+        <item>Personalizado</item>
     </string-array>
     <string-array name="invidious_player_style">
-        <item>Ignore</item>
-        <item>Remove</item>
+        <item>Ignorar</item>
+        <item>Eliminar</item>
         <item>Invidious</item>
-        <item>Youtube</item>
+        <item>YouTube</item>
     </string-array>
 </resources>

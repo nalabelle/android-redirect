@@ -77,98 +77,93 @@
     <string name="delete_app_from_default">从默认应用中删除 %1$s 吗？</string>
     <string name="copy_done">已复制</string>
     <string name="no_apps_set_as_default">未设置默认应用！</string>
-    <string name="custom_settings_for_invidious">Custom settings for Invidious</string>
-    <string name="invidious_settings">Invidious settings</string>
-    <string name="invidious_dark_mode_title">Theme</string>
-    <string name="invidious_dark_mode_indication">Configure default theme without setting cookies</string>
-    <string name="invidious_thin_mode_title">Thin mode</string>
-    <string name="invidious_thin_mode_indication">Load HTML, CSS, JS and video elements (disables images)</string>
-    <string name="invidious_language_mode_indication">Available locales</string>
-    <string name="invidious_language_mode_title">UI Language</string>
-    <string name="pref_invidious_head1">Site-wide parameters</string>
-    <string name="pref_invidious_head2">Player parameters</string>
-    <string name="invidious_annotations_mode_title">Annotations</string>
-    <string name="invidious_annotations_mode_indication">Show legacy annotations, provided by the Internet Archive</string>
-    <string name="invidious_autoplay_mode_indication">Automatically play video on load</string>
-    <string name="invidious_autoplay_mode_title">Autoplay</string>
-    <string name="invidious_continue_mode_title">Continue</string>
-    <string name="invidious_continue_mode_indication">When video is done, automatically go to the next related video (similar to YouTube’s Autoplay feature)</string>
-    <string name="invidious_listen_mode_title">Listen</string>
-    <string name="invidious_listen_mode_indication">Play only audio portion of video</string>
-    <string name="invidious_local_mode_title">Local</string>
-    <string name="invidious_local_mode_indication">Proxy video streams</string>
-    <string name="invidious_subtitles_mode_title">Subtitles</string>
-    <string name="invidious_subtitles_mode_indication">List of ISO 639–1 language codes</string>
-    <string name="invidious_quality_mode_title">Quality</string>
-    <string name="invidious_quality_mode_indication">Default player quality</string>
-    <string name="invidious_loop_mode_title">Loop</string>
-    <string name="invidious_volume_mode_title">Volume</string>
-    <string name="invidious_volume_mode_indication">Default player volume, can be any whole number between 0 and 100</string>
-    <string name="invidious_loop_mode_indication">Loop player by default</string>
-    <string name="invidious_volume_mode_value">Volume value</string>
-    <string name="invidious_volume_mode_value_indication">Override the volume with this value</string>
-    <string name="pref_invidious_head3">Player Style</string>
-    <string name="invidious_player_style_mode_title">Appearance</string>
-    <string name="invidious_player_style_mode_indication">Invidious, the default one. YouTube, using a centered play button and always visible video control bar</string>
+    <string name="custom_settings_for_invidious">Invidious自定义设置</string>
+    <string name="invidious_settings">Invidious设置</string>
+    <string name="invidious_dark_mode_title">主题</string>
+    <string name="invidious_dark_mode_indication">不设置cookies配置默认主题</string>
+    <string name="invidious_thin_mode_title">瘦模式</string>
+    <string name="invidious_thin_mode_indication">加载 HTML、CSS、JS 和视频元素 (禁用图像)</string>
+    <string name="invidious_language_mode_indication">可用语言</string>
+    <string name="invidious_language_mode_title">用户界面语言</string>
+    <string name="pref_invidious_head1">全站范围参数</string>
+    <string name="pref_invidious_head2">播放器参数</string>
+    <string name="invidious_annotations_mode_title">注释</string>
+    <string name="invidious_annotations_mode_indication">显示由互联网存档提供的旧备注</string>
+    <string name="invidious_autoplay_mode_indication">加载时自动播放视频</string>
+    <string name="invidious_autoplay_mode_title">自动播放</string>
+    <string name="invidious_continue_mode_title">继续</string>
+    <string name="invidious_continue_mode_indication">当前视频播放完毕，自动转到下一个相关的视频(类似于YouTube的自动播放功能)</string>
+    <string name="invidious_listen_mode_title">聆听</string>
+    <string name="invidious_listen_mode_indication">只播放视频的音频部分</string>
+    <string name="invidious_local_mode_title">本地模式</string>
+    <string name="invidious_local_mode_indication">代理视频流</string>
+    <string name="invidious_subtitles_mode_title">字幕</string>
+    <string name="invidious_subtitles_mode_indication">ISO 639- 1 语言代码列表</string>
+    <string name="invidious_quality_mode_title">画质</string>
+    <string name="invidious_quality_mode_indication">默认播放器画质</string>
+    <string name="invidious_loop_mode_title">循环</string>
+    <string name="invidious_volume_mode_title">音量</string>
+    <string name="invidious_volume_mode_indication">默认播放器音量，可以是 0 和 100 之间的任意整数</string>
+    <string name="invidious_loop_mode_indication">默认循环播放器</string>
+    <string name="invidious_volume_mode_value">音量值</string>
+    <string name="invidious_volume_mode_value_indication">用这个值绕过音量设置</string>
+    <string name="pref_invidious_head3">播放器样式</string>
+    <string name="invidious_player_style_mode_title">外观</string>
+    <string name="invidious_player_style_mode_indication">默认样式为Invidious。YouTube，使用居中播放按钮和始终可见的视频控制栏</string>
     <string-array name="invidious_theme">
-        <item>Ignore</item>
-        <item>Remove</item>
-        <item>Dark theme</item>
-        <item>Light theme</item>
+        <item>忽略</item>
+        <item>移除</item>
+        <item>深色主题</item>
+        <item>亮色主题</item>
     </string-array>
     <string-array name="invidious_enable">
-        <item>Ignore</item>
-        <item>Remove</item>
-        <item>Enabled</item>
-        <item>Disabled</item>
+        <item>忽略</item>
+        <item>移除</item>
+        <item>启用</item>
+        <item>禁用</item>
     </string-array>
     <string-array name="invidious_language">
-        <item>Ignore</item>
-        <item>Remove</item>
-        <item>Arabic</item>
-        <item>German</item>
-        <item>Greek</item>
-        <item>English</item>
-        <item>Esperanto</item>
-        <item>Spanish</item>
-        <item>Basque</item>
-        <item>French</item>
-        <item>Icelandic</item>
-        <item>Italian</item>
-        <item>Norwegian Bokmål</item>
-        <item>Dutch</item>
-        <item>Polish</item>
-        <item>Russian</item>
-        <item>Ukrainian</item>
-        <item>Chinese</item>
+        <item>忽略</item>
+        <item>移除</item>
+        <item>阿拉伯语</item>
+        <item>德语</item>
+        <item>希腊语</item>
+        <item>英语</item>
+        <item>世界语</item>
+        <item>西班牙语</item>
+        <item>巴斯克语</item>
+        <item>法语</item>
+        <item>冰岛语</item>
+        <item>意大利语</item>
+        <item>挪威博克马尔文</item>
+        <item>荷兰语</item>
+        <item>波兰语</item>
+        <item>俄语</item>
+        <item>乌克兰语</item>
+        <item>中文</item>
     </string-array>
     <string-array name="invidious_annotations">
-        <item>Ignore</item>
-        <item>Remove</item>
-        <item>Show annotations</item>
-        <item>Hide annotations</item>
-    </string-array>
-    <string-array name="invidious_subtitles">
-        <item>Ignore</item>
-        <item>Remove</item>
-        <item>English</item>
+        <item>忽略</item>
+        <item>移除</item>
+        <item>显示注释</item>
+        <item>隐藏批注</item>
     </string-array>
     <string-array name="invidious_quality">
-        <item>Ignore</item>
-        <item>Remove</item>
+        <item>忽略</item>
+        <item>移除</item>
         <item>DASH</item>
         <item>720p</item>
         <item>480p</item>
     </string-array>
     <string-array name="invidious_volume">
-        <item>Ignore</item>
-        <item>Remove</item>
-        <item>Custom</item>
+        <item>忽略</item>
+        <item>移除</item>
+        <item>自定义</item>
     </string-array>
     <string-array name="invidious_player_style">
-        <item>Ignore</item>
-        <item>Remove</item>
+        <item>忽略</item>
+        <item>移除</item>
         <item>Invidious</item>
-        <item>Youtube</item>
+        <item>Youtube样式</item>
     </string-array>
 </resources>
