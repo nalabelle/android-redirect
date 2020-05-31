@@ -24,5 +24,14 @@
         android:layout_margin="@dimen/fab_margin"
         android:layout_marginTop="20dp"
         android:text="@string/invidious_help_other" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/fab_margin"
+        android:layout_marginTop="20dp"
+        android:textStyle="italic"
+        android:text="@string/invidious_help_explanations" />
+
 </LinearLayout>
 

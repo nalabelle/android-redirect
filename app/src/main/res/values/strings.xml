@@ -131,10 +131,10 @@
     <string name="help">Help</string>
 
     <string name="invidious_help_title">Setting options</string>
-    <string name="invidious_help_ignore"><b>Ignore:</b> This value, set as the default one, means that the URL will remain unchanged for a parameter.</string>
-    <string name="invidious_help_remove"><b>Remove:</b> This value means that the setting parameter will be removed from the URL if it exists.</string>
-    <string name="invidious_help_other">When forcing a setting parameters, it will be added if it does not exist, otherwise it will be changed to the new value.</string>
-
+    <string name="invidious_help_ignore"><b>Ignore:</b> This is the default action for all¹ parameters. This means UntrackMe will not do anything about the parameter</string>
+    <string name="invidious_help_remove"><b>Remove:</b> UntrackMe will remove the parameter from URL, if it exists</string>
+    <string name="invidious_help_other">If you select other values for a parameter, they will be added to the URL. If the parameter already exists, its value will be changed to your choice</string>
+    <string name="invidious_help_explanations">[1] \'local\' parameter is set to \'true\' by default for better privacy</string>
     <string-array name="invidious_theme">
         <item>Ignore</item>
         <item>Remove</item>
