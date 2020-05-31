@@ -116,7 +116,7 @@ public class AboutActivity extends AppCompatActivity {
 
         Button how_to = findViewById(R.id.how_to);
         how_to.setOnClickListener(v -> {
-            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://fedilab.app/wiki/nitterizeme/"));
+            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://fedilab.app/wiki/untrackme/"));
             startActivity(browserIntent);
         });
 

@@ -60,7 +60,7 @@ import static app.fedilab.nitterizeme.activities.MainActivity.SET_NITTER_HOST;
 
 public class InstanceActivity extends AppCompatActivity {
 
-    private static String list_for_instances = "https://framagit.org/tom79/fedilab_app/-/blob/master/content/nitterizeme_instances/payload_2.json";
+    private static String list_for_instances = "https://framagit.org/tom79/fedilab_app/-/blob/master/content/untrackme_instances/payload_2.json";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,7 +83,7 @@ public class InstanceActivity extends AppCompatActivity {
         protected String doInBackground(Void... voids) {
             HttpsURLConnection httpsURLConnection;
             try {
-                String instances_url = "https://fedilab.app/nitterizeme_instances/payload_2.json";
+                String instances_url = "https://fedilab.app/untrackme_instances/payload_2.json";
                 URL url = new URL(instances_url);
                 httpsURLConnection = (HttpsURLConnection) url.openConnection();
                 httpsURLConnection.setConnectTimeout(10 * 1000);
