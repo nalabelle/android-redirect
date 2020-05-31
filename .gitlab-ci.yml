@@ -39,5 +39,58 @@ debugTests:
   except:
     - tags
 
+## PROTECTED VARIABLES TO SET IN GITLAB:
+# - GITLAB_API_TOKEN: token you create on Gitlab
+# - NC_REMOTE_DIR:    like https://YOUR_NEXTCLOUD/remote.php/dav/files/YOUR_USER/mastalab (no trailing slash)
+# - NC_SHARE_URL:     share the folder in Nextcloud with public link and put your public link here (no trailing slash)
+# - NC_USER:          nextcloud user
+# - NC_PASSWORD:      nextcloud password
+## Protect all tags in Gitlab repo settings (do a wildcard, ie '*')
+# For now, it uses the assembleDebug builds, you'll need to create a job in build-and-test to create the apks, with only: - tags and add except: - tags to assembleDebug (like in debugTests)
+# In it, put something like this to get your signature key file:
+# - curl -s --output signature.jsk -u "${NC_USER}:${NC_PASSWORD}" "https://YOUR_NEXTCLOUD/remote.php/dav/files/YOUR_USER/signature.jsk"
+putApkOnTags:
+  image: hatsoftwares/curl-jq:latest
+  stage: tag
+  retry: 2
+  cache:
+    key: "${CI_COMMIT_TAG}"
+    paths:
+      - app/build/outputs/apk/lite/debug/app-lite-debug.apk
+      - app/build/outputs/apk/fullLinks/debug/app-fullLinks-debug.apk
+    policy: pull
+  script:
+    - export PROJECT_API_URL="https://framagit.org/api/v4/projects/${CI_PROJECT_ID}"
+    - export DESCRIPTION_URL="${PROJECT_API_URL}/repository/tags/${CI_COMMIT_TAG}"
+    - export RELEASE_URL="${DESCRIPTION_URL}/release"
+    - export NC_UPLOAD_URL="${NC_REMOTE_DIR}/${CI_COMMIT_TAG}"
+    - export NC_DOWNLOAD_URL="${NC_SHARE_URL}/download?path=%2F${CI_COMMIT_TAG}%2F&files="
+    - 'export HEADER="Private-Token: ${GITLAB_API_TOKEN}"'
+    - export liteUrl="${NC_DOWNLOAD_URL}app-lite-debug.apk"
+    - export fullLinksUrl="${NC_DOWNLOAD_URL}app-fullLinks-debug.apk"
+    - 'curl -s -u "${NC_USER}:${NC_PASSWORD}" -X MKCOL "${NC_UPLOAD_URL}"'
+    - 'curl -s -u "${NC_USER}:${NC_PASSWORD}" -T app/build/outputs/apk/lite/debug/app-lite-debug.apk       "${NC_UPLOAD_URL}/app-lite-debug.apk"'
+    - 'curl -s -u "${NC_USER}:${NC_PASSWORD}" -T app/build/outputs/apk/fullLinks/debug/app-fullLinks-debug.apk "${NC_UPLOAD_URL}/app-fullLinks-debug.apk"'
+    - export description=$(curl -s --header "${HEADER}" "${DESCRIPTION_URL}" | jq .release.description | sed -e 's@"@@g')
+    - if [[ $description == 'null' ]]; then export METHOD="POST"; echo -e "[Get the lite version](${liteUrl})\n\n[Get the full links version](${fullLinksUrl})" > /tmp/text; fi
+    - if [[ $description != 'null' ]]; then export METHOD="PUT";  echo -e "${description}\n\n[Get the lite version](${liteUrl})\n\n[Get the full links version](${fullLinksUrl})" > /tmp/text; fi
+    - curl -s --request $METHOD --data-urlencode "description@/tmp/text" --header "${HEADER}" "${RELEASE_URL}"
+  only:
+    - tags
+
+pouet-it:
+  image: hatsoftwares/pouet-it-from-ci:latest
+  stage: toot
+  dependencies:
+    - putApkOnTags
+  script:
+    - cd /opt/pouet-it-from-ci
+    # Make the project name first letter uppercase
+    - export NC_DOWNLOAD_URL="${NC_SHARE_URL}?path=%2F${CI_COMMIT_TAG}%2F"
+    - export project="$(tr '[:lower:]' '[:upper:]' <<< ${CI_PROJECT_NAME:0:1})${CI_PROJECT_NAME:1}"
+    - export MESSAGE=$(echo -e "I just released a new version of "'#'"${APP_NAME}!""\n${CI_PROJECT_URL}/tags/${CI_COMMIT_TAG}\nYou can download the apks on ${NC_DOWNLOAD_URL}")
+    - if [[ ! -z $HOST ]]; then carton exec ./pouet-it-from-ci.pl; fi
+  only:
+    - tags
 
 
