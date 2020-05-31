@@ -76,7 +76,7 @@
             app:title="@string/invidious_listen_mode_title" />
 
         <ListPreference
-            android:defaultValue="0"
+            android:defaultValue="local=true"
             android:entries="@array/invidious_enable"
             android:entryValues="@array/invidious_local_values"
             app:iconSpaceReserved="false"

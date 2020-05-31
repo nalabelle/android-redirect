@@ -440,7 +440,7 @@ public class Utils {
         }
 
         //Local
-        String local = sharedpreferences.getString(context.getString(R.string.invidious_local_mode), "0");
+        String local = sharedpreferences.getString(context.getString(R.string.invidious_local_mode), "local=true");
         if (local.compareTo("-1") == 0) { //Remove value
             newUrl = newUrl.replaceAll("&?local=(true|false)", "");
         } else if (local.compareTo("0") != 0) { //Change value
