@@ -128,6 +128,12 @@
     <string name="pref_invidious_head3">Player Style</string>
     <string name="invidious_player_style_mode_title">Appearance</string>
     <string name="invidious_player_style_mode_indication">Invidious, the default one. YouTube, using a centered play button and always visible video control bar</string>
+    <string name="help">Help</string>
+
+    <string name="invidious_help_title">Setting options</string>
+    <string name="invidious_help_ignore"><b>Ignore:</b> This value, set as the default one, means that the URL will remain unchanged for a parameter.</string>
+    <string name="invidious_help_remove"><b>Remove:</b> This value means that the setting parameter will be removed from the URL if it exists.</string>
+    <string name="invidious_help_other">When forcing a setting parameters, it will be added if it does not exist, otherwise it will be changed to the new value.</string>
 
     <string-array name="invidious_theme">
         <item>Ignore</item>

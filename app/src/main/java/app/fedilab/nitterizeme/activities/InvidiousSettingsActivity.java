@@ -15,8 +15,12 @@ package app.fedilab.nitterizeme.activities;
  * see <http://www.gnu.org/licenses>. */
 
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.LinearLayout;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import app.fedilab.nitterizeme.R;
@@ -38,10 +42,24 @@ public class InvidiousSettingsActivity extends AppCompatActivity {
     }
 
     @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_invidious_settings, menu);
+        return true;
+    }
+
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home) {
             finish();
             return true;
+        } else if (item.getItemId() == R.id.action_help) {
+            AlertDialog.Builder invidious_settings_helper = new AlertDialog.Builder(InvidiousSettingsActivity.this);
+            View view = getLayoutInflater().inflate(R.layout.popup_invidious_settings_info, new LinearLayout(getApplicationContext()), false);
+            invidious_settings_helper.setView(view);
+            invidious_settings_helper.setTitle(R.string.invidious_help_title);
+            invidious_settings_helper.setPositiveButton(R.string.close, (dialog, id) -> dialog.dismiss());
+            AlertDialog alertDialog = invidious_settings_helper.create();
+            alertDialog.show();
         }
         return super.onOptionsItemSelected(item);
     }
