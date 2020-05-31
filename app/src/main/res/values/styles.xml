@@ -23,6 +23,7 @@
         <item name="android:textColor">@color/textColor</item>
         <item name="buttonBarNegativeButtonStyle">@style/NegativeButtonStyle</item>
         <item name="buttonBarPositiveButtonStyle">@style/PositiveButtonStyle</item>
+        <item name="alertDialogTheme">@style/AppThemeDialog</item>
     </style>
 
 
