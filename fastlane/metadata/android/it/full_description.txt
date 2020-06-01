@@ -4,13 +4,13 @@ Supporta anche i collegamenti di Google Maps per trasformarli in collegamenti Op
 
 L'app rileverà URL abbreviati e mostrerà l'URL completo prima di visitare il sito.
 
-**Lite version:
+**Versione Lite:
 
-- When sharing a Twitter, YouTube or Google Maps link just pick up UntrackMe to transform it before sharing it with another app.
+- Quando si condivide un collegamento di Twitter, YouTube o Google Maps basta utilizzare UntrackMe per trasformarlo prima di condividerlo con un'altra app.
 
 **Versione completa:
 
-- Contiene tutte le caratteristiche della versione lite e gestisce anche tutti i link per rimuovere i parametri di tracciamento. It uses its own app picker that display URLs before visiting them.
+- Contiene tutte le caratteristiche della versione lite e gestisce anche tutti i link per rimuovere i parametri di tracciamento. Utilizza il proprio selettore di app che visualizza gli URL prima di visitarli.
 
 
 Cos'è Nitter:

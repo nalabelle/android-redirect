@@ -88,7 +88,7 @@
     <string name="pref_invidious_head1">Site-wide parameters</string>
     <string name="pref_invidious_head2">Parametri del lettore</string>
     <string name="invidious_annotations_mode_title">Annotazioni</string>
-    <string name="invidious_annotations_mode_indication">Show legacy annotations, provided by the Internet Archive</string>
+    <string name="invidious_annotations_mode_indication">Mostra annotazioni legacy, fornite dall\'Archivio Internet</string>
     <string name="invidious_autoplay_mode_indication">Riproduci automaticamente il video al caricamento</string>
     <string name="invidious_autoplay_mode_title">Riproduzione automatica</string>
     <string name="invidious_continue_mode_title">Continua</string>
@@ -98,7 +98,7 @@
     <string name="invidious_local_mode_title">Local</string>
     <string name="invidious_local_mode_indication">Stream video proxy</string>
     <string name="invidious_subtitles_mode_title">Sottotitoli</string>
-    <string name="invidious_subtitles_mode_indication">List of ISO 639–1 language codes</string>
+    <string name="invidious_subtitles_mode_indication">Elenco dei codici dei linguaggi secondo ISO 639–1</string>
     <string name="invidious_quality_mode_title">Qualità</string>
     <string name="invidious_quality_mode_indication">Qualità del lettore predefinita</string>
     <string name="invidious_loop_mode_title">Loop</string>
