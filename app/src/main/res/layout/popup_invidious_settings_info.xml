@@ -30,8 +30,8 @@
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/fab_margin"
         android:layout_marginTop="20dp"
-        android:textStyle="italic"
-        android:text="@string/invidious_help_explanations" />
+        android:text="@string/invidious_help_explanations"
+        android:textStyle="italic" />
 
 </LinearLayout>
 

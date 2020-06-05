@@ -60,7 +60,7 @@ public class AboutActivity extends AppCompatActivity {
         content.setSpan(new ForegroundColorSpan(ContextCompat.getColor(AboutActivity.this, R.color.colorAccent)), 0, content.length(), 0);
         developer_mastodon.setText(content);
         developer_mastodon.setOnClickListener(v -> {
-            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://toot.fedilab.app/@fedilab"));
+            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://toot.fedilab.app/@UntrackMe"));
             startActivity(browserIntent);
         });
 
@@ -110,7 +110,7 @@ public class AboutActivity extends AppCompatActivity {
         });
         Button donateLiberapay = findViewById(R.id.donate_liberapay);
         donateLiberapay.setOnClickListener(v -> {
-            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://liberapay.com/tom79/donate"));
+            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://liberapay.com/tom79"));
             startActivity(browserIntent);
         });
 
