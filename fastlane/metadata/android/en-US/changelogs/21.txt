@@ -1,0 +1,4 @@
+Added
+- Remember last used app with "Just once" choice
+- Allow to use URLs for Nitter, Invidious and Bibliogram custom hots.
+- Custom front-end customization applied when sharing a URL
