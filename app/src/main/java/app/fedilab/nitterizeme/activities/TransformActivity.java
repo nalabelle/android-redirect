@@ -436,6 +436,47 @@ public class TransformActivity extends Activity {
         } else if (Arrays.asList(shortener_domains).contains(host)) {
             manageShortenedShare(TransformActivity.this, url, extraText, scheme);
             return;
+        } else if (Arrays.asList(invidious_instances).contains(host)) {
+            boolean invidious_enabled = sharedpreferences.getBoolean(SET_INVIDIOUS_ENABLED, true);
+            if (invidious_enabled) {
+                String invidiousHost = sharedpreferences.getString(MainActivity.SET_INVIDIOUS_HOST, MainActivity.DEFAULT_INVIDIOUS_HOST).toLowerCase();
+                if (host != null && host.compareTo(invidiousHost) != 0) {
+                    if (!invidiousHost.startsWith("http")) {
+                        newUrl = url.replace(host, invidiousHost);
+                    } else {
+                        newUrl = url.replace("https://" + host, invidiousHost).replace("http://" + host, invidiousHost);
+                    }
+                }
+                newUrl = Utils.replaceInvidiousParams(TransformActivity.this, newUrl);
+            }
+        }
+        //Transform a Nitter URL from an instance to another one selected by the end user.
+        else if (Arrays.asList(nitter_instances).contains(host)) {
+            boolean nitter_enabled = sharedpreferences.getBoolean(SET_NITTER_ENABLED, true);
+            if (nitter_enabled) {
+                String nitterHost = sharedpreferences.getString(MainActivity.SET_NITTER_HOST, MainActivity.DEFAULT_NITTER_HOST).toLowerCase();
+                if (host != null && host.compareTo(nitterHost) != 0) {
+                    if (!nitterHost.startsWith("http")) {
+                        newUrl = url.replace(host, nitterHost);
+                    } else {
+                        newUrl = url.replace("https://" + host, nitterHost).replace("http://" + host, nitterHost);
+                    }
+                }
+            }
+        }
+        //Transform a Bibliogram URL from an instance to another one selected by the end user.
+        else if (Arrays.asList(bibliogram_instances).contains(host)) {
+            boolean bibliogram_enabled = sharedpreferences.getBoolean(SET_BIBLIOGRAM_ENABLED, true);
+            if (bibliogram_enabled) {
+                String bibliogramHost = sharedpreferences.getString(MainActivity.SET_BIBLIOGRAM_HOST, MainActivity.DEFAULT_BIBLIOGRAM_HOST).toLowerCase();
+                if (host != null && host.compareTo(bibliogramHost) != 0) {
+                    if (!bibliogramHost.startsWith("http")) {
+                        newUrl = url.replace(host, bibliogramHost);
+                    } else {
+                        newUrl = url.replace("https://" + host, bibliogramHost).replace("http://" + host, bibliogramHost);
+                    }
+                }
+            }
         } else {
             newUrl = remove_tracking_param(url);
         }
