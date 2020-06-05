@@ -19,6 +19,7 @@ import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.database.sqlite.SQLiteDatabase;
@@ -43,8 +44,10 @@ import app.fedilab.nitterizeme.helpers.Utils;
 import app.fedilab.nitterizeme.sqlite.DefaultAppDAO;
 import app.fedilab.nitterizeme.sqlite.Sqlite;
 
+import static app.fedilab.nitterizeme.activities.MainActivity.APP_PREFS;
 import static app.fedilab.nitterizeme.helpers.Utils.INTENT_ACTION;
 import static app.fedilab.nitterizeme.helpers.Utils.KILL_ACTIVITY;
+import static app.fedilab.nitterizeme.helpers.Utils.LAST_USED_APP_PACKAGE;
 import static app.fedilab.nitterizeme.helpers.Utils.URL_APP_PICKER;
 
 
@@ -103,6 +106,8 @@ public class AppsPickerActivity extends Activity {
         String thisPackageName = getApplicationContext().getPackageName();
         ArrayList<String> packages = new ArrayList<>();
         List<AppPicker> appPickers = new ArrayList<>();
+        SharedPreferences sharedpreferences = getSharedPreferences(APP_PREFS, Context.MODE_PRIVATE);
+        String last_used_app = sharedpreferences.getString(LAST_USED_APP_PACKAGE, null);
         int i = 0;
         for (ResolveInfo currentInfo : activities) {
             String packageName = currentInfo.activityInfo.packageName;
@@ -111,7 +116,11 @@ public class AppsPickerActivity extends Activity {
                 appPicker.setIcon(currentInfo.activityInfo.loadIcon(getPackageManager()));
                 appPicker.setName(String.valueOf(currentInfo.loadLabel(getPackageManager())));
                 appPicker.setPackageName(packageName);
-                if (i == 0) {
+                if (i == 0 && last_used_app == null) {
+                    appPicker.setSelected(true);
+                    appToUse = packageName;
+                    appName = String.valueOf(currentInfo.loadLabel(getPackageManager()));
+                } else if (last_used_app != null && last_used_app.compareTo(packageName) == 0) {
                     appPicker.setSelected(true);
                     appToUse = packageName;
                     appName = String.valueOf(currentInfo.loadLabel(getPackageManager()));
@@ -149,6 +158,9 @@ public class AppsPickerActivity extends Activity {
                     appName = appPickers.get(position).getName();
                     appPickerAdapter.notifyDataSetChanged();
                 } else {
+                    SharedPreferences.Editor editor = sharedpreferences.edit();
+                    editor.putString(LAST_USED_APP_PACKAGE, appToUse);
+                    editor.apply();
                     if (action.compareTo(Intent.ACTION_VIEW) == 0) {
                         Intent intent = new Intent(action, Uri.parse(url));
                         intent.setPackage(appToUse);
@@ -209,6 +221,9 @@ public class AppsPickerActivity extends Activity {
                     intent.setPackage(appToUse);
                     startActivity(intent);
                 }
+                SharedPreferences.Editor editor = sharedpreferences.edit();
+                editor.putString(LAST_USED_APP_PACKAGE, appToUse);
+                editor.apply();
                 finish();
             });
         }

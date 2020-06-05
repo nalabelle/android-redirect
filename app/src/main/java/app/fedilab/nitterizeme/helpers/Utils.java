@@ -85,6 +85,7 @@ public class Utils {
     public static final String KILL_ACTIVITY = "kill_activity";
     public static final String URL_APP_PICKER = "url_app_picker";
     public static final String INTENT_ACTION = "intent_action";
+    public static final String LAST_USED_APP_PACKAGE = "last_used_app_package";
     public static final Pattern youtubePattern = Pattern.compile("(www\\.|m\\.)?(youtube\\.com|youtu\\.be|youtube-nocookie\\.com)/(((?!([\"'<])).)*)");
     public static final Pattern nitterPattern = Pattern.compile("(mobile\\.|www\\.)?twitter.com([\\w-/]+)");
     public static final Pattern bibliogramPostPattern = Pattern.compile("(m\\.|www\\.)?instagram.com(/p/[\\w-/]+)");
