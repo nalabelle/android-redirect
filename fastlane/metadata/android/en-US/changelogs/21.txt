@@ -1,4 +1,10 @@
 Added
-- Remember last used app with "Just once" choice
-- Allow to use URLs for Nitter, Invidious and Bibliogram custom hots.
-- Custom front-end customization applied when sharing a URL
+- Remember last used app with "Just once" choice (or double tap) (full)
+- Allow to use URLs for Nitter, Invidious and Bibliogram int custom hosts
+- Custom front-end customization applied when sharing URLs
+
+Changed
+- About page
+
+Fixed
+- Issue when managing local=true for Invidious

@@ -343,9 +343,7 @@ public class Utils {
                         newUrl = replaceInvidiousParams(context, newUrl);
                     } else {
                         newUrl = scheme + invidiousHost + "/" + youtubeId;
-                        if (!url.contains("/channel/")) {
-                            newUrl = replaceInvidiousParams(context, newUrl);
-                        }
+                        newUrl = replaceInvidiousParams(context, newUrl);
                     }
                 }
                 return newUrl;
@@ -452,13 +450,15 @@ public class Utils {
 
         //Local
         String local = sharedpreferences.getString(context.getString(R.string.invidious_local_mode), "local=true");
-        if (local.compareTo("-1") == 0) { //Remove value
-            newUrl = newUrl.replaceAll("&?local=(true|false)", "");
-        } else if (local.compareTo("0") != 0) { //Change value
-            if (newUrl.contains("listen=")) {
-                newUrl = newUrl.replaceAll("local=(true|false)", local);
-            } else {
-                newUrl += "&" + local;
+        if (!url.contains("/channel/")) {
+            if (local.compareTo("-1") == 0) { //Remove value
+                newUrl = newUrl.replaceAll("&?local=(true|false)", "");
+            } else if (local.compareTo("0") != 0) { //Change value
+                if (newUrl.contains("local=")) {
+                    newUrl = newUrl.replaceAll("local=(true|false)", local);
+                } else {
+                    newUrl += "&" + local;
+                }
             }
         }
 
