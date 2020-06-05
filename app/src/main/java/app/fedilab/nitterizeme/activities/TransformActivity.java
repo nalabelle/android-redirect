@@ -214,7 +214,11 @@ public class TransformActivity extends Activity {
                     String invidiousHost = sharedpreferences.getString(MainActivity.SET_INVIDIOUS_HOST, MainActivity.DEFAULT_INVIDIOUS_HOST).toLowerCase();
                     String transformedURL = url;
                     if (host != null && host.compareTo(invidiousHost) != 0) {
-                        transformedURL = url.replace(host, invidiousHost);
+                        if (!invidiousHost.startsWith("http")) {
+                            transformedURL = url.replace(host, invidiousHost);
+                        } else {
+                            transformedURL = url.replace("https://" + host, invidiousHost).replace("http://" + host, invidiousHost);
+                        }
                     }
                     transformedURL = Utils.replaceInvidiousParams(TransformActivity.this, transformedURL);
                     intent.setData(Uri.parse(transformedURL));
@@ -230,7 +234,11 @@ public class TransformActivity extends Activity {
                     String nitterHost = sharedpreferences.getString(MainActivity.SET_NITTER_HOST, MainActivity.DEFAULT_NITTER_HOST).toLowerCase();
                     String transformedURL = url;
                     if (host != null && host.compareTo(nitterHost) != 0) {
-                        transformedURL = url.replace(host, nitterHost);
+                        if (!nitterHost.startsWith("http")) {
+                            transformedURL = url.replace(host, nitterHost);
+                        } else {
+                            transformedURL = url.replace("https://" + host, nitterHost).replace("http://" + host, nitterHost);
+                        }
                     }
                     intent.setData(Uri.parse(transformedURL));
                     forwardToBrowser(TransformActivity.this, intent);
@@ -245,7 +253,11 @@ public class TransformActivity extends Activity {
                     String bibliogramHost = sharedpreferences.getString(MainActivity.SET_BIBLIOGRAM_HOST, MainActivity.DEFAULT_BIBLIOGRAM_HOST).toLowerCase();
                     String transformedURL = url;
                     if (host != null && host.compareTo(bibliogramHost) != 0) {
-                        transformedURL = url.replace(host, bibliogramHost);
+                        if (!bibliogramHost.startsWith("http")) {
+                            transformedURL = url.replace(host, bibliogramHost);
+                        } else {
+                            transformedURL = url.replace("https://" + host, bibliogramHost).replace("http://" + host, bibliogramHost);
+                        }
                     }
                     intent.setData(Uri.parse(transformedURL));
                     forwardToBrowser(TransformActivity.this, intent);
@@ -335,6 +347,9 @@ public class TransformActivity extends Activity {
             if (nitter_enabled) {
 
                 String nitterHost = sharedpreferences.getString(MainActivity.SET_NITTER_HOST, MainActivity.DEFAULT_NITTER_HOST).toLowerCase();
+                if (nitterHost.startsWith("http")) {
+                    scheme = "";
+                }
                 assert host != null;
                 if (host.compareTo("pbs.twimg.com") == 0 || host.compareTo("pic.twitter.com") == 0) {
                     try {
@@ -355,16 +370,19 @@ public class TransformActivity extends Activity {
         } else if (Arrays.asList(instagram_domains).contains(host)) {
             boolean bibliogram_enabled = sharedpreferences.getBoolean(SET_BIBLIOGRAM_ENABLED, true);
             if (bibliogram_enabled) {
+                String bibliogramHost = sharedpreferences.getString(MainActivity.SET_BIBLIOGRAM_HOST, MainActivity.DEFAULT_BIBLIOGRAM_HOST).toLowerCase();
+                if (bibliogramHost.startsWith("http")) {
+                    scheme = "";
+                }
                 Matcher matcher = bibliogramPostPattern.matcher(url);
                 while (matcher.find()) {
                     final String bibliogram_directory = matcher.group(2);
-                    String bibliogramHost = sharedpreferences.getString(MainActivity.SET_BIBLIOGRAM_HOST, MainActivity.DEFAULT_BIBLIOGRAM_HOST).toLowerCase();
+
                     newUrl = scheme + bibliogramHost + bibliogram_directory;
                 }
                 matcher = bibliogramAccountPattern.matcher(url);
                 while (matcher.find()) {
                     final String bibliogram_directory = matcher.group(2);
-                    String bibliogramHost = sharedpreferences.getString(MainActivity.SET_BIBLIOGRAM_HOST, MainActivity.DEFAULT_BIBLIOGRAM_HOST).toLowerCase();
                     if (bibliogram_directory != null && bibliogram_directory.compareTo("privacy") != 0) {
                         newUrl = scheme + bibliogramHost + "/u" + bibliogram_directory;
                     } else {
@@ -401,10 +419,13 @@ public class TransformActivity extends Activity {
         } else if (Arrays.asList(youtube_domains).contains(host)) { //Youtube URL
             boolean invidious_enabled = sharedpreferences.getBoolean(SET_INVIDIOUS_ENABLED, true);
             if (invidious_enabled) {
+                String invidiousHost = sharedpreferences.getString(MainActivity.SET_INVIDIOUS_HOST, MainActivity.DEFAULT_INVIDIOUS_HOST).toLowerCase();
+                if (invidiousHost.startsWith("http")) {
+                    scheme = "";
+                }
                 Matcher matcher = youtubePattern.matcher(url);
                 while (matcher.find()) {
                     final String youtubeId = matcher.group(3);
-                    String invidiousHost = sharedpreferences.getString(MainActivity.SET_INVIDIOUS_HOST, MainActivity.DEFAULT_INVIDIOUS_HOST).toLowerCase();
                     if (Objects.requireNonNull(matcher.group(2)).compareTo("youtu.be") == 0) {
                         newUrl = scheme + invidiousHost + "/watch?v=" + youtubeId;
                     } else {

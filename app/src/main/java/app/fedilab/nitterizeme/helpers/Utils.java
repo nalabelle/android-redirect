@@ -232,6 +232,9 @@ public class Utils {
             boolean nitter_enabled = sharedpreferences.getBoolean(SET_NITTER_ENABLED, true);
             if (nitter_enabled) {
                 String nitterHost = sharedpreferences.getString(MainActivity.SET_NITTER_HOST, MainActivity.DEFAULT_NITTER_HOST).toLowerCase();
+                if (nitterHost.startsWith("http")) {
+                    scheme = "";
+                }
                 assert host != null;
                 if (host.compareTo("pbs.twimg.com") == 0 || host.compareTo("pic.twitter.com") == 0) {
                     try {
@@ -258,16 +261,19 @@ public class Utils {
         } else if (Arrays.asList(instagram_domains).contains(host)) {
             boolean bibliogram_enabled = sharedpreferences.getBoolean(SET_BIBLIOGRAM_ENABLED, true);
             if (bibliogram_enabled) {
+                String bibliogramHost = sharedpreferences.getString(MainActivity.SET_BIBLIOGRAM_HOST, MainActivity.DEFAULT_BIBLIOGRAM_HOST).toLowerCase();
+                if (bibliogramHost.startsWith("http")) {
+                    scheme = "";
+                }
                 Matcher matcher = bibliogramPostPattern.matcher(url);
                 while (matcher.find()) {
                     final String bibliogram_directory = matcher.group(2);
-                    String bibliogramHost = sharedpreferences.getString(MainActivity.SET_BIBLIOGRAM_HOST, MainActivity.DEFAULT_BIBLIOGRAM_HOST).toLowerCase();
+
                     newUrl = scheme + bibliogramHost + bibliogram_directory;
                 }
                 matcher = bibliogramAccountPattern.matcher(url);
                 while (matcher.find()) {
                     final String bibliogram_directory = matcher.group(2);
-                    String bibliogramHost = sharedpreferences.getString(MainActivity.SET_BIBLIOGRAM_HOST, MainActivity.DEFAULT_BIBLIOGRAM_HOST).toLowerCase();
                     if (bibliogram_directory != null && bibliogram_directory.compareTo("privacy") != 0) {
                         newUrl = scheme + bibliogramHost + "/u" + bibliogram_directory;
                     } else {
@@ -321,10 +327,14 @@ public class Utils {
         } else if (Arrays.asList(youtube_domains).contains(host)) { //Youtube URL
             boolean invidious_enabled = sharedpreferences.getBoolean(SET_INVIDIOUS_ENABLED, true);
             if (invidious_enabled) {
+                String invidiousHost = sharedpreferences.getString(MainActivity.SET_INVIDIOUS_HOST, MainActivity.DEFAULT_INVIDIOUS_HOST).toLowerCase();
+                if (invidiousHost.startsWith("http")) {
+                    scheme = "";
+                }
                 Matcher matcher = youtubePattern.matcher(url);
                 while (matcher.find()) {
                     String youtubeId = matcher.group(3);
-                    String invidiousHost = sharedpreferences.getString(MainActivity.SET_INVIDIOUS_HOST, MainActivity.DEFAULT_INVIDIOUS_HOST).toLowerCase();
+
                     if (Objects.requireNonNull(matcher.group(2)).compareTo("youtu.be") == 0) {
                         if (youtubeId != null && youtubeId.contains("?t=")) {
                             youtubeId = youtubeId.replace("?t=", "&t=");
