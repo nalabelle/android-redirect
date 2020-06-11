@@ -90,12 +90,12 @@
     <string name="invidious_annotations_mode_title">Annotations</string>
     <string name="invidious_annotations_mode_indication">Show legacy annotations, provided by the Internet Archive</string>
     <string name="invidious_autoplay_mode_indication">Automatically play video on load</string>
-    <string name="invidious_autoplay_mode_title">Autoplay</string>
+    <string name="invidious_autoplay_mode_title">Αυτόματη αναπαραγωγή</string>
     <string name="invidious_continue_mode_title">Συνέχεια</string>
     <string name="invidious_continue_mode_indication">When video is done, automatically go to the next related video (similar to YouTube’s Autoplay feature)</string>
-    <string name="invidious_listen_mode_title">Listen</string>
+    <string name="invidious_listen_mode_title">Ακρόαση</string>
     <string name="invidious_listen_mode_indication">Play only audio portion of video</string>
-    <string name="invidious_local_mode_title">Local</string>
+    <string name="invidious_local_mode_title">Τοπικά</string>
     <string name="invidious_local_mode_indication">Proxy video streams</string>
     <string name="invidious_subtitles_mode_title">Υπότιτλοι</string>
     <string name="invidious_subtitles_mode_indication">Λίστα ISO 639-1 κωδικών γλώσσας</string>
