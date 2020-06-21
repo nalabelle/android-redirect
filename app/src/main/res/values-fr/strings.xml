@@ -92,7 +92,7 @@
     <string name="invidious_autoplay_mode_indication">Lire la vidéo automatiquement au chargement</string>
     <string name="invidious_autoplay_mode_title">Lecture automatique</string>
     <string name="invidious_continue_mode_title">Continuer</string>
-    <string name="invidious_continue_mode_indication">When video is done, automatically go to the next related video (similar to YouTube’s Autoplay feature)</string>
+    <string name="invidious_continue_mode_indication">Quand une vidéo est finie, aller automatiquement à la vidéo liée suivante (similaire à la fonctionnalité Lecture auto de YouTube)</string>
     <string name="invidious_listen_mode_title">Écouter</string>
     <string name="invidious_listen_mode_indication">Lire seulement la partie audio de la vidéo</string>
     <string name="invidious_local_mode_title">Local</string>
