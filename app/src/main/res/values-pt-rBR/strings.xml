@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- Some local values -->
-    <string name="action_settings">Confirgurações</string>
+    <string name="action_settings">Configurações</string>
     <string name="action_about">Sobre</string>
-    <string name="developer">Desenvolvedores</string>
+    <string name="developer">Desenvolvedor</string>
     <string name="donations">Doações</string>
     <string name="about_the_app">Sobre o aplicativo</string>
     <string name="source_code">Código fonte</string>
@@ -14,23 +14,23 @@
     <string name="save">Guardar</string>
     <string name="close">Fechar</string>
     <string name="instances_saved">Instâncias personalizadas foram salvas!</string>
-    <string name="custom_invidious">Instância Invidiosa personalizada</string>
-    <string name="no_apps">Nenhum aplicativo por padrão</string>
+    <string name="custom_invidious">Instância Invidious personalizada</string>
+    <string name="no_apps">Nenhum aplicativo default</string>
     <string name="Donate">Doar</string>
     <string name="warning">Warning</string>
     <string name="error">Error</string>
-    <string name="valid">Valid</string>
+    <string name="valid">Válido</string>
     <string name="icon_of_the_app">Ícone do app</string>
     <string name="open_with">Abrir com</string>
     <string name="redirect_gm_to_osm">Redirecionar o Google Map para o OpenStreetMap</string>
     <string name="custom_osm">Hostname OSM personalizado</string>
-    <string name="redirect_youtube_to_invidious">Redirecionar YouTube para Invidioso</string>
+    <string name="redirect_youtube_to_invidious">Redirecionar YouTube para Invidious</string>
     <string name="redirect_twitter_to_nitter">Redirecionar Twitter para Nitter</string>
     <string name="redirect_instagram_to_bibliogram">Redirecionar o Instagram para a Bibliogram</string>
-    <string name="custom_bibliogram">Instância Bibliograma personalizada</string>
-    <string name="redirect_gm_to_geo_uri">Redirecionar Google Map para o URI Geo</string>
+    <string name="custom_bibliogram">Instância Bibliogram personalizada</string>
+    <string name="redirect_gm_to_geo_uri">Redirecionar Google Map para Geo URI</string>
     <string name="configure">Configurar</string>
-    <string name="display_supported_links">Exibir links suportados</string>
+    <string name="display_supported_links">Exibir links aceitos</string>
     <string name="use_geo_uri">Use geo URI</string>
     <string name="how_to">Como</string>
     <string name="shortened_detected">URL encurtada</string>
@@ -40,9 +40,9 @@
     <string name="resolving_shortened">Resolvendo URL encurtada, por favor aguarde…</string>
     <string name="try_to_redirect">%1$s \n\nwill redirect you to\n\n<b>%2$s</b></string>
     <string name="try_to_redirect_again">Então ele vai te redirecionar para\n\n<b>%1$s</b></string>
-    <string name="the_app_failed_shortened">O app não gerenciou para recuperar o URL completo</string>
-    <string name="invidious_instances">Instâncias invidiosas</string>
-    <string name="nitter_instances">Instâncias de Nitter</string>
+    <string name="the_app_failed_shortened">O app não conseguiu recuperar o URL completo</string>
+    <string name="invidious_instances">Instâncias Invidious</string>
+    <string name="nitter_instances">Instâncias Nitter</string>
     <string name="bibliogram_instances">Instâncias Bibliogram</string>
     <string name="latency">Latência</string>
     <string name="error_message_internet">Verifique sua conexão com a Internet</string>
@@ -50,7 +50,7 @@
     <string name="expand_instance_details">Expandir detalhes da instância</string>
     <string name="cloudflare">Esta instância usa Cloudflare</string>
     <string name="instance_info">Informações sobre instâncias listadas</string>
-    <string name="about_instances">A lista de instâncias vem de\n\n <a href="%1$s">%2$s</a>\n\nVocê pode contribuir para esta lista, adicionando ou removendo instâncias.</string>
+    <string name="about_instances">A lista de instâncias vem de\n\n <a href="%1$s">%2$s</a>\n\nVocê pode contribuir para esta lista adicionando ou removendo instâncias.</string>
     <string name="about_instances_title">Sobre instâncias</string>
     <string name="use_built_in_player">Use the built-in player</string>
     <string name="share">Share</string>
