@@ -98,6 +98,9 @@ public class CheckAppActivity extends AppCompatActivity {
             "bibliogram.dsrev.ru",
             "bibliogram.pussthecat.org"
     };
+
+    public static String outlook_safe_domain = "safelinks.protection.outlook.com";
+
     private RecyclerView list_apps;
     private String[] domains;
 

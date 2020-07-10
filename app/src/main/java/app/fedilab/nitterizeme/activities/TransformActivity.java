@@ -26,6 +26,7 @@ import android.util.Patterns;
 import java.io.UnsupportedEncodingException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.net.URLDecoder;
 import java.net.URLEncoder;
 import java.util.Arrays;
 import java.util.Objects;
@@ -39,6 +40,7 @@ import static app.fedilab.nitterizeme.activities.CheckAppActivity.bibliogram_ins
 import static app.fedilab.nitterizeme.activities.CheckAppActivity.instagram_domains;
 import static app.fedilab.nitterizeme.activities.CheckAppActivity.invidious_instances;
 import static app.fedilab.nitterizeme.activities.CheckAppActivity.nitter_instances;
+import static app.fedilab.nitterizeme.activities.CheckAppActivity.outlook_safe_domain;
 import static app.fedilab.nitterizeme.activities.CheckAppActivity.shortener_domains;
 import static app.fedilab.nitterizeme.activities.CheckAppActivity.twitter_domains;
 import static app.fedilab.nitterizeme.activities.CheckAppActivity.youtube_domains;
@@ -54,6 +56,7 @@ import static app.fedilab.nitterizeme.helpers.Utils.manageShortened;
 import static app.fedilab.nitterizeme.helpers.Utils.manageShortenedShare;
 import static app.fedilab.nitterizeme.helpers.Utils.maps;
 import static app.fedilab.nitterizeme.helpers.Utils.nitterPattern;
+import static app.fedilab.nitterizeme.helpers.Utils.outlookRedirect;
 import static app.fedilab.nitterizeme.helpers.Utils.remove_tracking_param;
 import static app.fedilab.nitterizeme.helpers.Utils.transformUrl;
 import static app.fedilab.nitterizeme.helpers.Utils.youtubePattern;
@@ -258,6 +261,17 @@ public class TransformActivity extends Activity {
                     intent.setData(Uri.parse(transformedURL));
 
                 }
+                forwardToBrowser(TransformActivity.this, intent);
+            } else if (host != null && host.contains(outlook_safe_domain)) {
+                Matcher matcher = outlookRedirect.matcher(url);
+                if (matcher.find()) {
+                    url = matcher.group(3);
+                    try {
+                        url = URLDecoder.decode(url, "UTF-8");
+                    } catch (UnsupportedEncodingException ignored) {
+                    }
+                }
+                intent.setData(Uri.parse(url));
                 forwardToBrowser(TransformActivity.this, intent);
             } else {
                 String newUrl = remove_tracking_param(url);

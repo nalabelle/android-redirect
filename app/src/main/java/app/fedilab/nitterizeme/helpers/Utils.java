@@ -89,12 +89,14 @@ public class Utils {
     public static final Pattern youtubePattern = Pattern.compile("(www\\.|m\\.)?(youtube\\.com|youtu\\.be|youtube-nocookie\\.com)/(((?!([\"'<])).)*)");
     public static final Pattern nitterPattern = Pattern.compile("(mobile\\.|www\\.)?twitter.com([\\w-/]+)");
     public static final Pattern bibliogramPostPattern = Pattern.compile("(m\\.|www\\.)?instagram.com(/p/[\\w-/]+)");
+
     public static final Pattern bibliogramAccountPattern = Pattern.compile("(m\\.|www\\.)?instagram.com(((?!/p/).)+)");
     public static final Pattern maps = Pattern.compile("/maps/place/([^@]+@)?([\\d.,z]+).*");
     public static final Pattern ampExtract = Pattern.compile("amp/s/(.*)");
     public static final String RECEIVE_STREAMING_URL = "receive_streaming_url";
     private static final Pattern extractPlace = Pattern.compile("/maps/place/(((?!/data).)*)");
     private static final Pattern googleRedirect = Pattern.compile("https?://(www\\.)?google(\\.\\w{2,})?(\\.\\w{2,})/url\\?q=(.*)");
+    public static final Pattern outlookRedirect = Pattern.compile("(.*)safelinks\\.protection\\.outlook\\.com/?[?]?((?!url).)*url=([^&]+)");
     private static final String[] G_TRACKING = {
             "sourceid",
             "aqs",
