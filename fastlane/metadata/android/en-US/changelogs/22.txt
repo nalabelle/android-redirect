@@ -1,2 +1,5 @@
+Added
+- Remove tracking for outlook URLs
+
 Fixed
 - Installing a new app prevents of setting a default app with the built-in app picker
