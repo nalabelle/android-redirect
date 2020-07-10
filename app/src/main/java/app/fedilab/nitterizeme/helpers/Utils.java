@@ -340,11 +340,10 @@ public class Utils {
                             youtubeId = youtubeId.replace("?t=", "&t=");
                         }
                         newUrl = scheme + invidiousHost + "/watch?v=" + youtubeId;
-                        newUrl = replaceInvidiousParams(context, newUrl);
                     } else {
                         newUrl = scheme + invidiousHost + "/" + youtubeId;
-                        newUrl = replaceInvidiousParams(context, newUrl);
                     }
+                    newUrl = replaceInvidiousParams(context, newUrl);
                 }
                 return newUrl;
             } else {
