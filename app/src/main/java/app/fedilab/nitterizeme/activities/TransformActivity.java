@@ -222,10 +222,8 @@ public class TransformActivity extends Activity {
                     }
                     transformedURL = Utils.replaceInvidiousParams(TransformActivity.this, transformedURL);
                     intent.setData(Uri.parse(transformedURL));
-                    forwardToBrowser(TransformActivity.this, intent);
-                } else {
-                    forwardToBrowser(TransformActivity.this, intent);
                 }
+                forwardToBrowser(TransformActivity.this, intent);
             }
             //Transform a Nitter URL from an instance to another one selected by the end user.
             else if (Arrays.asList(nitter_instances).contains(host)) {
@@ -241,10 +239,8 @@ public class TransformActivity extends Activity {
                         }
                     }
                     intent.setData(Uri.parse(transformedURL));
-                    forwardToBrowser(TransformActivity.this, intent);
-                } else {
-                    forwardToBrowser(TransformActivity.this, intent);
                 }
+                forwardToBrowser(TransformActivity.this, intent);
             }
             //Transform a Bibliogram URL from an instance to another one selected by the end user.
             else if (Arrays.asList(bibliogram_instances).contains(host)) {
@@ -260,10 +256,9 @@ public class TransformActivity extends Activity {
                         }
                     }
                     intent.setData(Uri.parse(transformedURL));
-                    forwardToBrowser(TransformActivity.this, intent);
-                } else {
-                    forwardToBrowser(TransformActivity.this, intent);
+
                 }
+                forwardToBrowser(TransformActivity.this, intent);
             } else {
                 String newUrl = remove_tracking_param(url);
                 try {
