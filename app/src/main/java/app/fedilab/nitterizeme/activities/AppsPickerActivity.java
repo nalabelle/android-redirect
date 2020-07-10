@@ -129,10 +129,8 @@ public class AppsPickerActivity extends Activity {
                 packages.add(packageName);
                 i++;
             }
-
         }
         String defaultApp = new DefaultAppDAO(AppsPickerActivity.this, db).getDefault(packages);
-
         TextView urlText = findViewById(R.id.url);
         urlText.setText(url);
 
@@ -141,6 +139,7 @@ public class AppsPickerActivity extends Activity {
             intent.setPackage(defaultApp);
             startActivity(intent);
             finish();
+            return;
         } else {
             ConstraintLayout app_container = findViewById(R.id.app_container);
             app_container.setVisibility(View.VISIBLE);
@@ -188,6 +187,7 @@ public class AppsPickerActivity extends Activity {
                 if (isPresent) {
                     ArrayList<String> oldConcurrent = new DefaultAppDAO(AppsPickerActivity.this, db).getConcurrent(appToUse);
                     ArrayList<String> newConcurrent = Utils.union(oldConcurrent, packages);
+                    newConcurrent.remove(appToUse);
                     new DefaultAppDAO(AppsPickerActivity.this, db).update(appToUse, newConcurrent);
                 } else {
                     val = new DefaultAppDAO(AppsPickerActivity.this, db).insert(appToUse, packages);
