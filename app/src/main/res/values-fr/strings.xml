@@ -92,7 +92,7 @@
     <string name="invidious_autoplay_mode_indication">Lire la vidéo automatiquement au chargement</string>
     <string name="invidious_autoplay_mode_title">Lecture automatique</string>
     <string name="invidious_continue_mode_title">Continuer</string>
-    <string name="invidious_continue_mode_indication">When video is done, automatically go to the next related video (similar to YouTube’s Autoplay feature)</string>
+    <string name="invidious_continue_mode_indication">Quand une vidéo est finie, aller automatiquement à la vidéo liée suivante (similaire à la fonctionnalité Lecture auto de YouTube)</string>
     <string name="invidious_listen_mode_title">Écouter</string>
     <string name="invidious_listen_mode_indication">Lire seulement la partie audio de la vidéo</string>
     <string name="invidious_local_mode_title">Local</string>
@@ -114,7 +114,7 @@
     <string name="invidious_help_title">Réglage des options</string>
     <string name="invidious_help_ignore"><b>Ignore:</b> This is the default action for all¹ parameters. This means UntrackMe will not do anything about the parameter</string>
     <string name="invidious_help_remove"><b>Remove:</b> UntrackMe will remove the parameter from URL, if it exists</string>
-    <string name="invidious_help_other">If you select other values for a parameter, they will be added to the URL. If the parameter already exists, its value will be changed to your choice</string>
+    <string name="invidious_help_other">Si vous sélectionnez d\'autres valeurs pour un paramètre, elles seront ajoutées à l\'URL. Si le paramètre existe déjà, sa valeur sera changée selon votre choix</string>
     <string name="invidious_help_explanations">[1] \'local\' parameter is set to \'true\' by default for better privacy</string>
     <string-array name="invidious_theme">
         <item>Ignorer</item>

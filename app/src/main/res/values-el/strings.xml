@@ -63,7 +63,7 @@
     <string name="always">Πάντα</string>
     <string name="default_app_indication">Η %1$s έχει οριστεί ως προεπιλεγμένη εφαρμογή.\nΜπορείτε να αλλάξετε αυτή τη συμπεριφορά από τις ρυθμίσεις εφαρμογών.</string>
     <string name="indication_error_title">Υπάρχει κάποιο πρόβλημα με τις ρυθμίσεις της εφαρμογής. Παρακαλώ, ακολουθήστε τις οδηγίες για να το διορθώσετε.</string>
-    <string name="open_configure">1 - Tap on the \"CONFIGURE\" button above.</string>
+    <string name="open_configure">1 - Πατήστε το κουμπί \"CONFIGURE\" παραπάνω.</string>
     <string name="supported_url_indication_1">2 - You are now in app settings from your device. Tap on \"Set as default\".</string>
     <string name="display_indications_1_description">Screenshot showing app settings for the app. You have to Tap on \"Set as default\"</string>
     <string name="supported_url_indication_2">2 - Then tap on \"Go to supported URLs\".</string>
@@ -90,12 +90,12 @@
     <string name="invidious_annotations_mode_title">Annotations</string>
     <string name="invidious_annotations_mode_indication">Show legacy annotations, provided by the Internet Archive</string>
     <string name="invidious_autoplay_mode_indication">Automatically play video on load</string>
-    <string name="invidious_autoplay_mode_title">Autoplay</string>
+    <string name="invidious_autoplay_mode_title">Αυτόματη αναπαραγωγή</string>
     <string name="invidious_continue_mode_title">Συνέχεια</string>
     <string name="invidious_continue_mode_indication">When video is done, automatically go to the next related video (similar to YouTube’s Autoplay feature)</string>
-    <string name="invidious_listen_mode_title">Listen</string>
+    <string name="invidious_listen_mode_title">Ακρόαση</string>
     <string name="invidious_listen_mode_indication">Play only audio portion of video</string>
-    <string name="invidious_local_mode_title">Local</string>
+    <string name="invidious_local_mode_title">Τοπικά</string>
     <string name="invidious_local_mode_indication">Proxy video streams</string>
     <string name="invidious_subtitles_mode_title">Υπότιτλοι</string>
     <string name="invidious_subtitles_mode_indication">Λίστα ISO 639-1 κωδικών γλώσσας</string>
