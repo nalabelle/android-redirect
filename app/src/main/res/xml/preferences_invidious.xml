@@ -35,8 +35,8 @@
 
 
     <PreferenceCategory
-        android:title="@string/pref_invidious_head2"
         android:key="@string/invidious_category_player_parameters"
+        android:title="@string/pref_invidious_head2"
         app:iconSpaceReserved="false">
         <ListPreference
             android:defaultValue="0"
@@ -125,12 +125,12 @@
 
         <SeekBarPreference
             android:defaultValue="60"
-            app:showSeekBarValue="true"
-            app:iconSpaceReserved="false"
             android:key="@string/invidious_volume_value"
+            android:max="100"
             android:title="@string/invidious_volume_mode_value"
-            app:summary="@string/invidious_volume_mode_value_indication"
-            android:max="100" />
+            app:iconSpaceReserved="false"
+            app:showSeekBarValue="true"
+            app:summary="@string/invidious_volume_mode_value_indication" />
     </PreferenceCategory>
 
     <PreferenceCategory
