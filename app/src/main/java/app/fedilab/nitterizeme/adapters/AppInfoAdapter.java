@@ -36,7 +36,7 @@ import app.fedilab.nitterizeme.BuildConfig;
 import app.fedilab.nitterizeme.R;
 import app.fedilab.nitterizeme.entities.AppInfo;
 
-public class AppInfoAdapter extends RecyclerView.Adapter {
+public class AppInfoAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private static final int LAYOUT_TITLE = 0;
     private static final int LAYOUT_INFO = 1;
