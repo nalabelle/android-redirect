@@ -31,7 +31,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.snackbar.Snackbar;
 
-
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 
@@ -39,7 +38,6 @@ import app.fedilab.nitterizeme.R;
 import app.fedilab.nitterizeme.adapters.InstanceAdapter;
 import app.fedilab.nitterizeme.entities.Instance;
 import app.fedilab.nitterizeme.viewmodels.SearchInstanceVM;
-
 
 
 public class InstanceActivity extends AppCompatActivity {
@@ -70,12 +68,12 @@ public class InstanceActivity extends AppCompatActivity {
             ArrayList<Instance> invidiousInstances = new ArrayList<>();
             ArrayList<Instance> nitterInstances = new ArrayList<>();
             ArrayList<Instance> bibliogramInstances = new ArrayList<>();
-            for(Instance instance: result){
-                if(instance.getType() == Instance.instanceType.INVIDIOUS){
+            for (Instance instance : result) {
+                if (instance.getType() == Instance.instanceType.INVIDIOUS) {
                     invidiousInstances.add(instance);
-                }else if(instance.getType() == Instance.instanceType.NITTER){
+                } else if (instance.getType() == Instance.instanceType.NITTER) {
                     nitterInstances.add(instance);
-                }else if(instance.getType() == Instance.instanceType.BIBLIOGRAM){
+                } else if (instance.getType() == Instance.instanceType.BIBLIOGRAM) {
                     bibliogramInstances.add(instance);
                 }
             }

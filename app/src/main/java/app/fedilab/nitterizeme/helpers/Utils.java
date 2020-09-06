@@ -217,6 +217,7 @@ public class Utils {
         String newUrl = null;
         URL url_;
         String host = null;
+        url = Utils.remove_tracking_param(url);
         try {
             url_ = new URL(url);
             host = url_.getHost();

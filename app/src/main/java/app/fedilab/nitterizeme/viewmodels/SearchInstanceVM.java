@@ -13,6 +13,7 @@ package app.fedilab.nitterizeme.viewmodels;
  *
  * You should have received a copy of the GNU General Public License along with UntrackMe; if not,
  * see <http://www.gnu.org/licenses>. */
+
 import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -85,7 +86,7 @@ public class SearchInstanceVM extends ViewModel {
                     String defaultNitter = sharedpreferences.getString(SET_NITTER_HOST, DEFAULT_NITTER_HOST);
                     String defaultBibliogram = sharedpreferences.getString(SET_BIBLIOGRAM_HOST, DEFAULT_BIBLIOGRAM_HOST);
                     ArrayList<Instance> instances = new ArrayList<>();
-                    if( response != null) {
+                    if (response != null) {
                         try {
                             JSONObject jsonObject = new JSONObject(response);
                             JSONArray jsonArrayInvidious = jsonObject.getJSONArray("invidious");
