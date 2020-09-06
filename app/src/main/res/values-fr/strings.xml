@@ -59,7 +59,7 @@
     <string name="check_apps">Vérifier les applications</string>
     <string name="select_instances">Sélectionner les instances</string>
     <string name="continue_with">Continuer avec…</string>
-    <string name="just_once">Une seule fois</string>
+    <string name="just_once">Cette fois uniquement</string>
     <string name="always">Toujours</string>
     <string name="default_app_indication">%1$s a été défini comme application par défaut.\nVous pouvez supprimer ce comportement des paramètres de l\'application.</string>
     <string name="indication_error_title">Il y a quelque chose qui ne va pas dans la configuration de l\'application. Veuillez suivre ces indications pour résoudre ce problème.</string>
@@ -83,12 +83,12 @@
     <string name="invidious_dark_mode_indication">Configurer le thème par défaut sans paramétrer les cookies</string>
     <string name="invidious_thin_mode_title">Mode fin</string>
     <string name="invidious_thin_mode_indication">Charger les éléments HTML, CSS, JS et vidéo (désactive les images)</string>
-    <string name="invidious_language_mode_indication">Locales disponibles</string>
+    <string name="invidious_language_mode_indication">Langues disponibles</string>
     <string name="invidious_language_mode_title">Langue de l\'interface utilisateur</string>
     <string name="pref_invidious_head1">Paramètres globaux du site</string>
     <string name="pref_invidious_head2">Paramètres du lecteur</string>
     <string name="invidious_annotations_mode_title">Annotations</string>
-    <string name="invidious_annotations_mode_indication">Show legacy annotations, provided by the Internet Archive</string>
+    <string name="invidious_annotations_mode_indication">Afficher les anciennes annotations, fournies par l\'Internet Archive</string>
     <string name="invidious_autoplay_mode_indication">Lire la vidéo automatiquement au chargement</string>
     <string name="invidious_autoplay_mode_title">Lecture automatique</string>
     <string name="invidious_continue_mode_title">Continuer</string>
@@ -103,19 +103,19 @@
     <string name="invidious_quality_mode_indication">Qualité du lecteur par défaut</string>
     <string name="invidious_loop_mode_title">Lecture en boucle</string>
     <string name="invidious_volume_mode_title">Volume</string>
-    <string name="invidious_volume_mode_indication">Default player volume, can be any whole number between 0 and 100</string>
-    <string name="invidious_loop_mode_indication">Loop player by default</string>
+    <string name="invidious_volume_mode_indication">Le volume du joueur par défaut, cela peut être un nombre entier compris entre 0 et 100</string>
+    <string name="invidious_loop_mode_indication">Lire en boucle par défaut</string>
     <string name="invidious_volume_mode_value">Valeur du volume</string>
-    <string name="invidious_volume_mode_value_indication">Override the volume with this value</string>
+    <string name="invidious_volume_mode_value_indication">Remplacer le volume avec cette valeur</string>
     <string name="pref_invidious_head3">Style du lecteur</string>
     <string name="invidious_player_style_mode_title">Apparence</string>
-    <string name="invidious_player_style_mode_indication">Invidious, the default one. YouTube, using a centered play button and always visible video control bar</string>
+    <string name="invidious_player_style_mode_indication">Invidieux, celui par défaut. YouTube, en utilisant un bouton de lecture centré et une barre de contrôle vidéo toujours visible</string>
     <string name="help">Aide</string>
     <string name="invidious_help_title">Réglage des options</string>
-    <string name="invidious_help_ignore"><b>Ignore:</b> This is the default action for all¹ parameters. This means UntrackMe will not do anything about the parameter</string>
-    <string name="invidious_help_remove"><b>Remove:</b> UntrackMe will remove the parameter from URL, if it exists</string>
+    <string name="invidious_help_ignore"><b>Ignorer :</b> Il s\'agit de l\'action par défaut pour tous1 les paramètres . Cela signifie qu\'UntrackMe ne fera rien à propos du paramètre</string>
+    <string name="invidious_help_remove"><b>Supprimer:</b> UntrackMe supprimera le paramètre de l\'URL, s\'il existe</string>
     <string name="invidious_help_other">Si vous sélectionnez d\'autres valeurs pour un paramètre, elles seront ajoutées à l\'URL. Si le paramètre existe déjà, sa valeur sera changée selon votre choix</string>
-    <string name="invidious_help_explanations">[1] \'local\' parameter is set to \'true\' by default for better privacy</string>
+    <string name="invidious_help_explanations">[1] Le paramètre \'local\' est défini à \'Actif\' par défaut pour une meilleure confidentialité</string>
     <string-array name="invidious_theme">
         <item>Ignorer</item>
         <item>Retirer</item>
