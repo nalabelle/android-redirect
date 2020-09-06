@@ -917,9 +917,6 @@ public class Utils {
             Intent intent = new Intent();
             intent.setAction(Intent.ACTION_VIEW);
             String type = i.getType();
-            if (type == null) {
-                type = "text/html";
-            }
             intent.setDataAndType(i.getData(), type);
             List<ResolveInfo> activities = context.getPackageManager().queryIntentActivities(intent, 0);
             ArrayList<Intent> targetIntents = new ArrayList<>();
