@@ -392,7 +392,7 @@ public class TransformActivity extends Activity {
                 matcher = bibliogramAccountPattern.matcher(url);
                 while (matcher.find()) {
                     final String bibliogram_directory = matcher.group(2);
-                    if (bibliogram_directory != null && bibliogram_directory.compareTo("privacy") != 0) {
+                    if (bibliogram_directory != null && bibliogram_directory.compareTo("privacy") != 0 && !bibliogram_directory.startsWith("/tv/") && !bibliogram_directory.startsWith("/reel/") && !bibliogram_directory.startsWith("/igtv/")) {
                         newUrl = scheme + bibliogramHost + "/u" + bibliogram_directory;
                     } else {
                         newUrl = scheme + bibliogramHost + bibliogram_directory;
