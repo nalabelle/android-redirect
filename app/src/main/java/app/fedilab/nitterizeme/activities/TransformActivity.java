@@ -80,6 +80,7 @@ public class TransformActivity extends Activity {
         //Dealing with URLs
         if (Objects.requireNonNull(intent.getAction()).equals(Intent.ACTION_VIEW)) {
             String url = Objects.requireNonNull(intent.getData()).toString();
+            url = remove_tracking_param(url);
             URL url_;
             String host = null;
             try {
@@ -88,6 +89,7 @@ public class TransformActivity extends Activity {
             } catch (MalformedURLException e) {
                 e.printStackTrace();
             }
+
             //Shortened URLs
             if (Arrays.asList(shortener_domains).contains(host)) {
                 manageShortened(TransformActivity.this, url);
@@ -343,6 +345,7 @@ public class TransformActivity extends Activity {
             forwardToBrowser(TransformActivity.this, sendIntent);
             return;
         }
+        url = Utils.remove_tracking_param(url);
         Uri url_r = Uri.parse(url);
         String scheme = url_r.getScheme();
         if (scheme == null) {
@@ -490,8 +493,6 @@ public class TransformActivity extends Activity {
                     }
                 }
             }
-        } else {
-            newUrl = remove_tracking_param(url);
         }
         if (newUrl != null) {
             extraText = extraText.replaceAll(Pattern.quote(url), Matcher.quoteReplacement(newUrl));
