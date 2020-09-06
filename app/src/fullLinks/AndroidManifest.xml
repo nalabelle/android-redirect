@@ -75,7 +75,6 @@
 
 
                 <!-- INVIDIOUS INSTANCES -->
-                <data android:host="invidio.us" />
                 <data android:host="invidious.snopyta.org" />
                 <data android:host="invidiou.sh" />
                 <data android:host="invidious.toot.koeln" />

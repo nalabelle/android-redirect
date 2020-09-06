@@ -59,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
     @SuppressWarnings("unused")
     public static String TAG = "UntrackMe";
     public static String DEFAULT_NITTER_HOST = "nitter.net";
-    public static String DEFAULT_INVIDIOUS_HOST = "invidio.us";
+    public static String DEFAULT_INVIDIOUS_HOST = "invidious.snopyta.org";
     public static String SET_INVIDIOUS_ENABLED = "set_invidious_enabled";
     public static String SET_NITTER_ENABLED = "set_nitter_enabled";
     public static String SET_OSM_ENABLED = "set_osm_enabled";
