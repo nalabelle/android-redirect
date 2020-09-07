@@ -31,7 +31,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.snackbar.Snackbar;
 
-import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 
 import app.fedilab.nitterizeme.R;
@@ -51,7 +50,7 @@ public class InstanceActivity extends AppCompatActivity {
         setTitle(R.string.select_instances);
 
         SearchInstanceVM viewModel = new ViewModelProvider(this).get(SearchInstanceVM.class);
-        viewModel.getInstances(new WeakReference<>(this)).observe(this, result -> {
+        viewModel.getInstances().observe(this, result -> {
             LinearLayout instance_container = findViewById(R.id.instance_container);
             RelativeLayout loader = findViewById(R.id.loader);
             RecyclerView invidious_instances = findViewById(R.id.invidious_instances);
