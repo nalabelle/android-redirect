@@ -14,22 +14,22 @@ package app.fedilab.nitterizeme.viewmodels;
  * You should have received a copy of the GNU General Public License along with UntrackMe; if not,
  * see <http://www.gnu.org/licenses>. */
 
-import android.app.Activity;
+import android.app.Application;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Handler;
 import android.os.Looper;
 
+import androidx.annotation.NonNull;
+import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.ViewModel;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
-import java.lang.ref.WeakReference;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -46,16 +46,19 @@ import static app.fedilab.nitterizeme.activities.MainActivity.SET_BIBLIOGRAM_HOS
 import static app.fedilab.nitterizeme.activities.MainActivity.SET_INVIDIOUS_HOST;
 import static app.fedilab.nitterizeme.activities.MainActivity.SET_NITTER_HOST;
 
-public class SearchInstanceVM extends ViewModel {
+public class SearchInstanceVM extends AndroidViewModel {
     private MutableLiveData<List<Instance>> instancesMLD;
-    private WeakReference<Activity> activityWeakReference;
 
-    public LiveData<List<Instance>> getInstances(WeakReference<Activity> activityWeakReference) {
+    public SearchInstanceVM(@NonNull Application application) {
+        super(application);
+    }
+
+    public LiveData<List<Instance>> getInstances() {
         if (instancesMLD == null) {
             instancesMLD = new MutableLiveData<>();
-            this.activityWeakReference = activityWeakReference;
             loadInstances();
         }
+
         return instancesMLD;
     }
 
@@ -81,7 +84,7 @@ public class SearchInstanceVM extends ViewModel {
                         response = s.hasNext() ? s.next() : "";
                     }
                     httpsURLConnection.getInputStream().close();
-                    SharedPreferences sharedpreferences = activityWeakReference.get().getSharedPreferences(APP_PREFS, Context.MODE_PRIVATE);
+                    SharedPreferences sharedpreferences = getApplication().getApplicationContext().getSharedPreferences(APP_PREFS, Context.MODE_PRIVATE);
                     String defaultInvidious = sharedpreferences.getString(SET_INVIDIOUS_HOST, DEFAULT_INVIDIOUS_HOST);
                     String defaultNitter = sharedpreferences.getString(SET_NITTER_HOST, DEFAULT_NITTER_HOST);
                     String defaultBibliogram = sharedpreferences.getString(SET_BIBLIOGRAM_HOST, DEFAULT_BIBLIOGRAM_HOST);
