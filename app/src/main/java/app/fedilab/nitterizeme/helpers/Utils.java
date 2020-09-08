@@ -430,7 +430,7 @@ public class Utils {
             if (matcher.find()) {
                 String tmp_url = matcher.group(3);
                 try {
-                    newUrl = URLDecoder.decode(tmp_url, "UTF-8");
+                    newUrl = transformUrl(context, URLDecoder.decode(tmp_url, "UTF-8"));
                 } catch (UnsupportedEncodingException ignored) {
                 }
             }
