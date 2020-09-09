@@ -42,7 +42,7 @@ import static app.fedilab.nitterizeme.activities.MainActivity.SET_BIBLIOGRAM_HOS
 import static app.fedilab.nitterizeme.activities.MainActivity.SET_INVIDIOUS_HOST;
 import static app.fedilab.nitterizeme.activities.MainActivity.SET_NITTER_HOST;
 
-public class InstanceAdapter extends RecyclerView.Adapter {
+public class InstanceAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private List<Instance> instances;
     private InstanceAdapter instanceAdapter;

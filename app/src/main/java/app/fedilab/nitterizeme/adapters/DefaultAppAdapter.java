@@ -37,7 +37,7 @@ import app.fedilab.nitterizeme.entities.DefaultApp;
 import app.fedilab.nitterizeme.sqlite.DefaultAppDAO;
 import app.fedilab.nitterizeme.sqlite.Sqlite;
 
-public class DefaultAppAdapter extends RecyclerView.Adapter {
+public class DefaultAppAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private List<DefaultApp> defaultApps;
 

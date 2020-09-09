@@ -14,10 +14,7 @@ package app.fedilab.nitterizeme.activities;
  * You should have received a copy of the GNU General Public License along with UntrackMe; if not,
  * see <http://www.gnu.org/licenses>. */
 
-import android.app.Activity;
-import android.content.Context;
-import android.content.SharedPreferences;
-import android.os.AsyncTask;
+
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -28,34 +25,18 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.snackbar.Snackbar;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.io.IOException;
-import java.lang.ref.WeakReference;
-import java.net.URL;
 import java.util.ArrayList;
-import java.util.List;
-
-import javax.net.ssl.HttpsURLConnection;
 
 import app.fedilab.nitterizeme.R;
 import app.fedilab.nitterizeme.adapters.InstanceAdapter;
 import app.fedilab.nitterizeme.entities.Instance;
-
-import static app.fedilab.nitterizeme.activities.MainActivity.APP_PREFS;
-import static app.fedilab.nitterizeme.activities.MainActivity.DEFAULT_BIBLIOGRAM_HOST;
-import static app.fedilab.nitterizeme.activities.MainActivity.DEFAULT_INVIDIOUS_HOST;
-import static app.fedilab.nitterizeme.activities.MainActivity.DEFAULT_NITTER_HOST;
-import static app.fedilab.nitterizeme.activities.MainActivity.SET_BIBLIOGRAM_HOST;
-import static app.fedilab.nitterizeme.activities.MainActivity.SET_INVIDIOUS_HOST;
-import static app.fedilab.nitterizeme.activities.MainActivity.SET_NITTER_HOST;
+import app.fedilab.nitterizeme.viewmodels.SearchInstanceVM;
 
 
 public class InstanceActivity extends AppCompatActivity {
@@ -66,168 +47,78 @@ public class InstanceActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_popup_instance);
-        new SearchInstances(this).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
         setTitle(R.string.select_instances);
-    }
 
-
-    static class SearchInstances extends AsyncTask<Void, Void, String> {
-
-        private WeakReference<Activity> activityWeakReference;
-
-        SearchInstances(Activity activity) {
-            activityWeakReference = new WeakReference<>(activity);
-        }
-
-        @Override
-        protected String doInBackground(Void... voids) {
-            HttpsURLConnection httpsURLConnection;
-            try {
-                String instances_url = "https://fedilab.app/untrackme_instances/payload_2.json";
-                URL url = new URL(instances_url);
-                httpsURLConnection = (HttpsURLConnection) url.openConnection();
-                httpsURLConnection.setConnectTimeout(10 * 1000);
-                httpsURLConnection.setRequestProperty("http.keepAlive", "false");
-                httpsURLConnection.setRequestProperty("Content-Type", "application/json");
-                httpsURLConnection.setRequestProperty("Accept", "application/json");
-                httpsURLConnection.setRequestMethod("GET");
-                httpsURLConnection.setDefaultUseCaches(true);
-                httpsURLConnection.setUseCaches(true);
-                String response = null;
-                if (httpsURLConnection.getResponseCode() >= 200 && httpsURLConnection.getResponseCode() < 400) {
-                    java.util.Scanner s = new java.util.Scanner(httpsURLConnection.getInputStream()).useDelimiter("\\A");
-                    response = s.hasNext() ? s.next() : "";
-                }
-                httpsURLConnection.getInputStream().close();
-                return response;
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            return null;
-        }
-
-        @Override
-        protected void onPostExecute(String result) {
-            Activity activity = activityWeakReference.get();
-            LinearLayout instance_container = activity.findViewById(R.id.instance_container);
-            RelativeLayout loader = activity.findViewById(R.id.loader);
-            RecyclerView invidious_instances = activity.findViewById(R.id.invidious_instances);
-            RecyclerView nitter_instances = activity.findViewById(R.id.nitter_instances);
-            RecyclerView bibliogram_instances = activity.findViewById(R.id.bibliogram_instances);
-            Button latency_test = activity.findViewById(R.id.latency_test);
-            ImageButton instance_info = activity.findViewById(R.id.instance_info);
-            Button close = activity.findViewById(R.id.close);
+        SearchInstanceVM viewModel = new ViewModelProvider(this).get(SearchInstanceVM.class);
+        viewModel.getInstances().observe(this, result -> {
+            LinearLayout instance_container = findViewById(R.id.instance_container);
+            RelativeLayout loader = findViewById(R.id.loader);
+            RecyclerView invidious_instances = findViewById(R.id.invidious_instances);
+            RecyclerView nitter_instances = findViewById(R.id.nitter_instances);
+            RecyclerView bibliogram_instances = findViewById(R.id.bibliogram_instances);
+            Button latency_test = findViewById(R.id.latency_test);
+            ImageButton instance_info = findViewById(R.id.instance_info);
+            Button close = findViewById(R.id.close);
             if (result == null) {
-                View parentLayout = activity.findViewById(android.R.id.content);
-                Snackbar.make(parentLayout, R.string.error_message_internet, Snackbar.LENGTH_LONG).setAction(R.string.close, v -> activity.finish()).show();
+                View parentLayout = findViewById(android.R.id.content);
+                Snackbar.make(parentLayout, R.string.error_message_internet, Snackbar.LENGTH_LONG).setAction(R.string.close, v -> finish()).show();
                 return;
             }
-            try {
-                JSONObject jsonObject = new JSONObject(result);
-                JSONArray jsonArrayInvidious = jsonObject.getJSONArray("invidious");
-                JSONArray jsonArrayNitter = jsonObject.getJSONArray("nitter");
-                JSONArray jsonArrayBibliogram = jsonObject.getJSONArray("bibliogram");
-
-                SharedPreferences sharedpreferences = activity.getSharedPreferences(APP_PREFS, Context.MODE_PRIVATE);
-                String defaultInvidious = sharedpreferences.getString(SET_INVIDIOUS_HOST, DEFAULT_INVIDIOUS_HOST);
-                String defaultNitter = sharedpreferences.getString(SET_NITTER_HOST, DEFAULT_NITTER_HOST);
-                String defaultBibliogram = sharedpreferences.getString(SET_BIBLIOGRAM_HOST, DEFAULT_BIBLIOGRAM_HOST);
-
-                List<Instance> invidiousInstances = new ArrayList<>();
-                for (int i = 0; i < jsonArrayInvidious.length(); i++) {
-                    Instance instance = new Instance();
-                    String domain = jsonArrayInvidious.getJSONObject(i).getString("domain");
-                    boolean cloudFlare = jsonArrayInvidious.getJSONObject(i).getBoolean("cloudflare");
-                    String locale = jsonArrayInvidious.getJSONObject(i).getString("locale");
-                    instance.setDomain(domain);
-                    instance.setCloudflare(cloudFlare);
-                    instance.setLocale(locale);
-                    if (domain.compareTo(defaultInvidious) == 0) {
-                        instance.setChecked(true);
-                    }
-                    instance.setType(Instance.instanceType.INVIDIOUS);
+            ArrayList<Instance> invidiousInstances = new ArrayList<>();
+            ArrayList<Instance> nitterInstances = new ArrayList<>();
+            ArrayList<Instance> bibliogramInstances = new ArrayList<>();
+            for (Instance instance : result) {
+                if (instance.getType() == Instance.instanceType.INVIDIOUS) {
                     invidiousInstances.add(instance);
-                }
-                List<Instance> nitterInstances = new ArrayList<>();
-                for (int i = 0; i < jsonArrayNitter.length(); i++) {
-                    Instance instance = new Instance();
-                    String domain = jsonArrayNitter.getJSONObject(i).getString("domain");
-                    boolean cloudFlare = jsonArrayNitter.getJSONObject(i).getBoolean("cloudflare");
-                    String locale = jsonArrayNitter.getJSONObject(i).getString("locale");
-                    instance.setDomain(domain);
-                    instance.setCloudflare(cloudFlare);
-                    instance.setLocale(locale);
-                    if (domain.compareTo(defaultNitter) == 0) {
-                        instance.setChecked(true);
-                    }
-                    instance.setType(Instance.instanceType.NITTER);
+                } else if (instance.getType() == Instance.instanceType.NITTER) {
                     nitterInstances.add(instance);
-                }
-                List<Instance> bibliogramInstances = new ArrayList<>();
-                for (int i = 0; i < jsonArrayBibliogram.length(); i++) {
-                    Instance instance = new Instance();
-                    String domain = jsonArrayBibliogram.getJSONObject(i).getString("domain");
-                    boolean cloudFlare = jsonArrayBibliogram.getJSONObject(i).getBoolean("cloudflare");
-                    String locale = jsonArrayBibliogram.getJSONObject(i).getString("locale");
-                    instance.setDomain(domain);
-                    instance.setCloudflare(cloudFlare);
-                    instance.setLocale(locale);
-                    if (domain.compareTo(defaultBibliogram) == 0) {
-                        instance.setChecked(true);
-                    }
-                    instance.setType(Instance.instanceType.BIBLIOGRAM);
+                } else if (instance.getType() == Instance.instanceType.BIBLIOGRAM) {
                     bibliogramInstances.add(instance);
                 }
-
-                final LinearLayoutManager iLayoutManager = new LinearLayoutManager(activity);
-                InstanceAdapter invidiousAdapter = new InstanceAdapter(invidiousInstances);
-                invidious_instances.setAdapter(invidiousAdapter);
-                invidious_instances.setLayoutManager(iLayoutManager);
-                invidious_instances.setNestedScrollingEnabled(false);
-
-                final LinearLayoutManager nLayoutManager = new LinearLayoutManager(activity);
-                InstanceAdapter nitterAdapter = new InstanceAdapter(nitterInstances);
-                nitter_instances.setAdapter(nitterAdapter);
-                nitter_instances.setLayoutManager(nLayoutManager);
-                nitter_instances.setNestedScrollingEnabled(false);
-
-                final LinearLayoutManager bLayoutManager = new LinearLayoutManager(activity);
-                InstanceAdapter bibliogramAdapter = new InstanceAdapter(bibliogramInstances);
-                bibliogram_instances.setAdapter(bibliogramAdapter);
-                bibliogram_instances.setLayoutManager(bLayoutManager);
-                bibliogram_instances.setNestedScrollingEnabled(false);
-                latency_test.setOnClickListener(
-                        v -> {
-                            invidiousAdapter.evalLatency();
-                            nitterAdapter.evalLatency();
-                            bibliogramAdapter.evalLatency();
-                        }
-                );
-
-                instance_info.setOnClickListener(v -> {
-                    AlertDialog.Builder instanceInfo = new AlertDialog.Builder(activity);
-                    instanceInfo.setTitle(R.string.about_instances_title);
-                    View view = activity.getLayoutInflater().inflate(R.layout.popup_instance_info, new LinearLayout(activity.getApplicationContext()), false);
-                    instanceInfo.setView(view);
-                    TextView infoInstancesTextview = view.findViewById(R.id.info_instances);
-                    infoInstancesTextview.setText(activity.getString(R.string.about_instances, list_for_instances, list_for_instances));
-                    instanceInfo.setPositiveButton(R.string.close, (dialog, id) -> dialog.dismiss());
-                    AlertDialog alertDialog = instanceInfo.create();
-                    alertDialog.show();
-                });
-
-            } catch (JSONException e) {
-                e.printStackTrace();
             }
+            final LinearLayoutManager iLayoutManager = new LinearLayoutManager(this);
+            InstanceAdapter invidiousAdapter = new InstanceAdapter(invidiousInstances);
+            invidious_instances.setAdapter(invidiousAdapter);
+            invidious_instances.setLayoutManager(iLayoutManager);
+            invidious_instances.setNestedScrollingEnabled(false);
 
-            close.setOnClickListener(v -> activity.finish());
+            final LinearLayoutManager nLayoutManager = new LinearLayoutManager(this);
+            InstanceAdapter nitterAdapter = new InstanceAdapter(nitterInstances);
+            nitter_instances.setAdapter(nitterAdapter);
+            nitter_instances.setLayoutManager(nLayoutManager);
+            nitter_instances.setNestedScrollingEnabled(false);
+
+            final LinearLayoutManager bLayoutManager = new LinearLayoutManager(this);
+            InstanceAdapter bibliogramAdapter = new InstanceAdapter(bibliogramInstances);
+            bibliogram_instances.setAdapter(bibliogramAdapter);
+            bibliogram_instances.setLayoutManager(bLayoutManager);
+            bibliogram_instances.setNestedScrollingEnabled(false);
+            latency_test.setOnClickListener(
+                    v -> {
+                        invidiousAdapter.evalLatency();
+                        nitterAdapter.evalLatency();
+                        bibliogramAdapter.evalLatency();
+                    }
+            );
+
+            instance_info.setOnClickListener(v -> {
+                AlertDialog.Builder instanceInfo = new AlertDialog.Builder(this);
+                instanceInfo.setTitle(R.string.about_instances_title);
+                View view = getLayoutInflater().inflate(R.layout.popup_instance_info, new LinearLayout(getApplicationContext()), false);
+                instanceInfo.setView(view);
+                TextView infoInstancesTextview = view.findViewById(R.id.info_instances);
+                infoInstancesTextview.setText(getString(R.string.about_instances, list_for_instances, list_for_instances));
+                instanceInfo.setPositiveButton(R.string.close, (dialog, id) -> dialog.dismiss());
+                AlertDialog alertDialog = instanceInfo.create();
+                alertDialog.show();
+            });
+
+            close.setOnClickListener(v -> finish());
 
 
             instance_container.setVisibility(View.VISIBLE);
             loader.setVisibility(View.GONE);
-
-        }
-
+        });
     }
 
 }

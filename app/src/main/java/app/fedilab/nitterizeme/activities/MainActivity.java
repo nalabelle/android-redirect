@@ -56,10 +56,10 @@ public class MainActivity extends AppCompatActivity {
     public static final String SET_INVIDIOUS_HOST = "set_invidious_host";
     public static final String SET_OSM_HOST = "set_osm_host";
     public static final String SET_BIBLIOGRAM_HOST = "set_bibliogram_host";
-    @SuppressWarnings("unused")
+    @SuppressWarnings({"unused", "RedundantSuppression"})
     public static String TAG = "UntrackMe";
     public static String DEFAULT_NITTER_HOST = "nitter.net";
-    public static String DEFAULT_INVIDIOUS_HOST = "invidio.us";
+    public static String DEFAULT_INVIDIOUS_HOST = "invidious.snopyta.org";
     public static String SET_INVIDIOUS_ENABLED = "set_invidious_enabled";
     public static String SET_NITTER_ENABLED = "set_nitter_enabled";
     public static String SET_OSM_ENABLED = "set_osm_enabled";

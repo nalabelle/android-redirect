@@ -30,6 +30,7 @@ public class InvidiousSettingsFragment extends PreferenceFragmentCompat implemen
         setPreferencesFromResource(R.xml.preferences_invidious, rootKey);
         SharedPreferences prefs = getPreferenceScreen().getSharedPreferences();
         String volume_mode = prefs.getString(getString(R.string.invidious_volume_mode), "0");
+        assert volume_mode != null;
         if (volume_mode.compareTo("0") == 0 || volume_mode.compareTo("-1") == 0) {
             PreferenceCategory player_parameters = findPreference(getString(R.string.invidious_category_player_parameters));
             SeekBarPreference volume_pref = findPreference(getString(R.string.invidious_volume_value));
@@ -63,6 +64,7 @@ public class InvidiousSettingsFragment extends PreferenceFragmentCompat implemen
             String volume_mode = sharedPreferences.getString(getString(R.string.invidious_volume_mode), "0");
             SeekBarPreference volume_pref = findPreference(getString(R.string.invidious_volume_value));
             PreferenceCategory player_parameters = findPreference(getString(R.string.invidious_category_player_parameters));
+            assert volume_mode != null;
             if (volume_mode.compareTo("0") == 0 || volume_mode.compareTo("-1") == 0) {
                 assert player_parameters != null;
                 if (volume_pref != null) {

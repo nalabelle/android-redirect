@@ -59,7 +59,8 @@ public class DefaultAppDAO {
         db.delete(Sqlite.TABLE_DEFAULT_APPS, Sqlite.COL_DEFAULT_PACKAGE + " = \"" + packageName + "\"", null);
     }
 
-    @SuppressWarnings("unused")
+
+    @SuppressWarnings({"unused", "RedundantSuppression"})
     public int removeAll() {
         return db.delete(Sqlite.TABLE_DEFAULT_APPS, null, null);
     }

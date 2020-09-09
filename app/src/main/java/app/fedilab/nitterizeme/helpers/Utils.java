@@ -47,6 +47,7 @@ import java.net.HttpURLConnection;
 import java.net.InetAddress;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.net.URLDecoder;
 import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -70,8 +71,11 @@ import app.fedilab.nitterizeme.activities.MainActivity;
 import app.fedilab.nitterizeme.activities.WebviewPlayerActivity;
 
 import static android.content.Context.DOWNLOAD_SERVICE;
+import static app.fedilab.nitterizeme.activities.CheckAppActivity.bibliogram_instances;
 import static app.fedilab.nitterizeme.activities.CheckAppActivity.instagram_domains;
 import static app.fedilab.nitterizeme.activities.CheckAppActivity.invidious_instances;
+import static app.fedilab.nitterizeme.activities.CheckAppActivity.nitter_instances;
+import static app.fedilab.nitterizeme.activities.CheckAppActivity.outlook_safe_domain;
 import static app.fedilab.nitterizeme.activities.CheckAppActivity.shortener_domains;
 import static app.fedilab.nitterizeme.activities.CheckAppActivity.twitter_domains;
 import static app.fedilab.nitterizeme.activities.CheckAppActivity.youtube_domains;
@@ -94,9 +98,9 @@ public class Utils {
     public static final Pattern maps = Pattern.compile("/maps/place/([^@]+@)?([\\d.,z]+).*");
     public static final Pattern ampExtract = Pattern.compile("amp/s/(.*)");
     public static final String RECEIVE_STREAMING_URL = "receive_streaming_url";
+    public static final Pattern outlookRedirect = Pattern.compile("(.*)safelinks\\.protection\\.outlook\\.com/?[?]?((?!url).)*url=([^&]+)");
     private static final Pattern extractPlace = Pattern.compile("/maps/place/(((?!/data).)*)");
     private static final Pattern googleRedirect = Pattern.compile("https?://(www\\.)?google(\\.\\w{2,})?(\\.\\w{2,})/url\\?q=(.*)");
-    public static final Pattern outlookRedirect = Pattern.compile("(.*)safelinks\\.protection\\.outlook\\.com/?[?]?((?!url).)*url=([^&]+)");
     private static final String[] G_TRACKING = {
             "sourceid",
             "aqs",
@@ -217,6 +221,7 @@ public class Utils {
         String newUrl = null;
         URL url_;
         String host = null;
+        url = Utils.remove_tracking_param(url);
         try {
             url_ = new URL(url);
             host = url_.getHost();
@@ -233,7 +238,9 @@ public class Utils {
         if (Arrays.asList(twitter_domains).contains(host)) {
             boolean nitter_enabled = sharedpreferences.getBoolean(SET_NITTER_ENABLED, true);
             if (nitter_enabled) {
-                String nitterHost = sharedpreferences.getString(MainActivity.SET_NITTER_HOST, MainActivity.DEFAULT_NITTER_HOST).toLowerCase();
+                String nitterHost = sharedpreferences.getString(MainActivity.SET_NITTER_HOST, MainActivity.DEFAULT_NITTER_HOST);
+                assert nitterHost != null;
+                nitterHost = nitterHost.toLowerCase();
                 if (nitterHost.startsWith("http")) {
                     scheme = "";
                 }
@@ -263,7 +270,9 @@ public class Utils {
         } else if (Arrays.asList(instagram_domains).contains(host)) {
             boolean bibliogram_enabled = sharedpreferences.getBoolean(SET_BIBLIOGRAM_ENABLED, true);
             if (bibliogram_enabled) {
-                String bibliogramHost = sharedpreferences.getString(MainActivity.SET_BIBLIOGRAM_HOST, MainActivity.DEFAULT_BIBLIOGRAM_HOST).toLowerCase();
+                String bibliogramHost = sharedpreferences.getString(MainActivity.SET_BIBLIOGRAM_HOST, MainActivity.DEFAULT_BIBLIOGRAM_HOST);
+                assert bibliogramHost != null;
+                bibliogramHost = bibliogramHost.toLowerCase();
                 if (bibliogramHost.startsWith("http")) {
                     scheme = "";
                 }
@@ -276,7 +285,7 @@ public class Utils {
                 matcher = bibliogramAccountPattern.matcher(url);
                 while (matcher.find()) {
                     final String bibliogram_directory = matcher.group(2);
-                    if (bibliogram_directory != null && bibliogram_directory.compareTo("privacy") != 0) {
+                    if (bibliogram_directory != null && bibliogram_directory.compareTo("privacy") != 0 && !bibliogram_directory.startsWith("/tv/") && !bibliogram_directory.startsWith("/reel/") && !bibliogram_directory.startsWith("/igtv/")) {
                         newUrl = scheme + bibliogramHost + "/u" + bibliogram_directory;
                     } else {
                         newUrl = scheme + bibliogramHost + bibliogram_directory;
@@ -306,7 +315,9 @@ public class Utils {
                         } else {
                             zoom = "16";
                         }
-                        String osmHost = sharedpreferences.getString(MainActivity.SET_OSM_HOST, MainActivity.DEFAULT_OSM_HOST).toLowerCase();
+                        String osmHost = sharedpreferences.getString(MainActivity.SET_OSM_HOST, MainActivity.DEFAULT_OSM_HOST);
+                        assert osmHost != null;
+                        osmHost = osmHost.toLowerCase();
                         boolean geo_uri_enabled = sharedpreferences.getBoolean(MainActivity.SET_GEO_URIS, false);
                         if (!geo_uri_enabled) {
                             newUrl = scheme + osmHost + "/#map=" + zoom + "/" + data[0] + "/" + data[1];
@@ -326,10 +337,19 @@ public class Utils {
             } else {
                 return url;
             }
+        } else if (url.contains("/amp/s/")) {
+            Matcher matcher = ampExtract.matcher(url);
+            String transformedURL = url;
+            while (matcher.find()) {
+                transformedURL = "https://" + matcher.group(1);
+            }
+            return transformedURL;
         } else if (Arrays.asList(youtube_domains).contains(host)) { //Youtube URL
             boolean invidious_enabled = sharedpreferences.getBoolean(SET_INVIDIOUS_ENABLED, true);
             if (invidious_enabled) {
-                String invidiousHost = sharedpreferences.getString(MainActivity.SET_INVIDIOUS_HOST, MainActivity.DEFAULT_INVIDIOUS_HOST).toLowerCase();
+                String invidiousHost = sharedpreferences.getString(MainActivity.SET_INVIDIOUS_HOST, MainActivity.DEFAULT_INVIDIOUS_HOST);
+                assert invidiousHost != null;
+                invidiousHost = invidiousHost.toLowerCase();
                 if (invidiousHost.startsWith("http")) {
                     scheme = "";
                 }
@@ -351,6 +371,70 @@ public class Utils {
             } else {
                 return url;
             }
+        } else if (Arrays.asList(invidious_instances).contains(host)) {
+            boolean invidious_enabled = sharedpreferences.getBoolean(SET_INVIDIOUS_ENABLED, true);
+            newUrl = url;
+            if (invidious_enabled) {
+                String invidiousHost = sharedpreferences.getString(MainActivity.SET_INVIDIOUS_HOST, MainActivity.DEFAULT_INVIDIOUS_HOST);
+                assert invidiousHost != null;
+                invidiousHost = invidiousHost.toLowerCase();
+                if (host != null && host.compareTo(invidiousHost) != 0) {
+                    if (!invidiousHost.startsWith("http")) {
+                        newUrl = url.replace(host, invidiousHost);
+                    } else {
+                        newUrl = url.replace("https://" + host, invidiousHost).replace("http://" + host, invidiousHost);
+                    }
+                }
+                newUrl = Utils.replaceInvidiousParams(context, newUrl);
+            }
+            return newUrl;
+        }
+        //Transform a Nitter URL from an instance to another one selected by the end user.
+        else if (Arrays.asList(nitter_instances).contains(host)) {
+            newUrl = url;
+            boolean nitter_enabled = sharedpreferences.getBoolean(SET_NITTER_ENABLED, true);
+            if (nitter_enabled) {
+                String nitterHost = sharedpreferences.getString(MainActivity.SET_NITTER_HOST, MainActivity.DEFAULT_NITTER_HOST);
+                assert nitterHost != null;
+                nitterHost = nitterHost.toLowerCase();
+                if (host != null && host.compareTo(nitterHost) != 0) {
+                    if (!nitterHost.startsWith("http")) {
+                        newUrl = url.replace(host, nitterHost);
+                    } else {
+                        newUrl = url.replace("https://" + host, nitterHost).replace("http://" + host, nitterHost);
+                    }
+                }
+            }
+            return newUrl;
+        }
+        //Transform a Bibliogram URL from an instance to another one selected by the end user.
+        else if (Arrays.asList(bibliogram_instances).contains(host)) {
+            newUrl = url;
+            boolean bibliogram_enabled = sharedpreferences.getBoolean(SET_BIBLIOGRAM_ENABLED, true);
+            if (bibliogram_enabled) {
+                String bibliogramHost = sharedpreferences.getString(MainActivity.SET_BIBLIOGRAM_HOST, MainActivity.DEFAULT_BIBLIOGRAM_HOST);
+                assert bibliogramHost != null;
+                bibliogramHost = bibliogramHost.toLowerCase();
+                if (host != null && host.compareTo(bibliogramHost) != 0) {
+                    if (!bibliogramHost.startsWith("http")) {
+                        newUrl = url.replace(host, bibliogramHost);
+                    } else {
+                        newUrl = url.replace("https://" + host, bibliogramHost).replace("http://" + host, bibliogramHost);
+                    }
+                }
+            }
+            return newUrl;
+        } else if (host != null && host.contains(outlook_safe_domain)) {
+            newUrl = url;
+            Matcher matcher = outlookRedirect.matcher(url);
+            if (matcher.find()) {
+                String tmp_url = matcher.group(3);
+                try {
+                    newUrl = transformUrl(context, URLDecoder.decode(tmp_url, "UTF-8"));
+                } catch (UnsupportedEncodingException ignored) {
+                }
+            }
+            return newUrl;
         }
         return url;
     }
@@ -367,6 +451,7 @@ public class Utils {
         SharedPreferences sharedpreferences = PreferenceManager.getDefaultSharedPreferences(context);
         //Theme
         String theme = sharedpreferences.getString(context.getString(R.string.invidious_dark_mode), "0");
+        assert theme != null;
         if (theme.compareTo("-1") == 0) { //Remove value
             newUrl = newUrl.replaceAll("&?dark_mode=(true|false)", "");
         } else if (theme.compareTo("0") != 0) { //Change value
@@ -379,6 +464,7 @@ public class Utils {
 
         //Thin mode
         String thin = sharedpreferences.getString(context.getString(R.string.invidious_thin_mode), "0");
+        assert thin != null;
         if (thin.compareTo("-1") == 0) { //Remove value
             newUrl = newUrl.replaceAll("&?thin_mode=(true|false)", "");
         } else if (thin.compareTo("0") != 0) { //Change value
@@ -391,6 +477,7 @@ public class Utils {
 
         //Language
         String language = sharedpreferences.getString(context.getString(R.string.invidious_language_mode), "0");
+        assert language != null;
         if (language.compareTo("-1") == 0) { //Remove value
             newUrl = newUrl.replaceAll("&?hl=\\w{2}(-\\w{2})?", "");
         } else if (language.compareTo("0") != 0) { //Change value
@@ -403,6 +490,7 @@ public class Utils {
 
         //Annotations
         String annotations = sharedpreferences.getString(context.getString(R.string.invidious_annotations_mode), "0");
+        assert annotations != null;
         if (annotations.compareTo("-1") == 0) { //Remove value
             newUrl = newUrl.replaceAll("&?iv_load_policy=\\d", "");
         } else if (annotations.compareTo("0") != 0) { //Change value
@@ -415,6 +503,7 @@ public class Utils {
 
         //Autoplay
         String autoplay = sharedpreferences.getString(context.getString(R.string.invidious_autoplay_mode), "0");
+        assert autoplay != null;
         if (autoplay.compareTo("-1") == 0) { //Remove value
             newUrl = newUrl.replaceAll("&?autoplay=\\d", "");
         } else if (autoplay.compareTo("0") != 0) { //Change value
@@ -427,6 +516,7 @@ public class Utils {
 
         //Continue
         String continueMode = sharedpreferences.getString(context.getString(R.string.invidious_continue_mode), "0");
+        assert continueMode != null;
         if (continueMode.compareTo("-1") == 0) { //Remove value
             newUrl = newUrl.replaceAll("&?continue=\\d", "");
         } else if (continueMode.compareTo("0") != 0) { //Change value
@@ -439,6 +529,7 @@ public class Utils {
 
         //Listen
         String listen = sharedpreferences.getString(context.getString(R.string.invidious_listen_mode), "0");
+        assert listen != null;
         if (listen.compareTo("-1") == 0) { //Remove value
             newUrl = newUrl.replaceAll("&?listen=(true|false)", "");
         } else if (listen.compareTo("0") != 0) { //Change value
@@ -452,6 +543,7 @@ public class Utils {
         //Local
         String local = sharedpreferences.getString(context.getString(R.string.invidious_local_mode), "local=true");
         if (!url.contains("/channel/")) {
+            assert local != null;
             if (local.compareTo("-1") == 0) { //Remove value
                 newUrl = newUrl.replaceAll("&?local=(true|false)", "");
             } else if (local.compareTo("0") != 0) { //Change value
@@ -465,6 +557,7 @@ public class Utils {
 
         //Subtitles
         String subtitles = sharedpreferences.getString(context.getString(R.string.invidious_subtitles_mode), "0");
+        assert subtitles != null;
         if (subtitles.compareTo("-1") == 0) { //Remove value
             newUrl = newUrl.replaceAll("&?subtitles=\\w+", "");
         } else if (subtitles.compareTo("0") != 0) { //Change value
@@ -477,6 +570,7 @@ public class Utils {
 
         //Quality
         String quality = sharedpreferences.getString(context.getString(R.string.invidious_quality_mode), "0");
+        assert quality != null;
         if (quality.compareTo("-1") == 0) { //Remove value
             newUrl = newUrl.replaceAll("&?quality=\\w+", "");
         } else if (quality.compareTo("0") != 0) { //Change value
@@ -489,6 +583,7 @@ public class Utils {
 
         //Loop
         String loop = sharedpreferences.getString(context.getString(R.string.invidious_loop_mode), "0");
+        assert loop != null;
         if (loop.compareTo("-1") == 0) { //Remove value
             newUrl = newUrl.replaceAll("&?loop=\\d", "");
         } else if (loop.compareTo("0") != 0) { //Change value
@@ -502,6 +597,7 @@ public class Utils {
 
         //Volume
         String volume = sharedpreferences.getString(context.getString(R.string.invidious_volume_mode), "0");
+        assert volume != null;
         if (volume.compareTo("-1") == 0) { //Remove value
             newUrl = newUrl.replaceAll("&?volume=\\d{1,3}", "");
         } else if (volume.compareTo("0") != 0) { //Change value
@@ -515,6 +611,7 @@ public class Utils {
 
         //Player style
         String player_style = sharedpreferences.getString(context.getString(R.string.invidious_player_style_mode), "0");
+        assert player_style != null;
         if (player_style.compareTo("-1") == 0) { //Remove value
             newUrl = newUrl.replaceAll("&?player_style=\\w+", "");
         } else if (player_style.compareTo("0") != 0) { //Change value
@@ -626,7 +723,7 @@ public class Utils {
      *
      * @return boolean
      */
-    @SuppressWarnings({"unused", "SameParameterValue"})
+    @SuppressWarnings({"SameParameterValue"})
     private static boolean isAppInstalled(Context context, String packageName) {
         try {
             context.getPackageManager().getPackageInfo(packageName, 0);
@@ -641,7 +738,6 @@ public class Utils {
      *
      * @return PackageInfo
      */
-    @SuppressWarnings("unused")
     public static PackageInfo getPackageInfo(Context context, String packageName) {
         PackageInfo packageInfo = null;
         try {
@@ -812,7 +908,9 @@ public class Utils {
                     String newUrlFinal = notShortnedURLDialog.get(notShortnedURLDialog.size() - 1);
                     while (matcher.find()) {
                         final String nitter_directory = matcher.group(2);
-                        String nitterHost = sharedpreferences.getString(MainActivity.SET_NITTER_HOST, MainActivity.DEFAULT_NITTER_HOST).toLowerCase();
+                        String nitterHost = sharedpreferences.getString(MainActivity.SET_NITTER_HOST, MainActivity.DEFAULT_NITTER_HOST);
+                        assert nitterHost != null;
+                        nitterHost = nitterHost.toLowerCase();
                         newUrlFinal = scheme + nitterHost + nitter_directory;
                     }
                     String newExtraText = extraText.replaceAll(Pattern.quote(url), Matcher.quoteReplacement(newUrlFinal));
@@ -826,7 +924,9 @@ public class Utils {
                     String newUrlFinal = notShortnedURLDialog.get(notShortnedURLDialog.size() - 1);
                     while (matcher.find()) {
                         final String youtubeId = matcher.group(3);
-                        String invidiousHost = sharedpreferences.getString(MainActivity.SET_INVIDIOUS_HOST, MainActivity.DEFAULT_INVIDIOUS_HOST).toLowerCase();
+                        String invidiousHost = sharedpreferences.getString(MainActivity.SET_INVIDIOUS_HOST, MainActivity.DEFAULT_INVIDIOUS_HOST);
+                        assert invidiousHost != null;
+                        invidiousHost = invidiousHost.toLowerCase();
                         if (Objects.requireNonNull(matcher.group(2)).compareTo("youtu.be") == 0) {
                             newUrlFinal = scheme + invidiousHost + "/watch?v=" + youtubeId;
                         } else {
@@ -855,7 +955,9 @@ public class Utils {
                             } else {
                                 zoom = data[2];
                             }
-                            String osmHost = sharedpreferences.getString(MainActivity.SET_OSM_HOST, MainActivity.DEFAULT_OSM_HOST).toLowerCase();
+                            String osmHost = sharedpreferences.getString(MainActivity.SET_OSM_HOST, MainActivity.DEFAULT_OSM_HOST);
+                            assert osmHost != null;
+                            osmHost = osmHost.toLowerCase();
                             newUrlFinal = scheme + osmHost + "/#map=" + zoom + "/" + data[0] + "/" + data[1];
                         }
                     }
@@ -889,9 +991,6 @@ public class Utils {
             Intent intent = new Intent();
             intent.setAction(Intent.ACTION_VIEW);
             String type = i.getType();
-            if (type == null) {
-                type = "text/html";
-            }
             intent.setDataAndType(i.getData(), type);
             List<ResolveInfo> activities = context.getPackageManager().queryIntentActivities(intent, 0);
             ArrayList<Intent> targetIntents = new ArrayList<>();
@@ -957,6 +1056,46 @@ public class Utils {
             context.startActivity(app_picker);
             ((Activity) context).finish();
         }
+    }
+
+
+    public static boolean isRouted(String url) {
+
+        URL url_;
+        String host = null;
+        try {
+            url_ = new URL(url);
+            host = url_.getHost();
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+        return Arrays.asList(twitter_domains).contains(host) || Arrays.asList(nitter_instances).contains(host)
+                || Arrays.asList(instagram_domains).contains(host) || Arrays.asList(bibliogram_instances).contains(host)
+                || url.contains("/maps/place") || url.contains("/amp/s/") || (host != null && host.contains(outlook_safe_domain))
+                || Arrays.asList(youtube_domains).contains(host) || Arrays.asList(invidious_instances).contains(host);
+    }
+
+    public static boolean routerEnabledForHost(Context context, String url) {
+
+        URL url_;
+        String host = null;
+        try {
+            url_ = new URL(url);
+            host = url_.getHost();
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+        SharedPreferences sharedpreferences = context.getSharedPreferences(MainActivity.APP_PREFS, Context.MODE_PRIVATE);
+        if (Arrays.asList(twitter_domains).contains(host) || Arrays.asList(nitter_instances).contains(host)) {
+            return sharedpreferences.getBoolean(SET_NITTER_ENABLED, true);
+        } else if (Arrays.asList(instagram_domains).contains(host) || Arrays.asList(bibliogram_instances).contains(host)) {
+            return sharedpreferences.getBoolean(SET_BIBLIOGRAM_ENABLED, true);
+        } else if (url.contains("/maps/place")) {
+            return sharedpreferences.getBoolean(MainActivity.SET_OSM_ENABLED, true);
+        } else if (Arrays.asList(youtube_domains).contains(host) || Arrays.asList(invidious_instances).contains(host)) {
+            return sharedpreferences.getBoolean(SET_INVIDIOUS_ENABLED, true);
+        } else
+            return url.contains("/amp/s/") || (host != null && host.contains(outlook_safe_domain));
     }
 
 
