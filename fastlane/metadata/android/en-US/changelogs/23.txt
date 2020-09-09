@@ -1,0 +1,9 @@
+Added
+- Handle /tv/, /igtv/ and /reel/ for Bibliogram
+- Handle multiple tracking
+
+Changed
+- Remove default invidio.us instance for Invidious
+
+Fixed
+- Allow sharing to YouTube apps (Lite)
