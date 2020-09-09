@@ -6,11 +6,11 @@
 
 **Lite έκδοση:
 
-- When sharing a Twitter, YouTube or Google Maps link just pick up UntrackMe to transform it before sharing it with another app.
+- Όταν μοιράζεστε ένα σύνδεσμο Twitter, YouTube ή Google Maps απλά επιλέξτε το UntrackMe για να τον μετατρέψετε πρίν τον μοιραστείτε με μια άλλη εφαρμογή.
 
 **Πλήρης έκδοση:
 
-- Contains all features of the lite version and it also handle all links to remove tracking parameters. It uses its own app picker that display URLs before visiting them.
+Περιέχει όλες τις λειτουργίες της έκδοσης lite και μπορεί επίσης να διαχειριστεί όλους τους συνδέσμους ώστε να αφαιρέσει τις παραμέτρους παρακολούθησης. Χρησιμοποιεί τον δικό του επιλογέα εφαρμογών για την εμφάνιση URL πρίν την εμφάνιση.
 
 
 Τι είναι το Nitter:
