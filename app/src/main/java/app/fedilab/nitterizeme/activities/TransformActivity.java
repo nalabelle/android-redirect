@@ -68,7 +68,6 @@ public class TransformActivity extends Activity {
             } catch (MalformedURLException e) {
                 e.printStackTrace();
             }
-
             //Shortened URLs
             if (Arrays.asList(shortener_domains).contains(host)) {
                 manageShortened(TransformActivity.this, url);
