@@ -1,6 +1,0 @@
-Added:
-- Handle all URLs
-- Manage default app to open inside the app
-
-Fixed:
-- Fix jumps in activity listing apps

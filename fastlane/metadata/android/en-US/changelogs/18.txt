@@ -1,9 +1,0 @@
-Added
-- Allow to catch Google redirects
-- Allow to scroll horizontally for checking the whole URL in app picker
-
-Changed
-- App picker double tap to open
-
-Fixed
-- Some minor issues

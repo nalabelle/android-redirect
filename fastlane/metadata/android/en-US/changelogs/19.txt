@@ -1,8 +1,0 @@
-Added
-- Support for Google Maps shortened links "maps.app.goo.gl"
-- Copy the link displayed in the app picker (full)
-
-Fixed
-- Crash when sharing links to UntrackMe (lite)
-- Twitter feeds redirect
-- Issue when cleaning tracking parameters

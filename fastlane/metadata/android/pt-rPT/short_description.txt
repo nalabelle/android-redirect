@@ -1,1 +1,0 @@
-Transforma os links do Youtube e Twitter em links do Invidious e Nitter

@@ -1,4 +1,0 @@
-Added:
-
-- Resolve some shortened URLs (for support new domain, please contact me).
-

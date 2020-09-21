@@ -1,7 +1,0 @@
-Changed:
-- Add apps checker in a different activity
-
-Fixed:
-- Clicking the warning icon didn't prompt apps
-- Fix loop when unshortening
-- Fix main activity opened when unshortening

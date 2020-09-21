@@ -1,2 +1,0 @@
-Added
-- Invidious url settings parameters (see: https://github.com/omarroth/invidious/wiki/List-of-URL-parameters)

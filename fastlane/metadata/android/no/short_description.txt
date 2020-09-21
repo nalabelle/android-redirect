@@ -1,1 +1,0 @@
-Transformer YouTube- og Twitter-koblinger til Invidious and Nitter linker
