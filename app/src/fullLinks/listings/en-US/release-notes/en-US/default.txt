@@ -1,0 +1,2 @@
+- Use Bibliogram instances API
+- Latency measurement for custom instances
