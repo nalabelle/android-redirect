@@ -42,6 +42,7 @@ import app.fedilab.nitterizeme.viewmodels.SearchInstanceVM;
 public class InstanceActivity extends AppCompatActivity {
 
     private static String list_for_instances = "https://framagit.org/tom79/fedilab_app/-/blob/master/content/untrackme_instances/payload_2.json";
+    private static String list_for_bibliogram_instances = "https://bibliogram.art/api/instances";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

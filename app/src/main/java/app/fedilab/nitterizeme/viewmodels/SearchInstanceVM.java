@@ -66,91 +66,135 @@ public class SearchInstanceVM extends AndroidViewModel {
         Thread thread = new Thread() {
             @Override
             public void run() {
-                HttpsURLConnection httpsURLConnection;
-                try {
-                    String instances_url = "https://fedilab.app/untrackme_instances/payload_2.json";
-                    URL url = new URL(instances_url);
-                    httpsURLConnection = (HttpsURLConnection) url.openConnection();
-                    httpsURLConnection.setConnectTimeout(10 * 1000);
-                    httpsURLConnection.setRequestProperty("http.keepAlive", "false");
-                    httpsURLConnection.setRequestProperty("Content-Type", "application/json");
-                    httpsURLConnection.setRequestProperty("Accept", "application/json");
-                    httpsURLConnection.setRequestMethod("GET");
-                    httpsURLConnection.setDefaultUseCaches(true);
-                    httpsURLConnection.setUseCaches(true);
-                    String response = null;
-                    if (httpsURLConnection.getResponseCode() >= 200 && httpsURLConnection.getResponseCode() < 400) {
-                        java.util.Scanner s = new java.util.Scanner(httpsURLConnection.getInputStream()).useDelimiter("\\A");
-                        response = s.hasNext() ? s.next() : "";
-                    }
-                    httpsURLConnection.getInputStream().close();
-                    SharedPreferences sharedpreferences = getApplication().getApplicationContext().getSharedPreferences(APP_PREFS, Context.MODE_PRIVATE);
-                    String defaultInvidious = sharedpreferences.getString(SET_INVIDIOUS_HOST, DEFAULT_INVIDIOUS_HOST);
-                    String defaultNitter = sharedpreferences.getString(SET_NITTER_HOST, DEFAULT_NITTER_HOST);
-                    String defaultBibliogram = sharedpreferences.getString(SET_BIBLIOGRAM_HOST, DEFAULT_BIBLIOGRAM_HOST);
-                    ArrayList<Instance> instances = new ArrayList<>();
-                    if (response != null) {
-                        try {
-                            JSONObject jsonObject = new JSONObject(response);
-                            JSONArray jsonArrayInvidious = jsonObject.getJSONArray("invidious");
-                            JSONArray jsonArrayNitter = jsonObject.getJSONArray("nitter");
-                            JSONArray jsonArrayBibliogram = jsonObject.getJSONArray("bibliogram");
-
-                            for (int i = 0; i < jsonArrayInvidious.length(); i++) {
-                                Instance instance = new Instance();
-                                String domain = jsonArrayInvidious.getJSONObject(i).getString("domain");
-                                boolean cloudFlare = jsonArrayInvidious.getJSONObject(i).getBoolean("cloudflare");
-                                String locale = jsonArrayInvidious.getJSONObject(i).getString("locale");
-                                instance.setDomain(domain);
-                                instance.setCloudflare(cloudFlare);
-                                instance.setLocale(locale);
-                                instance.setType(Instance.instanceType.INVIDIOUS);
-                                if (defaultInvidious != null && domain.compareTo(defaultInvidious) == 0) {
-                                    instance.setChecked(true);
-                                }
-                                instances.add(instance);
-                            }
-                            for (int i = 0; i < jsonArrayNitter.length(); i++) {
-                                Instance instance = new Instance();
-                                String domain = jsonArrayNitter.getJSONObject(i).getString("domain");
-                                boolean cloudFlare = jsonArrayNitter.getJSONObject(i).getBoolean("cloudflare");
-                                String locale = jsonArrayNitter.getJSONObject(i).getString("locale");
-                                instance.setDomain(domain);
-                                instance.setCloudflare(cloudFlare);
-                                instance.setLocale(locale);
-                                instance.setType(Instance.instanceType.NITTER);
-                                if (defaultNitter != null && domain.compareTo(defaultNitter) == 0) {
-                                    instance.setChecked(true);
-                                }
-                                instances.add(instance);
-                            }
-                            for (int i = 0; i < jsonArrayBibliogram.length(); i++) {
-                                Instance instance = new Instance();
-                                String domain = jsonArrayBibliogram.getJSONObject(i).getString("domain");
-                                boolean cloudFlare = jsonArrayBibliogram.getJSONObject(i).getBoolean("cloudflare");
-                                String locale = jsonArrayBibliogram.getJSONObject(i).getString("locale");
-                                instance.setDomain(domain);
-                                instance.setCloudflare(cloudFlare);
-                                instance.setLocale(locale);
-                                instance.setType(Instance.instanceType.BIBLIOGRAM);
-                                if (defaultBibliogram != null && domain.compareTo(defaultBibliogram) == 0) {
-                                    instance.setChecked(true);
-                                }
-                                instances.add(instance);
-                            }
-                            Handler mainHandler = new Handler(Looper.getMainLooper());
-                            Runnable myRunnable = () -> instancesMLD.setValue(instances);
-                            mainHandler.post(myRunnable);
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+                List<Instance> instances = getInstancesFromFedilabApp();
+                List<Instance> bibliogramInstances = getInstancesFromBibliogramArt();
+                instances.addAll(bibliogramInstances);
+                Handler mainHandler = new Handler(Looper.getMainLooper());
+                Runnable myRunnable = () -> instancesMLD.setValue(instances);
+                mainHandler.post(myRunnable);
             }
         };
         thread.start();
+    }
 
+    private List<Instance> getInstancesFromFedilabApp(){
+        HttpsURLConnection httpsURLConnection;
+        ArrayList<Instance> instances = new ArrayList<>();
+        try {
+            String instances_url = "https://fedilab.app/untrackme_instances/payload_2.json";
+            URL url = new URL(instances_url);
+            httpsURLConnection = (HttpsURLConnection) url.openConnection();
+            httpsURLConnection.setConnectTimeout(10 * 1000);
+            httpsURLConnection.setRequestProperty("http.keepAlive", "false");
+            httpsURLConnection.setRequestProperty("Content-Type", "application/json");
+            httpsURLConnection.setRequestProperty("Accept", "application/json");
+            httpsURLConnection.setRequestMethod("GET");
+            httpsURLConnection.setDefaultUseCaches(true);
+            httpsURLConnection.setUseCaches(true);
+            String response = null;
+            if (httpsURLConnection.getResponseCode() >= 200 && httpsURLConnection.getResponseCode() < 400) {
+                java.util.Scanner s = new java.util.Scanner(httpsURLConnection.getInputStream()).useDelimiter("\\A");
+                response = s.hasNext() ? s.next() : "";
+            }
+            httpsURLConnection.getInputStream().close();
+            SharedPreferences sharedpreferences = getApplication().getApplicationContext().getSharedPreferences(APP_PREFS, Context.MODE_PRIVATE);
+            String defaultInvidious = sharedpreferences.getString(SET_INVIDIOUS_HOST, DEFAULT_INVIDIOUS_HOST);
+            String defaultNitter = sharedpreferences.getString(SET_NITTER_HOST, DEFAULT_NITTER_HOST);
+
+            if (response != null) {
+                try {
+                    JSONObject jsonObject = new JSONObject(response);
+                    JSONArray jsonArrayInvidious = jsonObject.getJSONArray("invidious");
+                    JSONArray jsonArrayNitter = jsonObject.getJSONArray("nitter");
+                    for (int i = 0; i < jsonArrayInvidious.length(); i++) {
+                        Instance instance = new Instance();
+                        String domain = jsonArrayInvidious.getJSONObject(i).getString("domain");
+                        boolean cloudFlare = jsonArrayInvidious.getJSONObject(i).getBoolean("cloudflare");
+                        String locale = jsonArrayInvidious.getJSONObject(i).getString("locale");
+                        instance.setDomain(domain);
+                        instance.setCloudflare(cloudFlare);
+                        instance.setLocale(locale);
+                        instance.setType(Instance.instanceType.INVIDIOUS);
+                        if (defaultInvidious != null && domain.compareTo(defaultInvidious) == 0) {
+                            instance.setChecked(true);
+                        }
+                        instances.add(instance);
+                    }
+                    for (int i = 0; i < jsonArrayNitter.length(); i++) {
+                        Instance instance = new Instance();
+                        String domain = jsonArrayNitter.getJSONObject(i).getString("domain");
+                        boolean cloudFlare = jsonArrayNitter.getJSONObject(i).getBoolean("cloudflare");
+                        String locale = jsonArrayNitter.getJSONObject(i).getString("locale");
+                        instance.setDomain(domain);
+                        instance.setCloudflare(cloudFlare);
+                        instance.setLocale(locale);
+                        instance.setType(Instance.instanceType.NITTER);
+                        if (defaultNitter != null && domain.compareTo(defaultNitter) == 0) {
+                            instance.setChecked(true);
+                        }
+                        instances.add(instance);
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return instances;
+    }
+
+
+    private List<Instance> getInstancesFromBibliogramArt(){
+        HttpsURLConnection httpsURLConnection;
+        ArrayList<Instance> instances = new ArrayList<>();
+        try {
+            String instances_url = "https://bibliogram.art/api/instances";
+            URL url = new URL(instances_url);
+            httpsURLConnection = (HttpsURLConnection) url.openConnection();
+            httpsURLConnection.setConnectTimeout(10 * 1000);
+            httpsURLConnection.setRequestProperty("http.keepAlive", "false");
+            httpsURLConnection.setRequestProperty("Content-Type", "application/json");
+            httpsURLConnection.setRequestProperty("Accept", "application/json");
+            httpsURLConnection.setRequestMethod("GET");
+            httpsURLConnection.setDefaultUseCaches(true);
+            httpsURLConnection.setUseCaches(true);
+            String response = null;
+            if (httpsURLConnection.getResponseCode() >= 200 && httpsURLConnection.getResponseCode() < 400) {
+                java.util.Scanner s = new java.util.Scanner(httpsURLConnection.getInputStream()).useDelimiter("\\A");
+                response = s.hasNext() ? s.next() : "";
+            }
+            httpsURLConnection.getInputStream().close();
+            SharedPreferences sharedpreferences = getApplication().getApplicationContext().getSharedPreferences(APP_PREFS, Context.MODE_PRIVATE);
+            String defaultBibliogram = sharedpreferences.getString(SET_BIBLIOGRAM_HOST, DEFAULT_BIBLIOGRAM_HOST);
+
+            if (response != null) {
+                try {
+                    JSONObject jsonObject = new JSONObject(response);
+                    JSONArray jsonArrayBibliogram = jsonObject.getJSONArray("data");
+                    for (int i = 0; i < jsonArrayBibliogram.length(); i++) {
+                        Instance instance = new Instance();
+                        String url_bibliogram = jsonArrayBibliogram.getJSONObject(i).getString("address");
+                        URL urlBibliogram = new URL(url_bibliogram);
+                        String domain = urlBibliogram.getHost();
+                        boolean cloudFlare = jsonArrayBibliogram.getJSONObject(i).getBoolean("using_cloudflare");
+                        String locale = jsonArrayBibliogram.getJSONObject(i).getString("country");
+                        instance.setDomain(domain);
+                        instance.setCloudflare(cloudFlare);
+                        instance.setLocale(locale);
+                        instance.setType(Instance.instanceType.BIBLIOGRAM);
+                        if (defaultBibliogram != null && domain.compareTo(defaultBibliogram) == 0) {
+                            instance.setChecked(true);
+                        }
+                        instances.add(instance);
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return instances;
     }
 }
