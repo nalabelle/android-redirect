@@ -15,6 +15,8 @@ package app.fedilab.nitterizeme.activities;
  * see <http://www.gnu.org/licenses>. */
 
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -42,7 +44,6 @@ import app.fedilab.nitterizeme.viewmodels.SearchInstanceVM;
 public class InstanceActivity extends AppCompatActivity {
 
     private static String list_for_instances = "https://framagit.org/tom79/fedilab_app/-/blob/master/content/untrackme_instances/payload_2.json";
-    private static String list_for_bibliogram_instances = "https://bibliogram.art/api/instances";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,18 +66,60 @@ public class InstanceActivity extends AppCompatActivity {
                 Snackbar.make(parentLayout, R.string.error_message_internet, Snackbar.LENGTH_LONG).setAction(R.string.close, v -> finish()).show();
                 return;
             }
+
+            SharedPreferences sharedpreferences = getSharedPreferences(MainActivity.APP_PREFS, Context.MODE_PRIVATE);
+            String invidiousHost = sharedpreferences.getString(MainActivity.SET_INVIDIOUS_HOST, MainActivity.DEFAULT_INVIDIOUS_HOST);
+            String nitterHost = sharedpreferences.getString(MainActivity.SET_NITTER_HOST, MainActivity.DEFAULT_NITTER_HOST);
+            String bibliogramHost = sharedpreferences.getString(MainActivity.SET_BIBLIOGRAM_HOST, MainActivity.DEFAULT_BIBLIOGRAM_HOST);
+
             ArrayList<Instance> invidiousInstances = new ArrayList<>();
             ArrayList<Instance> nitterInstances = new ArrayList<>();
             ArrayList<Instance> bibliogramInstances = new ArrayList<>();
+            boolean customInvidiousInstance = true;
+            boolean customNitterInstance = true;
+            boolean customBibliogramInstance = true;
+
             for (Instance instance : result) {
                 if (instance.getType() == Instance.instanceType.INVIDIOUS) {
                     invidiousInstances.add(instance);
+                    if(invidiousHost != null && invidiousHost.trim().toLowerCase().compareTo(instance.getDomain()) == 0) {
+                        customInvidiousInstance = false;
+                    }
                 } else if (instance.getType() == Instance.instanceType.NITTER) {
                     nitterInstances.add(instance);
+                    if(nitterHost != null && nitterHost.trim().toLowerCase().compareTo(instance.getDomain()) == 0) {
+                        customNitterInstance = false;
+                    }
                 } else if (instance.getType() == Instance.instanceType.BIBLIOGRAM) {
                     bibliogramInstances.add(instance);
+                    if(bibliogramHost != null && bibliogramHost.trim().toLowerCase().compareTo(instance.getDomain()) == 0) {
+                        customBibliogramInstance = false;
+                    }
                 }
             }
+            //Check if custom instances are also added
+            if(customInvidiousInstance) {
+                Instance instance = new Instance();
+                instance.setChecked(true);
+                instance.setDomain(invidiousHost);
+                instance.setLocale("--");
+                invidiousInstances.add(0, instance);
+            }
+            if(customNitterInstance) {
+                Instance instance = new Instance();
+                instance.setChecked(true);
+                instance.setDomain(nitterHost);
+                instance.setLocale("--");
+                nitterInstances.add(0, instance);
+            }
+            if(customBibliogramInstance) {
+                Instance instance = new Instance();
+                instance.setChecked(true);
+                instance.setDomain(bibliogramHost);
+                instance.setLocale("--");
+                bibliogramInstances.add(0, instance);
+            }
+
             final LinearLayoutManager iLayoutManager = new LinearLayoutManager(this);
             InstanceAdapter invidiousAdapter = new InstanceAdapter(invidiousInstances);
             invidious_instances.setAdapter(invidiousAdapter);
