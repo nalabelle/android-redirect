@@ -87,7 +87,7 @@
     <string name="invidious_language_mode_title">Γλώσσα Διεπαφής</string>
     <string name="pref_invidious_head1">Site-wide parameters</string>
     <string name="pref_invidious_head2">Player parameters</string>
-    <string name="invidious_annotations_mode_title">Annotations</string>
+    <string name="invidious_annotations_mode_title">Σχολιασμοί</string>
     <string name="invidious_annotations_mode_indication">Show legacy annotations, provided by the Internet Archive</string>
     <string name="invidious_autoplay_mode_indication">Automatically play video on load</string>
     <string name="invidious_autoplay_mode_title">Αυτόματη αναπαραγωγή</string>
@@ -151,8 +151,8 @@
     <string-array name="invidious_annotations">
         <item>Παράβλεψη</item>
         <item>Αφαίρεση</item>
-        <item>Show annotations</item>
-        <item>Hide annotations</item>
+        <item>Εμφάνιση σχολιασμών</item>
+        <item>Απόκρυψη σχολιασμών</item>
     </string-array>
     <string-array name="invidious_quality">
         <item>Παράβλεψη</item>
