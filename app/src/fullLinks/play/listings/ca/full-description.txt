@@ -15,13 +15,13 @@ The app will detect shortened URLs and will display the full URL before visiting
 
 What is Nitter:
 
-A free and open source alternative Twitter front-end focused on privacy.
+Nitter és una alternativa de codi obert que fa de frontal per Twitter i protegeix la privacitat.
 Github project: https://github.com/zedeus/nitter
 
 
 What is Invidious:
 
-A free and open source alternative front-end to YouTube
+Una alternativa d'interfície d'usuari lliure i de codi obert per a YouTube
 Github project: https://github.com/omarroth/invidious
 
 
