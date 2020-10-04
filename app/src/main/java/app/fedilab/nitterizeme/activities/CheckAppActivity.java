@@ -64,6 +64,7 @@ public class CheckAppActivity extends AppCompatActivity {
             "t.co",
             "nyti.ms",
             "bit.ly",
+            "amp.gs",
             "tinyurl.com",
             "goo.gl",
             "ow.ly",
