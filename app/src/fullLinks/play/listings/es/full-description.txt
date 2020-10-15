@@ -15,13 +15,13 @@ La aplicación detectará las URL acortadas y mostrará la URL completa antes de
 
 Qué es Nitter:
 
-Una alternativa alternativa de Twitter libre y de código abierto enfocada en la privacidad.
+Una alternativa front-end de Twitter, libre y de código abierto enfocada en la privacidad.
 Proyecto en Github: https://github.com/zedeus/nitter
 
 
 Qué es Invidious:
 
-Una interfaz de YouTube alternativa, libre y de código abierto
+Un front-end de YouTube alternativo, libre y de código abierto
 Proyecto en Github: https://github.com/omarroth/invidious
 
 
