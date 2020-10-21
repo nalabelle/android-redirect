@@ -1,2 +1,2 @@
-- Use Bibliogram instances API
-- Latency measurement for custom instances
+- Add amp.gs shortener
+- Some new translations
