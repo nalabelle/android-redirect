@@ -49,6 +49,8 @@
                 <data android:host="amp.gs" />
                 <data android:host="tinyurl.com" />
                 <data android:host="goo.gl" />
+                <data android:host="nzzl.us" />
+                <data android:host="ift.tt" />
                 <data android:host="ow.ly" />
                 <data android:host="bl.ink" />
                 <data android:host="buff.ly" />
@@ -119,6 +121,8 @@
                 <data android:host="amp.gs" />
                 <data android:host="tinyurl.com" />
                 <data android:host="goo.gl" />
+                <data android:host="nzzl.us" />
+                <data android:host="ift.tt" />
                 <data android:host="ow.ly" />
                 <data android:host="bl.ink" />
                 <data android:host="buff.ly" />
