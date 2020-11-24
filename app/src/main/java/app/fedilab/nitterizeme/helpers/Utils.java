@@ -16,21 +16,12 @@ package app.fedilab.nitterizeme.helpers;
 
 
 import android.app.Activity;
-import android.app.DownloadManager;
-import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.pm.PackageInfo;
-import android.content.pm.PackageManager;
-import android.content.pm.ResolveInfo;
 import android.net.Uri;
-import android.os.Build;
-import android.os.Bundle;
-import android.os.Environment;
 import android.os.Handler;
 import android.os.Looper;
-import android.os.Parcelable;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -38,58 +29,43 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AlertDialog;
-import androidx.localbroadcastmanager.content.LocalBroadcastManager;
-import androidx.preference.PreferenceManager;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
-import java.net.InetAddress;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Date;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Locale;
 import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import javax.net.ssl.HttpsURLConnection;
 
-import app.fedilab.nitterizeme.BuildConfig;
 import app.fedilab.nitterizeme.R;
-import app.fedilab.nitterizeme.activities.AppsPickerActivity;
 import app.fedilab.nitterizeme.activities.MainActivity;
-import app.fedilab.nitterizeme.activities.WebviewPlayerActivity;
 
-import static android.content.Context.DOWNLOAD_SERVICE;
-import static app.fedilab.nitterizeme.activities.CheckAppActivity.bibliogram_instances;
-import static app.fedilab.nitterizeme.activities.CheckAppActivity.instagram_domains;
-import static app.fedilab.nitterizeme.activities.CheckAppActivity.invidious_instances;
-import static app.fedilab.nitterizeme.activities.CheckAppActivity.nitter_instances;
-import static app.fedilab.nitterizeme.activities.CheckAppActivity.outlook_safe_domain;
-import static app.fedilab.nitterizeme.activities.CheckAppActivity.shortener_domains;
-import static app.fedilab.nitterizeme.activities.CheckAppActivity.twitter_domains;
-import static app.fedilab.nitterizeme.activities.CheckAppActivity.youtube_domains;
 import static app.fedilab.nitterizeme.activities.MainActivity.SET_BIBLIOGRAM_ENABLED;
-import static app.fedilab.nitterizeme.activities.MainActivity.SET_EMBEDDED_PLAYER;
 import static app.fedilab.nitterizeme.activities.MainActivity.SET_INVIDIOUS_ENABLED;
 import static app.fedilab.nitterizeme.activities.MainActivity.SET_NITTER_ENABLED;
+import static app.fedilab.nitterizeme.data.Domains.bibliogram_instances;
+import static app.fedilab.nitterizeme.data.Domains.instagram_domains;
+import static app.fedilab.nitterizeme.data.Domains.invidious_instances;
+import static app.fedilab.nitterizeme.data.Domains.nitter_instances;
+import static app.fedilab.nitterizeme.data.Domains.outlook_safe_domain;
+import static app.fedilab.nitterizeme.data.Domains.shortener_domains;
+import static app.fedilab.nitterizeme.data.Domains.twitter_domains;
+import static app.fedilab.nitterizeme.data.Domains.youtube_domains;
 
 public class Utils {
 
     public static final String KILL_ACTIVITY = "kill_activity";
-    public static final String URL_APP_PICKER = "url_app_picker";
-    public static final String INTENT_ACTION = "intent_action";
-    public static final String LAST_USED_APP_PACKAGE = "last_used_app_package";
+
     public static final Pattern youtubePattern = Pattern.compile("(www\\.|m\\.)?(youtube\\.com|youtu\\.be|youtube-nocookie\\.com)/(((?!([\"'<])).)*)");
     public static final Pattern nitterPattern = Pattern.compile("(mobile\\.|www\\.)?twitter.com([\\w-/]+)");
     public static final Pattern bibliogramPostPattern = Pattern.compile("(m\\.|www\\.)?instagram.com(/p/[\\w-/]+)");
@@ -97,7 +73,7 @@ public class Utils {
     public static final Pattern bibliogramAccountPattern = Pattern.compile("(m\\.|www\\.)?instagram.com(((?!/p/).)+)");
     public static final Pattern maps = Pattern.compile("/maps/place/([^@]+@)?([\\d.,z]+).*");
     public static final Pattern ampExtract = Pattern.compile("amp/s/(.*)");
-    public static final String RECEIVE_STREAMING_URL = "receive_streaming_url";
+
     public static final Pattern outlookRedirect = Pattern.compile("(.*)safelinks\\.protection\\.outlook\\.com/?[?]?((?!url).)*url=([^&]+)");
     private static final Pattern extractPlace = Pattern.compile("/maps/place/(((?!/data).)*)");
     private static final Pattern googleRedirect = Pattern.compile("https?://(www\\.)?google(\\.\\w{2,})?(\\.\\w{2,})/url\\?q=(.*)");
@@ -365,7 +341,6 @@ public class Utils {
                     } else {
                         newUrl = scheme + invidiousHost + "/" + youtubeId;
                     }
-                    newUrl = replaceInvidiousParams(context, newUrl);
                 }
                 return newUrl;
             } else {
@@ -385,7 +360,6 @@ public class Utils {
                         newUrl = url.replace("https://" + host, invidiousHost).replace("http://" + host, invidiousHost);
                     }
                 }
-                newUrl = Utils.replaceInvidiousParams(context, newUrl);
             }
             return newUrl;
         }
@@ -440,212 +414,6 @@ public class Utils {
     }
 
     /**
-     * Replace params with those defined in Invidious settings from the app
-     *
-     * @param context Context
-     * @param url     String incoming URL
-     * @return String transformed URL
-     */
-    public static String replaceInvidiousParams(Context context, String url) {
-        String newUrl = url;
-        SharedPreferences sharedpreferences = PreferenceManager.getDefaultSharedPreferences(context);
-        //Theme
-        String theme = sharedpreferences.getString(context.getString(R.string.invidious_dark_mode), "0");
-        assert theme != null;
-        if (theme.compareTo("-1") == 0) { //Remove value
-            newUrl = newUrl.replaceAll("&?dark_mode=(true|false)", "");
-        } else if (theme.compareTo("0") != 0) { //Change value
-            if (newUrl.contains("dark_mode=")) {
-                newUrl = newUrl.replaceAll("dark_mode=(true|false)", theme);
-            } else {
-                newUrl += "&" + theme;
-            }
-        }
-
-        //Thin mode
-        String thin = sharedpreferences.getString(context.getString(R.string.invidious_thin_mode), "0");
-        assert thin != null;
-        if (thin.compareTo("-1") == 0) { //Remove value
-            newUrl = newUrl.replaceAll("&?thin_mode=(true|false)", "");
-        } else if (thin.compareTo("0") != 0) { //Change value
-            if (newUrl.contains("thin_mode=")) {
-                newUrl = newUrl.replaceAll("thin_mode=(true|false)", thin);
-            } else {
-                newUrl += "&" + thin;
-            }
-        }
-
-        //Language
-        String language = sharedpreferences.getString(context.getString(R.string.invidious_language_mode), "0");
-        assert language != null;
-        if (language.compareTo("-1") == 0) { //Remove value
-            newUrl = newUrl.replaceAll("&?hl=\\w{2}(-\\w{2})?", "");
-        } else if (language.compareTo("0") != 0) { //Change value
-            if (newUrl.contains("hl=")) {
-                newUrl = newUrl.replaceAll("hl=\\w{2}(-\\w{2})?", "hl=" + language);
-            } else {
-                newUrl += "&hl=" + language;
-            }
-        }
-
-        //Annotations
-        String annotations = sharedpreferences.getString(context.getString(R.string.invidious_annotations_mode), "0");
-        assert annotations != null;
-        if (annotations.compareTo("-1") == 0) { //Remove value
-            newUrl = newUrl.replaceAll("&?iv_load_policy=\\d", "");
-        } else if (annotations.compareTo("0") != 0) { //Change value
-            if (newUrl.contains("iv_load_policy=")) {
-                newUrl = newUrl.replaceAll("iv_load_policy=\\d", annotations);
-            } else {
-                newUrl += "&" + annotations;
-            }
-        }
-
-        //Autoplay
-        String autoplay = sharedpreferences.getString(context.getString(R.string.invidious_autoplay_mode), "0");
-        assert autoplay != null;
-        if (autoplay.compareTo("-1") == 0) { //Remove value
-            newUrl = newUrl.replaceAll("&?autoplay=\\d", "");
-        } else if (autoplay.compareTo("0") != 0) { //Change value
-            if (newUrl.contains("autoplay=")) {
-                newUrl = newUrl.replaceAll("autoplay=\\d", autoplay);
-            } else {
-                newUrl += "&" + autoplay;
-            }
-        }
-
-        //Continue
-        String continueMode = sharedpreferences.getString(context.getString(R.string.invidious_continue_mode), "0");
-        assert continueMode != null;
-        if (continueMode.compareTo("-1") == 0) { //Remove value
-            newUrl = newUrl.replaceAll("&?continue=\\d", "");
-        } else if (continueMode.compareTo("0") != 0) { //Change value
-            if (newUrl.contains("continue=")) {
-                newUrl = newUrl.replaceAll("continue=\\d", continueMode);
-            } else {
-                newUrl += "&" + continueMode;
-            }
-        }
-
-        //Listen
-        String listen = sharedpreferences.getString(context.getString(R.string.invidious_listen_mode), "0");
-        assert listen != null;
-        if (listen.compareTo("-1") == 0) { //Remove value
-            newUrl = newUrl.replaceAll("&?listen=(true|false)", "");
-        } else if (listen.compareTo("0") != 0) { //Change value
-            if (newUrl.contains("listen=")) {
-                newUrl = newUrl.replaceAll("listen=(true|false)", listen);
-            } else {
-                newUrl += "&" + listen;
-            }
-        }
-
-        //Local
-        String local = sharedpreferences.getString(context.getString(R.string.invidious_local_mode), "local=true");
-        if (!url.contains("/channel/")) {
-            assert local != null;
-            if (local.compareTo("-1") == 0) { //Remove value
-                newUrl = newUrl.replaceAll("&?local=(true|false)", "");
-            } else if (local.compareTo("0") != 0) { //Change value
-                if (newUrl.contains("local=")) {
-                    newUrl = newUrl.replaceAll("local=(true|false)", local);
-                } else {
-                    newUrl += "&" + local;
-                }
-            }
-        }
-
-        //Subtitles
-        String subtitles = sharedpreferences.getString(context.getString(R.string.invidious_subtitles_mode), "0");
-        assert subtitles != null;
-        if (subtitles.compareTo("-1") == 0) { //Remove value
-            newUrl = newUrl.replaceAll("&?subtitles=\\w+", "");
-        } else if (subtitles.compareTo("0") != 0) { //Change value
-            if (newUrl.contains("subtitles=")) {
-                newUrl = newUrl.replaceAll("subtitles=\\w+", "subtitles=" + subtitles);
-            } else {
-                newUrl += "&subtitles=" + subtitles;
-            }
-        }
-
-        //Quality
-        String quality = sharedpreferences.getString(context.getString(R.string.invidious_quality_mode), "0");
-        assert quality != null;
-        if (quality.compareTo("-1") == 0) { //Remove value
-            newUrl = newUrl.replaceAll("&?quality=\\w+", "");
-        } else if (quality.compareTo("0") != 0) { //Change value
-            if (newUrl.contains("listen=")) {
-                newUrl = newUrl.replaceAll("quality=\\w+", quality);
-            } else {
-                newUrl += "&" + quality;
-            }
-        }
-
-        //Loop
-        String loop = sharedpreferences.getString(context.getString(R.string.invidious_loop_mode), "0");
-        assert loop != null;
-        if (loop.compareTo("-1") == 0) { //Remove value
-            newUrl = newUrl.replaceAll("&?loop=\\d", "");
-        } else if (loop.compareTo("0") != 0) { //Change value
-            if (newUrl.contains("loop=")) {
-                newUrl = newUrl.replaceAll("loop=\\d", loop);
-            } else {
-                newUrl += "&" + loop;
-            }
-        }
-
-
-        //Volume
-        String volume = sharedpreferences.getString(context.getString(R.string.invidious_volume_mode), "0");
-        assert volume != null;
-        if (volume.compareTo("-1") == 0) { //Remove value
-            newUrl = newUrl.replaceAll("&?volume=\\d{1,3}", "");
-        } else if (volume.compareTo("0") != 0) { //Change value
-            int volume_value = sharedpreferences.getInt(context.getString(R.string.invidious_volume_value), 60);
-            if (newUrl.contains("volume=")) {
-                newUrl = newUrl.replaceAll("volume=\\d{1,3}", "volume=" + volume_value);
-            } else {
-                newUrl += "&volume=" + volume_value;
-            }
-        }
-
-        //Player style
-        String player_style = sharedpreferences.getString(context.getString(R.string.invidious_player_style_mode), "0");
-        assert player_style != null;
-        if (player_style.compareTo("-1") == 0) { //Remove value
-            newUrl = newUrl.replaceAll("&?player_style=\\w+", "");
-        } else if (player_style.compareTo("0") != 0) { //Change value
-            if (newUrl.contains("player_style=")) {
-                newUrl = newUrl.replaceAll("player_style=\\w+", player_style);
-            } else {
-                newUrl += "&" + player_style;
-            }
-        }
-
-
-        return newUrl;
-    }
-
-    /**
-     * Get time for reaching a domain
-     *
-     * @param domain String domain name
-     * @return long delay
-     */
-    public static long ping(String domain) {
-        long timeDifference = -2;
-        try {
-            long beforeTime = System.currentTimeMillis();
-            //noinspection ResultOfMethodCallIgnored
-            InetAddress.getByName(domain).isReachable(10000);
-            long afterTime = System.currentTimeMillis();
-            timeDifference = afterTime - beforeTime;
-        } catch (IOException ignored) {
-        }
-        return timeDifference;
-    }
-
-    /**
      * Clean URLs from utm parameters
      *
      * @param url String URL
@@ -689,123 +457,6 @@ public class Utils {
 
 
     /**
-     * Manage downloads with URLs
-     *
-     * @param context Context
-     * @param url     String download url
-     */
-    public static void manageDownloadsNoPopup(final Context context, final String url) {
-
-        final DownloadManager.Request request;
-        try {
-            request = new DownloadManager.Request(Uri.parse(url.trim()));
-        } catch (Exception e) {
-            return;
-        }
-        try {
-            SimpleDateFormat formatter = new SimpleDateFormat("yyyy_MM_dd_HH_mm_ss", Locale.ENGLISH);
-            Date now = new Date();
-            final String fileName = "UntrackMe_" + formatter.format(now) + ".mp4";
-            request.allowScanningByMediaScanner();
-            request.setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, fileName);
-            request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
-            DownloadManager dm = (DownloadManager) context.getSystemService(DOWNLOAD_SERVICE);
-            assert dm != null;
-            dm.enqueue(request);
-        } catch (IllegalStateException e) {
-            e.printStackTrace();
-        }
-    }
-
-
-    /**
-     * Check if an app is installed
-     *
-     * @return boolean
-     */
-    @SuppressWarnings({"SameParameterValue"})
-    private static boolean isAppInstalled(Context context, String packageName) {
-        try {
-            context.getPackageManager().getPackageInfo(packageName, 0);
-            return true;
-        } catch (PackageManager.NameNotFoundException e) {
-            return false;
-        }
-    }
-
-    /**
-     * Get PackageInfo for an app
-     *
-     * @return PackageInfo
-     */
-    public static PackageInfo getPackageInfo(Context context, String packageName) {
-        PackageInfo packageInfo = null;
-        try {
-            packageInfo = context.getPackageManager().getPackageInfo(packageName, 0);
-        } catch (Exception ignored) {
-        }
-        return packageInfo;
-    }
-
-
-    /**
-     * Convert an ArrayList to a string using coma
-     *
-     * @param arrayList ArrayList<String>
-     * @return String
-     */
-    public static String arrayToString(ArrayList<String> arrayList) {
-        if (arrayList == null || arrayList.size() == 0) {
-            return null;
-        }
-        StringBuilder result = new StringBuilder();
-        for (String item : arrayList) {
-            result.append(item).append(",");
-        }
-        return result.substring(0, result.length() - 1);
-    }
-
-    /**
-     * Convert an ArrayList to a string using coma
-     *
-     * @param arrayList ArrayList<String>
-     * @return String
-     */
-    public static String arrayToStringQuery(ArrayList<String> arrayList) {
-        if (arrayList == null || arrayList.size() == 0) {
-            return null;
-        }
-        StringBuilder result = new StringBuilder();
-        for (String item : arrayList) {
-            result.append("'").append(item).append("'").append(",");
-        }
-        return result.substring(0, result.length() - 1);
-    }
-
-    /**
-     * Convert String items to Array
-     *
-     * @param items String
-     * @return ArrayList<String>
-     */
-    public static ArrayList<String> stringToArray(String items) {
-        if (items == null) {
-            return null;
-        }
-        String[] result = items.split(",");
-        return new ArrayList<>(Arrays.asList(result));
-    }
-
-
-    public static <T> ArrayList<T> union(ArrayList<T> list1, ArrayList<T> list2) {
-        Set<T> set = new HashSet<>();
-        set.addAll(list1);
-        set.addAll(list2);
-        return new ArrayList<>(set);
-    }
-
-
-    /**
      * Manage URLs when visiting a shortened URL
      *
      * @param context Context
@@ -824,14 +475,7 @@ public class Utils {
                 Intent delegate = new Intent(Intent.ACTION_VIEW);
                 delegate.setData(Uri.parse(notShortnedURLDialog.get(notShortnedURLDialog.size() - 1)));
                 delegate.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                if (BuildConfig.fullLinks) {
-                    forwardToBrowser(context, delegate);
-                } else {
-                    if (delegate.resolveActivity(context.getPackageManager()) != null) {
-                        context.startActivity(delegate);
-                        ((Activity) context).finish();
-                    }
-                }
+                forwardToBrowser(context, delegate);
             }
             dialog.dismiss();
             ((Activity) context).finish();
@@ -932,7 +576,6 @@ public class Utils {
                         } else {
                             newUrlFinal = scheme + invidiousHost + "/" + youtubeId;
                         }
-                        newUrlFinal = replaceInvidiousParams(context, newUrlFinal);
                     }
                     String newExtraText = extraText.replaceAll(Pattern.quote(url), Matcher.quoteReplacement(newUrlFinal));
                     Intent sendIntent = new Intent();
@@ -986,76 +629,11 @@ public class Utils {
      * @param i original intent
      */
     public static void forwardToBrowser(Context context, Intent i) {
-
-        if (!BuildConfig.fullLinks) {
-            Intent intent = new Intent();
-            intent.setAction(Intent.ACTION_VIEW);
-            String type = i.getType();
-            intent.setDataAndType(i.getData(), type);
-            List<ResolveInfo> activities = context.getPackageManager().queryIntentActivities(intent, 0);
-            ArrayList<Intent> targetIntents = new ArrayList<>();
-            String thisPackageName = context.getApplicationContext().getPackageName();
-            for (ResolveInfo currentInfo : activities) {
-                String packageName = currentInfo.activityInfo.packageName;
-                if (!thisPackageName.equals(packageName)) {
-                    Intent targetIntent = new Intent(Intent.ACTION_VIEW);
-                    targetIntent.setDataAndType(intent.getData(), intent.getType());
-                    targetIntent.setPackage(intent.getPackage());
-                    targetIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                    targetIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                    targetIntent.setComponent(new ComponentName(packageName, currentInfo.activityInfo.name));
-                    targetIntents.add(targetIntent);
-                }
-            }
-            //NewPipe has to be manually added
-            if (Utils.isAppInstalled(context, "org.schabi.newpipe") && Arrays.asList(invidious_instances).contains(Objects.requireNonNull(i.getData()).getHost())) {
-                Intent targetIntent = new Intent(Intent.ACTION_VIEW);
-                targetIntent.setDataAndType(intent.getData(), intent.getType());
-                targetIntent.setPackage(intent.getPackage());
-                targetIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                targetIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                targetIntent.setComponent(new ComponentName("org.schabi.newpipe", "org.schabi.newpipe.RouterActivity"));
-                targetIntents.add(targetIntent);
-            }
-
-            SharedPreferences sharedpreferences = context.getSharedPreferences(MainActivity.APP_PREFS, Context.MODE_PRIVATE);
-            boolean embedded_player = sharedpreferences.getBoolean(SET_EMBEDDED_PLAYER, false);
-
-            if (Arrays.asList(invidious_instances).contains(Objects.requireNonNull(i.getData()).getHost()) && embedded_player) {
-                if (!i.getData().toString().contains("videoplayback")) {
-                    Intent intentPlayer = new Intent(context, WebviewPlayerActivity.class);
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                        intentPlayer.addFlags(Intent.FLAG_ACTIVITY_NEW_DOCUMENT | Intent.FLAG_ACTIVITY_MULTIPLE_TASK);
-                    }
-                    intentPlayer.putExtra("url", i.getData().toString());
-                    context.startActivity(intentPlayer);
-                } else {
-                    Intent intentStreamingUrl = new Intent(Utils.RECEIVE_STREAMING_URL);
-                    Bundle b = new Bundle();
-                    b.putString("streaming_url", i.getData().toString());
-                    intentStreamingUrl.putExtras(b);
-                    LocalBroadcastManager.getInstance(context).sendBroadcast(intentStreamingUrl);
-                }
-            } else if (targetIntents.size() > 0) {
-                Intent chooserIntent = Intent.createChooser(targetIntents.remove(0), context.getString(R.string.open_with));
-                chooserIntent.putExtra(Intent.EXTRA_INITIAL_INTENTS, targetIntents.toArray(new Parcelable[]{}));
-                context.startActivity(chooserIntent);
-            }
-            ((Activity) context).finish();
-
-        } else {
-            Intent app_picker = new Intent(context, AppsPickerActivity.class);
-            Bundle b = new Bundle();
-            if (Objects.requireNonNull(i.getAction()).compareTo(Intent.ACTION_VIEW) == 0) {
-                b.putString(URL_APP_PICKER, i.getDataString());
-            } else {
-                b.putString(URL_APP_PICKER, i.getStringExtra(Intent.EXTRA_TEXT));
-            }
-            b.putString(INTENT_ACTION, i.getAction());
-            app_picker.putExtras(b);
-            context.startActivity(app_picker);
-            ((Activity) context).finish();
-        }
+        Intent stopMainActivity = new Intent(KILL_ACTIVITY);
+        i.putExtra("nitterizeme",true);
+        context.sendBroadcast(stopMainActivity);
+        context.startActivity(i);
+        ((Activity) context).finish();
     }
 
 

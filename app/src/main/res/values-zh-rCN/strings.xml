@@ -1,27 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- Some local values -->
-    <string name="action_settings">设置</string>
-    <string name="action_about">关于</string>
-    <string name="developer">开发者</string>
-    <string name="donations">捐赠</string>
-    <string name="about_the_app">关于本应用</string>
-    <string name="source_code">源代码</string>
-    <string name="issue_tracker">问题跟踪器</string>
-    <string name="license">许可协议</string>
-    <string name="about_vesrion">版本 %1$s</string>
     <string name="custom_nitter">自定义Nitter实例</string>
     <string name="save">保存</string>
-    <string name="close">关闭</string>
     <string name="instances_saved">自定义实例已保存！</string>
     <string name="custom_invidious">自定义Invidious实例</string>
-    <string name="no_apps">无默认应用</string>
-    <string name="Donate">捐赠</string>
-    <string name="warning">警告</string>
-    <string name="error">出错</string>
-    <string name="valid">有效</string>
-    <string name="icon_of_the_app">应用程序图标</string>
-    <string name="open_with">打开方式</string>
     <string name="redirect_gm_to_osm">重定向谷歌地图到 OpenStreetMap</string>
     <string name="custom_osm">自定义 OSM 主机名</string>
     <string name="redirect_youtube_to_invidious">重定向YouTube到Invidious</string>
@@ -29,147 +12,16 @@
     <string name="redirect_instagram_to_bibliogram">重定向Instagram到Bibliogram</string>
     <string name="custom_bibliogram">自定义Bibliogram实例</string>
     <string name="redirect_gm_to_geo_uri">重定向谷歌地图到 Geo URI</string>
-    <string name="configure">配置</string>
-    <string name="display_supported_links">显示支持的链接</string>
     <string name="use_geo_uri">使用geo URI</string>
-    <string name="how_to">操作说明</string>
     <string name="shortened_detected">URL短链</string>
-    <string name="shortener_services">网址缩短服务</string>
     <string name="open">打开</string>
     <string name="dismiss">忽略</string>
     <string name="resolving_shortened">正在解析缩短的 URL，请稍候…</string>
     <string name="try_to_redirect">%1$s \n\n将把您重定向到\n\n<b>%2$s</b></string>
     <string name="try_to_redirect_again">然后它会将您重定向到\n\n<b>%1$s</b></string>
     <string name="the_app_failed_shortened">应用未能获取完整的URL</string>
-    <string name="invidious_instances">Invidious实例</string>
-    <string name="nitter_instances">Nitter实例</string>
-    <string name="bibliogram_instances">Bibliogram实例</string>
-    <string name="latency">网络延迟</string>
-    <string name="error_message_internet">检查您的互联网连接</string>
     <string name="instance_label">实例:</string>
     <string name="expand_instance_details">展开实例详细信息</string>
-    <string name="cloudflare">此实例使用 Cloudflare</string>
     <string name="instance_info">已列出实例的信息</string>
-    <string name="about_instances">实例列表来自\n\n <a href="%1$s">%2$s</a>\n\n您可以通过添加或删除实例对此列表作出贡献。</string>
-    <string name="about_instances_title">关于实例</string>
-    <string name="use_built_in_player">使用内置播放器</string>
-    <string name="share">分享</string>
-    <string name="download">下载</string>
-    <string name="share_with">分享给</string>
-    <string name="check_apps">检查应用程序</string>
-    <string name="select_instances">搜索实例</string>
-    <string name="continue_with">继续使用…</string>
-    <string name="just_once">只需一次</string>
-    <string name="always">始终</string>
-    <string name="default_app_indication">%1$s 已被设置为默认应用。\n您可以从应用设置中删除此行为。</string>
-    <string name="indication_error_title">应用程序的配置有点错误。请按照这些指示来解决这个问题。</string>
-    <string name="open_configure">1-点击上面的“CONFIGURE”按钮。</string>
-    <string name="supported_url_indication_1">2 - 您现在正在您的设备上设置应用程序。点击\"设置为默认设置\"。</string>
-    <string name="display_indications_1_description">屏幕截图显示应用程序设置。您必须点击\"设置为默认设置\"</string>
-    <string name="supported_url_indication_2">2 - 然后点击\"转到支持的 URLs\"。</string>
-    <string name="display_indications_2_description">屏幕截图显示应用程序设置。您必须点击\"去支持的URL\"</string>
-    <string name="supported_url_indication_3">3 - 在建议中，请确保选择“始终询问”</string>
-    <string name="display_indications_3_description">屏幕截图显示了用于定义打开URL行为的应用程序设置</string>
-    <string name="default_apps">默认应用程序</string>
-    <string name="remove_from_default_app">从默认应用中删除</string>
-    <string name="delete">删除</string>
-    <string name="cancel">取消</string>
-    <string name="delete_app_from_default">从默认应用中删除 %1$s 吗？</string>
-    <string name="copy_done">已复制</string>
-    <string name="no_apps_set_as_default">未设置默认应用！</string>
-    <string name="custom_settings_for_invidious">Invidious自定义设置</string>
-    <string name="invidious_settings">Invidious设置</string>
-    <string name="invidious_dark_mode_title">主题</string>
-    <string name="invidious_dark_mode_indication">不设置cookies配置默认主题</string>
-    <string name="invidious_thin_mode_title">瘦模式</string>
-    <string name="invidious_thin_mode_indication">加载 HTML、CSS、JS 和视频元素 (禁用图像)</string>
-    <string name="invidious_language_mode_indication">可用语言</string>
-    <string name="invidious_language_mode_title">用户界面语言</string>
-    <string name="pref_invidious_head1">全站范围参数</string>
-    <string name="pref_invidious_head2">播放器参数</string>
-    <string name="invidious_annotations_mode_title">注释</string>
-    <string name="invidious_annotations_mode_indication">显示由互联网存档提供的旧备注</string>
-    <string name="invidious_autoplay_mode_indication">加载时自动播放视频</string>
-    <string name="invidious_autoplay_mode_title">自动播放</string>
-    <string name="invidious_continue_mode_title">继续</string>
-    <string name="invidious_continue_mode_indication">当前视频播放完毕，自动转到下一个相关的视频(类似于YouTube的自动播放功能)</string>
-    <string name="invidious_listen_mode_title">聆听</string>
-    <string name="invidious_listen_mode_indication">只播放视频的音频部分</string>
-    <string name="invidious_local_mode_title">本地模式</string>
-    <string name="invidious_local_mode_indication">代理视频流</string>
-    <string name="invidious_subtitles_mode_title">字幕</string>
-    <string name="invidious_subtitles_mode_indication">ISO 639- 1 语言代码列表</string>
-    <string name="invidious_quality_mode_title">画质</string>
-    <string name="invidious_quality_mode_indication">默认播放器画质</string>
-    <string name="invidious_loop_mode_title">循环</string>
-    <string name="invidious_volume_mode_title">音量</string>
-    <string name="invidious_volume_mode_indication">默认播放器音量，可以是 0 和 100 之间的任意整数</string>
-    <string name="invidious_loop_mode_indication">默认循环播放器</string>
-    <string name="invidious_volume_mode_value">音量值</string>
-    <string name="invidious_volume_mode_value_indication">用这个值绕过音量设置</string>
-    <string name="pref_invidious_head3">播放器样式</string>
-    <string name="invidious_player_style_mode_title">外观</string>
-    <string name="invidious_player_style_mode_indication">默认样式为Invidious。YouTube，使用居中播放按钮和始终可见的视频控制栏</string>
-    <string name="help">帮助</string>
-    <string name="invidious_help_title">设置选项</string>
-    <string name="invidious_help_ignore"><b>忽略：</b>这是所有¹网址参数的默认操作。这意味着UntrackMe不会对该参数做任何事情</string>
-    <string name="invidious_help_remove"><b>删除：</b>UntrackMe将从URL中删除该参数（如果存在）</string>
-    <string name="invidious_help_other">如果您为一个参数选择其他值，它们将被添加到URL。如果这个参数已经存在，其值将更改为您选择的值</string>
-    <string name="invidious_help_explanations">[1] 默认情况下，“ local”参数设置为“ true”，以获得更好的隐私</string>
-    <string-array name="invidious_theme">
-        <item>忽略</item>
-        <item>移除</item>
-        <item>深色主题</item>
-        <item>亮色主题</item>
-    </string-array>
-    <string-array name="invidious_enable">
-        <item>忽略</item>
-        <item>移除</item>
-        <item>启用</item>
-        <item>禁用</item>
-    </string-array>
-    <string-array name="invidious_language">
-        <item>忽略</item>
-        <item>移除</item>
-        <item>阿拉伯语</item>
-        <item>德语</item>
-        <item>希腊语</item>
-        <item>英语</item>
-        <item>世界语</item>
-        <item>西班牙语</item>
-        <item>巴斯克语</item>
-        <item>法语</item>
-        <item>冰岛语</item>
-        <item>意大利语</item>
-        <item>挪威博克马尔文</item>
-        <item>荷兰语</item>
-        <item>波兰语</item>
-        <item>俄语</item>
-        <item>乌克兰语</item>
-        <item>中文</item>
-    </string-array>
-    <string-array name="invidious_annotations">
-        <item>忽略</item>
-        <item>移除</item>
-        <item>显示注释</item>
-        <item>隐藏批注</item>
-    </string-array>
-    <string-array name="invidious_quality">
-        <item>忽略</item>
-        <item>移除</item>
-        <item>DASH</item>
-        <item>720p</item>
-        <item>480p</item>
-    </string-array>
-    <string-array name="invidious_volume">
-        <item>忽略</item>
-        <item>移除</item>
-        <item>自定义</item>
-    </string-array>
-    <string-array name="invidious_player_style">
-        <item>忽略</item>
-        <item>移除</item>
-        <item>Invidious</item>
-        <item>Youtube样式</item>
-    </string-array>
+
 </resources>

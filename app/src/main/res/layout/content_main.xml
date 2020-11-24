@@ -52,7 +52,6 @@
                     app:layout_constraintGuide_begin="40dp" />
 
                 <View
-                    android:id="@+id/top_part_bg_nitter"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:background="@color/topBar"
@@ -60,15 +59,25 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/nitter_indications"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
                     android:layout_marginLeft="10dp"
                     android:text="@string/redirect_twitter_to_nitter"
                     app:layout_constraintBottom_toBottomOf="@id/guide_nitter"
-                    app:layout_constraintEnd_toStartOf="@id/enable_nitter"
+                    app:layout_constraintEnd_toStartOf="@id/nitter_instance_button"
                     app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageButton
+                    android:id="@+id/nitter_instance_button"
+                    style="@style/Widget.AppCompat.Button.Colored"
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
+                    android:contentDescription="@string/instance_info"
+                    android:src="@drawable/ic_info_outline"
+                    app:layout_constraintBottom_toBottomOf="@id/guide_nitter"
+                    app:layout_constraintEnd_toStartOf="@id/enable_nitter"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <androidx.appcompat.widget.SwitchCompat
@@ -194,7 +203,6 @@
                     app:layout_constraintGuide_begin="40dp" />
 
                 <View
-                    android:id="@+id/top_part_bg_invidious"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:background="@color/topBar"
@@ -202,15 +210,25 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/invidious_indications"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
                     android:layout_marginLeft="10dp"
                     android:text="@string/redirect_youtube_to_invidious"
-                    app:layout_constraintBottom_toBottomOf="@id/guide_invidious"
+                    app:layout_constraintBottom_toBottomOf="@id/invidious_instance_button"
                     app:layout_constraintEnd_toStartOf="@id/enable_invidious"
                     app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageButton
+                    android:id="@+id/invidious_instance_button"
+                    style="@style/Widget.AppCompat.Button.Colored"
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
+                    android:contentDescription="@string/instance_info"
+                    android:src="@drawable/ic_info_outline"
+                    app:layout_constraintBottom_toBottomOf="@id/guide_invidious"
+                    app:layout_constraintEnd_toStartOf="@id/enable_invidious"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <androidx.appcompat.widget.SwitchCompat
@@ -247,16 +265,6 @@
                     app:layout_constraintStart_toEndOf="@id/button_expand_instance_invidious"
                     app:layout_constraintTop_toTopOf="@id/guide_invidious" />
 
-                <ImageButton
-                    android:id="@+id/invidious_settings"
-                    style="@style/Widget.AppCompat.Button.Colored"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:contentDescription="@string/custom_settings_for_invidious"
-                    android:src="@drawable/ic_settings_applications"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@id/guide_invidious" />
-
                 <TextView
                     android:id="@+id/current_instance_invidious"
                     android:layout_width="0dp"
@@ -274,7 +282,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     app:barrierDirection="bottom"
-                    app:constraint_referenced_ids="label_instance_invidious,current_instance_invidious,button_expand_instance_invidious" />
+                    app:constraint_referenced_ids="label_instance_invidious,current_instance_invidious,button_expand_instance_invidious"
+                    tools:layout_editor_absoluteY="71dp" />
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/invidious_instance_container"
@@ -314,23 +323,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     app:barrierDirection="bottom"
-                    app:constraint_referenced_ids="invidious_instance_container,button_save_instance_invidious" />
-
-                <CheckBox
-                    android:id="@+id/enable_embed_player"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:text="@string/use_built_in_player"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/barrier_invidious_2" />
+                    app:constraint_referenced_ids="invidious_instance_container,button_save_instance_invidious"
+                    tools:layout_editor_absoluteY="80dp" />
 
                 <androidx.constraintlayout.widget.Group
                     android:id="@+id/group_current_invidious"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:constraint_referenced_ids="label_instance_invidious,current_instance_invidious,button_expand_instance_invidious, invidious_settings" />
+                    app:constraint_referenced_ids="label_instance_invidious,current_instance_invidious,button_expand_instance_invidious" />
 
                 <androidx.constraintlayout.widget.Group
                     android:id="@+id/group_custom_invidious"
@@ -364,7 +364,6 @@
                     app:layout_constraintGuide_begin="40dp" />
 
                 <View
-                    android:id="@+id/top_part_bg_bibliogram"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:background="@color/topBar"
@@ -372,15 +371,25 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/bibliogram_indications"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
                     android:layout_marginLeft="10dp"
                     android:text="@string/redirect_instagram_to_bibliogram"
                     app:layout_constraintBottom_toBottomOf="@id/guide_bibliogram"
-                    app:layout_constraintEnd_toStartOf="@id/enable_bibliogram"
+                    app:layout_constraintEnd_toStartOf="@id/bibliogram_instance_button"
                     app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageButton
+                    android:id="@+id/bibliogram_instance_button"
+                    style="@style/Widget.AppCompat.Button.Colored"
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
+                    android:contentDescription="@string/instance_info"
+                    android:src="@drawable/ic_info_outline"
+                    app:layout_constraintBottom_toBottomOf="@id/guide_bibliogram"
+                    app:layout_constraintEnd_toStartOf="@id/enable_bibliogram"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <androidx.appcompat.widget.SwitchCompat
@@ -490,7 +499,6 @@
             style="@style/containerCard"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintBottom_toTopOf="@id/buttons_container"
             app:layout_constraintTop_toBottomOf="@id/bibliogram_container">
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -506,7 +514,6 @@
                     app:layout_constraintGuide_begin="40dp" />
 
                 <View
-                    android:id="@+id/top_part_bg_osm"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:background="@color/topBar"
@@ -521,8 +528,19 @@
                     android:layout_marginLeft="10dp"
                     android:text="@string/redirect_gm_to_osm"
                     app:layout_constraintBottom_toBottomOf="@id/guide_osm"
-                    app:layout_constraintEnd_toStartOf="@id/enable_osm"
+                    app:layout_constraintEnd_toStartOf="@id/osm_instance_button"
                     app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageButton
+                    android:id="@+id/osm_instance_button"
+                    style="@style/Widget.AppCompat.Button.Colored"
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
+                    android:contentDescription="@string/instance_info"
+                    android:src="@drawable/ic_info_outline"
+                    app:layout_constraintBottom_toBottomOf="@id/guide_osm"
+                    app:layout_constraintEnd_toStartOf="@id/enable_osm"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <androidx.appcompat.widget.SwitchCompat
@@ -643,162 +661,6 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </androidx.cardview.widget.CardView>
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/buttons_container"
-            style="@style/containerCard"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintBottom_toTopOf="@+id/display_indications"
-            app:layout_constraintTop_toBottomOf="@id/osm_container">
-
-            <Button
-                android:id="@+id/configure"
-                style="@style/Widget.AppCompat.Button.Colored"
-                android:layout_width="0dp"
-                android:layout_height="50dp"
-                android:layout_margin="5dp"
-                android:drawableStart="@drawable/ic_settings"
-                android:drawableLeft="@drawable/ic_settings"
-                android:drawablePadding="5dp"
-                android:text="@string/configure"
-                android:textColor="@android:color/white"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@id/instances"
-                app:layout_constraintHorizontal_weight="2"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <ImageButton
-                android:id="@+id/instances"
-                style="@style/Widget.AppCompat.Button.Colored"
-                android:layout_width="0dp"
-                android:layout_height="50dp"
-                android:layout_margin="5dp"
-                android:contentDescription="@string/display_supported_links"
-                android:src="@drawable/ic_public"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@id/button_expand"
-                app:layout_constraintHorizontal_weight="1"
-                app:layout_constraintStart_toEndOf="@id/configure"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <ImageButton
-                android:id="@+id/button_expand"
-                style="@style/Widget.AppCompat.Button.Colored"
-                android:layout_width="0dp"
-                android:layout_height="50dp"
-                android:layout_margin="5dp"
-                android:contentDescription="@string/display_supported_links"
-                android:src="@drawable/ic_apps"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_weight="1"
-                app:layout_constraintStart_toEndOf="@id/instances"
-                app:layout_constraintTop_toTopOf="parent" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/display_indications"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/rounded_error"
-            android:padding="10dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/buttons_container">
-
-            <TextView
-                android:id="@+id/display_indications_title"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:paddingBottom="10dp"
-                android:text="@string/indication_error_title"
-                android:textColor="@color/red"
-                android:textSize="16sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/display_indications_0"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingBottom="5dp"
-                android:text="@string/open_configure"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/display_indications_title" />
-
-            <TextView
-                android:id="@+id/display_indications_1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingBottom="5dp"
-                android:text="@string/supported_url_indication_1"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/display_indications_0" />
-
-            <ImageView
-                android:id="@+id/display_indications_img_1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:adjustViewBounds="true"
-                android:contentDescription="@string/display_indications_1_description"
-                android:paddingBottom="5dp"
-                android:src="@drawable/img1"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/display_indications_1" />
-
-            <TextView
-                android:id="@+id/display_indications_2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingBottom="5dp"
-                android:text="@string/supported_url_indication_2"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/display_indications_img_1" />
-
-            <ImageView
-                android:id="@+id/display_indications_img_2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:adjustViewBounds="true"
-                android:contentDescription="@string/display_indications_1_description"
-                android:paddingBottom="5dp"
-                android:src="@drawable/img2"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/display_indications_2" />
-
-            <TextView
-                android:id="@+id/display_indications_3"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingBottom="5dp"
-                android:text="@string/supported_url_indication_3"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/display_indications_img_2" />
-
-            <ImageView
-                android:id="@+id/display_indications_img_3"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:adjustViewBounds="true"
-                android:contentDescription="@string/display_indications_3_description"
-                android:paddingBottom="5dp"
-                android:src="@drawable/img3"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/display_indications_3" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.core.widget.NestedScrollView>

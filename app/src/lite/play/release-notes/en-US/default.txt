@@ -1,2 +1,0 @@
-- Add amp.gs shortener
-- Some new translations

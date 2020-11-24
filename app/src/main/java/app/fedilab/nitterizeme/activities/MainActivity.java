@@ -19,32 +19,22 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
-import android.content.pm.PackageManager;
-import android.content.pm.ResolveInfo;
 import android.net.Uri;
 import android.os.Bundle;
-import android.provider.Settings;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SwitchCompat;
 import androidx.appcompat.widget.Toolbar;
-import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.constraintlayout.widget.Group;
 
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputEditText;
 
-import java.util.List;
-import java.util.Objects;
-
-import app.fedilab.nitterizeme.BuildConfig;
 import app.fedilab.nitterizeme.R;
 
 import static app.fedilab.nitterizeme.helpers.Utils.KILL_ACTIVITY;
@@ -67,7 +57,6 @@ public class MainActivity extends AppCompatActivity {
     public static String SET_BIBLIOGRAM_ENABLED = "set_bibliogram_enabled";
     public static String DEFAULT_BIBLIOGRAM_HOST = "bibliogram.art";
     public static String SET_GEO_URIS = "set_geo_uris";
-    public static String SET_EMBEDDED_PLAYER = "set_embedded_player";
     BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
 
         @Override
@@ -90,8 +79,10 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        Objects.requireNonNull(getSupportActionBar()).setDisplayShowHomeEnabled(true);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        ActionBar actionBar = getSupportActionBar();
+        if(actionBar != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+        }
 
         SharedPreferences sharedpreferences = getSharedPreferences(APP_PREFS, Context.MODE_PRIVATE);
 
@@ -124,6 +115,10 @@ public class MainActivity extends AppCompatActivity {
         SwitchCompat enable_bibliogram = findViewById(R.id.enable_bibliogram);
         SwitchCompat enable_osm = findViewById(R.id.enable_osm);
 
+        ImageButton nitter_instance_button = findViewById(R.id.nitter_instance_button);
+        ImageButton invidious_instance_button = findViewById(R.id.invidious_instance_button);
+        ImageButton bibliogram_instance_button = findViewById(R.id.bibliogram_instance_button);
+        ImageButton osm_instance_button = findViewById(R.id.osm_instance_button);
 
         ImageButton expand_instance_nitter = findViewById(R.id.button_expand_instance_nitter);
         ImageButton expand_instance_invidious = findViewById(R.id.button_expand_instance_invidious);
@@ -136,7 +131,6 @@ public class MainActivity extends AppCompatActivity {
         boolean osm_enabled = sharedpreferences.getBoolean(SET_OSM_ENABLED, true);
         boolean bibliogram_enabled = sharedpreferences.getBoolean(SET_BIBLIOGRAM_ENABLED, true);
         boolean geouri_enabled = sharedpreferences.getBoolean(SET_GEO_URIS, false);
-        boolean embedded_player = sharedpreferences.getBoolean(SET_EMBEDDED_PLAYER, false);
 
         enable_nitter.setChecked(nitter_enabled);
         enable_invidious.setChecked(invidious_enabled);
@@ -148,7 +142,6 @@ public class MainActivity extends AppCompatActivity {
         ImageButton save_instance_osm = findViewById(R.id.button_save_instance_osm);
 
         CheckBox enable_geo_uris = findViewById(R.id.enable_geo_uris);
-        CheckBox enable_embed_player = findViewById(R.id.enable_embed_player);
 
 
         nitterHost = sharedpreferences.getString(SET_NITTER_HOST, null);
@@ -161,7 +154,6 @@ public class MainActivity extends AppCompatActivity {
         bibliogram_current_group.setVisibility(bibliogram_enabled ? View.VISIBLE : View.GONE);
         osm_current_group.setVisibility((osm_enabled && geouri_enabled) ? View.VISIBLE : View.GONE);
         enable_geo_uris.setVisibility(osm_enabled ? View.VISIBLE : View.GONE);
-        enable_embed_player.setVisibility(invidious_enabled ? View.VISIBLE : View.GONE);
 
         enable_invidious.setOnCheckedChangeListener((buttonView, isChecked) -> {
             SharedPreferences.Editor editor = sharedpreferences.edit();
@@ -169,7 +161,6 @@ public class MainActivity extends AppCompatActivity {
             editor.apply();
             invidious_current_group.setVisibility(isChecked ? View.VISIBLE : View.GONE);
             invidious_custom_group.setVisibility(View.GONE);
-            enable_embed_player.setVisibility(isChecked ? View.VISIBLE : View.GONE);
             expand_instance_invidious.setRotation(0);
         });
         enable_nitter.setOnCheckedChangeListener((buttonView, isChecked) -> {
@@ -206,6 +197,27 @@ public class MainActivity extends AppCompatActivity {
             } else {
                 osm_current_group.setVisibility(View.GONE);
             }
+        });
+
+        nitter_instance_button.setOnClickListener(v -> {
+            Uri nitter_instance_uri = Uri.parse("https://github.com/zedeus/nitter/wiki/Instances");
+            Intent openInstanceList = new Intent(Intent.ACTION_VIEW, nitter_instance_uri);
+            startActivity(openInstanceList);
+        });
+        invidious_instance_button.setOnClickListener(v -> {
+            Uri invidious_instance_uri = Uri.parse("https://github.com/iv-org/invidious/wiki/Invidious-Instances");
+            Intent openInstanceList = new Intent(Intent.ACTION_VIEW, invidious_instance_uri);
+            startActivity(openInstanceList);
+        });
+        bibliogram_instance_button.setOnClickListener(v -> {
+            Uri bibliogram_instance_uri = Uri.parse("https://git.sr.ht/~cadence/bibliogram-docs/tree/master/docs/Instances.md");
+            Intent openInstanceList = new Intent(Intent.ACTION_VIEW, bibliogram_instance_uri);
+            startActivity(openInstanceList);
+        });
+        osm_instance_button.setOnClickListener(v -> {
+            Uri osm_instance_uri = Uri.parse("https://wiki.openstreetmap.org/wiki/Servers#External_Servers");
+            Intent openInstanceList = new Intent(Intent.ACTION_VIEW, osm_instance_uri);
+            startActivity(openInstanceList);
         });
 
 
@@ -309,7 +321,6 @@ public class MainActivity extends AppCompatActivity {
             osm_custom_group.setVisibility(View.GONE);
         }
 
-        enable_embed_player.setChecked(embedded_player);
         save_instance_nitter.setOnClickListener(v -> {
             SharedPreferences.Editor editor = sharedpreferences.edit();
             if (nitter_instance.getText() != null && nitter_instance.getText().toString().trim().length() > 0) {
@@ -358,27 +369,6 @@ public class MainActivity extends AppCompatActivity {
             editor.apply();
         });
 
-        Button configure = findViewById(R.id.configure);
-        configure.setOnClickListener(v -> {
-            Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
-            Uri uri = Uri.fromParts("package", getApplicationInfo().packageName, null);
-            intent.setData(uri);
-            startActivity(intent);
-        });
-
-        ImageButton buttonExpand = findViewById(R.id.button_expand);
-        buttonExpand.setOnClickListener(v -> {
-            Intent intent = new Intent(MainActivity.this, CheckAppActivity.class);
-            startActivity(intent);
-        });
-
-        ImageButton buttonPing = findViewById(R.id.instances);
-        buttonPing.setOnClickListener(v -> {
-            Intent intent = new Intent(MainActivity.this, InstanceActivity.class);
-            startActivity(intent);
-        });
-
-
         enable_geo_uris.setOnCheckedChangeListener((buttonView, isChecked) -> {
             SharedPreferences.Editor editor = sharedpreferences.edit();
             editor.putBoolean(SET_GEO_URIS, isChecked);
@@ -393,11 +383,6 @@ public class MainActivity extends AppCompatActivity {
                 osm_current_group.setVisibility(View.VISIBLE);
                 osm_indications.setText(R.string.redirect_gm_to_osm);
             }
-        });
-        enable_embed_player.setOnCheckedChangeListener((buttonView, isChecked) -> {
-            SharedPreferences.Editor editor = sharedpreferences.edit();
-            editor.putBoolean(SET_EMBEDDED_PLAYER, isChecked);
-            editor.apply();
         });
 
         sharedpreferences.registerOnSharedPreferenceChangeListener(
@@ -449,42 +434,7 @@ public class MainActivity extends AppCompatActivity {
                 }
         );
 
-        //Invidious custom settings
-        ImageButton invidious_settings = findViewById(R.id.invidious_settings);
-        invidious_settings.setOnClickListener(v -> {
-            Intent intent = new Intent(MainActivity.this, InvidiousSettingsActivity.class);
-            startActivity(intent);
-        });
-
         registerReceiver(broadcastReceiver, new IntentFilter(KILL_ACTIVITY));
-    }
-
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        if (!BuildConfig.fullLinks) {
-            menu.findItem(R.id.action_settings).setVisible(false);
-        }
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-        if (id == R.id.action_about) {
-            Intent intent = new Intent(MainActivity.this, AboutActivity.class);
-            startActivity(intent);
-            return true;
-        } else if (id == R.id.action_settings) {
-            Intent intent = new Intent(MainActivity.this, DefaultAppActivity.class);
-            startActivity(intent);
-            return true;
-        } else if (id == android.R.id.home) {
-            finish();
-        }
-
-        return super.onOptionsItemSelected(item);
     }
 
     @Override
@@ -521,18 +471,6 @@ public class MainActivity extends AppCompatActivity {
         if (bibliogramHost != null) {
             bibliogram_instance.setText(bibliogramHost);
             current_instance_bibliogram.setText(bibliogramHost);
-        }
-        ConstraintLayout display_indications = findViewById(R.id.display_indications);
-        if (BuildConfig.fullLinks) {
-            List<ResolveInfo> resolveInfos = getPackageManager().queryIntentActivities(new Intent(Intent.ACTION_VIEW, Uri.parse("https://fedilab.app")), PackageManager.MATCH_DEFAULT_ONLY);
-            String thisPackageName = getApplicationContext().getPackageName();
-            if (resolveInfos.size() == 1 && resolveInfos.get(0).activityInfo.packageName.compareTo(thisPackageName) == 0) {
-                display_indications.setVisibility(View.VISIBLE);
-            } else {
-                display_indications.setVisibility(View.GONE);
-            }
-        } else {
-            display_indications.setVisibility(View.GONE);
         }
     }
 }

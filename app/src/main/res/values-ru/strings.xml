@@ -1,27 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- Some local values -->
-    <string name="action_settings">Настройки</string>
-    <string name="action_about">О программе</string>
-    <string name="developer">Разработчик</string>
-    <string name="donations">Пожертвования</string>
-    <string name="about_the_app">О приложении</string>
-    <string name="source_code">Исходный код</string>
-    <string name="issue_tracker">Отчёты об ошибках</string>
-    <string name="license">Лицензия</string>
-    <string name="about_vesrion">Версия %1$s</string>
     <string name="custom_nitter">Пользовательский сервер Nitter</string>
     <string name="save">Сохранить</string>
-    <string name="close">Закрыть</string>
     <string name="instances_saved">Пользовательские сервера сохранены!</string>
     <string name="custom_invidious">Пользовательский сервер Invidious</string>
-    <string name="no_apps">Приложений по умолчанию нет</string>
-    <string name="Donate">Поддержать проект</string>
-    <string name="warning">Предупреждение</string>
-    <string name="error">Ошибка</string>
-    <string name="valid">Допустимо</string>
-    <string name="icon_of_the_app">Иконка приложения</string>
-    <string name="open_with">Открыть с помощью</string>
     <string name="redirect_gm_to_osm">Перенаправлять Google Карты на OpenStreetMap</string>
     <string name="custom_osm">Пользовательский сервер OSM</string>
     <string name="redirect_youtube_to_invidious">Перенаправлять YouTube на Invidious</string>
@@ -29,147 +12,16 @@
     <string name="redirect_instagram_to_bibliogram">Перенаправлять Instagram на Bibliogram</string>
     <string name="custom_bibliogram">Пользовательский сервер Bibliogram</string>
     <string name="redirect_gm_to_geo_uri">Перенаправлять Google Карты на Geo URI</string>
-    <string name="configure">Настроить</string>
-    <string name="display_supported_links">Показать поддерживаемые ссылки</string>
     <string name="use_geo_uri">Использовать Geo URI</string>
-    <string name="how_to">Инструкция</string>
     <string name="shortened_detected">Сокращённая ссылка</string>
-    <string name="shortener_services">Сервисы сокращения</string>
     <string name="open">Открыть</string>
     <string name="dismiss">Отклонить</string>
     <string name="resolving_shortened">Раскрытие сокращенной ссылки, пожалуйста, подождите…</string>
     <string name="try_to_redirect">%1$s \n\nперенаправит вас на\n\n<b>%2$s</b></string>
     <string name="try_to_redirect_again">Затем перенаправит вас на\n\n<b>%1$s</b></string>
     <string name="the_app_failed_shortened">Приложению не удалось получить полную ссылку</string>
-    <string name="invidious_instances">Сервера Invidious</string>
-    <string name="nitter_instances">Сервера Nitter</string>
-    <string name="bibliogram_instances">Сервера Bibliogram</string>
-    <string name="latency">Задержка</string>
-    <string name="error_message_internet">Проверьте подключение к Интернету</string>
     <string name="instance_label">Сервер:</string>
     <string name="expand_instance_details">Развернуть описание сервера</string>
-    <string name="cloudflare">Этот сервер использует Cloudflare</string>
     <string name="instance_info">Информация о серверах</string>
-    <string name="about_instances">Список серверов берётся из\n\n <a href="%1$s">%2$s</a>\n\nВы можете внести свой вклад добавлением новых серверов в список.</string>
-    <string name="about_instances_title">О серверах</string>
-    <string name="use_built_in_player">Использовать встроенный плеер</string>
-    <string name="share">Поделиться</string>
-    <string name="download">Скачать</string>
-    <string name="share_with">Поделиться через</string>
-    <string name="check_apps">Проверить приложения</string>
-    <string name="select_instances">Выбрать сервера</string>
-    <string name="continue_with">Продолжить с…</string>
-    <string name="just_once">Только один раз</string>
-    <string name="always">Всегда</string>
-    <string name="default_app_indication">%1$s было установлено как приложение по умолчанию.\nВы можете удалить это поведение в настройках приложения.</string>
-    <string name="indication_error_title">Что-то не так с настройками приложения. Пожалуйста, следуйте этим указаниям, чтобы исправить эту проблему.</string>
-    <string name="open_configure">1 - Нажмите на кнопку \"Настроить\" выше.</string>
-    <string name="supported_url_indication_1">2 - Теперь вы в настройках приложения вашего устройства. Нажмите на \"Установить по умолчанию\".</string>
-    <string name="display_indications_1_description">Скриншот показывает настройки для приложения. Нажмите на \"Установить по умолчанию\"</string>
-    <string name="supported_url_indication_2">2 - Затем нажмите на \"Перейти к поддерживаемым URL\".</string>
-    <string name="display_indications_2_description">Скриншот показывает настройки для приложения. Нажмите на \"Перейти к поддерживаемым URL\"</string>
-    <string name="supported_url_indication_3">3 - В предложениях обязательно выберите \"Всегда спрашивать\"</string>
-    <string name="display_indications_3_description">Скриншот, показывающий настройки приложения, для определения поведения при открытии URL</string>
-    <string name="default_apps">Приложения по умолчанию</string>
-    <string name="remove_from_default_app">Убрать из приложений по умолчанию</string>
-    <string name="delete">Удалить</string>
-    <string name="cancel">Отменить</string>
-    <string name="delete_app_from_default">Удалить %1$s из приложений по умолчанию?</string>
-    <string name="copy_done">Скопировано</string>
-    <string name="no_apps_set_as_default">Не выбраны приложения по умолчанию!</string>
-    <string name="custom_settings_for_invidious">Пользовательские настройки для Invidious</string>
-    <string name="invidious_settings">Настройки Invidious</string>
-    <string name="invidious_dark_mode_title">Тема</string>
-    <string name="invidious_dark_mode_indication">Настроить тему по умолчанию без установки cookies</string>
-    <string name="invidious_thin_mode_title">Тонкий режим</string>
-    <string name="invidious_thin_mode_indication">Загрузить HTML, CSS, JS и видео элементы (отключает изображения)</string>
-    <string name="invidious_language_mode_indication">Доступные языки</string>
-    <string name="invidious_language_mode_title">Язык интерфейса</string>
-    <string name="pref_invidious_head1">Параметры сайта</string>
-    <string name="pref_invidious_head2">Параметры плеера</string>
-    <string name="invidious_annotations_mode_title">Аннотации</string>
-    <string name="invidious_annotations_mode_indication">Показать устаревшие аннотации, предоставленные Internet Archive</string>
-    <string name="invidious_autoplay_mode_indication">Автоматически воспроизводить видео во время загрузке</string>
-    <string name="invidious_autoplay_mode_title">Автовоспроизведение</string>
-    <string name="invidious_continue_mode_title">Продолжить</string>
-    <string name="invidious_continue_mode_indication">Когда видео закончится, автоматически перейти к следующему видео (аналогично функции автовоспроизведения YouTube)</string>
-    <string name="invidious_listen_mode_title">Прослушать</string>
-    <string name="invidious_listen_mode_indication">Воспроизвести только аудио часть видео</string>
-    <string name="invidious_local_mode_title">Локальный</string>
-    <string name="invidious_local_mode_indication">Проксировать видео потоки</string>
-    <string name="invidious_subtitles_mode_title">Субтитры</string>
-    <string name="invidious_subtitles_mode_indication">Список кодов языков ISO 639–1</string>
-    <string name="invidious_quality_mode_title">Качество</string>
-    <string name="invidious_quality_mode_indication">Качество видео по умолчанию</string>
-    <string name="invidious_loop_mode_title">Повтор</string>
-    <string name="invidious_volume_mode_title">Громкость</string>
-    <string name="invidious_volume_mode_indication">Громкость плеера по умолчанию, может быть любым целым числом от 0 до 100</string>
-    <string name="invidious_loop_mode_indication">Повтор в плеере по умолчанию</string>
-    <string name="invidious_volume_mode_value">Уровень громкости</string>
-    <string name="invidious_volume_mode_value_indication">Переопределить громкость этим значением</string>
-    <string name="pref_invidious_head3">Стиль плеера</string>
-    <string name="invidious_player_style_mode_title">Внешний вид</string>
-    <string name="invidious_player_style_mode_indication">Invidious, по умолчанию. YouTube, использует центрированную кнопку воспроизведения и всегда видимую панель управления видео</string>
-    <string name="help">Помощь</string>
-    <string name="invidious_help_title">Настройки</string>
-    <string name="invidious_help_ignore"><b>Игнорировать:</b> Это действие по умолчанию для всех¹ параметров. Это означает, что UntrackMe ничего не будет делать в отношении параметра</string>
-    <string name="invidious_help_remove"><b>Удалить:</b> UntrackMe удалит параметр из URL, если он существует</string>
-    <string name="invidious_help_other">Если вы выбирете другие значения параметра, они будут добавлены в URL. Если параметр уже существует, его значение будет изменено на ваше</string>
-    <string name="invidious_help_explanations">[1] параметр \'local\' по умолчанию имеет значение \'true\' для большей конфиденциальности</string>
-    <string-array name="invidious_theme">
-        <item>Игнорировать</item>
-        <item>Удалить</item>
-        <item>Тёмная тема</item>
-        <item>Светлая тема</item>
-    </string-array>
-    <string-array name="invidious_enable">
-        <item>Игнорировать</item>
-        <item>Удалить</item>
-        <item>Включено</item>
-        <item>Отключено</item>
-    </string-array>
-    <string-array name="invidious_language">
-        <item>Игнорировать</item>
-        <item>Удалить</item>
-        <item>Арабский</item>
-        <item>Немецкий</item>
-        <item>Греческий</item>
-        <item>Английский</item>
-        <item>Эсперанто</item>
-        <item>Испанский</item>
-        <item>Баскский</item>
-        <item>Французский</item>
-        <item>Исландский</item>
-        <item>Итальянский</item>
-        <item>Норвежский Букмол</item>
-        <item>Голландский</item>
-        <item>Польский</item>
-        <item>Русский</item>
-        <item>Украинский</item>
-        <item>Китайский</item>
-    </string-array>
-    <string-array name="invidious_annotations">
-        <item>Игнорировать</item>
-        <item>Удалить</item>
-        <item>Показывать аннотации</item>
-        <item>Скрыть аннотации</item>
-    </string-array>
-    <string-array name="invidious_quality">
-        <item>Игнорировать</item>
-        <item>Удалить</item>
-        <item>DASH</item>
-        <item>720p</item>
-        <item>480p</item>
-    </string-array>
-    <string-array name="invidious_volume">
-        <item>Игнорировать</item>
-        <item>Удалить</item>
-        <item>Пользовательский</item>
-    </string-array>
-    <string-array name="invidious_player_style">
-        <item>Игнорировать</item>
-        <item>Удалить</item>
-        <item>Invidious</item>
-        <item>Youtube</item>
-    </string-array>
+
 </resources>

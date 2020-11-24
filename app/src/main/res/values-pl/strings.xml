@@ -1,27 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- Some local values -->
-    <string name="action_settings">Ustawienia</string>
-    <string name="action_about">O programie</string>
-    <string name="developer">Twórca</string>
-    <string name="donations">Darowizny</string>
-    <string name="about_the_app">O aplikacji</string>
-    <string name="source_code">Kod źródłowy</string>
-    <string name="issue_tracker">Śledzenie problemów</string>
-    <string name="license">Licencja</string>
-    <string name="about_vesrion">Wersja %1$s</string>
     <string name="custom_nitter">Własna instancja Nittera</string>
     <string name="save">Zapisz</string>
-    <string name="close">Zamknij</string>
     <string name="instances_saved">Własne instancje zostały zapisane!</string>
     <string name="custom_invidious">Własna instancja Invidious</string>
-    <string name="no_apps">Brak domyślnych aplikacji</string>
-    <string name="Donate">Wesprzyj</string>
-    <string name="warning">Ostrzeżenie</string>
-    <string name="error">Błąd</string>
-    <string name="valid">Działa</string>
-    <string name="icon_of_the_app">Ikona aplikacji</string>
-    <string name="open_with">Otwórz za pomocą</string>
     <string name="redirect_gm_to_osm">Przekieruj Mapy Google do OpenStreetMap</string>
     <string name="custom_osm">Własna nazwa hosta OSM</string>
     <string name="redirect_youtube_to_invidious">Przekieruj YouTube do Invidious</string>
@@ -29,147 +12,16 @@
     <string name="redirect_instagram_to_bibliogram">Przekieruj Instagram do Bibliogram</string>
     <string name="custom_bibliogram">Własna instancja Bibliogram</string>
     <string name="redirect_gm_to_geo_uri">Przekieruj Mapy Google do Geo URI</string>
-    <string name="configure">Skonfiguruj</string>
-    <string name="display_supported_links">Wyświetl obsługiwane linki</string>
     <string name="use_geo_uri">Użyj geo URI</string>
-    <string name="how_to">Jak to zrobić</string>
     <string name="shortened_detected">Skrócony URL</string>
-    <string name="shortener_services">Usługi skracające linki</string>
     <string name="open">Otwórz</string>
     <string name="dismiss">Odrzuć</string>
     <string name="resolving_shortened">Analizowanie skróconego adresu URL, proszę czekać…</string>
     <string name="try_to_redirect">%1$s \n\nprzekieruje Cię do\n\n<b>%2$s</b></string>
     <string name="try_to_redirect_again">Następnie przekieruje Cię do\n\n<b>%1$s</b></string>
     <string name="the_app_failed_shortened">Aplikacja nie może uzyskać pełnego adresu URL</string>
-    <string name="invidious_instances">Instancje Invidious</string>
-    <string name="nitter_instances">Instancje Nitter</string>
-    <string name="bibliogram_instances">Instancje Bibliogram</string>
-    <string name="latency">Opóźnienie</string>
-    <string name="error_message_internet">Sprawdź połączenie z internetem</string>
     <string name="instance_label">Instancja:</string>
     <string name="expand_instance_details">Rozwiń szczegóły instancji</string>
-    <string name="cloudflare">Ta instancja używa Cloudflare</string>
     <string name="instance_info">Informacje o wyświetlanych instancjach</string>
-    <string name="about_instances">Lista instancji pochodzi z\n\n <a href="%1$s">%2$s</a>\n\nMożesz przyłączyć się do tej listy poprzez dodanie lub usunięcie instancji.</string>
-    <string name="about_instances_title">O instancjach</string>
-    <string name="use_built_in_player">Użyj wbudowanego odtwarzacza</string>
-    <string name="share">Udostępnij</string>
-    <string name="download">Pobierz</string>
-    <string name="share_with">Udostępnij dla</string>
-    <string name="check_apps">Sprawdź aplikacje</string>
-    <string name="select_instances">Wybierz instancje</string>
-    <string name="continue_with">Kontynuuj z…</string>
-    <string name="just_once">Tylko raz</string>
-    <string name="always">Zawsze</string>
-    <string name="default_app_indication">%1$s został ustawiony jako domyślna aplikacja.\nMożesz usunąć to zachowanie z ustawień aplikacji.</string>
-    <string name="indication_error_title">Coś jest nie tak z konfiguracją aplikacji. Postępuj zgodnie z tymi wskazówkami, aby rozwiązać ten problem.</string>
-    <string name="open_configure">1 - Dotknij przycisku \"KONFIGURUJ\" powyżej.</string>
-    <string name="supported_url_indication_1">2 - Jesteś teraz w ustawieniach aplikacji na swoim urządzeniu. Kliknij \"Ustaw jako domyślny\".</string>
-    <string name="display_indications_1_description">Zrzut ekranu pokazujący ustawienia aplikacji dla aplikacji. Musisz kliknąć \"Ustaw jako domyślny\"</string>
-    <string name="supported_url_indication_2">2 - Następnie dotknij \"Przejdź do obsługiwanych adresów\".</string>
-    <string name="display_indications_2_description">Zrzut ekranu pokazujący ustawienia aplikacji dla aplikacji. Musisz kliknąć \"Przejdź do obsługiwanych adresów\"</string>
-    <string name="supported_url_indication_3">3 - W sugestiach upewnij się, że wybrałeś opcję \"Zawsze pytaj\"</string>
-    <string name="display_indications_3_description">Zrzut ekranu pokazujący ustawienia aplikacji w celu zdefiniowania zachowania dla otwierania adresów URL</string>
-    <string name="default_apps">Domyślne aplikacje</string>
-    <string name="remove_from_default_app">Usuń z domyślnych aplikacji</string>
-    <string name="delete">Usuń</string>
-    <string name="cancel">Anuluj</string>
-    <string name="delete_app_from_default">Usunąć %1$s z domyślnych aplikacji?</string>
-    <string name="copy_done">Skopiowane</string>
-    <string name="no_apps_set_as_default">Brak aplikacji ustawionych jako domyślne!</string>
-    <string name="custom_settings_for_invidious">Własne ustawienia dla Invidious</string>
-    <string name="invidious_settings">Ustawiania Invidious</string>
-    <string name="invidious_dark_mode_title">Motyw</string>
-    <string name="invidious_dark_mode_indication">Skonfiguruj domyślny motyw bez ustawiania ciasteczek</string>
-    <string name="invidious_thin_mode_title">Tryb cienki</string>
-    <string name="invidious_thin_mode_indication">Wczytaj elementy HTML, CSS, JS i wideo (wyłącza obrazy)</string>
-    <string name="invidious_language_mode_indication">Dostępne ustawienia regionalne</string>
-    <string name="invidious_language_mode_title">Język interfejsu</string>
-    <string name="pref_invidious_head1">Globalne parametry</string>
-    <string name="pref_invidious_head2">Parametry gracza</string>
-    <string name="invidious_annotations_mode_title">Adnotacje</string>
-    <string name="invidious_annotations_mode_indication">Pokaż dotychczasowe adnotacje dostarczone przez archiwum internetowe</string>
-    <string name="invidious_autoplay_mode_indication">Automatycznie odtwarzaj wideo przy obciążeniu</string>
-    <string name="invidious_autoplay_mode_title">Autoodtwarzanie</string>
-    <string name="invidious_continue_mode_title">Dalej</string>
-    <string name="invidious_continue_mode_indication">Po zakończeniu filmu, przejdź automatycznie do następnego powiązanego filmu (podobnego do funkcji automatycznego odtwarzania YouTube)</string>
-    <string name="invidious_listen_mode_title">Odsłuchaj</string>
-    <string name="invidious_listen_mode_indication">Odtwarzaj tylko część dźwięku wideo</string>
-    <string name="invidious_local_mode_title">Lokalnie</string>
-    <string name="invidious_local_mode_indication">Strumienie wideo przez proxy</string>
-    <string name="invidious_subtitles_mode_title">Napisy</string>
-    <string name="invidious_subtitles_mode_indication">Wykaz kodów językowych ISO 639–1</string>
-    <string name="invidious_quality_mode_title">Jakość</string>
-    <string name="invidious_quality_mode_indication">Domyślna jakość odtwarzacza</string>
-    <string name="invidious_loop_mode_title">Powtarzaj</string>
-    <string name="invidious_volume_mode_title">Głośność</string>
-    <string name="invidious_volume_mode_indication">Domyślna głośność odtwarzacza, może być dowolną liczbą całkowita od 0 do 100</string>
-    <string name="invidious_loop_mode_indication">Domyślnie zapętlaj odtwarzanie</string>
-    <string name="invidious_volume_mode_value">Wartość głośności</string>
-    <string name="invidious_volume_mode_value_indication">Zastąp głośność tą wartością</string>
-    <string name="pref_invidious_head3">Styl Odtwarzacza</string>
-    <string name="invidious_player_style_mode_title">Wygląd</string>
-    <string name="invidious_player_style_mode_indication">Invidious, domyślny. YouTube, za pomocą wyśrodkowanego przycisku odtwarzania i zawsze widoczny pasek sterowania wideo</string>
-    <string name="help">Pomoc</string>
-    <string name="invidious_help_title">Ustaw opcje</string>
-    <string name="invidious_help_ignore"><b>Ignoruj:</b> To jest domyślna akcja dla wszystkich¹ parametrów. Oznacza to, że UntrackMe nie zrobi nic z parametrami</string>
-    <string name="invidious_help_remove"><b>Usuń:</b> UntrackMe usunie parametr z adresu URL, jeśli istnieje</string>
-    <string name="invidious_help_other">Jeśli wybierzesz inne wartości dla parametru, zostaną one dodane do adresu URL. Jeśli parametr już istnieje, jego wartość zostanie zmieniona na Twój wybór</string>
-    <string name="invidious_help_explanations">[1] Parametr \'local\' jest domyślnie ustawiony na \'true\' dla lepszej ochrony prywatności</string>
-    <string-array name="invidious_theme">
-        <item>Ignoruj</item>
-        <item>Usuń</item>
-        <item>Ciemny motyw</item>
-        <item>Jasny motyw</item>
-    </string-array>
-    <string-array name="invidious_enable">
-        <item>Ignoruj</item>
-        <item>Usuń</item>
-        <item>Aktywne</item>
-        <item>Wyłączone</item>
-    </string-array>
-    <string-array name="invidious_language">
-        <item>Ignoruj</item>
-        <item>Usuń</item>
-        <item>arabski</item>
-        <item>niemiecki</item>
-        <item>grecki</item>
-        <item>angielski</item>
-        <item>esperanto</item>
-        <item>hiszpański</item>
-        <item>baskijski</item>
-        <item>francuski</item>
-        <item>islandzki</item>
-        <item>włoski</item>
-        <item>norweski Bokmål</item>
-        <item>holenderski</item>
-        <item>polski</item>
-        <item>rosyjski</item>
-        <item>ukraiński</item>
-        <item>chiński</item>
-    </string-array>
-    <string-array name="invidious_annotations">
-        <item>Ignoruj</item>
-        <item>Usuń</item>
-        <item>Pokaż adnotacje</item>
-        <item>Ukryj adnotacje</item>
-    </string-array>
-    <string-array name="invidious_quality">
-        <item>Ignoruj</item>
-        <item>Usuń</item>
-        <item>DASH</item>
-        <item>720p</item>
-        <item>480p</item>
-    </string-array>
-    <string-array name="invidious_volume">
-        <item>Ignoruj</item>
-        <item>Usuń</item>
-        <item>Niestandardowe</item>
-    </string-array>
-    <string-array name="invidious_player_style">
-        <item>Ignoruj</item>
-        <item>Usuń</item>
-        <item>Invidious</item>
-        <item>Youtube</item>
-    </string-array>
+
 </resources>

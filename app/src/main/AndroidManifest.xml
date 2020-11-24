@@ -9,9 +9,9 @@
 
     <application
         android:allowBackup="false"
-        android:icon="@mipmap/ic_launcher_lite"
-        android:label="@string/app_name_lite"
-        android:roundIcon="@mipmap/ic_launcher_lite_round"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
@@ -20,7 +20,7 @@
 
         <activity
             android:name=".activities.MainActivity"
-            android:label="@string/app_name_lite"
+            android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -166,40 +166,6 @@
             </intent-filter>
 
         </activity>
-        <activity
-            android:name=".activities.AppsPickerActivity"
-            android:noHistory="true"
-            android:theme="@style/Theme.AppCompat.Translucent" />
-        <activity
-            android:name=".activities.InstanceActivity"
-            android:excludeFromRecents="true"
-            android:theme="@style/AppThemeDialog" />
-        <activity
-            android:name=".activities.AboutActivity"
-            android:configChanges="orientation|screenSize"
-            android:label="@string/app_name_lite"
-            android:theme="@style/AppTheme" />
-        <activity
-            android:name=".activities.CheckAppActivity"
-            android:configChanges="orientation|screenSize"
-            android:label="@string/app_name_lite"
-            android:theme="@style/AppTheme" />
-        <activity
-            android:name=".activities.DefaultAppActivity"
-            android:configChanges="orientation|screenSize"
-            android:label="@string/app_name_lite"
-            android:theme="@style/AppTheme" />
-        <activity
-            android:name=".activities.InvidiousSettingsActivity"
-            android:configChanges="orientation|screenSize"
-            android:label="@string/invidious_settings"
-            android:theme="@style/AppTheme" />
-        <activity
-            android:name=".activities.WebviewPlayerActivity"
-            android:configChanges="keyboardHidden|orientation|screenSize"
-            android:label="@string/app_name_lite"
-            android:launchMode="singleTask"
-            android:theme="@style/AppTheme" />
     </application>
 
 </manifest>

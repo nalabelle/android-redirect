@@ -1,27 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- Some local values -->
-    <string name="action_settings">Instellingen</string>
-    <string name="action_about">Info</string>
-    <string name="developer">Ontwikkelaar</string>
-    <string name="donations">Donaties</string>
-    <string name="about_the_app">Over de app</string>
-    <string name="source_code">Broncode</string>
-    <string name="issue_tracker">Probleemtracker</string>
-    <string name="license">Licentie</string>
-    <string name="about_vesrion">Versie %1$s</string>
     <string name="custom_nitter">Aangepaste Nitter-\'instantie\'</string>
     <string name="save">Opslaan</string>
-    <string name="close">Sluiten</string>
     <string name="instances_saved">Aangepaste \'instanties\' zijn opgeslagen!</string>
     <string name="custom_invidious">Aangepaste Invidious-\'instantie\'</string>
-    <string name="no_apps">Standaard geen applicaties</string>
-    <string name="Donate">Doneer</string>
-    <string name="warning">Waarschuwing</string>
-    <string name="error">Fout</string>
-    <string name="valid">Geldig</string>
-    <string name="icon_of_the_app">Icoon van de app</string>
-    <string name="open_with">Openen met</string>
     <string name="redirect_gm_to_osm">Google Map omleiden naar OpenStreetMap</string>
     <string name="custom_osm">Aangepaste OSM hostnaam</string>
     <string name="redirect_youtube_to_invidious">YouTube omleiden naar Invidious</string>
@@ -29,147 +12,16 @@
     <string name="redirect_instagram_to_bibliogram">Instagram omleiden naar Bibliogram</string>
     <string name="custom_bibliogram">Aangepaste Bibliogram-exemplaar</string>
     <string name="redirect_gm_to_geo_uri">Google Map omleiden naar Geo URI</string>
-    <string name="configure">Configureren</string>
-    <string name="display_supported_links">Toon ondersteunde links</string>
     <string name="use_geo_uri">Gebruik geo-URI</string>
-    <string name="how_to">Hoe werkt</string>
     <string name="shortened_detected">Verkorte URL</string>
-    <string name="shortener_services">Verkorter-diensten</string>
     <string name="open">Open</string>
     <string name="dismiss">Ontslag</string>
     <string name="resolving_shortened">Het oplossen van verkorte URL please wait…</string>
     <string name="try_to_redirect">%1$s \n\nzal u doorverwijzen naar\n\n<b>%2$s</b></string>
     <string name="try_to_redirect_again">Dan wordt u doorgestuurd naar\n\n<b>%1$s</b></string>
     <string name="the_app_failed_shortened">De app slaagde er niet in om de volledige URL op te halen</string>
-    <string name="invidious_instances">Ongewenste gevallen</string>
-    <string name="nitter_instances">Nitter instanties</string>
-    <string name="bibliogram_instances">Bibliografische voorbeelden</string>
-    <string name="latency">Latentie</string>
-    <string name="error_message_internet">Controleer uw internetverbinding</string>
     <string name="instance_label">Instantie:</string>
     <string name="expand_instance_details">Details van voorbeelden uitbreiden</string>
-    <string name="cloudflare">Dit exemplaar maakt gebruik van Cloudflare</string>
     <string name="instance_info">Informatie over vermelde instanties</string>
-    <string name="about_instances">De lijst van instanties komt van\n\n <a href="%1$s">%2$s</a>\n\nU kunt bijdragen aan deze lijst door instanties toe te voegen of te verwijderen.</string>
-    <string name="about_instances_title">Ongewenste gevallen</string>
-    <string name="use_built_in_player">Gebruik de ingebouwde speler</string>
-    <string name="share">Delen</string>
-    <string name="download">Downloaden</string>
-    <string name="share_with">Delen met</string>
-    <string name="check_apps">Apps controleren</string>
-    <string name="select_instances">Selecteer exemplaren</string>
-    <string name="continue_with">Doorgaan met…</string>
-    <string name="just_once">Eenmalig</string>
-    <string name="always">Altijd</string>
-    <string name="default_app_indication">%1$s is ingesteld als een standaard app.\nU kunt dit gedrag verwijderen uit de app-instellingen.</string>
-    <string name="indication_error_title">Er is iets mis met de configuratie van de app. Volg deze aanwijzingen om dat probleem op te lossen.</string>
-    <string name="open_configure">1 - Tik op de \"CONFIGUREN\" knop hierboven.</string>
-    <string name="supported_url_indication_1">2 - U bent nu in de app-instellingen van uw apparaat. Tik op \"Als standaard instellen\".</string>
-    <string name="display_indications_1_description">Schermafbeelding met app-instellingen voor de app. Je moet op \"Als standaard instellen\" tikken</string>
-    <string name="supported_url_indication_2">2 - Tik vervolgens op \"Ga naar ondersteunde URLs\".</string>
-    <string name="display_indications_2_description">Schermafbeelding met app-instellingen voor de app. Je moet klikken op \"Ga naar ondersteunde URLs\"</string>
-    <string name="supported_url_indication_3">3 - Zorg er in Suggesties voor dat je \"Altijd vragen\" kiest</string>
-    <string name="display_indications_3_description">Schermafbeelding met app-instellingen om te bepalen hoe URLs geopend dienen te worden</string>
-    <string name="default_apps">Standaardapps</string>
-    <string name="remove_from_default_app">Verwijder uit standaardapps</string>
-    <string name="delete">Verwijderen</string>
-    <string name="cancel">Annuleren</string>
-    <string name="delete_app_from_default">%1$s uit standaardapps verwijderen?</string>
-    <string name="copy_done">Gekopieerd</string>
-    <string name="no_apps_set_as_default">Geen apps ingesteld als standaard!</string>
-    <string name="custom_settings_for_invidious">Aangepaste instellingen voor Invidious</string>
-    <string name="invidious_settings">Invidious-instellingen</string>
-    <string name="invidious_dark_mode_title">Thema</string>
-    <string name="invidious_dark_mode_indication">Standaardthema instellen zonder cookies</string>
-    <string name="invidious_thin_mode_title">\'Thin\'-modus</string>
-    <string name="invidious_thin_mode_indication">Laad HTML-, CSS-, JS- en video-elementen (schakelt afbeeldingen uit)</string>
-    <string name="invidious_language_mode_indication">Beschikbare talen tonen</string>
-    <string name="invidious_language_mode_title">Taal van de gebruiksinterface</string>
-    <string name="pref_invidious_head1">Algemene parameters (voor de gehele site)</string>
-    <string name="pref_invidious_head2">Parameters van afspeler</string>
-    <string name="invidious_annotations_mode_title">Aantekeningen</string>
-    <string name="invidious_annotations_mode_indication">Toon eerdere aantekeningen, aangeboden door het Internet Archive</string>
-    <string name="invidious_autoplay_mode_indication">Automatisch video afspelen bij laden</string>
-    <string name="invidious_autoplay_mode_title">Automatisch afspelen</string>
-    <string name="invidious_continue_mode_title">Doorgaan</string>
-    <string name="invidious_continue_mode_indication">Als de video klaar is, ga automatisch naar de volgende, gerelateerde video (vergelijkbaar met de YouTubefunctie Automatisch afspelen)</string>
-    <string name="invidious_listen_mode_title">Beluisteren</string>
-    <string name="invidious_listen_mode_indication">Speel alleen audiogedeelte van video af</string>
-    <string name="invidious_local_mode_title">Lokale folder</string>
-    <string name="invidious_local_mode_indication">Proxy voor videostreams</string>
-    <string name="invidious_subtitles_mode_title">Ondertiteling</string>
-    <string name="invidious_subtitles_mode_indication">Lijst van taalcodes van ISO 639–1</string>
-    <string name="invidious_quality_mode_title">Kwaliteit</string>
-    <string name="invidious_quality_mode_indication">Standaardkwaliteit afspeler</string>
-    <string name="invidious_loop_mode_title">Herhalen</string>
-    <string name="invidious_volume_mode_title">Geluidsvolume</string>
-    <string name="invidious_volume_mode_indication">Standaardvolume afspeler kan elk geheel getal tussen 0 en 100 zijn</string>
-    <string name="invidious_loop_mode_indication">Standaard afspelen herhalen</string>
-    <string name="invidious_volume_mode_value">Waarde geluidsvolume</string>
-    <string name="invidious_volume_mode_value_indication">Overschrijf geluidsvolume met deze waarde</string>
-    <string name="pref_invidious_head3">Type afspeler</string>
-    <string name="invidious_player_style_mode_title">Weergave</string>
-    <string name="invidious_player_style_mode_indication">Invidious, de standaardinstelling. YouTube, met behulp van een gecentreerde afspeelknop en altijd zichtbare videobesturingsbalk</string>
-    <string name="help">Help</string>
-    <string name="invidious_help_title">Opties instellen</string>
-    <string name="invidious_help_ignore"><b>Negeerd:</b> Dit is de standaardactie voor alle¹ parameters. Dit betekent dat UntrackMe niets doet aan de parameter</string>
-    <string name="invidious_help_remove"><b>Verwijderen:</b> UntrackMe verwijdert de parameter van de URL, als deze bestaat</string>
-    <string name="invidious_help_other">Als u andere waarden voor een parameter selecteert, worden deze toegevoegd aan de URL. Als de parameter al bestaat, zal de waarde worden aangepast worden aan uw keuze</string>
-    <string name="invidious_help_explanations">[1] \'lokale\' parameter is standaard op \'waar\' ingesteld voor betere privacy</string>
-    <string-array name="invidious_theme">
-        <item>Negeren</item>
-        <item>Verwijderen</item>
-        <item>Donker thema</item>
-        <item>Licht thema</item>
-    </string-array>
-    <string-array name="invidious_enable">
-        <item>Negeren</item>
-        <item>Verwijderen</item>
-        <item>Ingeschakeld</item>
-        <item>Uitgeschakeld</item>
-    </string-array>
-    <string-array name="invidious_language">
-        <item>Negeren</item>
-        <item>Verwijderen</item>
-        <item>Arabisch</item>
-        <item>Duits</item>
-        <item>Grieks</item>
-        <item>Engels</item>
-        <item>Esperanto</item>
-        <item>Spaans</item>
-        <item>Baskisch</item>
-        <item>Frans</item>
-        <item>IJslands</item>
-        <item>Italiaans</item>
-        <item>Norwegian Bokmål</item>
-        <item>Nederlands</item>
-        <item>Pools</item>
-        <item>Russisch</item>
-        <item>Oekraïens</item>
-        <item>Chinees</item>
-    </string-array>
-    <string-array name="invidious_annotations">
-        <item>Negeren</item>
-        <item>Verwijderen</item>
-        <item>Toon aantekeningen</item>
-        <item>Verberg aantekeningen</item>
-    </string-array>
-    <string-array name="invidious_quality">
-        <item>Negeren</item>
-        <item>Verwijderen</item>
-        <item>Streep</item>
-        <item>720p</item>
-        <item>480p</item>
-    </string-array>
-    <string-array name="invidious_volume">
-        <item>Negeren</item>
-        <item>Verwijderen</item>
-        <item>Aangepast</item>
-    </string-array>
-    <string-array name="invidious_player_style">
-        <item>Negeren</item>
-        <item>Verwijderen</item>
-        <item>Invidious</item>
-        <item>Youtube</item>
-    </string-array>
+
 </resources>

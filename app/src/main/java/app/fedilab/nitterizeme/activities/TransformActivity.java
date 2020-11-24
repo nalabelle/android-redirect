@@ -28,10 +28,9 @@ import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import app.fedilab.nitterizeme.BuildConfig;
 import app.fedilab.nitterizeme.helpers.Utils;
 
-import static app.fedilab.nitterizeme.activities.CheckAppActivity.shortener_domains;
+import static app.fedilab.nitterizeme.data.Domains.shortener_domains;
 import static app.fedilab.nitterizeme.helpers.Utils.KILL_ACTIVITY;
 import static app.fedilab.nitterizeme.helpers.Utils.forwardToBrowser;
 import static app.fedilab.nitterizeme.helpers.Utils.isRouted;
@@ -49,7 +48,7 @@ public class TransformActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Intent intent = getIntent();
-        if (intent != null && intent.getStringExtra("nitterizeme") != null) {
+        if (intent != null && intent.getBooleanExtra("nitterizeme", false)) {
             finish();
             return;
         }
@@ -79,14 +78,7 @@ public class TransformActivity extends Activity {
                     if (transformedURL != null) {
                         delegate.setData(Uri.parse(transformUrl(TransformActivity.this, url)));
                         delegate.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                        if (BuildConfig.fullLinks) {
-                            forwardToBrowser(TransformActivity.this, delegate);
-                        } else {
-                            if (delegate.resolveActivity(getPackageManager()) != null) {
-                                startActivity(delegate);
-                                finish();
-                            }
-                        }
+                        forwardToBrowser(TransformActivity.this, delegate);
                     } else {
                         forwardToBrowser(TransformActivity.this, intent);
                     }
@@ -183,12 +175,7 @@ public class TransformActivity extends Activity {
         sendIntent.setAction(Intent.ACTION_SEND);
         sendIntent.putExtra(Intent.EXTRA_TEXT, extraText);
         sendIntent.setType("text/plain");
-        if (BuildConfig.fullLinks) {
-            forwardToBrowser(TransformActivity.this, sendIntent);
-        } else {
-            startActivity(sendIntent);
-            finish();
-        }
+        forwardToBrowser(TransformActivity.this, sendIntent);
     }
 
 }

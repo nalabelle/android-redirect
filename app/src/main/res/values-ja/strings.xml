@@ -1,27 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- Some local values -->
-    <string name="action_settings">設定</string>
-    <string name="action_about">このアプリついて</string>
-    <string name="developer">開発者</string>
-    <string name="donations">寄付</string>
-    <string name="about_the_app">このアプリについて</string>
-    <string name="source_code">ソースコード</string>
-    <string name="issue_tracker">課題追跡</string>
-    <string name="license">ライセンス</string>
-    <string name="about_vesrion">リリース %1$s</string>
     <string name="custom_nitter">カスタムNitterインスタンス</string>
     <string name="save">保存</string>
-    <string name="close">閉じる</string>
     <string name="instances_saved">カスタムインスタンスが保存されました！</string>
     <string name="custom_invidious">カスタムinvidiousインスタンス</string>
-    <string name="no_apps">デフォルトアプリがありません</string>
-    <string name="Donate">寄付</string>
-    <string name="warning">注意</string>
-    <string name="error">エラー</string>
-    <string name="valid">有効</string>
-    <string name="icon_of_the_app">アプリのアイコン</string>
-    <string name="open_with">アプリで開く</string>
     <string name="redirect_gm_to_osm">Google マップをOpenStreetMapにリダイレクトする</string>
     <string name="custom_osm">カスタムOpenStreetMapホスト名</string>
     <string name="redirect_youtube_to_invidious">YouTubeをInvidiousにリダイレクトする</string>
@@ -29,147 +12,16 @@
     <string name="redirect_instagram_to_bibliogram">InstagramをBibliogramにリダイレクトする</string>
     <string name="custom_bibliogram">カスタムBibliogramインスタンス</string>
     <string name="redirect_gm_to_geo_uri">Google マップをGeo URIにリダイレクトする</string>
-    <string name="configure">設定</string>
-    <string name="display_supported_links">サポートされているリンクを表示する</string>
     <string name="use_geo_uri">Geo URIを利用する</string>
-    <string name="how_to">使い方</string>
     <string name="shortened_detected">短縮URL</string>
-    <string name="shortener_services">URL短縮サービス</string>
     <string name="open">開く</string>
     <string name="dismiss">無効化</string>
     <string name="resolving_shortened">短縮URLのリンク先を解決しています、しばらくお待ちください…</string>
     <string name="try_to_redirect">%1$s\n\nは\n\n<b>%2$s</b>にリダイレクトしています</string>
     <string name="try_to_redirect_again">\n\n<b>%1$s</b>にリダイレクトしています</string>
     <string name="the_app_failed_shortened">完全なURLの取得に失敗しました</string>
-    <string name="invidious_instances">Invidiousインスタンス</string>
-    <string name="nitter_instances">Nitterインスタンス</string>
-    <string name="bibliogram_instances">Bibliogramインスタンス</string>
-    <string name="latency">レイテンシ</string>
-    <string name="error_message_internet">インターネット接続を確認してください</string>
     <string name="instance_label">インスタンス:</string>
     <string name="expand_instance_details">インスタンスの詳細を表示</string>
-    <string name="cloudflare">このインスタンスはCloudflareを使用しています</string>
     <string name="instance_info">リスト上のインスタンスについての情報</string>
-    <string name="about_instances">インスタンスのリストの提供元\n\n<a href="%1$s">%2$s</a>\n\nこのリストへインスタンスの追加や削除の貢献ができます。</string>
-    <string name="about_instances_title">インスタンスについて</string>
-    <string name="use_built_in_player">内部プレイヤーを使用</string>
-    <string name="share">共有</string>
-    <string name="download">ダウンロード</string>
-    <string name="share_with">次でシェア</string>
-    <string name="check_apps">アプリを検出</string>
-    <string name="select_instances">インスタンスを選択</string>
-    <string name="continue_with">次で続ける</string>
-    <string name="just_once">1回のみ</string>
-    <string name="always">常時</string>
-    <string name="default_app_indication">%1$s は既定のアプリとして設定されています。\nこの動作はアプリの設定から解除できます。</string>
-    <string name="indication_error_title">アプリの設定に問題があります。次の手順で問題を解決してください。</string>
-    <string name="open_configure">1 - 上の「設定」ボタンをタップします。</string>
-    <string name="supported_url_indication_1">2 - デバイスのアプリ設定の「デフォルトで開く」をタップしてください。</string>
-    <string name="display_indications_1_description">アプリ設定のスクリーンショット。「デフォルトで開く」をタップする必要があります</string>
-    <string name="supported_url_indication_2">2 - 次に「対応リンクを開く」をタップします。</string>
-    <string name="display_indications_2_description">アプリ設定のスクリーンショット。「対応リンクを開く」をタップする必要があります</string>
-    <string name="supported_url_indication_3">3 - 「その都度確認」を選択してください</string>
-    <string name="display_indications_3_description">対応リンクを開く動作を定義するアプリの設定を表示するスクリーンショット</string>
-    <string name="default_apps">既定のアプリ</string>
-    <string name="remove_from_default_app">既定のアプリの設定を消去</string>
-    <string name="delete">削除</string>
-    <string name="cancel">キャンセル</string>
-    <string name="delete_app_from_default">既定のアプリから %1$s を削除しますか？</string>
-    <string name="copy_done">コピーしました</string>
-    <string name="no_apps_set_as_default">既定に設定されているアプリはありません！</string>
-    <string name="custom_settings_for_invidious">Invidiousのカスタム設定</string>
-    <string name="invidious_settings">Invidiousの設定</string>
-    <string name="invidious_dark_mode_title">テーマ</string>
-    <string name="invidious_dark_mode_indication">Cookieを設定せずにデフォルトのテーマを設定します</string>
-    <string name="invidious_thin_mode_title">最小モード</string>
-    <string name="invidious_thin_mode_indication">HTML、CSS、JS、ビデオ要素を読み込む (画像を無効にします)</string>
-    <string name="invidious_language_mode_indication">利用可能なロケール</string>
-    <string name="invidious_language_mode_title">UIの言語</string>
-    <string name="pref_invidious_head1">サイト全体のパラメーター</string>
-    <string name="pref_invidious_head2">プレイヤーのパラメーター</string>
-    <string name="invidious_annotations_mode_title">アノテーション</string>
-    <string name="invidious_annotations_mode_indication">Internet Archiveによって提供されたレガシーアノテーションを表示する</string>
-    <string name="invidious_autoplay_mode_indication">ロード時に自動的にビデオを再生する</string>
-    <string name="invidious_autoplay_mode_title">自動再生</string>
-    <string name="invidious_continue_mode_title">連続再生</string>
-    <string name="invidious_continue_mode_indication">動画の再生が終わると、自動的に次の関連ビデオに移動します(YouTubeの自動再生機能に類似)</string>
-    <string name="invidious_listen_mode_title">音声を聴く</string>
-    <string name="invidious_listen_mode_indication">動画の音声部分だけを再生</string>
-    <string name="invidious_local_mode_title">ローカル</string>
-    <string name="invidious_local_mode_indication">動画をプロクシに通す</string>
-    <string name="invidious_subtitles_mode_title">字幕</string>
-    <string name="invidious_subtitles_mode_indication">ISO 639–1言語コード一覧</string>
-    <string name="invidious_quality_mode_title">ビデオ品質</string>
-    <string name="invidious_quality_mode_indication">既定のビデオ品質</string>
-    <string name="invidious_loop_mode_title">ループ</string>
-    <string name="invidious_volume_mode_title">音量</string>
-    <string name="invidious_volume_mode_indication">既定のプレーヤーの音量は、0から100の間で設定できます。</string>
-    <string name="invidious_loop_mode_indication">デフォルトでループ再生</string>
-    <string name="invidious_volume_mode_value">音量</string>
-    <string name="invidious_volume_mode_value_indication">この値で音量を上書きします</string>
-    <string name="pref_invidious_head3">プレイヤースタイル</string>
-    <string name="invidious_player_style_mode_title">外観</string>
-    <string name="invidious_player_style_mode_indication">Invidiousは、デフォルトの表示です。YouTubeは、中央に再生ボタンが表示され、ビデオコントロールバーが常に表示されます。</string>
-    <string name="help">ヘルプ</string>
-    <string name="invidious_help_title">設定オプション</string>
-    <string name="invidious_help_ignore"><b>無視:</b> これは全てのパラメータのデフォルト動作です。UntrackMeはこのパラメータについて何もしません。</string>
-    <string name="invidious_help_remove"><b>削除:</b> UntrackMeはURLからパラメータを削除します。</string>
-    <string name="invidious_help_other">パラメータに他の値を選択すると、それらはURLに追加されます。 パラメータがすでに存在する場合、その値は選択したものに変更されます。</string>
-    <string name="invidious_help_explanations">[1] プライバシー保護のため、デフォルトでは \'local\' パラメータは \'true\' に設定されています</string>
-    <string-array name="invidious_theme">
-        <item>無視</item>
-        <item>削除</item>
-        <item>ダークテーマ</item>
-        <item>ライトテーマ</item>
-    </string-array>
-    <string-array name="invidious_enable">
-        <item>無視</item>
-        <item>削除</item>
-        <item>有効</item>
-        <item>無効</item>
-    </string-array>
-    <string-array name="invidious_language">
-        <item>無視</item>
-        <item>削除</item>
-        <item>アラビア語</item>
-        <item>ドイツ語</item>
-        <item>ギリシャ語</item>
-        <item>英語</item>
-        <item>エスペラント語</item>
-        <item>スペイン語</item>
-        <item>バスク語</item>
-        <item>フランス語</item>
-        <item>アイスランド語</item>
-        <item>イタリア語</item>
-        <item>ノルウェー・ブークモール語</item>
-        <item>オランダ語</item>
-        <item>ポーランド語</item>
-        <item>ロシア語</item>
-        <item>ウクライナ語</item>
-        <item>中国語</item>
-    </string-array>
-    <string-array name="invidious_annotations">
-        <item>無視</item>
-        <item>削除</item>
-        <item>アノテーションを表示</item>
-        <item>アノテーションを非表示</item>
-    </string-array>
-    <string-array name="invidious_quality">
-        <item>無視</item>
-        <item>削除</item>
-        <item>DASH</item>
-        <item>720p</item>
-        <item>480p</item>
-    </string-array>
-    <string-array name="invidious_volume">
-        <item>無視</item>
-        <item>削除</item>
-        <item>カスタム</item>
-    </string-array>
-    <string-array name="invidious_player_style">
-        <item>無視</item>
-        <item>削除</item>
-        <item>Invidious</item>
-        <item>YouTube</item>
-    </string-array>
+
 </resources>

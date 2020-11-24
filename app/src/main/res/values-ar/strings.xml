@@ -1,27 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- Some local values -->
-    <string name="action_settings">الإعدادات</string>
-    <string name="action_about">عن</string>
-    <string name="developer">المُطوّر</string>
-    <string name="donations">التبرعات</string>
-    <string name="about_the_app">عن التطبيق</string>
-    <string name="source_code">الشفرة المصدرية</string>
-    <string name="issue_tracker">متعقب المشاكل</string>
-    <string name="license">الرخصة</string>
-    <string name="about_vesrion">الإصدار %1$s</string>
     <string name="custom_nitter">مثيل Nitter مخصّص</string>
     <string name="save">احفظ</string>
-    <string name="close">أغلق</string>
     <string name="instances_saved">تم حفظ مثيلات الخوادم المخصصة!</string>
     <string name="custom_invidious">مثيل Invidious مخصّص</string>
-    <string name="no_apps">ليس هناك أي تطبيق افتراضي</string>
-    <string name="Donate">تبرع</string>
-    <string name="warning">تحذير</string>
-    <string name="error">خطأ</string>
-    <string name="valid">صالح</string>
-    <string name="icon_of_the_app">أيقونة التطبيق</string>
-    <string name="open_with">افتح باستخدام</string>
     <string name="redirect_gm_to_osm">إعادة توجيه خريطة غوغل إلى خريطة الشارع المفتوح</string>
     <string name="custom_osm">مثيل OSM مخصّص</string>
     <string name="redirect_youtube_to_invidious">يقوم بتحويل Youtube إلى Invidious</string>
@@ -29,147 +12,16 @@
     <string name="redirect_instagram_to_bibliogram">يقوم بتحويل أنستغرام إلى Bibliogram</string>
     <string name="custom_bibliogram">مثيل خادم Bibliogram مخصَّص</string>
     <string name="redirect_gm_to_geo_uri">إعادة توجيه خريطة غوغل إلى Geo URI</string>
-    <string name="configure">ضبط</string>
-    <string name="display_supported_links">اظهر الروابط المدعومة</string>
     <string name="use_geo_uri">استخدم Geo URI</string>
-    <string name="how_to">طريقة الإستخدام</string>
     <string name="shortened_detected">تقصير URL</string>
-    <string name="shortener_services">خدمات الاختصار</string>
     <string name="open">افتح</string>
     <string name="dismiss">تجاهل</string>
     <string name="resolving_shortened">جارٍ تحليل الرابط القصير ، يرجى الإنتظار…</string>
     <string name="try_to_redirect">%1$s \n\nسيقوم بإعادة توجيهك إلى\n\n<b>%2$s</b></string>
     <string name="try_to_redirect_again">ثم سيتم إعادة توجيهك إلى\n\n<b>%1$s</b></string>
     <string name="the_app_failed_shortened">لم يتمكّن التطبيق مِن إيجاد الرابط الكامل</string>
-    <string name="invidious_instances">مثيلات خوادم Invidious</string>
-    <string name="nitter_instances">مثيلات خوادم Nitter</string>
-    <string name="bibliogram_instances">مثيلات خوادم Bibliogram</string>
-    <string name="latency">وقت الإستجابة</string>
-    <string name="error_message_internet">تحقق من اتصالك بالإنترنت</string>
     <string name="instance_label">مثيل الخادم:</string>
     <string name="expand_instance_details">توسيع تفاصيل مثيل الخادم</string>
-    <string name="cloudflare">مثيل الخادم هذا يستخدم Cloudflare</string>
     <string name="instance_info">معلومات حول مثيلات الخوادم في القائمة</string>
-    <string name="about_instances">مصدر قائمة مثيلات الخوادم تأتي من\n\n <a href="%1$s">%2$s</a>\n\nيمكنك المساهمة في هذه القائمة بإضافة أو إزالة مثيلات خوادم.</string>
-    <string name="about_instances_title">عن مثيلات الخوادم</string>
-    <string name="use_built_in_player">استخدام المشغل المدمج</string>
-    <string name="share">مشاركة</string>
-    <string name="download">تحميل</string>
-    <string name="share_with">شاركه مع</string>
-    <string name="check_apps">التحقق من التطبيقات</string>
-    <string name="select_instances">حدد مثيلات الخوادم</string>
-    <string name="continue_with">واصل بـ…</string>
-    <string name="just_once">مرة واحدة فقط</string>
-    <string name="always">دائما</string>
-    <string name="default_app_indication">%1$s تم تعيينه كتطبيق افتراضي.\nيمكنك إزالة هذا السلوك من إعدادات التطبيق.</string>
-    <string name="indication_error_title">هناك خطأ ما في اعدادات التطبيق. يرجى اتباع هذه الخطوات لإصلاح هذه المشكلة.</string>
-    <string name="open_configure">1 - اضغط على زر \"الإعداد\" أعلاه.</string>
-    <string name="supported_url_indication_1">2 - أنت الآن في إعدادات التطبيق لجهازك. اضغط على \"تعيين كافتراضي\".</string>
-    <string name="display_indications_1_description">لقطة شاشة تُظهِر إعدادات التطبيق. يجب عليك الضغط على \"تعيين كافتراضي\"</string>
-    <string name="supported_url_indication_2">2 - ثم اضغط على \"اذهب إلى عناوين URL المدعومة\".</string>
-    <string name="display_indications_2_description">لقطة شاشة تعرض إعدادات التطبيق. عليك أن اضغط على \"الذهاب إلى عناوين URL المدعومة\"</string>
-    <string name="supported_url_indication_3">3 - في الاقتراحات تأكد من الضغط على \"السؤال دائماً\"</string>
-    <string name="display_indications_3_description">لقطة شاشة تعرض إعدادات التطبيق لتحديد سلوك فتح عناوين URL</string>
-    <string name="default_apps">التطبيقات الافتراضية</string>
-    <string name="remove_from_default_app">إزالة من التطبيقات الافتراضية</string>
-    <string name="delete">حذف</string>
-    <string name="cancel">إلغاء</string>
-    <string name="delete_app_from_default">حذف %1$s من التطبيقات الافتراضية؟</string>
-    <string name="copy_done">تم النسخ</string>
-    <string name="no_apps_set_as_default">لم يتم تعيين تطبيقات افتراضية!</string>
-    <string name="custom_settings_for_invidious">إعدادات مخصصة لـInvidious</string>
-    <string name="invidious_settings">إعدادات Invidious</string>
-    <string name="invidious_dark_mode_title">السمة</string>
-    <string name="invidious_dark_mode_indication">تكوين السمة الافتراضية دون إعداد ملفات تعريف الارتباط</string>
-    <string name="invidious_thin_mode_title">الوضع الرقيق</string>
-    <string name="invidious_thin_mode_indication">تحميل HTML و CSS و JS و الفيديو (تعطيل الصور)</string>
-    <string name="invidious_language_mode_indication">اللغات المتوفرة</string>
-    <string name="invidious_language_mode_title">لغة واجهة المستخدم</string>
-    <string name="pref_invidious_head1">معلمات على مستوى الموقع</string>
-    <string name="pref_invidious_head2">معلمات المشغل</string>
-    <string name="invidious_annotations_mode_title">الشروح</string>
-    <string name="invidious_annotations_mode_indication">إظهار الشروح القديمة، المقدمة من أرشيف الإنترنت</string>
-    <string name="invidious_autoplay_mode_indication">تشغيل الفيديو تلقائياً عند التحميل</string>
-    <string name="invidious_autoplay_mode_title">تشغيل تلقائي</string>
-    <string name="invidious_continue_mode_title">متابعة</string>
-    <string name="invidious_continue_mode_indication">عند الانتهاء من الفيديو، انتقل تلقائياً إلى الفيديو التالي ذي الصلة (شبيه بميزة يوتيوب التلقائية)</string>
-    <string name="invidious_listen_mode_title">استمع</string>
-    <string name="invidious_listen_mode_indication">تشغيل الجزء الصوتي فقط من الفيديو</string>
-    <string name="invidious_local_mode_title">المحلية</string>
-    <string name="invidious_local_mode_indication">بث فيديو البروكسي</string>
-    <string name="invidious_subtitles_mode_title">التسميات التوضيحية</string>
-    <string name="invidious_subtitles_mode_indication">قائمة رموز اللغة ISO 639-1</string>
-    <string name="invidious_quality_mode_title">الجودة</string>
-    <string name="invidious_quality_mode_indication">جودة المشغل الافتراضية</string>
-    <string name="invidious_loop_mode_title">تكرار</string>
-    <string name="invidious_volume_mode_title">الصوت</string>
-    <string name="invidious_volume_mode_indication">مستوى صوت المشغل الافتراضي، يمكن أن يكون أي عدد صحيح بين 0 و 100</string>
-    <string name="invidious_loop_mode_indication">تكرار المشغل بشكل افتراضي</string>
-    <string name="invidious_volume_mode_value">قيمة الصوت</string>
-    <string name="invidious_volume_mode_value_indication">تجاوز مستوى الصوت مع هذه القيمة</string>
-    <string name="pref_invidious_head3">نمط المشغل</string>
-    <string name="invidious_player_style_mode_title">المظهر</string>
-    <string name="invidious_player_style_mode_indication">Invidious، الإفتراضي. يوتيوب، باستخدام زر تشغيل مركزي و دائما شريط تحكم فيديو مرئي</string>
-    <string name="help">مساعدة</string>
-    <string name="invidious_help_title">خيارات الإعداد</string>
-    <string name="invidious_help_ignore"><b>تجاهل:</b> هذا هو الإجراء الافتراضي لجميع المعلمات 1. وهذا يعني أن إلغاء المسار Me لن يقوم بأي شيء حول المعلمة</string>
-    <string name="invidious_help_remove"><b>حذف:</b> إلغاء تعقبني سوف يزيل المعلمة من الرابط، إذا كان موجودا</string>
-    <string name="invidious_help_other">إذا قمت بتحديد قيم أخرى لمعلمة، سيتم إضافتها إلى عنوان URL. إذا كان المعامل موجود مسبقا، سيتم تغيير قيمته إلى اختيارك</string>
-    <string name="invidious_help_explanations">[1] معلمة \'محلية\' تم تعيينها إلى \'صحيح\' افتراضيا للحصول على خصوصية أفضل</string>
-    <string-array name="invidious_theme">
-        <item>تجاهل</item>
-        <item>إزالة</item>
-        <item>السمة المظلمة</item>
-        <item>موضوع فاتح</item>
-    </string-array>
-    <string-array name="invidious_enable">
-        <item>تجاهل</item>
-        <item>حذف</item>
-        <item>تمكين</item>
-        <item>تعطـيل</item>
-    </string-array>
-    <string-array name="invidious_language">
-        <item>تجاهل</item>
-        <item>حذف</item>
-        <item>العربيّة</item>
-        <item>الألمانية</item>
-        <item>اليونانية</item>
-        <item>الانجليزية</item>
-        <item>الإسبرانتو</item>
-        <item>الإسبانية</item>
-        <item>الباسكية</item>
-        <item>الفرنسية</item>
-        <item>الأيسلاندية</item>
-        <item>الإيطالية</item>
-        <item>البوكملية النرويجية</item>
-        <item>الهولندية</item>
-        <item>البولندية</item>
-        <item>الروسية</item>
-        <item>الاوكرانية</item>
-        <item>الصينية</item>
-    </string-array>
-    <string-array name="invidious_annotations">
-        <item>تجاهل</item>
-        <item>حذف</item>
-        <item>إظهار الشروح</item>
-        <item>إخفاء الشروح</item>
-    </string-array>
-    <string-array name="invidious_quality">
-        <item>تجاهل</item>
-        <item>إزالة</item>
-        <item>داش</item>
-        <item>720 بكسل</item>
-        <item>480 بكسل</item>
-    </string-array>
-    <string-array name="invidious_volume">
-        <item>تجاهل</item>
-        <item>إزالة</item>
-        <item>مخصص</item>
-    </string-array>
-    <string-array name="invidious_player_style">
-        <item>تجاهل</item>
-        <item>إزالة</item>
-        <item>Invidious</item>
-        <item>يوتيوب</item>
-    </string-array>
+
 </resources>
